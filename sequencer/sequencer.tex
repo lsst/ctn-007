@@ -1,0 +1,108 @@
+This section describes the history of the sequencer changes from Run 7. Run 7 results in the v30 sequencer file. The changes made is documented in Section 5.2 in \cite{SITCOMTN-148}. Since Run 7 was concluded, the following optimization targets are defined.
+\begin{itemize}
+    \item long range correlation 
+    \item switching to the 3 sec readout timing
+\end{itemize}
+
+There was a schedule pressure to complete the sequencer optimization because the beginning of the Science Verification Survey was due, which required to simplify our testing.
+
+
+\subsubsection{Long range correlation}
+%%
+%% describe what the long range correlation etc...
+The measurement of brighter-fatter coefficients in \cite{SITCOMTN-148} had already shown an anomalously high value of the \(a_{00}\) coefficient for one specific e2v sensor: R23\_S02 (see Figure 34 in that note). 
+This measurement is derived from fits over the variance and spatial covariance curves versus the flux. The curves for the channels in that particular sensor were in fact affected by an excess of variance, which affected not only the noise measurement in bias frames, but also introduced an extra flux-dependent component in the variance. This degraded the gain measurements from the PTC (using \(C_{00}/\mu\)).
+This issue also manifested as a flux-dependent covariance between amplifiers in the same sensor, and as an excess in the correlation with the next pixel in the serial direction (\(a_{10}\)). One way to detect this issue in a systematic manner is to compute the slopes of the covariances between channels versus the flux, and average them over all channels in the sensor (as done in Figure\ref{fig:covariance-RGn20}). Using this metric, other sensors were found to exhibit a similar issue, but to a smaller degree (same Figure, left plot). 
+Other related metrics (noise correlation between channels, correlations between channels) also pointed to the same sensors.
+
+\begin{figure}[ht]
+\begin{centering}
+\includegraphics[width=0.9\textwidth]{sequencer/slopes-cov-before-after.jpg}
+\caption{Averages of the slopes of the covariances between channels, for each sensor. Left: during test run 7. Right: on sky, with the modified 'RGn20' readout sequence.}
+\label{fig:covariance-RGn20}
+\end{centering}
+\end{figure}
+
+Since the issue affected some sensors uniformly, and was exhibiting flux-dependency, investigations focused on the CCD readout clocks, and in particular on the pixel reset clock (RG). 
+To explain a potential variation from sensor to sensor, it should be noted that while the REB FPGA drives all three sensors with the same readout sequence, the actual clocks are generated on a per-sensor basis. 
+While the jitter on the FPGA timing signal is in the range of 100~ps, the jitter in the chain that translates that signal into a clock can be 1-3~ns. In addition, the RG clock is faster than the serial clocks, due to a lower capacitive load.
+
+For sensors like R23\_S02, plots acquired in scan mode at the raft level showed a strong variability (dispersion over consecutive scans) in the timing of the clock transitions around the time that the pixel reset (RG) clock was lowered. 
+In the e2v sequence for pixel readout, this drop of the RG clock was timed simultaneously with the drop of the S2 clock (which transfers charges to the S3 phase, in preparation for transfer to the readout note). 
+The same scans also showed a much stronger variability in the level of the signal after the pixel reset, up to 1000 electrons instead of the expected 50-100 electrons from \(kTC\) noise. Even with the Dual Slope Integration that is performed in the CCD readout chain, such high variability would explain an extra component in the noise.
+ 
+We then tested a series of modifications to the timing of the readout sequence. 
+In a sensor that did not exhibit the extra covariance at the nominal timing, we were able to induce it by triggering the S2 clock drop 10 ns before the RG drop.
+Conversely, tests on sensors that exhibited the issue showed that delaying the S2 drop by an increment of 10 or 20~ns after the RG drop removed the issue (Figure~\ref{fig:covariance-RGn20}, on the right). 
+This 20 ns delay was selected as the safer option, and added to the e2v readout sequence (tagged as v30\_RGn20, then adopted as v31). 
+A similar modification was tested on ITL sensors, but there was no effect on sensors that exhibited correlated noise.
+
+
+v32 has a stuff related to idle clear, no functional changes in other parts
+v33 is reordered in a one-part sequencer in timing. Whether inserting a 20ns RG before (as BufferRGp) or after the BufferS+TimeS (as BufferRGn) time slice. No change in the total timing.
+
+\subsubsection{3sec sequencer file development}
+The observing strategy has evolved from two snaps of 15 sec exposures to a single 30 sec exposure per visit.  By eliminating the intermediate readout, the overall timing budget is relaxed: one full readout cycle no longer needs to be performed during a visit.  
+This reduction frees up readout time that can be reallocated to lower readout noise.  Consequently, the development of a 3 s sequencer (instead of the existing 2sec) was initiated to take advantage of this additional margin.
+
+%%
+%% Timing chart
+%%
+We examined the times slices in the sequencer files and identified four key parameters for optimization:
+
+\begin{itemize}
+\item ISO1 – Time for ASPIC clamp/reset to start of the first integration to measure the baseline (Ramp Down; RD)
+\item ISO2 – Time between S3 down and start of ASPIC Ramp Up (RU)
+\item RampTime – the integration time of a pixel read.
+\item TimeP – the unit element of the Parallel Transfer (parallel timing).
+\item BufferP - The time period before each parallel transfer starts. 
+\end{itemize}
+
+Previous studies \citep{10.1117/12.3019117,2024SPIE13103E..21S} examined how variations in ISO1, ISO2 and RampTime affect read-out noise; they also demonstrated that altering Parallel Timing (TimeP) can increase full-well capacity. ISO2 is additionally known to reduce crosstalk.
+For the v30 firmware, BufferP is set to 3360ns, raising the question of whether the entire parallel clocking should be shifted forward as in the original vendor sequence. In fact this change 
+Because extending ISO1 degraded performance on some E2V sensors, our investigation was confined to the following scenarios: 
+\begin{enumerate}
+    \item \textbf{Longer integration time per pixel (3s-v0 RT)} – increases from 380 to 620 (1.6)
+    \item \textbf{Extended ISO2 duration (3s-v0 ISO2)} – lengthens the readout interval for each row.
+    \item \textbf{Longer parallel transfer timing (3s-v0 Parallel)} – allows more time for charge transfer between columns.
+\end{enumerate}
+Design constraints emphasized minimal deviation from the baseline sequencer, preserving parameters that had been previously tuned. 
+\begin{verbatim}
+                           2s-v33
+                             |
+                             | (increased RT/change in Buffer P)
+                             |
+ISO2 -- (increase ISO2) -- 3s-v0 RT -- (increase Parallel Timing) -- Parallel
+ |
+(just renamed)
+ |
+3s-v1
+\end{verbatim}
+
+Sequencer files for each option were produced and peer-reviewed. Validation involved bias checks, TS8 hardware testing for ITL, and UCD testing for E2V. 
+
+Noise measurements indicated that the ISO2 extension (option 2) delivers performance on par with the baseline while achieving the targeted 3-second readout time. Consequently, option 2 was adopted as the new production sequencer (\texttt{3s-v1}).
+
+The total system gain is determined by three parameters: ramp time, ASPIC gain, and ASPIC RC. Since changing the Ramp Time scales the gain roughly linearly we also need to adjust the ASPIC gain to compensate the gain change from the Ramp Time in order to achieve the similar level of the output. The similar output signal was needed not to trigger so-called bias shift for the high ADC output.
+
+The ASPIC RC parameter changes the selectable resistor in the integrating amplifier stage of the ASPIC, changing its RC time constant. The compensation can be achieved by setting RC from 14 to 2 to give the ratio of 1.6.
+
+%%
+%% define acquisitions
+%%
+\begin{itemize}
+    \item E7662 3s RT sequencers: \url{https://s3df.slac.stanford.edu/data/rubin/lsstcam/E7662/w_2025_26/}
+    \item E7697 3s Parallel sequencers: \url{https://s3df.slac.stanford.edu/data/rubin/lsstcam/E7697/w_2025_26/}
+    \item E7714 3s ISO2 sequencers: \url{https://s3df.slac.stanford.edu/data/rubin/lsstcam/E7714/w_2025_26/}
+\end{itemize}
+
+
+
+
+%%
+%% brief discussion of the result and the conclusion
+%%
+
+
+% 3 sec sequencer for corners
+https://rubin-obs.slack.com/archives/C07QJMPFLQ2/p1750880738722919

@@ -2,6 +2,7 @@
 \input{meta}
 
 % Package imports go here.
+\usepackage{minted}
 
 % Local commands go here.
 
@@ -60,32 +61,69 @@ This technote describes what we found during the LSST Camera commissioning.
 
 \section{Introduction}
 
-\section{Findings}
 %% Let's make a a folder for each topic!!
-- Sequencer change -- YU
+\section{Camera operations}
+\subsection{Sequencer changes}
+\input{sequencer/sequencer}
 
+- R30/S12 and R23/Reb10 -- I will try to collect all the information from Slack
+
+\subsection{Re-implementation of "clear" operation during the idle time}
+- IdleClear re-implementation -- SM
+
+
+\subsection{Cryo system}
+- Temp sensitivity issue -- we can put some episode and what we have done in this document, Theo will describe a few episodes
+\input{cryo/cryo}
+
+\subsection{FES commissioning}
+- FES commissioning performance -- Pierre Antilogus, Alexandre etc...
+
+\subsection{CCS development}
+- CCS
+
+\subsection{Observation control}
+- OCS integration kfanning
+
+
+
+\subsection{Guider star finder}
+@Aaron Roodman star finder in guider
+
+\subsection{}
+@gregg firmware history and updates
+
+\subsection{Historical telemetry of infrastructure cut events: electricity, glycol, dynalene and air}
+@Homer Neal telemetries of infrastructure cut events, electricity, glycol, dynalene, and air
+
+\section{Camera optimization}
+
+- eoPipe -- Jim
+% result from EO testing
+- Correlated noise -- Pierre Astier or Pierre Antilogus
+
+- PTC -- Pierre Astier
+\section{Camera on-sky performance}
 - Bright star test -- SB
 
 - On-sky persistence test -- just showing a dark image after a bright star to say no persitence
 
-- Correlated noise -- Pierre Astier or Pierre Antilogus
+- Pinhole repeatability tests -- YU
 
-- PTC -- Pierre Astier
-
-- R30/S12 and R23/Reb10 -- I will try to collect all the information from Slack
-
-- Temp sensitivity issue -- we can put some episode and what we have done in this document, maybe Theo can describe a few episode?
+\section{Sensor response}
 
 - Phosphorescence study with u and g band exposures -- SB
 
-- IdleClear re-implementation -- SM
+- persistency -- YU
 
-- Pinhole repeatability tests -- YU
+\input{fes/fes}
 
-- FCS commissioning performance -- Pierre Antilogus, Alexandre etc...
+\section{Shutter}
 
-- OCS integration kfanning
+\input{shutter/shutter}
 
+\subsection{Shutter blade trajectory fitting}
+@andy rasmussen  shutter blade trajectory fitting
 
 \section{Acknowledgements}
 
