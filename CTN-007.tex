@@ -3,6 +3,9 @@
 
 % Package imports go here.
 \usepackage{minted}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usetikzlibrary{positioning} % ノードの相対的な位置指定に便利
 
 % Local commands go here.
 
@@ -57,36 +60,41 @@ This technote describes what we found during the LSST Camera commissioning.
 % ADD CONTENT HERE
 % You can also use the \input command to include several content files.
 
-
 \section{Introduction}
+
+
+\section{Further analysis from \cite{SITCOMTN-148}}
 
 %% Let's make a a folder for each topic!!
 \section{Camera operations}
 
+\subsection{Recovery of CCDs}
+
 \subsection{Cryo system}
 - Temp sensitivity issue -- we can put some episode and what we have done in this document, Theo will describe a few episodes
-\input{cryo/cryo}
+\input{refrig/episodes}
 
-\subsection{FES commissioning}
-- FES commissioning performance -- Pierre Antilogus, Alexandre etc...
+\input{refrig/refrig}
 
 \subsection{CCS development}
 - CCS
 
 \subsection{Observation control}
 - OCS integration kfanning
+\subsection{FES commissioning}
+- FES commissioning performance -- Pierre Antilogus, Alexandre etc...
 
 
 \subsection{Guider star finder}
 @Aaron Roodman star finder in guider
 
-\subsection{}
-@gregg firmware history and updates
+\input{fes/fes}
 
 \subsection{Historical telemetry of infrastructure cut events: electricity, glycol, dynalene and air}
 @Homer Neal telemetries of infrastructure cut events, electricity, glycol, dynalene, and air
 
 \section{Camera optimization}
+
 \subsection{Sequencer changes}
 \input{sequencer/sequencer}
 
@@ -100,6 +108,8 @@ This technote describes what we found during the LSST Camera commissioning.
 - Correlated noise -- Pierre Astier or Pierre Antilogus
 
 - PTC -- Pierre Astier
+
+
 \section{Camera on-sky performance}
 - Bright star test -- SB
 
@@ -107,13 +117,10 @@ This technote describes what we found during the LSST Camera commissioning.
 
 - Pinhole repeatability tests -- YU
 
-\section{Sensor response}
-
 - Phosphorescence study with u and g band exposures -- SB
 
 - persistency -- YU
 
-\input{fes/fes}
 
 \section{Shutter}
 
@@ -122,7 +129,6 @@ This technote describes what we found during the LSST Camera commissioning.
 \subsection{Shutter blade trajectory fitting}
 @andy rasmussen  shutter blade trajectory fitting
 
-\appendix
 \section{Acknowledgements}
 
 This material is based upon work supported in part by the National Science Foundation through Cooperative Agreements AST-1258333 and AST-2241526 and Cooperative Support Agreements AST-1202910 and AST-2211468 managed by the Association of Universities for Research in Astronomy (AURA), and the Department of Energy under Contract No.\ DE-AC02-76SF00515 with the SLAC National Accelerator Laboratory managed by Stanford University.
@@ -140,5 +146,6 @@ Additional Rubin Observatory funding comes from private donations, grants to uni
 % If you want glossary uncomment below -- comment out the two lines above
 %\printglossaries
 
+\appendix
 
 \end{document}

@@ -67,17 +67,48 @@ Because extending ISO1 degraded performance on some E2V sensors, our investigati
     \item \textbf{Longer parallel transfer timing (3s-v0 Parallel)} – allows more time for charge transfer between columns.
 \end{enumerate}
 Design constraints emphasized minimal deviation from the baseline sequencer, preserving parameters that had been previously tuned. 
-\begin{verbatim}
-                           2s-v33
-                             |
-                             | (increased RT/change in Buffer P)
-                             |
-ISO2 -- (increase ISO2) -- 3s-v0 RT -- (increase Parallel Timing) -- Parallel
- |
-(just renamed)
- |
-3s-v1
-\end{verbatim}
+
+\begin{tikzpicture}[
+    % Define the distance between nodes
+    node distance=1.5cm,
+    % Define the common style for boxes
+    box/.style={rectangle, draw, minimum width=2.5cm, minimum height=0.7cm, align=center}
+]
+    
+    % Node placement
+    \node (iso2) [box] {ISO2};
+    % The right=2.5cm is the distance from edge to edge
+    \node (3s_v0) [box, right=2.5cm of iso2] {3s-v0 RT};
+    \node (parallel) [box, right=2.5cm of 3s_v0] {Parallel};
+    % Vertical nodes
+    \node (2s_v33) [box, above=2.5cm of 3s_v0] {2s-v33};
+    \node (3s_v1) [box, below=2cm of iso2] {3s-v1};
+    
+    % Draw arrows (edges) and add labels
+    
+    % 1. ISO2 -> 3s-v0 RT (Horizontal)
+    \draw[->] (iso2) -- 
+        node[midway, above] {(increase ISO2)} 
+        (3s_v0);
+    
+    % 2. 3s-v0 RT -> Parallel (Horizontal)
+    \draw[->] (3s_v0) -- 
+        node[midway, above] {(increase Parallel Timing)} 
+        (parallel);
+    
+    % 3. 3s-v0 RT -> 2s-v33 (Vertical Up)
+    % Use midway, right to place the label to the right of the center of the line, and text width for wrapping.
+    \draw[->] (3s_v0.north) -- (2s_v33.south)
+        node[midway, right, align=left, text width=3cm] 
+        {(increased RT / change in Buffer P)};
+        
+    % 4. ISO2 -> 3s-v1 (Vertical Down)
+    % Use midway, right to place the label to the right of the center of the line.
+    \draw[->] (iso2.south) -- (3s_v1.north)
+        node[midway, right, align=left] 
+        {(just renamed)};
+    
+\end{tikzpicture}
 
 Sequencer files for each option were produced and peer-reviewed. Validation involved bias checks, TS8 hardware testing for ITL, and UCD testing for E2V. 
 

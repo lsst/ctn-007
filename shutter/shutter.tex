@@ -37,7 +37,8 @@ Plotting these deltas revealed three operational periods in Figure \ref{fig:shut
 
 \subsubsection{Verification of the Observatory's PTP}
 % verification of the observatory's PTP system
-Further analysis was conducted using the spare system lsstcam-shutter02 in the clean room. This system is connected to the observatory's network through an identical MOXA switch, providing an opportunity to investigate whether the observatory's PTP system functions as intended and to identify any issues with the MOXA switch. Tests conducted in the clean room revealed successful PTP synchronization using a MOXA operating as an L2 switch by the following command:
+Further analysis was conducted using the spare system lsstcam-shutter02 in the clean room. This system is connected to the observatory's network. This network is specially configured to pass the PTP packets. The network routes through an identical MOXA switch, providing an opportunity to investigate whether the observatory's PTP system functions as intended and to identify any issues with the MOXA switch. Tests conducted in the clean room revealed successful PTP synchronization using a MOXA operating as an L2 switch by the following command:
+
 
 \begin{lstlisting}
 [yutsumi@lsstcam-shutter02 ~]$  sudo ptp4l -f /etc/ptp4l.conf -i enp0s31f6 -m
@@ -74,7 +75,9 @@ There is another machine in the clean room Dell AIO, aio06. This machine was als
 
 % verification of the EL6688:`
 \subsubsection{Verification with the spare shutter system}
-There is a tool to check the PTP status from the TwinCAT controller `readPtpDiag.sh`. This tool communicates with Beckhoff controller over the network, which provides a partial view of the variables in the PLC. The following example is taken from \cite{CTN-003}.
+Since the PTP synchronization has been successfully established with linux computers through the MOXA switch, the focus moves onto the actual PTP terminal module EL6688.  EL6688 was particullary difficult because the interface only supports 100Mbps connection. There was a doubt whether the link speed conversion does not interfere with the PTP synchronization. We used several tools to investigate the PTP synchronization comprehensively.
+
+`readPtpDiag.sh` is the tool to communicates with Beckhoff controller over the network, which provides a partial view of the variables in the PLC. The following example is taken from \cite{CTN-003}.
 \begin{lstlisting}
 [ccs@lsstcam-shutter02 ~]$ /usr/local/bin/readPtpDiag.sh 
 HCU date and time:           2025-06-09 17:58:35.614918
@@ -95,10 +98,12 @@ Leap59?                      False
 Epoch no.:                   0
 External (PTP) time:         Wed, 16 Jul 2025 17:40:44.907797 UTC
 \end{lstlisting}
-We found "Offset from Master" sometimes quite large, as large as 1e9 nanoseconds (or 1 second), and sometimes it is small as an order of 10$\mu$s or could be smaller, regardless of the "PTP state".
+The output has a few distinct states every power cycle. "Offset from Master" is sometimes quite large, as large as $10^9$ nanoseconds (or 1 second), and sometimes it is small as an order of 10$\mu$s or could be smaller, regardless of the "PTP state". And sometimes the PTP state never becomes SLAvE(9) but LISTENING(4).
 
 
-Also, Windows's program TwinCAT XAE shell (TcXaeShell). TcXaeShell gives us a live and full view of the variables in the PLC system. Figure \ref{fig:TcXaeShell} shows an example screenshot of TcXaeShell when the vendor-provided example software is running. DcToTcTimeOffset and DcToExtTimeOffset are one of the important variables because we found that they tell which of either TwinCAT or PTP clock is used to synchronize to DC. It appears that only one of them becomes non-zero, and the other becomes zero but randomly. Whether which clock is used is not deterministic as long as we use TwinCAT version 3.14022.36.
+Windows's program TwinCAT XAE shell (TcXaeShell) provides a live and full view of the variables in the PLC system. Figure \ref{fig:TcXaeShell} shows an example screenshot of TcXaeShell when the vendor-provided example project is running. DcToTcTimeOffset and DcToExtTimeOffset are one of the important variables because we found that they tell which of either TwinCAT or PTP clock is used to synchronize to DC. It appears that only one of them becomes non-zero, and the other becomes zero but randomly. Whether which clock is used is not deterministic as long as we use TwinCAT version 3.14022.36.
+
+bSynchronized and nTimeDiff are also important parameters. These are unique in the vendor-provided project. These tell us whether EL6688 is synchronized with PTP or not and how much delay is observed. The meaning of the synchronization in the vendor implementation is broad. The synchronization is established regardless of whether the DC is synchronized to the Beckhoff Windows or EL6688, since EL6688 gives a reference clock and the actual clock synchronization is done in the Beckhoff Windows system using  \href{https://confluence.slac.stanford.edu/spaces/LSSTCAM/pages/246939969/PTP+module+EL6688+for+the+Beckhoff+controller#PTPmoduleEL6688fortheBeckhoffcontroller-HowtoconvertDCtimetoTAI64Ntime}{the built-in functions}. nTimeDiff seems to be different from Offset from master. 
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{shutter/ScreenshotOfSample.png}
@@ -106,7 +111,7 @@ Also, Windows's program TwinCAT XAE shell (TcXaeShell). TcXaeShell gives us a li
     \label{fig:TcXaeShell}
 \end{figure}
 
-Another diagnostic tools is tcpdump.
+Another diagnostic tools is a generic open-source software, tcpdump.
 \begin{verbatim}
     sudo tcpdump -i enp0s31f6 -n -s 0 'ether proto 0x88f7 or udp port 319 or udp port 320' -a
 \end{verbatim}
@@ -115,21 +120,25 @@ The example output of tcpdump is the following, focusing on a communication pair
 12:33:01.777635 IP 139.229.175.116.ptp-event > 224.0.1.129.ptp-event: PTPv2, v1 compat : no, msg type : delay req msg, length : 44, domain : 0, reserved1 : 0, Flags [none], NS correction : 0, sub NS correction : 0, reserved2 : 0, clock identity : 0x105fffe3e4c43, port id : 1, seq id : 8038, control : 1 (delay req msg), log message interval : 5, originTimeStamp : 1764419582 seconds, 136332373 nanoseconds
 12:33:01.777892 IP 10.17.200.33.ptp-general > 224.0.1.129.ptp-general: PTPv2, v1 compat : no, msg type : delay resp msg, length : 54, domain : 0, reserved1 : 0, Flags [none], NS correction : 0, sub NS correction : 0, reserved2 : 0, clock identity : 0xfc59c0ffff214803, port id : 29, seq id : 8038, control : 3 (peer delay resp msg), log message interval : 5, receiveTimeStamp : 1764419618 seconds, 777492282 nanoseconds, port identity : 0x105fffe3e4c43, port id : 1
 \end{lstlisting}
-This example confirms that EL6688 communicates with the boundary clock (a leaf switch) directly, regardless of the presence of the MOXA L2 switch. This message exchange is a part of the foundation to measure the delay in the communication, which enables precise timing synchronization as defined in the PTP specification. In this case, the time difference from originTimeStamp to receiveTimeStamp is 36.641159909 sec. Repeating observations of these packets found that delays are consistent over multiple days with a better accuracy than 1$\mu$s. Although the difference is consistent, the difference itself is quite large. This large difference was observed when the large Offset from master was observed (DC is synchronized with the TwinCAT clock). On the other hand, if DC is synchronized with EL6688/PTP, the difference was quite small. This observation suggests that when the DC synchronized with the TwinCAT clock and the DC tries to keep the pace as referenced from EL6688 (PTP) but likely the absolute clock could be wrong if TWinCAT clock is not reasonably synchronized with NTP.
+This example confirms that EL6688 communicates with the boundary clock (a leaf switch) directly, regardless of the presence of the MOXA L2 switch. This message exchange is a part of the foundation to measure the delay in the communication, which enables precise timing synchronization as defined in the PTP specification. In this case, the time difference from originTimeStamp to receiveTimeStamp is 36.641159909 sec. Repeating observations of these packets found that delays are consistent over multiple days with a better accuracy than 1$\mu$s.
 
-\textbf{Summary}\
+Although the difference is consistent, the difference itself is quite large. This large difference was observed when the large Offset from master was observed (DC is synchronized with the TwinCAT clock). On the other hand, if DC is synchronized with EL6688/PTP, the difference was quite small. This observation suggests that when the DC synchronized with the TwinCAT clock and the DC tries to keep the pace as referenced from EL6688 (PTP) but likely the absolute clock could be wrong if TWinCAT clock is not reasonably synchronized with NTP.
+
+\subsubsection{Summary}\
 \begin{itemize}
 \item The observatory PTP system provides a reasonable PTP sychronization.
-\item MOXA switch does not support the hardware clock, resutling in the poor PTP synchronization.
-\item TwinCAT's behavior whether DC is synchronized to TwinCAT controller or EL6688 is not consistent and not configurable. Power cycle until it has a small enough offset from Master is achieved.
-\item {\bf We also note that motion profile timing prior to June 7 should be considered unreliable; afterward, it appears trustworthy.} Also, the jumps in the motion profile can be explained by intermittent adjustment based on the EL6688 to the TwinCAT system appears to play a role here. 
+\item MOXA switch does not support the hardware clock, resutling in the poor PTP synchronization. 
+\item Even EL6688 supports up to 100Mbps, reasonable synchronization can be established.
+\item TwinCAT's behavior whether DC is synchronized to TwinCAT controller or EL6688 is not consistent and not configurable. Power cycle until it has a small enough offset from Master is needed operationally.
+\item {\bf We also note that motion profile timing prior to June 7 should be considered unreliable; afterward, it appears trustworthy.} 
+\item The jumps in the motion profile can be explained by intermittent adjustment based on the EL6688 to the TwinCAT system appears to play a role here. 
 \end{itemize}
 
 \textbf{Recommendations}\
 \begin{itemize}
 \item Correct the Puppet-managed chrony.conf on shutter01/shutter02 (\href{https://rubinobs.atlassian.net/browse/LSSTCAM-146}{LSSTCAM-146}).
 \item Perform the Chris Walter timing test to interdependently check the timing accuracy. \cite{SITCOMTN-136}
-\item Consider to increase the proprieties of the observatory grandmaster/boundary clocks. Any misconfigured computer can mess up the PTP network as ptp4l's default is 128.
+\item Consider to increase the proprieties (lower the number) of the observatory grandmaster/boundary clocks. Any misconfigured computer can mess up the PTP network as ptp4l's default is 128.
 \end{itemize}
 
  
