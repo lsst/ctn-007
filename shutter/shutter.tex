@@ -15,7 +15,7 @@ The camera shutter is controlled by the Beckhoff TwinCAT PLC system. The CCS sen
 In this system, there are concepts of 4 different clocks: 
 \begin{enumerate}
     \item The CCS clock synchronized by NTP, which is based on UTC,
-    \item The TwinCAT Windows clock, which is supposed to be synchronized by NTP and should have been identical to (1); however, the chrony (NTP) service on the gateway machine of the shutter system has not been configured to provide the clock to the Beckhoff Windows \href{https://rubinobs.atlassian.net/browse/LSSTCAM-146}{LSSTCAM-146}
+    \item The TwinCAT clock, which is supposed to be synchronized by the host Windows when it is booted
     \item Distributed clock (DC) in the TwinCAT PLC system. When the shutter blade passes the hole sensors placed along with the shutter rail, the PLC is programmed to trigger the timing measurement based on DC. This timing information is the foundation of the motion profile as well as the entire timing control of the PLC system.
     \item External reference clock from EL6688. The time source is a GPS clock in the observatory and the synchronization is provided by Precisioon Timing Protocol, which is expected to provide sub-microsecond timing accuracy through network delay measurements.
 \end{enumerate}

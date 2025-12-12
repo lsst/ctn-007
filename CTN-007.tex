@@ -6,6 +6,7 @@
 \usepackage{booktabs}
 \usepackage{tikz}
 \usetikzlibrary{positioning} % ノードの相対的な位置指定に便利
+\usepackage{ragged2e} % For controlled justification within fixed-width columns
 
 % Local commands go here.
 
@@ -79,8 +80,12 @@ This technote describes what we found during the LSST Camera commissioning.
 \subsection{CCS development}
 - CCS
 
+\subsection{Firmware development}
+\input{rebfirmware/rebfirmware}
+
 \subsection{Observation control}
 - OCS integration kfanning
+
 \subsection{FES commissioning}
 - FES commissioning performance -- Pierre Antilogus, Alexandre etc...
 
@@ -101,9 +106,10 @@ This technote describes what we found during the LSST Camera commissioning.
 - R30/S12 and R23/Reb10 -- I will try to collect all the information from Slack
 
 \subsection{Re-implementation of "clear" operation during the idle time}
-- IdleClear re-implementation -- SM
+\input{idleclear/idleclear}
 
 - eoPipe -- Jim
+
 % result from EO testing
 - Correlated noise -- Pierre Astier or Pierre Antilogus
 

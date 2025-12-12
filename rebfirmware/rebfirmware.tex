@@ -1,0 +1,115 @@
+% --- Column Definitions ---
+% Version (V): 15% (e.g., p{0.15\textwidth})
+% Release Date (D): 20% (e.g., p{0.20\textwidth})
+% Key Modifications and Notes (N): 55% (e.g., p{0.55\textwidth})
+% Total used: 0.15 + 0.20 + 0.55 = 0.90\textwidth (10%の余白を設ける)
+
+\subsection*{Science REB (REB)}
+\begin{longtable}{>{\RaggedRight\arraybackslash}p{0.15\textwidth} >{\RaggedRight\arraybackslash}p{0.20\textwidth} >{\RaggedRight\arraybackslash}p{0.55\textwidth}}
+\caption{Science REB Firmware Version History} \label{tab:science_reb_fw_en} \\
+\toprule
+\textbf{Version} & \textbf{Release Date} & \textbf{Key Modifications and Notes} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{c}%
+{\tablename\ \thetable\ -- Continued} \\
+\toprule
+\textbf{Version} & \textbf{Release Date} & \textbf{Key Modifications and Notes} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
+0x313B5019 & December 2025 & $\bullet$ \textbf{Code Refactor Completion}: Allows system clock selection on a per-target basis using common functional blocks. \\
+ & (6.4ns: tested briefly on camera; 10ns: tested on ts8) & \quad $\rightarrow$ The same VHDL code is used in both cases with only a parameter change. \\
+ & & $\bullet$ Expected to definitively fix the ID PROM read instability issue (pending observation). \\
+ & & $\bullet$ These libraries are now reusable in GREB/WREB firmware; remaining work is to apply them to devices unique to those boards. \\
+\midrule
+0x313a5015 - 0x313B5018 & November 2025 & $\bullet$ A series of releases used on ts8 for the development and testing of the 6.4ns firmware version. \\
+ & (Not installed on camera) & $\bullet$ All had various issues, but each was separately versioned before installation on ts8. \\
+\midrule
+0x313a5014 & September 2025 & $\bullet$ \textbf{Functional Equivalence}: This is the production version that ended up functionally equivalent to 0x31395012. \\
+ & (Installed on camera: November 2025?) & \quad $\rightarrow$ 0x3139500e with new functions: \\
+ & & \quad $\rightarrow$ \quad $-$ Ability to build firmware with new bias protection thresholds and sequencer overrides. \\
+ & & \quad $\rightarrow$ \quad $-$ Stability of CCD power across REB resets ($\text{rms\_reset}$). \\
+ & & $\bullet$ \textbf{ID PROM Instability}: Still suffers from the latent "ID prom instability," a long-standing issue for which the root cause was never fully identified, despite many versions appearing stable. \\
+\midrule
+0x313a5013 & August 2025 & $\bullet$ Nominally intended to be functionally equivalent to 0x31395012 under the hood. \\
+ & (Briefly installed on camera) & $\bullet$ \textbf{Technical Stack Update}: Migrated to the currently supported SLAC TID-ID firmware build system, SURF libraries, and Vivado 2025.1 compiler. \\
+ & & $\bullet$ \textbf{Code Refactoring}: Shared code blocks moved to a dedicated repository ($\text{https://github.com/lsst-camera-electronics/lsst\_reb}$). \\
+ & & $\bullet$ Intended as preparation to support both 10ns and 6.4ns clocks. \\
+ & & $\bullet$ \textbf{Major Defect}: Introduced a major bug resulting in maximum heater power being applied due to a register map conflict. \\
+ & & \quad $\rightarrow$ This bug was actually introduced in 0x31395011 but went unnoticed. \\
+\midrule
+0x31395012 & July 2025 & $\bullet$ Made Bias VUT and HV switch stable across REB resets. \\
+ & (Not installed on camera) & \\
+\midrule
+0x31395011 & May 2025 & $\bullet$ Made CCD bias protection thresholds compile-time configurable. \\
+ & (Installed on camera R30/Reb1 only) & $\bullet$ Added a "sequencer override register" to fix sensor sequencer signals. \\
+\midrule
+0x3139510F & April 2023 & $\bullet$ Included fixes discovered during Guider development, only relevant to the multi-sequencer version. \\
+ & (Not installed on camera) & \\
+\midrule
+0x313950FC - 0x313950FF & (Various Release Dates) & $\bullet$ A series of 6.4ns test versions built by naïvely modifying 0x3139500e. \\
+ & (Used on ts8 only) & \\
+\midrule
+0x3139500e & July 2022 & $\bullet$ Baseline Production Release. \\
+ & (Production until November 2022) & \\
+\end{longtable}
+
+\clearpage
+
+\subsection*{Wavefront REB (WREB)}
+\begin{longtable}{>{\RaggedRight\arraybackslash}p{0.15\textwidth} >{\RaggedRight\arraybackslash}p{0.20\textwidth} >{\RaggedRight\arraybackslash}p{0.55\textwidth}}
+\caption{Wavefront REB Firmware Version History} \label{tab:wavefront_reb_fw_en} \\
+\toprule
+\textbf{Version} & \textbf{Release Date} & \textbf{Key Modifications and Notes} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{c}%
+{\tablename\ \thetable\ -- Continued} \\
+\toprule
+\textbf{Version} & \textbf{Release Date} & \textbf{Key Modifications and Notes} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
+0x1139400B & September 2025 & $\bullet$ \textbf{Updates}: Migrated to the current SLAC TID-ID build system, SURF libraries, and Vivado 2025.1. \\
+ & & $\bullet$ \textbf{Code Refactoring}: Shared code blocks moved to dedicated repository ($\text{https://github.com/lsst-camera-electronics/lsst\_reb}$). \\
+ & & $\bullet$ Intended as preparation to support both 10ns and 6.4ns clocks. \\
+\midrule
+0x1139400A & July 2025 & $\bullet$ Ensured stability of Bias VUT and HV bias switch across REB resets. \\
+\midrule
+0x11394009 & May 2025 & $\bullet$ Added compile-time specification for bias protection thresholds (unused in WREBs). \\
+\midrule
+0x11394008 & April 2023 & $\bullet$ Baseline Release Version. \\
+\end{longtable}
+
+\clearpage
+
+\subsection*{Guider REB (GREB)}
+\begin{longtable}{>{\RaggedRight\arraybackslash}p{0.15\textwidth} >{\RaggedRight\arraybackslash}p{0.20\textwidth} >{\RaggedRight\arraybackslash}p{0.55\textwidth}}
+\caption{Guider REB Firmware Version History} \label{tab:guider_reb_fw_en} \\
+\toprule
+\textbf{Version} & \textbf{Release Date} & \textbf{Key Modifications and Notes} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{c}%
+{\tablename\ \thetable\ -- Continued} \\
+\toprule
+\textbf{Version} & \textbf{Release Date} & \textbf{Key Modifications and Notes} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
+0x2139210D & January 2025 & $\bullet$ First production release of 2-sequencer firmware for Guider operation. \\
+\midrule
+0x21392x0c & (Not Released) & $\bullet$ Development Dead End. \\
+\midrule
+0x21392x0B & April 2023 & $\bullet$ Versions where $\text{x=1}$ are 2-sequencer firmware; $\text{x=0}$ are single sequencer (full frame mode). \\
+\end{longtable}
