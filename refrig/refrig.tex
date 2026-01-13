@@ -1,372 +1,444 @@
+\subsubsection{Brief introduction to the refrigeration system}
+The refrigeration system for the LSST camera (LSSTCam) is comprised of a cryogenic or ``Cryo'' system to cool the focal plane CCDs, and an independent ``Cold'' or Pumped-Coolant System (PCS) system to remove process heat from the imaging sensor's readout-electronics boards (REBs) which are contained within the same vacuum vessel. The Cryo system operates at approximately -130\,\degree C, removing 500\,W, and the Cold system operates at approximately -500\,\degree C, removing 1100W. The two systems act independently, save for the radiative coupling of the two distinct evaporators within the cryostat vacuum vessel, and through weak radiative coupling and conduction paths in each Raft Tower Module (RTM). In addition to performance requirements on the evaporator temperature for nominal heat loads, its temporal stability, and spatial uniformity, there are several operational requirements that address the systems' performance under various extreme process load conditions, and a strict environmental interface (heat and vibration) to the telescope's dome enclosure, such as to avoid any impact to imaging.
+
+The refrigeration system must meet the requirements shown in Table \ref{Table 1.1.1} which represent the interface between the telescope and LSSTCam. These ensure that while operating, the refrigeration system does not impact the quality of the telescope images, neither by influencing the dome environment, nor by creating mechanical vibrations that could feed through to the focal plane. The refrigeration system must also operate in the anticipated temperature and humidity ranges at the observatory summit. These environmental requirements are shown in Table \ref{Table 1.1.2}.
+
+Finally, Tables \ref{Table 1.1.3} and \ref{Table 1.1.4} show the performance requirements for the Cold and Cryo systems, respectively. These include the temperature requirements for nominal and extreme process heat loads, as well as the temperature stability, uniformity and controllability of the two evaporators
+
+
+\begin{table}[htbp]
+\centering
+\caption{Summit Facility Interface between Telescope and Camera}\label{Table 1.1.1}
+\begin{tabular}{|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|}
+\hline
+Requirement & Specification & Notes \\
+\hline
+Refrigerant transfer line skin temperature &
+Within +4/-15\,\degree C of ambient dome's temperature &
+Applies to all refrigerant line surfaces exposed to dome's ambient environment. Insulation is optional wherever possible. \\
+\hline
+Compressor cabinet outer skin temperature &
+Within +1/-3\,\degree C of dome's ambient temperature &
+Foam insulated cabinet walls, and coolant used to control the cabinet interior temperature \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\begin{table}[htbp]
+\centering
+\caption{Operating Dome Environment Requirements}\label{Table 1.1.2}
+\begin{tabular}{|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|}
+\hline
+Requirement & Specification & Notes \\
+\hline
+Ambient working temperature range &
+-5\,\degree C to 30\,\degree C &
+System should deliver the required refrigeration capacity in the required evaporator temperature range. \\
+\hline
+Ambient turn-on temperature range &
+-10\,\degree C to 30\,\degree C &
+System should be able to turn-on and operate, but the refrigeration capacity may be reduced. \\
+\hline
+Ambient survival temperature range &
+-15\,\degree C to -10\,\degree C \& 30\,\degree C to 40\,\degree C &
+System should survive such temperature extremes. The system does not need to be running in this condition. \\
+\hline
+Ambient working humidity range &
+15\% to 60\% &
+System should deliver the required refrigeration capacity in the required evaporator temperature range. \\
+\hline
+Ambient survival humidity range &
+10\% to 15\% \& 60\% to 90\% &
+System should survive these humidity extremes but does not need to be running in this condition. If the refrigeration system is running, the refrigeration capacity may be reduced. \\
+\hline
+\end{tabular}
+\end{table}
+
+
+The cooling requirements for the LSST Camera are rather unique amongst astronomical instruments, driven by the large focal plane area with 189 distinct CCDs, the proximate location of the front-end electronics, and the parallel digitization and readout with large power dissipation, all occupying the same vacuum space. In addition, the cooling system must not influence the dome environment of the observatory itself. Heretofore, smaller but similar systems could use conventional coolants such as LN2. However, to provide adequate refrigeration capacity with such coolants would have required either a large refillable vacuum insulated reservoir directly behind LSSTCam, or a set of flexible, large cross section vacuum insulated transfer lines running up to the camera from a reservoir and pump at the base. Both solutions would require similar transfer lines to return Cold boiled off N2 vapor, the combination of which proves highly inconvenient. Such would also be the case with more modern cryocoolers (e.g.: Polycold) that locally produce Cold refrigerant mixes, but which then must be transported to the evaporator and returned to the cryocooler.
+
+Instead of these cumbersome conventional solutions, the design that has been selected incorporates two distinct but classic vapor compression refrigeration systems (``cold'' and ``cryo''). The Cryo refrigeration system consists of 6 individual circuits, which utilizes the auto-cascade refrigeration technology. The refrigerants are compressed and cooled back to ambient dome temperature (by compressors and condensers remote from LSSTCam), and then transported at high pressure through the dome, and up to the camera. There they are expanded to produce the required cooling of the evaporators. At the rear of the camera each system has counterflow heat exchangers which pre-cool these incoming refrigerants before expansion, utilizing the Cold returning refrigerant. This refrigerant then exits the camera, now close to the dome temperature and at a low pressure and returns back to the remote compressors.
+
+The Cold system utilises conventional cascade refrigeration technology to cool the heat transfer fluid to -50 C at the PCS chiller cabinet, the heat transfer fluid is pumped through a vacuum jacketed line to LSSTCam, now at -48 C, to cool down the electronics. The heat transfer fluid then exits the camera, now at about -44 C, returns to the remote PCS chiller cabinet via a vacuum jacketed line.
+
+The transfer line system carries the refrigerants to LSSTCam and returns them to the compressors -- a total path length of \textasciitilde60 \,mwith a maximum elevation change of \textasciitilde16 \,m
+
+\begin{table}[htbp]
+\centering
+\caption{Cold Refrigeration System Performance Requirements}\label{Table 1.1.3}
+\begin{tabular}{|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|}
+\hline
+Requirement & Specification & Notes \\
+\hline
+Temperature range for operation &
+-40\,\degree C to -30\,\degree C when the load ranges from 754 W to 843 W &
+Nominal load is 800 W at -35\,\degree C \\
+\hline
+Maximum survival load &
+1056 W &
+The system does not run away. \\
+\hline
+Minimum survival load &
+490 W &
+The system does not run away. Trim heat and/or compressor operating frequency and/or hot gas bypass can be used when running the system with the minimum survival load. \\
+\hline
+Temperature uniformity &
+\(\pm\)1.5\,\degree C &
+Temperature across the Cold plate \\
+\hline
+Temperature controllability &
+\(\pm\)2\,\degree C when process load changes by 89 W &
+The controller should adjust the heat load of the trim heaters to compensate for the change of the process load when turning on/off electronics. \\
+\hline
+Temperature drift &
+\(\pm\)1\,\degree C at constant load &
+Duration not specified. \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Cryo Refrigeration System Performance Requirements}\label{Table 1.1.4}
+\begin{tabular}{|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|}
+\hline
+Requirement & Specification & Notes \\
+\hline
+Cryo plate temperature range &
+-130\,\degree C to -125\,\degree C with load from 361 W to 498 W &
+Any temperature from -130\,\degree C to -125\,\degree C is accepted when the load is in this range. The nominal temperature and load are -127.5\,\degree C @ 429.5 W. \\
+\hline
+Cryo plate maximum survival load &
+520 W &
+Cryo system should not run away. \\
+\hline
+Cryo plate minimum survival load &
+219 W &
+Use trim heat to increase the minimum survival load. Cryo system should not run away. \\
+\hline
+Cryo plate temperature uniformity &
+\(\pm\)1.5\,\degree C &
+Temperature across the Cryo plate \\
+\hline
+Cryo plate temperature controllability &
+\(\pm\)1.5\,\degree C when process load changes 136 W &
+The controller should adjust the heat load from the trim heaters to compensate for the change in load from when turning on/off electronics. \\
+\hline
+Cryo plate temperature drift &
+\(\pm\)0.5\,\degree C at constant load &
+Duration not specified. \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Architecture and Thermal Design of the Cryostat}
+
+The cryostat is designed to be a vacuum insulating vessel (\textless$10^{-7}$ \,Torr) containing the Cold and Cryo systems' evaporators, the ``coldplate'' and the ``cryoplate''. Figure \ref{Figure 1.3.1} shows a cross section of the cryostat with the principal thermal regions and typical operating temperatures. Refrigerants enter the cryostat, pass through the evaporators and return through 4.5'' vacuum conflat flanges on the rear annular feedthrough plate. The refrigerant tubing itself is continuous and joint-free within the cryostat vacuum to eliminate any potential for a leaking. The refrigeration system components outside the cryostat (in the Utility Trunk) have an independent insulating vacuum, referred to as the heat exchanger (``HeX'') vacuum). Ceramic insulators are used throughout the system to isolate the electrical ground of the evaporators from the rest of the cryostat. Figure \ref{Figure 1.3.2} shows the detailed routing and makeup of the system at the interface between the cryostat and HeX vacuum system, including the mechanism for isolating grounds.
+
+The cryoplate layout is shown in Figure \ref{Figure 1.3.3}. It is comprises a single machined and polished copper plate which is brazed to a stainless-steel plate to rigidize it, with cutouts for each of the Raft Tower Modules (RTMs). There are 21 ``bays'' where the science RTMs are attached, and 4 corner bays for the corner RTMs containing guider CCDs and wavefront sensors. The six stainless steel refrigerant lines -- one for each Cryo circuit - run continuously through the top and bottoms of the six copper ribs, having been brazed in place. Three lines are on the top, and three on the bottom, and the refrigerant flow direction is organized to be counterflow. The rafts are bolted down to the copper on the front side of the orthogonal ribs.
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\linewidth]{refrig/media/image1.png}
+    \caption{Cross section of the cryostat with its principal thermal regions and typical design temperatures during operation (in red).}
+    \label{Figure 1.3.1}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\linewidth]{refrig/media/image2.jpeg}
+    \caption{Detailed routing of the refrigeration system at the interface between the cryostat and the heat exchanger vacuum system. }
+    \label{Figure 1.3.2}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\linewidth]{refrig/media/image3.jpeg}
+    \caption{Cryoplate (a) Routing of the six refrigerant circuits in the copper cryoplate (b) with stainless steel stiffening frame attached.}
+    \label{Figure 1.3.3}
+\end{figure}
+
+\subsubsection{Architecture of the Cryogenic Systems}
+
+The physical layout of each Cryo system is shown schematically in Figure \ref{Figure 1.4.1.1}. With the exception of the transfer line lengths, a largely identical system supports LSSTCam in the clean room Maintenance Facility at the Vera C. Rubin Observatory.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\linewidth]{refrig/media/6a14fdebc5961deca6091491ae4f46dd752e04c1.png}
+    \caption{The physical layout of each Cryo system is shown schematically in Figure \ref{Figure 1.4.1.1}. With the exception of the transfer line lengths, a largely identical system supports LSSTCam operation in the Clean Room Maintenance Facility at the Vera C. Rubin Observatory.}
+    \label{Figure 1.4.1.1}
+\end{figure}
+
+
+All of the ground-based components reside in two temperature-controlled housings {[}``Cryo cabinets''{]} attached to the underside of the Telescope Mount Assembly (TMA). The transfer lines to and from LSSTCam (a liquid supply, a vapor supply, and a suction-return for each circuit) originate and return to these cabinets. They are a mix of orbitally welded - electropolished 316-L stainless steel tubing and flexible refrigerant lines. The counterflow HeX systems reside in a separate vacuum insulated housing within the camera's Utility Trunk, just behind the cryostat.
+
+To achieve the total cooling capacity required, each Cryo system is duplicated six times, with each of these circuits providing \textasciitilde85 to 110 W of cooling capacity around the nominal operating temperature of -1300 C in order to attain the required \textasciitilde500W at the cryoplate. The circuits run completely in parallel through the cryoplate (see Figure \ref{Figure 1.3.3}).
+
+Each of the two Cryo cabinets supports three of the six circuits. The compressor system for each circuit is itself modularized and easy to replace/exchange for servicing. Each compressor module contains a commercial hermetically sealed compressor that has been modified to add a water cooling jacket and an oil-reservoir with both visual and electronic oil level gauges.{[}1{]} The compressor is followed by an oil separator, a refrigerant condenser (or ''after-cooler''), and a refrigerant phase separator. A small sight glass in the liquid supply line indicating both flow and moisture content is incorporated after the phase separator. Three diaphragm valves on the low- and high-pressure sides isolate the module from the rest of the circuit. A small heated ``surge tank'' on the low pressure side of each compressor module is used during charging and cooldown to increase the volume of the system. Each Cryo circuit is completed with a set of replaceable filter-driers (and isolation valves) on the suction return line as well as the liquid and vapor phase supply lines.
+
+Each Cryo cabinet is insulated and has a system of three fans and three heat exchangers to match the external (dome) temperature. A mix of 35\% V/V Ethylene Glycol and water solution (EGW) is provided at fixed supply temperature to each Cryo cabinet to remove heat from the compressor, the condenser, and the phase separator, as well as the cabinet's own heat exchanger. The composition of the coolant mixture used for the Maintenance Facility is the same (see Table \ref{Table 1.4.1.1}).
+
+\begin{table}[htbp]
+\centering
+\caption{Fixed temperature Glycol Solution for Cryo Cabinets}\label{Table 1.4.1.1}
+\begin{tabular}{|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|}
+\hline
+Location & Coolant Composition & Coolant Supply Temperature (\degree C) \\
+\hline
+TMA &
+35\% Ethylene Glycol + 65\% water &
+9 \(\pm\) 3 \\
+\hline
+Maintenance Facility &
+35\% Ethylene Glycol + 65\% water &
+9 \(\pm\) 3 \\
+\hline
+\end{tabular}
+\end{table}
+
+Within each cabinet, there is readout for an extensive set of instrumentation including thermocouples measuring temperatures and transducers measuring refrigerant pressures throughout the system. The compressor power, oil levels, environmental temperatures (cabinet air and cooling water), and valve-states are also measured. All signal conditioning and digitization is done internally and communicated via an Ethernet connection to the Camera Control System (CCS). Finally, an independent hardware protection system uses a distinct and independent set of sensors and a programmable logic controller (PLC) within the cabinet, to shut the system down if any of the operating parameters move out of their safe allowed range.
+
+A similar system of instrumentation and protection exists in the PCS chiller cabinets (described in the next section) and in the Utility Trunk for both the HeX systems, the cryostat and HeX vacuums, and for the cryoplate and coldplate evaporators themselves. Conditions measured in these regions, even though they reside outside the cabinets, can also initiate a safety shutdown of the compressors through the integrated protection system.
+
+In addition to the aforementioned hardware, a system has been built to mix and test the custom multi-component refrigerant deployed in the Cryo systems.
+
+\subsubsection{Cryogenic Mixed-Refrigerant System}
+
+\textbf{Overview}
+
+As noted previously, the Cryo refrigeration system is comprised of two temperature-controlled cabinets on the ground, a set of three transfer lines for each of the six circuits going up to LSSTCam, and a vacuum insulated heat-exchanger system at the rear of the camera. In addition, the facility's chilled EGW is provided to each of the cabinets for removal of heat from the compressors and electronics.
+
+The cryogenic refrigeration cycle (see Figure \ref{Figure 1.5.1}) begins with the ambient temperature low pressure (\textasciitilde30 psia), superheated vapor refrigerant mixture entering the compressor at the suction port (located at position ``1'' in the figure). It is then compressed to a higher pressure (\textasciitilde400 psia) and higher temperature (\textasciitilde100\,degree C) refrigerant, while remaining in vapor form.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\linewidth]{refrig/media/image4.png}
+    \caption{ Layout of Cryo system.}
+    \label{Figure 1.5.1}
+\end{figure}
+
+Leaving the compressor, the refrigerant passes through a hot-oil separator, which returns most of the synthetic polyolester oil to the compressor through a capillary (C1). The refrigerant mix continues through an EGW cooled condenser coil (or after-cooler), bringing its temperature down to \textasciitilde14\,degree C. It exits the after-cooler as a vapor-rich mixture which is next separated into its individual liquid and vapor components in the slightly cooler fractionating column (or phase-separator). Now at a temperature of \textasciitilde12\,degree C, the high-pressure liquid and vapor phases are transported separately \textasciitilde50m to LSSTCam heat exchanger system in the Utility Trunk. As the components are at high pressure, the elevation change of \textasciitilde16m has been shown to have minimal effect. The transfer lines themselves are both rigid and flexible, with the flexible portion at the camera end to allow for rotations and changes in elevation. By mounting the compressor cabinets on the TMA itself, the cabinet and the transfer lines follow the azimuthal motion of telescope, without requiring any additional length to accommodate that 3600 rotation.
+
+The counterflow heat exchangers are vacuum insulated in a separate volume from the cryostat, within LSSTCam Utility Trunk. Each circuit's heat exchanger divides the incoming flow at the warm end into seven smaller diameter (\textasciitilde1/8'' OD) copper tubes which fit loosely into a copper outer jacket (1/2'' OD) that carries all the return flow. The seven tubes increase the surface area for exchange of heat, and are recombined at the exit of the HeX, at the Cold end.
+
+The incoming liquid phase first undergoes expansion in capillary C3 (0.026'' ID X 45' Length). The Cold expanded liquid is injected into the heat exchanger outer jacket at about the one-third point along its length where it pre-cools the incoming high pressure ambient-temperature vapor to approximately -15\,degree C. The vapor phase continues through the HeX core and in the second stage is precooled further by the Cold refrigerant returning from the evaporator, which entered the outer jacket at the Cold end. Exiting the HeX at the Cold end, the Cold high-pressure refrigerant is now \textasciitilde100\% liquid. It is next expanded in capillary C4 (0.052'' ID X 10' Length) leaving it an admixture of liquid and vapor at approximately -125\,degree C just before entering the evaporator within the cryostat. Traveling through the 0.116'' ID x 21.5' long tubing of the evaporator, it undergoes a further pressure drop along its path, and boils while absorbing heat from the RTMs, to achieve the required cryogenic temperature around -130\,degree C.
+
+Exiting the evaporator and the cryostat, and re-entering the Cold end of the HeX outer jacket as a Cold liquid and vapor mix, the now lower pressure (\textasciitilde200 psia) refrigerant exchanges heat with the incoming high pressure vapor in the 7 tube core, before mixing with the returning Cold refrigerant from the C3 capillary tube. It then re-exits the HeX close to ambient temperature and at low pressure (\textasciitilde30 psia), returning to the compressor as 100\% vapor in the large diameter return line.
+
+The use of cascaded cooling in the HeX is a critical feature of the design. The liquid phase expansion at capillary C3, that pre-cools the incoming vapor to \textasciitilde-15\,degree C, allows for the initial cooldown of the massive cryoplate before the returning refrigerant is Cold enough to provide effective lower-temperature pre-cooling at the Cold end of the HeX.
+
+Other important features of the system include the use of a surge tank, a system of replaceable filter-driers to address moisture ingress, in-line particulate filters, and the employment of thermal and geometrical features that are necessary to mitigate oil trapping during transport.
+
+The large volume thermally insulated surge tank (located in the Cryo cabinet on the low pressure side of the circuit plumbing) is used as a temporary reservoir to store refrigerant when the system is cooling down. This prevents high pressures from occurring in the circulating plumbing that could damage the compressor. The surge tank is heated to 40\,degree C so refrigerant does not condense in the volume, and it is left fully open to the system during normal operation. A remote-controlled solenoid valve is used to control the isolation of the tank from the suction line.
+
+The moisture in the system must be carefully controlled and monitored both to avoid long term damage to the compressor (moisture reacting with the lubricant to create acids) and also to avoid clogging of the small diameter capillaries as they get cold, due to ice buildup over time.
+
+Throughout the system, all joints are either welded or brazed, while breakable connections utilize VCR fittings with all-metal gaskets. Particulates and flux created during fabrication and installation are carefully pre-flushed, and an in-line 90mm sintered particulate filter is incorporated at the entry point to LSSTCam itself, in each supply line.
+
+After leak checking, the only continuous moisture ingress source should be the sections of flexible transfer line. Accordingly, replaceable filter-drier canisters are installed on the two supply lines and on the suction return line, and an analog (visual) moisture indicator is built into the liquid supply line at the compressor.
+
+Oil management in the system is a critical issue. The synthetic polyolester lubricant {[}POE-32LT{]} is used. To reduce mechanical damage to the compressor during startup, oil in the compressor is pre-heated to 40\,degree C reducing its viscosity as well as the peak compressor power that is required. As the pour-point of the lubricant is -52\,degree C, it is particularly important that it does not propagate into the cryogenic vapor-phase portion of the circuit, in any significant quantity.
+
+The refrigerant mixture's liquid components can however pick up small amounts of residual oil and transport it through the system. While much of the lubricant is removed and returned to the compressor before transport to LSSTCam, a small amount continues to propagate in the system, coating the inner surfaces of the transfer lines. Eventually this goes into an equilibrium state. However, the transfer line system's large inner surface requires the addition of a large volume oil reservoir at the compressor, to prevent the system from operating without sufficient lubricant, thereby damaging the compressor during start up and the initial coating of the lines. In addition to the aforementioned elevation, the system's geometry has been carefully laid out to attempt to eliminate those locations where oil might collect over time. In particular, the three in-line filter-driers are vertically oriented to avoid trapping oil.
+
+\textbf{Thermodynamics of mixed refrigerants}
+
+While still utilizing the concept of a vapor compression refrigeration cycle, the cryogenic system is significantly more complex. It is a two-stage system that uses a novel mixed refrigerant whose ten components each have phase diagrams that are strongly influenced by the presence of each of the other components within the mix.
+
+The complex mixture allows for a greatly expanded range of temperatures and pressures over which refrigeration can be efficiently achieved by two-phase boiling of the refrigerants. In practice, this allows for the use of an efficient two stage auto-cascade refrigeration cycle wherein the high-pressure liquid and vapor components are pre--separated. As indicated, this latter feature is necessary to permit a slow cooldown to the required -130\,degree C operating temperature.
+
+The mixture itself (designated M2919C) contains eight conventional refrigerants and two Nobel gases. (See Table \ref{Table 1.5.1}). The refrigerant composition utilizes two fluorocarbons, five hydro-fluorocarbons and one hydro-chloro-fluorocarbon. The mix is a non-flammable liquid at 20\,degree C and atmospheric pressure making its handling and transfer simpler. The moisture content of refrigerant is typically measured to be 10 to 40ppmv, bottle to bottle.
+
+The final ``running'' composition of the mixture depends on details of the system's geometry, and in particular, the volume of the liquid supply line. M2919C was designed for operating the cryoplate with about 5m of liquid supply line tubing (\textasciitilde1/16'' ID), while the actual system in the observatory's two configurations are each about ten times longer and have a total volume (liquid and vapor) of \textasciitilde{} 70 liters. To compensate, the refrigerant charge of the two ambient temperature liquid components of M2919C (R124 and R245fa) are empirically increased after initially charging the system with M2919C, until the desired cooling capacity is achieved, with the appropriate temperature at C3 being the most representative. The mixture itself is then monitored periodically by gas chromatography and the results compared with a reference sample.
+
+A REFPROP analysis of the M2919C refrigerant was performed. The refrigerant mix M2919C is partially condensed at the after-cooler with the vapor portion at 81.755\% by weight at the entrance to the fractionating column where the vapor and liquid are separated. The composition in the vapor phase and the liquid phase are calculated using a REFPROP flash calculation and shown in Table \ref{Table 1.5.2}.
+
+\begin{table}[htbp]
+\centering
+\caption{Composition of M2919C}\label{Table 1.5.1}
+\begin{tabular}{|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|}
+\hline
+Component & Chemical Name & Mole Fraction (\%) (S=100\%) \\
+\hline
+R14 & Tetrafluoromethane & 30.77 \\
+\hline
+R124 & 1-Chloro-1,2,2,2-Tetrafluoroethane & 1.54 \\
+\hline
+Argon & Ar & 26.92 \\
+\hline
+R218 & Octafluoropropane & 15.38 \\
+\hline
+R125 R404a & Pentafluoroethane & 2.37 \\
+\hline
+R143a R404a & 1,1,1-Trifluoroethane & 2.80 \\
+\hline
+R134a R404a & 1,1,1,2-Tetrafluoroethane & 0.22 \\
+\hline
+R23 & Trifluoromethane & 8.46 \\
+\hline
+Krypton & Kr & 3.85 \\
+\hline
+R245fa & 1,1,1,3,3-Pentafluoropropane & 7.69 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Liquid and vapor phase composition of M2919C (fractionated at 14\,\degree C and 350 psig)}\label{Table 1.5.2}
+\begin{tabular}{|p{0.25\linewidth}|p{0.25\linewidth}|p{0.25\linewidth}|p{0.25\linewidth}|}
+
+\hline
+Component & Suction mole fraction (\%) & Vapor mole fraction (\%) & Liquid mole fraction (\%) \\
+\hline
+R14 & 30.77 & 34.42 & 5.50 \\
+\hline
+R124 & 1.54 & 1.04 & 5.02 \\
+\hline
+Ar & 26.92 & 29.99 & 5.64 \\
+\hline
+R218 & 15.38 & 13.14 & 30.91 \\
+\hline
+R125 & 2.37 & 2.16 & 3.83 \\
+\hline
+R143a & 2.80 & 2.46 & 5.15 \\
+\hline
+R134a & 0.22 & 0.18 & 0.49 \\
+\hline
+R23 & 8.46 & 8.89 & 5.46 \\
+\hline
+Kr & 3.85 & 4.20 & 1.45 \\
+\hline
+R245fa & 7.69 & 3.52 & 36.54 \\
+\hline
+\end{tabular}
+\end{table}
+
+The pressure-enthalpy (P-H) diagram of the M2919C refrigerant at the vapor supply is generated by REFPROP 9.1 and presented in Figure \ref{Figure 1.5.2}. At the liquid-vapor transition, or critical point, the M2919C mixture has a temperature of 31.28 C and a pressure of 9.23 MPa.
+
+Unlike a pure substance or an azeotropic mixture where the temperature glide (the difference between the saturated vapor and saturated liquid temperatures, at a constant pressure) is zero or
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\linewidth]{refrig/media/image5.png}
+    \caption{Pressure-Enthalpy Diagram of the M2919C vapor components, fractionated at 14\,degree C and 350 psig.}
+    \label{Figure 1.5.2}
+\end{figure}
+
+
+close to zero, the temperature glide of the M2919C mixture can be \textgreater{} 100\,degree C. Accordingly, the isothermal lines inside the two-phase regime of M2919C are not horizontal lines in the pressure -- enthalpy diagram, but angle downward from the bubble point boundary (at the left) to the dew point boundary (at the right). This implies that the pressure drop across the evaporator is expected to be greater than in a typical vapor compression refrigerator, and as anticipated, pressure drops between 20 to 50 psi in the prototype evaporators have been measured.
+
+REFPROP predicts the properties of the M2919C mixture more precisely at room temperatures than at cryogenic temperatures. For example, it fails to generate the isothermal curves inside the two-phase regime when the temperature is -120\,degree C or lower, and in particular into the region where the mixture is observed to freeze (\textasciitilde-150\,degree C). To illustrate this, dotted lines were added manually in this region, in Figure \ref{Figure 1.5.2}.
+
+The refrigeration capacity can be estimated as the difference between the refrigerant enthalpy at the heat exchanger low-pressure return line, $H_{11}$, and the sum of the refrigerant enthalpies at the heat exchanger vapor and liquid supply lines, $H_{5}$ and $H_{7}$, respectively:
+\begin{equation}
+Q = \dot{m} H_{11} - \left( \dot{m}_{\mathrm{V}} H_{5} + \dot{m}_{\mathrm{L}} H_{7} \right)
+  = \dot{m} \left( H_{11} - x H_{5} - (1 - x) H_{7} \right).
+\end{equation}
+Here, $\dot{m}$ is the refrigerant mass flow rate of the return flow, $\dot{m}_{\mathrm{V}}$ is the vapor refrigerant mass flow rate, $\dot{m}_{\mathrm{L}}$ is the liquid refrigerant mass flow rate, and $x$ is the vapor quality, defined as the ratio of vapor refrigerant mass flow rate to the total refrigerant mass flow rate.
+
+
+Substituting the refrigerant enthalpy calculated from RefProp at each location to the above equation results in a refrigeration capacity of 29.5 kJ per kg of refrigerant. If the refrigerant flowrate through the compressor is 5 g/sec, we should get a refrigeration capacity of 147.5 W at the evaporator temperature of -130\,\degree C. The actual actual measurement is about 110 W obtained by summing the process heat load on the evaporator and the measured radiative and conductive parasitic losses.
+
+\subsubsection{Brief introduction to the temperature sensitivity issue of the Cryo refrigeration system}
+
+As shown previously (Figure \ref{Figure 1.5.1}), there are vapor refrigerants and liquid refrigerants coming out at the compressor cabinet and sent to the heat exchanger at the utility trunk via different refrigerant transfer lines (\textasciitilde60 m long and \textasciitilde16 m elevation change). Among the 60 m long transfer line, about 50\% is rigid stainless steel and 50\% of flexible rubber hose with polyamide (nylon) liner. During the transportation, the refrigerant can exchange heat with the environment.
+
+Prototype test at SLAC has demonstrated a successful run over four months long. During the run, the refrigerant transfer lines were 60m long each, with 45m long stainless steel and 15m long flexible rubber hose with polyamide liner. All refrigerant lines are insulated (1/2'' thick insulation). The ambient temperature was as low as 6 C and as high as 25 C.
+
+The ambient temperature at the TMA summit has a much larger swing than that at SLAC. The lowest ambient temperature at LSSTCam body was measured at 0.75 C at 05:45:49 UTC on 2025/09/08 while the highest ambient temperature was recorded at 23.16 C at 21:13 UTC on 2025/02/27.
+
+The refrigerant lines at the TMA were not insulated before we observed the ambient temperature sensitivity issue on May 8, 2025. This has created a problem. The refrigerant mixture was fractionated at the phase separator into vapor refrigerant and liquid refrigerant. Therefore, the vapor refrigerant would have a dew point at about the same temperature as the phase separator temperature. The phase separator was cooled by the fixed temperature glycol/water coolant (at a temperature of 9+/-3 C), which dictates that the dew point of the vapor refrigerant at around 0.2 C warmer than the glycol/water inlet temperature.
+
+Therefore, when the ambient temperature is at or colder than the glycol/water temperature, the vapor refrigerant would condense as it transports from the compressor cabinet to the heat exchanger at the utility trunk. This would cause the performance of the refrigeration system to change (change to bad).
+
+
+\subsubsection{Detail of the cryo-temp sensitivity issue}
+
+The first instance of the Cryo ambient temperature sensitivity issue occurred on May 8, 2025. The camera ambient temperature was below 7 C and reached 4.43 C at 8:18:39 UTC. The Cryo trim reduced to zero and the cryoplate temperature warmed up, as shown in Figure \ref{Figure 3.1}
+
+All five running circuits have the C3ExitTmp warm up closer to 0 C, indicating that the refrigerant C3 flow was reduced. This is shown in Figure \ref{Figure 3.2}
+
+All five running circuits showed an increase in PreC4Tmp, indicating that the C4 flow was reduced. This is shown in Figure \ref{Figure 3.2}
+
+All five running circuits showed increase in discharge pressure and reduction in suction pressure, indicating that there was an increase in flow impedance. This is shown in Figure \ref{Figure 3.3}
+
+The glycol/water supply temperature was 7 C and the phase separator was at around 7 C at the time being, as shown in Figure \ref{Figure 3.4}.
+
+When the Cryo ambient temperature warmed up to 7 C at 15:30 on May 9, 2025, the Cryo plate temperature started to decrease, indicating the refrigeration system resumed working. Cryotrim heat returned to 188 W at 20:32:30 on May 9, as shown in Figure \ref{Figure 3.1}. The cryotrim heat reported was higher than that reported on 3:00 UTC on May 8 due to that the CCD camera was off.
+
+This phenomenon was repeated on June 7, 2025. Ambient temperature reduced to 4.43 C at 1:05:30 on June 7, 2025 and Cryo trim heat reduced to zero W, as shown in Figure \ref{Figure 3.5}. The refrigeration system started to recover its performance and Cryo trim heat kicked in when ambient temperature warmed up to 6.85 C at 7:50 on June 7, 2025. Cryo trim heat increased to 157 W at 12:33 on June 7, 2025 when ambient temperature was stable at 6.92 C.
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\linewidth]{refrig/media/a0ff3f7371bef3abbc45ed73718066cf8c74ded0.png}
+    \caption{Ambient temperature, Cryo trimheat and cryoplate temperature at around 6 am UTC on May 8, 2025}
+    \label{Figure 3.1}
+\end{figure}
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\linewidth]{refrig/media/1be5e0c0d3fc3c2829c5380772c3fa853de908a7.png}
+    \caption{C3ExitTmp and PreC4Tmp of each Cryo circuit at around 6 am on May 8, 2025}
+    \label{Figure 3.2}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\linewidth]{refrig/media/b8b5551fdd5dbd3d49021fff9538b00bf9598bda.png}
+    \caption{Discharge and suction pressure of each Cryo circuit at around 6 am on May 8, 2025}
+    \label{Figure 3.3}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\linewidth]{refrig/media/1c3149bc708b073d5aa2bace1bf738b3297d5492.png}
+    \caption{Glycol/Water Inlet temperature and phase separator temperature of each Cryo circuit at around 6 am on May 8, 2025}
+    \label{Figure 3.4}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\linewidth]{refrig/media/2828b18e185895f59b8145d13ace2a03d3a61d3b.png}
+    \caption{Cryo system loss cooling capacity due to low ambient temperature on June 6/June 7 in 2025}
+    \label{Figure 3.5}
+\end{figure}
+
+
+\subsubsection{Solution to temperature sensitivity issue}
+
+The cost of the Cryo trim heat loss when lower ambient temperature is due to the condensation of the refrigerant at the vapor line. Therefore, we need to do the following
 
 \begin{itemize}
-\item
-  Brief introduction of the refrigeration system
-\item
-  Brief introduction of Cryo Temp sensitivity issue
-\item
-  Detail of the cryo-temp sensitivity issue
-\item
-  Detail of the Cryo 1 issue
-\item
-  Detail of the Cryo 3 issue
-\item
-  Analysis on the GC
-\item
-  Analysis on the Oil
-\item
-  Guide for adding refrigerants
+\item Lowering the phase separator temperature
+\item Heating the refrigeration lines
+\item Insulating the refrigerant lines
 \end{itemize}
+We have lowered the glycol/water temperature from 7 C to 4 C. This has reduced the phase separator temperature from 7 C to 4 C.
 
-\begin{quote}
-\textbf{Brief introduction of the refrigeration system}
-\end{quote}
+We have installed the self regulating heating cable on the vapor supply line and liquid supply line on the refrigeration lines from just exiting the compressor cabinet to the 8th floor just before the elevation wrap. This heater has a length of 35 ft. The heating tape is made by RAYCHEM. When the ambient temperature is -40 C, it will generate a heating capacity of 6 W per feet long; When the temperature is 65.5 C, it will reduce its heating power to zero. We only turned on the heating cable on the vapor line currently. However, we want to have the ability to maintain the refrigerant at the liquid line to be above the ambient temperature when we need to.
 
-The refrigeration system for the LSST camera is composed of a cryogenic or ``cryo'' system to cool the focal plane CCDs, and an independent ``cold'' system to remove process heat from the imaging sensor's readout-electronics boards (REBs) which are contained within the same vacuum vessel. The cryo system operates at approximately -130\textsuperscript{0}C, removing 500W, and the cold system operates at approximately -50\textsuperscript{0}C, removing 1100W. The two systems act independently, save for the radiative coupling of the two distinct evaporators within the cryostat vacuum vessel, and through weak radiative coupling and conduction paths in each Raft Tower Module (RTM). In addition to performance requirements on the evaporator temperature for nominal heat loads, its temporal stability, and spatial uniformity, there are several operational requirements that address the systems' performance under various extreme process load conditions, and a strict environmental interface (heat and vibration) to the telescope's dome enclosure, such as to avoid any impact to imaging.
 
-The refrigeration system must meet the requirements shown in Table 1.1.1 which represent the interface between the telescope and the camera. These ensure that while operating, the refrigeration system does not impact the quality of the telescope images, neither by influencing the dome environment, nor by creating mechanical vibrations that could feed through to the focal plane. The refrigeration system must also operate in the anticipated temperature and humidity ranges at the observatory summit. These environmental requirements are shown in Table 1.1.2.
+We also have insulated the refrigerant lines on top of the heating cable using 1/2” thick close cell insulation.   The material is K-Flex INSUL-LOCK\textsuperscript{\textregistered} DS 6RXLO048058, a closed-cell flexible double-seal pipe insulation with overlap.
+It has a length of 72~inch, a wall thickness of $\tfrac{1}{2}$~inch,
+and an R-factor of 3.3.
+The material is an elastomeric foam (domestic product), and this insulation
+helps retain heat within the refrigerant lines.
 
-Finally, Tables 1.1.3 and 1.1.4 show the performance requirements for the cold and cryo systems, respectively. These include the temperature requirements for nominal and extreme process heat loads, as well as the temperature stability, uniformity and controllability of the two evaporators
+The Cryo refrigeration behavior when ambient temperature was below 2 C on September 8, 2025 is shown in Figure \ref{Figure 4.1}. Cryo trim heat was about 104 W at 18:00 pm September 7, 2025. It was reduced to 78.96 W at 5:45:49 on September 8, 2025 while ambient temperature reduced to 0.75 C. The Cryo trim heat continued to drop down to 74.51 W at 6:13:18 on September 8, 2025 then increased gradually back to 105.4 W at 12:12:30 on September 8, 2025 when the ambient temperature increased to 3.6 C.
 
-\textbf{Table 1.1.1:} Summit Facility Interface between Telescope and Camera
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\linewidth]{refrig/media/b047dc1c6984be4cf800973b5b90d4924c408d53.png}
+    \caption{Cryo system behavior when ambient temperature reduced to 0.75 C on September 8, 2025}
+    \label{Figure 4.1}
+\end{figure}
 
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2663}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2973}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4364}}@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Refrigerant transfer line skin temperature
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Within +4/-15 \textsuperscript{0}C of ambient dome's temperature
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Applies to all refrigerant line surfaces exposed to dome's ambient environment. Insulation is optional wherever possible.
-\end{quote}
-\end{minipage} \\
-\begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Compressor cabinet outer skin temperature
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Within +1/-3 \textsuperscript{0}C of dome's ambient temperature
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Foam insulated cabinet walls, and coolant used to control the cabinet interior temperature
-\end{quote}
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-\end{longtable}
 
-\textbf{Table 1.1.2:} Operating Dome Environment Requirements
+This shows that the current solution to Cryo refrigeration system can allow the Cryo refrigeration system provides adequate cooling to LSSTCam when ambient temperature was 3 C lower than the phase separator temperature.
 
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2732}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2835}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4433}}@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Ambient working temperature range
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
--5 \textsuperscript{0}C to 30 \textsuperscript{0}C
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-System should deliver the required refrigeration capacity in the required evaporator temperature range.
-\end{quote}
-\end{minipage} \\
-\begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Ambient turn-on temperature range
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
--10 \textsuperscript{0}C to 30 \textsuperscript{0}C
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-System should be able to turn-on and operate, but the refrigeration capacity may be reduced.
-\end{quote}
-\end{minipage} \\
-\begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Ambient survival temperature range
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
--15 \textsuperscript{0}C to -10 \textsuperscript{0}C \& 30 \textsuperscript{0}C to 40 \textsuperscript{0}C
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-System should survive such temperature extremes. The system does not need to be running in this condition.
-\end{quote}
-\end{minipage} \\
-\begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Ambient working humidity range
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-15\% to 60\%
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-System should deliver the required refrigeration capacity in the required evaporator temperature range.
-\end{quote}
-\end{minipage} \\
-\begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Ambient survival humidity range
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-10\% to 15\% \&
-
-60\% to 90\%
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-System should survive these humidity extremes but does not need to be running in this condition. If the refrigeration system is running, the refrigeration capacity may be reduced.
-\end{quote}
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-\end{longtable}
-
-The cooling requirements for the LSST Camera are rather unique amongst astronomical instruments, driven by the large focal plane area with 189 distinct CCDs, the proximate location of the front-end electronics, and the parallel digitization and readout with large power dissipation, all occupying the same vacuum space. In addition, the cooling system must not influence the dome environment of the observatory itself. Heretofore, smaller but similar systems could use conventional coolants such as LN\textsubscript{2}. However, to provide adequate refrigeration capacity with such coolants would have required either a large refillable vacuum insulated reservoir directly behind the camera, or a set of flexible, large cross section vacuum insulated transfer lines running up to the camera from a reservoir and pump at the base. Both solutions would require similar transfer lines to return cold boiled off N\textsubscript{2} vapor, the combination of which proves highly inconvenient. Such would also be the case with more modern cryocoolers (e.g.: Polycold) that locally produce cold refrigerant mixes, but which then must be transported to the evaporator and returned to the cryocooler.
-
-Instead of these cumbersome conventional solutions, the design that has been selected incorporates two distinct but classic vapor compression refrigeration systems (``cold'' and ``cryo''). The cryo refrigeration system consists of 6 individual circuits, which utilizes the auto-cascade refrigeration technology. The refrigerants are compressed and cooled back to ambient dome temperature (by compressors and condensers remote from the camera), and then transported at high pressure through the dome, and up to the camera. There they are expanded to produce the required cooling of the evaporators. At the rear of the camera each system has counterflow heat exchangers which pre-cool these incoming refrigerants before expansion, utilizing the cold returning refrigerant. This refrigerant then exits the camera, now close to the dome temperature and at a low pressure and returns back to the remote compressors.
-
-The cold system utilises conventional cascade refrigeration technology to cool the heat transfer fluid to -50 C at the compressor cabinet, the heat transfer fluid is pumped via a vacuum jacketed line to the camera, now at -48 C, to cool down the electronics. The heat transfer fluid then exits the camera, now at about -44 C, returns to the remote compressor cabinet via a vacuum jacketed line.
-
-\begin{quote}
-The transfer line system carries the refrigerants to the camera and returns them to the compressors -- a total path length of \textgreater65 meters with a maximum elevation change of \textasciitilde16 meters
-\end{quote}
-
-\textbf{Table 1.1.3:} Cold Refrigeration System Performance Requirements
-
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2710}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2916}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4374}}@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Temperature range for operation
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
--40 \textsuperscript{0}C to -30 \textsuperscript{0}C when the load ranges from 754 W to 843 W
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Nominal load is 800W at -35 \textsuperscript{0}C
-\end{quote}
-\end{minipage} \\
-\begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Maximum survival load
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-1056 W
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-The system does not run away.
-\end{quote}
-\end{minipage} \\
-\begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Minimum survival load
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-490 W
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-The system does not run away. Trim heat and/or compressor operating frequency and /or hot gas bypass can be used when running the system with the minimum survival load.
-\end{quote}
-\end{minipage} \\
-\begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Temperature uniformity
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-+/-1.5 \textsuperscript{0}C
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Temperature across the cold plate
-\end{quote}
-\end{minipage} \\
-\begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Temperature controllability
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-+/-2 \textsuperscript{0}C when process load changes by 89 W
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-The controller should adjust the heat load of the trim heaters to compensate the change of the process load when turning on/off electronics.
-\end{quote}
-\end{minipage} \\
-\begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Temperature drift
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-+/-1 \textsuperscript{0}C at constant load
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Duration not specified.
-\end{quote}
-\end{minipage} \\
-\begin{minipage}[b]{\linewidth}\raggedright
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-\end{longtable}
-
-\begin{quote}
-\textbf{Table 1.1.4:} Cryo Refrigeration System Performance Requirements
-\end{quote}
-
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3196}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2457}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4347}}@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Cryo plate temperature range
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
--130 \textsuperscript{0}C to -125 \textsuperscript{0}C with load from 361 W to 498 W
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Any temperature from -130 \textsuperscript{0}C to -125 \textsuperscript{0}C is accepted when the load is in this range. The nominal temperature and load are -127.5 \textsuperscript{0}C @ 429.5 W.
-\end{quote}
-\end{minipage} \\
-\begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Cryo plate maximum survival load
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-520 W
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Cryo system should not run away.
-\end{quote}
-\end{minipage} \\
-\begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Cryo plate minimum survival load
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-219 W
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Use trim heat to increase the minimum survival load. Cryo system should not run away.
-\end{quote}
-\end{minipage} \\
-\begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Cryo plate temperature uniformity
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-+/-1.5 \textsuperscript{0}C
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Temperature across the cryo plate
-\end{quote}
-\end{minipage} \\
-\begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Cryo plate temperature controllability
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-+/-1.5 \textsuperscript{0}C when process load changes 136 W
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-The controller should adjust the heat load from the trim heaters to compensate the change in load from when turning on/off electronics.
-\end{quote}
-\end{minipage} \\
-\begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Cryo plate temperature drift
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-+/-0.5 \textsuperscript{0}C at constant load
-\end{quote}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\begin{quote}
-Duration not specified.
-\end{quote}
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-\end{longtable}
-
-\textbf{Architecture and Thermal Design of the Cryostat}
-
-The cryostat is designed to be a vacuum insulating vessel (\textless10\textsuperscript{-7} Torr) containing the cold and cryo systems' evaporators, the ``coldplate'' and the ``cryoplate''. Figure 1.3.1 shows a cross section of the cryostat with the principal thermal regions and typical operating temperatures. Refrigerants enter the cryostat, pass through the evaporators and return through 4.5'' vacuum conflat flanges on the rear annular feedthrough plate. The refrigerant tubing itself is continuous and joint-free within the cryostat vacuum to eliminate any potential for a leak. The refrigeration system components outside the cryostat (in the Utility Trunk) have an independent insulating vacuum, referred to as the heat exchanger (``HeX'') vacuum). Ceramic insulators are used throughout the system to isolate the electrical ground of the evaporators from the rest of the cryostat. Figure 1.3.2 shows the detailed routing and makeup of the system at the interface between the cryostat and the heat exchanger (HeX) vacuum system, including the mechanism for isolating grounds.
-
-The cryoplate layout is shown in Figure 1.3.3. It is composed of a single machined and polished copper plate which is brazed to a stainless-steel plate to rigidize it, with cutouts for each of the Raft Tower Modules (RTMs). There are 21 ``bays'' where the science rafts are attached, and 4 corner bays for the corner rafts containing guider CCDs and wavefront sensors. The six stainless steel refrigerant lines -- one for each cryo circuit - run continuously through the top and bottom of the six copper ribs, having been brazed in place. There are three lines on the top, and three on the bottom, and the refrigerant direction is organized to be counterflow. The rafts are bolted down to the copper on the front side of the orthogonal ribs.
-
-\includegraphics[width=2.18038in]{refrig/media/media/image2.png}
-
-\textbf{Figure 1.3.1} Cross section of the cryostat with its principal thermal regions and typical design temperatures during operation (in red).
-
-\includegraphics[width=5.98611in]{refrig/media/media/image1.jpg}
-
-\textbf{Figure 1.3.2} Detailed routing of the refrigeration system at the interface between the cryostat and the heat exchanger vacuum system.
-
-\includegraphics[width=6in]{refrig/media/media/image3.jpg}
-
-\textbf{Figure 1.3.3} Cryoplate (a) Routing of six refrigerant circuits in the copper cryoplate (b) with stainless steel stiffening frame attached.
-
-\textbf{Architecture of the Cryogenic Systems}
-
-\begin{quote}
-The physical layout of each cryo system is shown schematically in Figure 1.4.1.1 With the exception of the transfer line lengths, a largely identical system supports the camera in the clean room Maintenance Facility at the Vera C. Rubin Observatory.
-
-All of the ground-based components reside in two temperature-controlled housings {[}``cryo cabinets''{]} attached to the underside of the Telescope Mount Assembly (TMA). The transfer lines to and from the camera (a liquid supply, a vapor supply, and a suction-return for each circuit) originate and return to these cabinets. They are a mix of orbitally welded - electropolished 316-L stainless steel tubing and flexible refrigerant lines which are insulated wherever possible. The counterflow HeX systems reside in a separate vacuum insulated housing within the camera's Utility Trunk, just behind the cryostat
-\end{quote}
+If we want LSSTCam to operate with ambient temperature lower by more than 3 C below the phase separator temperature, we need to improve the refrigeration line insulation further. There are Dyalene lines at the 8th floor that are very close to the refrigerant line. The Dyaline fluid is at 0 C. If there is contact with the refrigerant lines, it will cool down the refrigerant at the refrigerant line, which can condense the refrigerant at the vapor line. We need to insulate the Dyaline line.

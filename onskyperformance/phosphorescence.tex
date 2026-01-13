@@ -1,0 +1,56 @@
+The Run 7 persistence optimization process used a short image acquisition sequence with a high flux exposure to saturate the sensors, followed by a series of dark images. The original intent of this script was to quantify persistence in e2v sensors. When the e2v sensors were shown to be nearly free of persistence by reducing their clock swing voltages from 9.3 V down to 8.0 V, a similar memory effect was immediately noticed in a subset of the ITL sensors.
+
+\subsubsection{The difference between phosphorescence and persistence}
+
+As noted in Sec. 7.4 of \cite{SITCOMTN-148}, there are many similarities between phosphorescence and persistence. However, the physical origin, characteristics, time constants, signal amplitude, and chromaticity response of each signal is slightly different. We summarize the differences between each effect in table \ref{tab:phosphorescence_persistence_characteristics}.
+
+\begin{table}[]
+\centering
+\begin{tabular}{|c|p{6cm}|p{6cm}|}
+\hline
+                          & Persistence & Phosphorescence \\ \hline\hline
+Sensor type affected      & All e2v sensors            & A subset of ITL sensors                \\ \hline
+Physical driver of effect & Charge trapping at the $\text{Si-SiO}_2$ interface in the region of saturation, insufficient charge readout due to high parallel clock voltages difference & Fluorescent photo-resist wax trapped under the AR coating  \\ \hline
+Area of sensor effected   & Region of saturated source, trail of persistence in direction of serial register for affected amplifier & Region of photo-resist wax localization                 \\ \hline
+Peak signal level         & $\sim15 \text{ e}-$ &  $\sim100 \text{ e}-$ \\ \hline
+Time constant            & $12.9\text{ s}$             & low: $\sim10$s high: $\sim300$s                \\ \hline
+Chromatic dependence            & None & Higher signal in response to shorter wavelength exposures \\ \hline
+Mitigation status         &   Mitigated to sub-electron level by decreasing parallel voltage swing in e2v sensors from 9.3V to 8.0V & Masking phosphorescent regions of specific ITL CCDs. \\ \hline\hline
+\end{tabular}
+\caption{The general characteristics and differences in the phosphorescence and persistence effects. Persistence time constant from \cite{DMTN-276}}
+\label{tab:phosphorescence_persistence_characteristics}
+\end{table}
+
+We describe the on-sky persistence characterization in subsection \ref{subsec:on_sky_persistence}. Here, we describe the on-sky characterization of phosphorescence.
+
+\subsubsection{Previous characterization of phosphorescence}
+
+Phosphorescence was first documented in the Run 7 testing campaign\citep{SITCOMTN-148}. To summarize the phosphorescence analysis from Run 7:
+
+\begin{itemize}
+    \item Phosphorescent signal in ITL sensors can be morphologically classified as either \textbf{spot-like} or \textbf{diffuse} phosphorescence. 
+    \item Removing the HV bias from the sensors can decrease the amplitude of spot-like phosphorescence and increase the amplitude of diffuse phosphorescence 
+    \item Independent of morphology, phosphorescent signal is higher in shorter wavelengths. 
+    \item Phosphorescent signal is triggered at lower illumination levels for shorter wavelengths. 
+    \item The time dependence of the phosphorescent signal can have multiple time constants in a single phosphorescent complex.
+    \item The kinetics of a phosphorescent region can be characterized using a multi-time constant decay model. 
+\end{itemize}
+
+To characterize phosphorescence in on-sky exposures, we visually inspect series of on-sky exposures taken in g and u band for selected sensors with documented phosphorescence. Exposures are listed in table \ref{tab:phosphorescent_exposures}. We focus here on u and g band, since results from Run 7 testing demonstrated that the amplitude of the phosphorescence signal is larger for short wavelength exposures.
+
+\begin{table}[]
+\centering
+\begin{tabular}{|c|p{6cm}|p{6cm}|}
+\hline
+                 & u-band exposures & g-band exposures \\ \hline \hline 
+Exposure Numbers &                  &                 \\  \hline
+\end{tabular}
+\caption{The exposures chosen for analyzing phosphorescent response in ITL CCDs.}
+\label{tab:phosphorescent_exposures}
+\end{table}
+
+\subsubsection{Phosphorescence in u-band exposures}
+
+\subsubsection{Phosphorescence in g-band exposures}
+
+\subsubsection{Conclusion}

@@ -4,6 +4,7 @@
 % Package imports go here.
 \usepackage{minted}
 \usepackage{booktabs}
+\usepackage{gensymb}
 \usepackage{tikz}
 \usetikzlibrary{positioning} % ノードの相対的な位置指定に便利
 \usepackage{ragged2e} % For controlled justification within fixed-width columns
@@ -64,7 +65,7 @@ This technote describes what we found during the LSST Camera commissioning.
 \section{Introduction}
 
 
-\section{Further analysis from \cite{SITCOMTN-148}}
+%\section{Further analysis from \cite{SITCOMTN-148}}
 
 %% Let's make a a folder for each topic!!
 \section{Camera operations}
@@ -72,10 +73,10 @@ This technote describes what we found during the LSST Camera commissioning.
 \subsection{Recovery of CCDs}
 
 \subsection{Cryo system}
-- Temp sensitivity issue -- we can put some episode and what we have done in this document, Theo will describe a few episodes
+\input{refrig/refrig}
+
 \input{refrig/episodes}
 
-\input{refrig/refrig}
 
 \subsection{CCS development}
 - CCS
@@ -86,14 +87,12 @@ This technote describes what we found during the LSST Camera commissioning.
 \subsection{Observation control}
 - OCS integration kfanning
 
-\subsection{FES commissioning}
-- FES commissioning performance -- Pierre Antilogus, Alexandre etc...
+\subsection{Filter Exchange System Commissioning}
 
+\input{fes/fes}
 
 \subsection{Guider star finder}
 @Aaron Roodman star finder in guider
-
-\input{fes/fes}
 
 \subsection{Historical telemetry of infrastructure cut events: electricity, glycol, dynalene and air}
 @Homer Neal telemetries of infrastructure cut events, electricity, glycol, dynalene, and air
@@ -108,25 +107,29 @@ This technote describes what we found during the LSST Camera commissioning.
 \subsection{Re-implementation of "clear" operation during the idle time}
 \input{idleclear/idleclear}
 
-- eoPipe -- Jim
+\subsection{Electro-Optical Testing}
+
+%- eoPipe -- Jim
+\input{eo_results/eo_pipe}
 
 % result from EO testing
 - Correlated noise -- Pierre Astier or Pierre Antilogus
 
 - PTC -- Pierre Astier
-
-
+\newpage
 \section{Camera on-sky performance}
-- Bright star test -- SB
 
-- On-sky persistence test -- just showing a dark image after a bright star to say no persitence
+\subsection{CCD Sensitivity to High Flux}\label{subsec:bright_star_test}
+\input{onskyperformance/brightStar}
 
-- Pinhole repeatability tests -- YU
+\subsection{Pinhole repeatability tests}
+\input{onskyperformance/filterplacement/filterplacement}
 
-- Phosphorescence study with u and g band exposures -- SB
+\subsection{Phosphorescence}\label{subsec:on_sky_phosphorescence}
+\input{onskyperformance/phosphorescence}
 
-- persistency -- YU
-
+\subsection{Persistence}\label{subsec:on_sky_persistence}
+\input{onskyperformance/persistence}
 
 \section{Shutter}
 

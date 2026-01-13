@@ -1,1 +1,56 @@
-This section describes the filter exchange system performance through commissioning.
+This section describes the performance of the filter exchange system through commissioning. It details the main hardware issues encountered since first photon and their fixes, the various software upgrades, including the auto-recovery procedures, and exposes the evolution of the system performances from between April and December 2025.
+
+\subsubsection{Hardware: problems of youth \& fixes}
+
+\paragraph{Autochanger 1 Online Clamps}
+\paragraph{Carousel clamp friction}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.45\linewidth]{fes/UnlockClampDurationHistBefore.png}
+    \includegraphics[width=0.45\linewidth]{fes/UnlockClampDurationHistAfter.png}
+    \caption{Histograms of the filter pins Unlock time before (15 August 2025 to 15 September 2025 , left) and after (15 November 2025 to 15 December 2025 ,right), the carousel clamps maintenance in October 2025 }
+    \label{fig:fes-unlock}
+\end{figure}
+\paragraph{Carousel collector stuck}
+
+\subsubsection{Slow Control Upgrade}
+\paragraph{Loader operation}
+\paragraph{FES integration within observatory control}
+\paragraph{FES sleep mode / wake up}
+\paragraph{MCM interaction}
+
+\begin{itemize}
+    \item Required configuration for Normal mode
+    \item Filter in place 
+\end{itemize}
+
+\paragraph{Auto-recovery}
+
+\begin{itemize}
+    \item Unlock carousel clamp
+    \item carousel rotation fine tuning
+    \item carousel brakes unstuck
+\end{itemize}
+
+\subsubsection{Performances}
+
+\paragraph{Filter change speed and overhead from telescope}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{fes/fes_duration.png}
+    \caption{Histogram of filter exchange duration between April 15th and July 18th (blue) and after July 18th (red)}
+    \label{fig:fes-duration}
+\end{figure}
+
+\paragraph{FES operation tuning}
+\paragraph{Number of filter changes}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{fes/fes_daily_count.png}
+    \caption{Daily number of filter exchanges}
+    \label{fig:fes-count}
+\end{figure}
+
+
+\paragraph{Error rate evolution from April to December}
