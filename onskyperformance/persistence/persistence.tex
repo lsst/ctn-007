@@ -1,0 +1,21 @@
+One of the major success of electro-optical testing campaign on the summit (Run 7) was the mitigation of Persistence by changing the CCD operation voltage \citep{SITCOMTN-148} . This change greatly reduced the persistence signal down to sub ADU level. Here we demonstrate the level of persistence by analyzing the on-sky data.
+
+On the night of May 15, 2025, LSSTCam observed a bright star on R22/S11, which is an e2v sensor, during BLOCK-T417 (CLT-001 Incremental Closed Loop w/ coma bending modes). The first strip of Figure \ref{fig:persistence} shows the bright star image (Image sequence 470). The bright star saturated the footprint to the full well and bleed charges across the entire columns. This star could leave the persistence signal in the following image (471) but there was no obvious sign of persistence remained (the second panel of Figure \ref{fig:persistence}).
+
+More strong test is to apply the difference imaging technique. We used the image 479 as a template of the difference imaging because there was no major bright star was observed in the same area in the preceding images. We apply standard difference imaging technique as follows:
+\begin{itemize}
+    \item isrTask: remove the instrumental signature -- correcting bias, dark, flat, linearity, defects, etc
+    \item calibrateImageTask: calibrate WCS, photometry, and remove sky background
+    \item warpExposure: match the template image to the science image
+    \item AlardLuptonSubtractTask: Solve PSF to match the PSF shapes of two images and convolve the PSF to the template and subtract the template from the science image
+\end{itemize}
+The result is shown in the end of Figure \ref{fig:persistence}. There is no obvious residue of persistence in the region where the bright star was located. There are residual bright stars and dark spots. The bright stars are the stars that are above the saturation and the dark spots are associated with the saturation bleed in the template image.
+
+The image was obtain in z-band. The mean sky level for 471 reported by RubinTV was 21296.30 ADU. The study with u-band where sky level is much lower will be needed.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=1\linewidth]{onskyperformance//persistence/persistence.png}
+    \caption{Demonstration of the absence of persistence effect on an e2v sensor (R22/S11). The strip for channel 14 are cut out from assembled CCD images. Bright star shows the example of how the star was observed, Next image shows the next image after the bright star image, Reference is a template image, and Difference image is also shown.}
+    \label{fig:persistence}
+\end{figure}

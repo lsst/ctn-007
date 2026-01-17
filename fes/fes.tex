@@ -26,7 +26,14 @@ This section describes the performance of the filter exchange system through com
 \end{itemize}
 
 \paragraph{Auto-recovery}
-
+\begin{figure}
+    \centering
+    \includegraphics[width=0.45\linewidth]{fes/SetFilterTimeBefore.png}
+    \includegraphics[width=0.45\linewidth]{fes/SetFilterTimeAfter.png}
+    \caption{Filter change execution time before (left plot) and after (right plot), the carousel clamps maintenance in October 2025 and the November FCS update. The jitter in the execution time of the filter exchanges has been highly reduced.   }
+    \label{fig:fes-setfilter_jitter}
+\end{figure}
+The implementation of auto-recovery procedures not only improve the reliability of the FES operations (=grant an operation of the FES without interruption) but the work implemented in 2025 significantly improved the repeatability : FES movements execution have smaller execution time jitter. The impact of the last point can be seen in fig \ref{fig:fes-setfilter_jitter}, for example the long tail visible in the setFilter execution time prior to the FCS October 2025 update , is now gone : this is mainly due to a change in the fine tuning of the carousel position when it is impacted by filter weights unbalance configuration in carousel.  
 \begin{itemize}
     \item Unlock carousel clamp
     \item carousel rotation fine tuning
