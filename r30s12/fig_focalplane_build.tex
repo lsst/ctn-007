@@ -1,0 +1,13 @@
+\documentclass[border=0pt]{standalone}
+\usepackage{graphicx}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  \node[anchor=south west,inner sep=0] (img) at (0,0)
+        {\includegraphics[width=12cm]{fig_ctn001_fp.pdf}};
+  \begin{scope}[x={(img.south east)},y={(img.north west)}]
+    \draw[red,line width=0.9pt] (0.1294,0.5887) rectangle (0.2936,0.7627);
+    \draw[red,line width=1.4pt] (0.2386,0.6470) rectangle (0.2936,0.7049);
+  \end{scope}
+\end{tikzpicture}
+\end{document}
