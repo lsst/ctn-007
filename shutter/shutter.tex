@@ -6,10 +6,10 @@
   postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
 }
 
-\subsection{Shutter Timing issue}
+\subsubsection{Shutter Timing issue}
 Since the first photon observation was made, the shutter system has exhibited issues including blade overrun, leaving the shutter partially opened, and discontinuities in motion profiles \citep{CTN-003}. This section presents  further analysis and results of follow-up tests, and current understanding and remaining open questions.
 
-\subsubsection{Overview of the shutter operation}
+\paragraph{Overview of the shutter operation}
 The camera shutter is controlled by the Beckhoff TwinCAT PLC system. The CCS sends commands to a Beckhoff CX5120 controller, which is an industrial PC running Windows 7 Embedded Standard along with a real-time kernel called TwinCAT 3. This is the gateway and manages the PLC system interconnected by EtherCAT. The PLC system consists of various ``terminal'' modules that can take different roles, such as controlling digital and analog I/O as well as the timing module, called EL6688. EL6688 provides an external reference to synchronize the clock among terminals with the GPS clock with an accuracy better than 1\,$\mu$s. 
 
 This system has four different clocks: 
@@ -35,7 +35,7 @@ Plotting these deltas reveals three operational periods during 2025 in Figure \r
 
 \textit{June 8--Dec 2 (present):} The EL6688 synchronized to an observatory boundary clock on a leaf switch (10.17.200.33) after three hops from the Grand Master Clock, where the GPS clock is connected. Timing has remained stable.
 
-\subsubsection{Verification of the Observatory's PTP}
+\paragraph{Verification of the Observatory's PTP}
 % verification of the observatory's PTP system
 Further analysis was conducted using the spare system lsstcam-shutter02 in the clean room. This system is connected to the observatory's network. This network is specially configured to pass the PTP packets. The network routes through an identical MOXA switch, providing an opportunity to investigate whether the observatory's PTP system functions as intended and to identify any issues with the MOXA switch. Tests conducted in the clean room revealed successful PTP synchronization using a MOXA operating as an L2 switch by the following command:
 
@@ -74,7 +74,7 @@ Another machine in the clean room Dell AIO, aio06, was also used to test the PTP
 \end{lstlisting}
 
 % verification of the EL6688:`
-\subsubsection{Verification with the spare shutter system}
+\paragraph{Verification with the spare shutter system}
 Since the PTP synchronization has been successfully established with linux computers through the MOXA switch, the focus moves onto the actual PTP terminal module EL6688.  EL6688 was particularly difficult because the interface only supports a 100\,Mbps connection. There was a question whether the link speed conversion interferes with the PTP synchronization. We used several tools to investigate the PTP synchronization comprehensively.
 
 `readPtpDiag.sh` is the tool to communicate with Beckhoff controller over the network, which provides a partial view of the variables in the PLC. The following example is taken from \cite{CTN-003}.
@@ -124,7 +124,7 @@ This example confirms that EL6688 communicates with the boundary clock (a leaf s
 
 Although the difference is consistent, the difference itself is quite large. This large difference was observed when the large `Offset from master' was observed (DC is synchronized with the TwinCAT clock). On the other hand, if DC is synchronized with EL6688/PTP, the difference was quite small. This observation suggests that when the DC synchronized with the TwinCAT clock and the DC tries to keep the pace as referenced from EL6688 (PTP) but likely the absolute clock could be wrong if TWinCAT clock is not reasonably synchronized with NTP.
 
-\subsubsection{Summary}\
+\paragraph{Summary}\
 \begin{itemize}
 \item The observatory PTP system provides a reasonable PTP sychronization.
 \item MOXA switch does not support the hardware clock, resulting in the poor PTP synchronization. 
