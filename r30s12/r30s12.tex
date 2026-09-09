@@ -15,28 +15,32 @@
 \subsubsection{R30/S12: dead-looking segment and suspected short}
 \label{sec:r30s12}
 
-On the e2v CCD S12 of raft R30 (RTM-012), read out by Reb1, the channel Seg17
-reads essentially zero current and delivers no usable signal, and raising the
-output drain (OD) of that REB towards its nominal value trips the
-over-current protection within about 100~ms. Three such trips were recorded
-(\S\ref{sec:r30s12-trips}).
+R30/Reb1 could not be powered on. During \texttt{powerCCDsOn} the OD current
+rose steeply as the output drain (OD) of the S12 slot was raised, and the
+over-current protection tripped within about 100~ms, ending the sequence
+before the CCDs reached their operating state; three such trips were recorded
+(\S\ref{sec:r30s12-trips}). The REB was left off, and with it all three of the
+CCDs it reads.
 
-The REB measures each channel's current on the low side of its current
-source, so a channel whose output node is held near 0~V reads $\simeq0$~mA.
-The discussion of these data points to a short between the output node of the
-affected channel (OS, the source of the output transistor) and FS, which is at
-or near ground; a short involving OD was also raised as plausible, given the
-large total OD current seen when OD is raised. An ITL sensor showed the same
-signature about five years ago and was concluded to have a
-short.\footnote{\emph{Summary on dead looking channels}, LSSTCam Confluence,
-\url{https://confluence.slac.stanford.edu/spaces/LSSTCAM/pages/240279059/Summary+on+dead+looking+channels}.}
-
-REB5 has no per-channel OD control, so the fault is isolated at the level of
-the CCD instead: S12 is powered only partially, with its OD setpoint reduced
-to 0.15 (measured ODV $\simeq2$~V), and S10 and S11 on the same REB operate
+REB5 has no per-segment OD control, so the fault could only be isolated at the
+level of the CCD: S12 is powered partially, with its OD setpoint reduced to
+0.15 (measured ODV $\simeq2$~V), while S10 and S11 on the same REB operate
 normally. This required a special REB firmware build and a set of CCS
 configuration and test changes, validated at UC Davis
-(\S\ref{sec:r30s12-solution}). The cost is one CCD out of the three on Reb1.
+(\S\ref{sec:r30s12-solution}), and has been in effect since 2025-06-25. The
+cost is one CCD out of the three on Reb1.
+
+Only with the REB powered in that state could the segment currents of S12 be
+read again. They are all low, as expected with OD off, and Seg17 sits at the
+noise level (\S\ref{sec:r30s12-ramp}). The REB measures each segment's current
+on the low side of its current source, so a segment whose output node is held
+near 0~V reads $\simeq0$~mA. The discussion of these data points to a short
+between the output node of the affected segment (OS, the source of the output
+transistor) and FS, which is at or near ground; a short involving OD was also
+raised as plausible, given the large OD current seen at turn-on. An ITL sensor
+showed the same signature about five years ago and was concluded to have a
+short.\footnote{\emph{Summary on dead looking channels}, LSSTCam Confluence,
+\url{https://confluence.slac.stanford.edu/spaces/LSSTCAM/pages/240279059/Summary+on+dead+looking+channels}.}
 
 \paragraph{Location and pin arrangement.}
 \label{sec:r30s12-location}
@@ -363,18 +367,6 @@ for this REB, the tests meant to catch this class of fault. Both should be
 tracked in configuration management. The mitigation has been in effect since
 2025-06-25; the firmware \texttt{0x31395011} had been rolled out to the focal
 plane before that date. S12 is not masked in the acquisition configuration, so
-its frames are read out and written even though they carry no signal.
-
-\paragraph{Outlook.}
-\label{sec:r30s12-consequences}
-
-\begin{itemize}
-  \item Running this REB at nominal OD is not an option: the protection trips
-        within about 100~ms, and each attempt deposits energy at the fault
-        site.
-  \item There is no in-situ repair path; reaching the fault would require
-        breaking vacuum and disassembly.
-  \item The granularity of the mitigation is set by the electronics, not by
-        the fault: OD can only be lowered for a whole CCD, so a single
-        shorted segment costs a sensor.
-\end{itemize}
+its frames are read out and written even though they carry no signal. The granularity of the mitigation is set
+by the electronics rather than by the fault: OD can only be lowered for a
+whole CCD, so a single shorted segment costs a sensor.
