@@ -42,11 +42,11 @@ summarised once, and placed on a timeline showing when it was actually being
 worked on.  The date-ordered account it is drawn from is reproduced in
 Appendix~\ref{sec:chronology-2025}.  The purpose of the reorganisation is to
 separate three things that a chronology conflates --- issues that were closed,
-issues that the observatory learned to live with, and issues that simply
-stopped being mentioned.
+issues that the observatory learned to live with, and issues that were never
+closed at all.
 
 Identifiers carry a category prefix: \texttt{CRYO} (cryogenic refrigeration), \texttt{DYN} (dynalene (utility-trunk cooling)), \texttt{GLY} (glycol and pcs chiller), \texttt{PWR} (site power), \texttt{AIR} (compressed dry air), \texttt{FP} (focal plane), \texttt{FW} (reb firmware), \texttt{DAQ} (data acquisition), \texttt{CCS} (camera control system), \texttt{SHT} (shutter), \texttt{FES} (filter exchange system), \texttt{OPT} (stray light), \texttt{MEC} (mechanical and integration), \texttt{IT} (summit it).
-Status is assigned on the evidence of the operations channels, using six
+Status is assigned on the evidence of the operations channels, using five
 categories:
 
 \begin{center}
@@ -54,14 +54,13 @@ categories:
 \textcolor{stres}{\textbf{R}} & Resolved & cause found and fixed, no recurrence in the logs \\
 \textcolor{stmit}{\textbf{M}} & Mitigated & recurrence contained by a procedure or design change, mechanism unchanged \\
 \textcolor{stwrk}{\textbf{W}} & Workaround & operated around a known defect that was never repaired \\
-\textcolor{stopn}{\textbf{O}} & Open & still active, or recurring, at the end of the year \\
-\textcolor{stdor}{\textbf{D}} & Dormant & no resolution recorded and no further mention; effectively dropped \\
+\textcolor{stopn}{\textbf{O}} & Open & not closed: still active or recurring at the end of the year, or never resolved and no longer being mentioned \\
 \textcolor{sttra}{\textbf{T}} & Transferred & handed to another group and tracked outside camera operations \\
 \end{tabular}
 \end{center}
 
 \noindent
-8 entries are marked ``\textbf{?}''.  In those cases the record stops before
+7 entries are marked ``\textbf{?}''.  In those cases the record stops before
 the outcome, so the classification has to be settled from sources outside
 these channels; the summary says in each case what is missing.
 
@@ -71,20 +70,22 @@ these channels; the summary says in each case what is missing.
 \toprule
  & Status & Issues \\
 \midrule
-\textcolor{stres}{\textbf{R}} & Resolved & 6 \\
+\textcolor{stres}{\textbf{R}} & Resolved & 7 \\
 \textcolor{stmit}{\textbf{M}} & Mitigated & 8 \\
-\textcolor{stwrk}{\textbf{W}} & Workaround & 5 \\
-\textcolor{stopn}{\textbf{O}} & Open & 15 \\
-\textcolor{stdor}{\textbf{D}} & Dormant & 7 \\
+\textcolor{stwrk}{\textbf{W}} & Workaround & 4 \\
+\textcolor{stopn}{\textbf{O}} & Open & 22 \\
 \textcolor{sttra}{\textbf{T}} & Transferred & 1 \\
 \midrule
  & \textbf{Total} & \textbf{42} \\
 \bottomrule
 \end{tabular}
 \caption{Status of the 42 issues identified in the 2025 camera operations
-channels.  The seven dormant entries and the five workarounds are the ones
-most likely to need a decision: none of them was closed, and the dormant ones
-were not revisited at all after their last mention.}
+channels.  Open covers both ends of a spectrum: issues that were still
+generating traffic in December, and issues that were never closed and simply
+stopped being mentioned --- the timeline of
+Figure~\ref{fig:issue-timeline} distinguishes the two, since the latter show a
+long tail with no activity.  Those, together with the 4 workarounds, are the
+entries most likely to need a decision.}
 \label{tab:issue-status}
 \end{table}
 \begin{figure}[htbp]
@@ -127,11 +128,12 @@ were not revisited at all after their last mention.}
 \fill[stmit] (9.613,-0.11) rectangle (9.774,0.11);
 \node[font=\scriptsize\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,0.00) {M};
 \node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,1.00) {\hyperref[iss:CRYO-02]{CRYO-02}};
-\draw[issspan,line width=1.2pt] (4.355,1.00) -- (8.267,1.00);
-\fill[stdor] (4.355,0.89) rectangle (4.581,1.11);
-\fill[stdor] (4.742,0.89) rectangle (5.367,1.11);
-\fill[stdor] (8.067,0.89) rectangle (8.267,1.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stdor,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,1.00) {D};
+\draw[issspan,line width=1.2pt] (4.355,1.00) -- (12.000,1.00);
+\fill[issspan] (12.00,0.89) -- (12.00,1.11) -- (12.20,1.00) -- cycle;
+\fill[stopn] (4.355,0.89) rectangle (4.581,1.11);
+\fill[stopn] (4.742,0.89) rectangle (5.367,1.11);
+\fill[stopn] (8.067,0.89) rectangle (8.267,1.11);
+\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,1.00) {O};
 \node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,2.00) {\hyperref[iss:CRYO-03]{CRYO-03}};
 \draw[issspan,line width=1.2pt] (3.000,2.00) -- (5.200,2.00);
 \fill[stres] (2.950,1.89) rectangle (3.050,2.11);
@@ -190,13 +192,14 @@ were not revisited at all after their last mention.}
 \fill[stres] (10.833,7.89) rectangle (10.933,8.11);
 \node[font=\scriptsize\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,8.00) {R};
 \node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,9.00) {\hyperref[iss:GLY-02]{GLY-02}};
-\draw[issspan,line width=1.2pt] (2.871,9.00) -- (7.323,9.00);
-\fill[stdor] (2.837,8.89) rectangle (2.937,9.11);
-\fill[stdor] (3.067,8.89) rectangle (3.167,9.11);
-\fill[stdor] (3.233,8.89) rectangle (3.333,9.11);
-\fill[stdor] (5.966,8.89) rectangle (6.066,9.11);
-\fill[stdor] (7.273,8.89) rectangle (7.373,9.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stdor,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,9.00) {D\,?};
+\draw[issspan,line width=1.2pt] (2.871,9.00) -- (12.000,9.00);
+\fill[issspan] (12.00,8.89) -- (12.00,9.11) -- (12.20,9.00) -- cycle;
+\fill[stopn] (2.837,8.89) rectangle (2.937,9.11);
+\fill[stopn] (3.067,8.89) rectangle (3.167,9.11);
+\fill[stopn] (3.233,8.89) rectangle (3.333,9.11);
+\fill[stopn] (5.966,8.89) rectangle (6.066,9.11);
+\fill[stopn] (7.273,8.89) rectangle (7.373,9.11);
+\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,9.00) {O\,?};
 \draw[issgrid,line width=0.6pt] (-2.6,9.50) -- (12.9,9.50);
 \node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,10.00) {\hyperref[iss:PWR-01]{PWR-01}};
 \draw[issspan,line width=1.2pt] (1.857,10.00) -- (12.000,10.00);
@@ -251,12 +254,13 @@ were not revisited at all after their last mention.}
 \fill[stmit] (9.613,13.89) rectangle (9.774,14.11);
 \node[font=\scriptsize\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,14.00) {M};
 \node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,15.00) {\hyperref[iss:FP-04]{FP-04}};
-\draw[issspan,line width=1.2pt] (3.167,15.00) -- (4.290,15.00);
-\fill[stdor] (3.117,14.89) rectangle (3.217,15.11);
-\fill[stdor] (3.483,14.89) rectangle (3.583,15.11);
-\fill[stdor] (3.950,14.89) rectangle (4.050,15.11);
-\fill[stdor] (4.240,14.89) rectangle (4.340,15.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stdor,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,15.00) {D\,?};
+\draw[issspan,line width=1.2pt] (3.167,15.00) -- (12.000,15.00);
+\fill[issspan] (12.00,14.89) -- (12.00,15.11) -- (12.20,15.00) -- cycle;
+\fill[stopn] (3.117,14.89) rectangle (3.217,15.11);
+\fill[stopn] (3.483,14.89) rectangle (3.583,15.11);
+\fill[stopn] (3.950,14.89) rectangle (4.050,15.11);
+\fill[stopn] (4.240,14.89) rectangle (4.340,15.11);
+\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,15.00) {O\,?};
 \node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,16.00) {\hyperref[iss:FP-05]{FP-05}};
 \draw[issspan,line width=1.2pt] (3.933,16.00) -- (9.645,16.00);
 \fill[stwrk] (3.900,15.89) rectangle (4.000,16.11);
@@ -264,16 +268,17 @@ were not revisited at all after their last mention.}
 \fill[stwrk] (9.579,15.89) rectangle (9.679,16.11);
 \node[font=\scriptsize\bfseries,text=white,fill=stwrk,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,16.00) {W};
 \node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,17.00) {\hyperref[iss:FP-06]{FP-06}};
-\draw[issspan,line width=1.2pt] (0.645,17.00) -- (3.933,17.00);
-\fill[stdor] (0.611,16.89) rectangle (0.711,17.11);
-\fill[stdor] (3.883,16.89) rectangle (3.983,17.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stdor,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,17.00) {D\,?};
+\draw[issspan,line width=1.2pt] (0.645,17.00) -- (12.000,17.00);
+\fill[issspan] (12.00,16.89) -- (12.00,17.11) -- (12.20,17.00) -- cycle;
+\fill[stopn] (0.611,16.89) rectangle (0.711,17.11);
+\fill[stopn] (3.883,16.89) rectangle (3.983,17.11);
+\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,17.00) {O\,?};
 \draw[issgrid,line width=0.6pt] (-2.6,17.50) -- (12.9,17.50);
 \node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,18.00) {\hyperref[iss:FW-01]{FW-01}};
 \draw[issspan,line width=1.2pt] (7.323,18.00) -- (7.710,18.00);
-\fill[stwrk] (7.273,17.89) rectangle (7.373,18.11);
-\fill[stwrk] (7.627,17.89) rectangle (7.727,18.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stwrk,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,18.00) {W\,?};
+\fill[stres] (7.273,17.89) rectangle (7.373,18.11);
+\fill[stres] (7.627,17.89) rectangle (7.727,18.11);
+\node[font=\scriptsize\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,18.00) {R};
 \node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,19.00) {\hyperref[iss:FW-02]{FW-02}};
 \draw[issspan,line width=1.2pt] (9.387,19.00) -- (12.000,19.00);
 \fill[issspan] (12.00,18.89) -- (12.00,19.11) -- (12.20,19.00) -- cycle;
@@ -399,13 +404,14 @@ were not revisited at all after their last mention.}
 \fill[stres] (3.400,33.89) rectangle (3.800,34.11);
 \node[font=\scriptsize\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,34.00) {R};
 \node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,35.00) {\hyperref[iss:FES-03]{FES-03}};
-\draw[issspan,line width=1.2pt] (1.429,35.00) -- (11.387,35.00);
-\fill[stdor] (1.396,34.89) rectangle (1.496,35.11);
-\fill[stdor] (2.742,34.89) rectangle (2.903,35.11);
-\fill[stdor] (3.633,34.89) rectangle (3.733,35.11);
-\fill[stdor] (8.033,34.89) rectangle (8.133,35.11);
-\fill[stdor] (11.337,34.89) rectangle (11.437,35.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stdor,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,35.00) {D\,?};
+\draw[issspan,line width=1.2pt] (1.429,35.00) -- (12.000,35.00);
+\fill[issspan] (12.00,34.89) -- (12.00,35.11) -- (12.20,35.00) -- cycle;
+\fill[stopn] (1.396,34.89) rectangle (1.496,35.11);
+\fill[stopn] (2.742,34.89) rectangle (2.903,35.11);
+\fill[stopn] (3.633,34.89) rectangle (3.733,35.11);
+\fill[stopn] (8.033,34.89) rectangle (8.133,35.11);
+\fill[stopn] (11.337,34.89) rectangle (11.437,35.11);
+\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,35.00) {O\,?};
 \draw[issgrid,line width=0.6pt] (-2.6,35.50) -- (12.9,35.50);
 \node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,36.00) {\hyperref[iss:OPT-01]{OPT-01}};
 \draw[issspan,line width=1.2pt] (3.533,36.00) -- (9.677,36.00);
@@ -423,9 +429,10 @@ were not revisited at all after their last mention.}
 \node[font=\scriptsize\bfseries,text=white,fill=sttra,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,37.00) {T};
 \draw[issgrid,line width=0.6pt] (-2.6,37.50) -- (12.9,37.50);
 \node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,38.00) {\hyperref[iss:MEC-01]{MEC-01}};
-\draw[issspan,line width=1.2pt] (0.645,38.00) -- (1.107,38.00);
-\fill[stdor] (0.645,37.89) rectangle (1.107,38.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stdor,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,38.00) {D\,?};
+\draw[issspan,line width=1.2pt] (0.645,38.00) -- (12.000,38.00);
+\fill[issspan] (12.00,37.89) -- (12.00,38.11) -- (12.20,38.00) -- cycle;
+\fill[stopn] (0.645,37.89) rectangle (1.107,38.11);
+\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,38.00) {O\,?};
 \node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,39.00) {\hyperref[iss:MEC-02]{MEC-02}};
 \draw[issspan,line width=1.2pt] (1.607,39.00) -- (12.000,39.00);
 \fill[issspan] (12.00,38.89) -- (12.00,39.11) -- (12.20,39.00) -- cycle;
@@ -434,9 +441,10 @@ were not revisited at all after their last mention.}
 \fill[stopn] (9.065,38.89) rectangle (9.258,39.11);
 \node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,39.00) {O};
 \node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,40.00) {\hyperref[iss:MEC-03]{MEC-03}};
-\draw[issspan,line width=1.2pt] (8.200,40.00) -- (8.200,40.00);
-\fill[stdor] (8.150,39.89) rectangle (8.250,40.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stdor,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,40.00) {D\,?};
+\draw[issspan,line width=1.2pt] (8.200,40.00) -- (12.000,40.00);
+\fill[issspan] (12.00,39.89) -- (12.00,40.11) -- (12.20,40.00) -- cycle;
+\fill[stopn] (8.150,39.89) rectangle (8.250,40.11);
+\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,40.00) {O\,?};
 \draw[issgrid,line width=0.6pt] (-2.6,40.50) -- (12.9,40.50);
 \node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,41.00) {\hyperref[iss:IT-01]{IT-01}};
 \draw[issspan,line width=1.2pt] (1.179,41.00) -- (11.484,41.00);
@@ -460,8 +468,9 @@ it show how long an issue lay untouched between episodes.  Issues that were
 still open at the end of the year run to December and end in an arrow head.
 The letter at the right is the status of Table~\ref{tab:issue-status}
 (\textbf{R}esolved, \textbf{M}itigated, \textbf{W}orkaround, \textbf{O}pen,
-\textbf{D}ormant, \textbf{T}ransferred); ``?'' marks the entries whose outcome
-is not determinable from the channels.  The identifiers on the left are links
+\textbf{T}ransferred); ``?'' marks the entries whose outcome is not
+determinable from the channels.  An open issue whose last bar falls well short
+of December was not being worked on at the end of the year.  The identifiers on the left are links
 to the corresponding entry in Section~\ref{sec:issue-summaries}.  The grey band is the three-week
 maintenance shutdown of October~1--20; the dashed lines mark the installation
 on the Top End Assembly (February~5), the installation on the telescope
@@ -481,7 +490,7 @@ not necessarily inactivity.}
   The dominant operational problem of the year.  Below a dome air temperature of roughly $7\,^{\circ}$C the cryo circuits lose capacity, the cryo-plate trim heat falls to zero and the focal plane can no longer be held in thermal control; six distinct events between May and September required powering off the CCDs, the HV and in the worst cases nearly all REBs, with recoveries of seven hours to three days (\rubintkt{OBS-931}, \rubintkt{FRACAS-280}).  Pointing the telescope to horizon to regain capacity, and adjusting the refrigerant charge, were immediate tweaks.  The lasting mitigation only became possible once the mechanism was understood --- re-condensation of vapour refrigerant in the line, governed by the relation between the ambient temperature and the phase-separator temperature.  With that understanding, insulation and heater tape on the refrigeration lines became the major activity and their implementation was carried through, together with a matching adjustment of the glycol temperature, which is what sets the phase-separator temperature. Treated in detail in Sections~\ref{sec:cryo-tempsens-intro} to \ref{sec:cryo-tempsens-solution}.
 
 \item[CRYO-02]\label{iss:CRYO-02} \textbf{Cryo 1 heat-exchanger return temperature below the dome dew point.}
-  \emph{First to last mention 2025-05-12 to 2025-09-09; status \textcolor{stdor}{\textbf{Dormant}}.}
+  \emph{First to last mention 2025-05-12 to 2025-09-09; status \textcolor{stopn}{\textbf{Open}}.}
   Cryo~1's heat-exchanger return line ran colder than the in-dome dew point, risking frost or an ice sheet on the plumbing, and the circuit had to be stopped nightly for several weeks.  Throttling the liquid-line isolation valve (June~1--4) and then removing refrigerant to lower the discharge pressure raised the return temperature to about $+3\,^{\circ}$C, and in September the circuit was removed from the dome-closure decision criteria.  None of that was a fix: Cryo~1 recovered by itself, and the underlying question --- whether a low heat-exchanger return temperature at low refrigerant flow is acceptable --- has never been settled either way.  Experience since, including in high humidity, gives no indication that it is critical, but establishing that would require measuring the tube temperature against the temperature and humidity of the surrounding air.
 
 \item[CRYO-03]\label{iss:CRYO-03} \textbf{Cryo 6 compressor failure.}
@@ -521,7 +530,7 @@ not necessarily inactivity.}
   Every commercial power glitch or generator transfer stops the glycol recirculation pumps for roughly 70--90 seconds, against an observed PCS chiller trip threshold of 90--120 seconds --- so each event is a near miss, and several were not (\rubintkt{FRACAS-277}, \rubintkt{FRACAS-278}, \rubintkt{FRACAS-279}).  The identified fix, putting the recirculating pumps on UPS, was still pending throughout 2025; in September, observing on generator power had to be restricted in pointing because of it.  The issue was closed in early February 2026, after the period covered here.
 
 \item[GLY-02]\label{iss:GLY-02} \textbf{PCS chiller reliability and restart difficulty.}
-  \emph{First to last mention 2025-03-28 to 2025-08-11; status \textcolor{stdor}{\textbf{Dormant}}\,\textbf{?}.}
+  \emph{First to last mention 2025-03-28 to 2025-08-11; status \textcolor{stopn}{\textbf{Open}}\,\textbf{?}.}
   A cluster of PCS chiller problems in spring: an under-rated 32\,A supply breaker against a 50\,A service requirement (\rubintkt{OBS-826}), a stage-1 refrigerant leak that took the chiller out for a day, and spurious trips traced to an unseated pin in a refrigeration-permit connector aggravated by TMA shaking tests (\rubintkt{SUMMIT-10642}).  All three were fixed.  What was not fixed is the restart behaviour: the unit repeatedly trips on low HFE flow from gas bubbles in the longer line configuration, which procedure \lsstls{LCA-20281} does not cover.  Troubleshooting of the spare unit at the MRCR ran through July without resolution and then disappears from the logs.
 
 \end{description}
@@ -557,7 +566,7 @@ not necessarily inactivity.}
   R21/Reb0 repeatedly glitched and tripped its HV bias near 50\,V, where its DC-DC converter behaves non-linearly, once producing visible tree rings mid-integration.  It was set to run permanently at 46\,V, and R12/Reb0 later showed similar sensitivity requiring extra care during ramp-up.  Managed by lowered setpoints and careful ramping rather than repaired.
 
 \item[FP-04]\label{iss:FP-04} \textbf{R03/Reb1/S11/Seg00 chronic bad amplifier.}
-  \emph{First to last mention 2025-04-06 to 2025-05-10; status \textcolor{stdor}{\textbf{Dormant}}\,\textbf{?}.}
+  \emph{First to last mention 2025-04-06 to 2025-05-10; status \textcolor{stopn}{\textbf{Open}}\,\textbf{?}.}
   A long-standing bad channel described in the logs as having gone ``back and forth from working to not, over the last few years''.  Its current stayed pinned at 0.5\,mA through repeated power cycles in April and May, and the neighbouring Amp16 also failed to return once.  There is no further mention after May~10 and no recorded decision about it.
 
 \item[FP-05]\label{iss:FP-05} \textbf{Corner-raft and wavefront-REB power-on workarounds.}
@@ -565,16 +574,16 @@ not necessarily inactivity.}
   Corner rafts do not reach the correct dphi level on power-on and need an undocumented DAC-toggle workaround (\rubintkt{LSSTCAM-107}), and a wavefront REB power-on failure requiring a REB power cycle recurred after the October shutdown (\rubintkt{LSSTCAM-37}).  Both were still being worked around at year end rather than fixed.
 
 \item[FP-06]\label{iss:FP-06} \textbf{REB power-supply trips suspected to be electrostatic discharge.}
-  \emph{First to last mention 2025-01-21 to 2025-04-29; status \textcolor{stdor}{\textbf{Dormant}}\,\textbf{?}.}
+  \emph{First to last mention 2025-01-21 to 2025-04-29; status \textcolor{stopn}{\textbf{Open}}\,\textbf{?}.}
   Recalled in January: in September 2024 there had been one or two REB power-supply trips that seemed to correlate with people touching or standing near the utility trunk, which is what put the camera-door grounding question on the agenda in the first place.  A concrete case followed on April~29, when R21/Reb0 tripped during carbon-snow cleaning of M2 with no light-leak explanation and was tentatively attributed to an electrostatic discharge; a dedicated investigation channel was opened for it.  Neither the general susceptibility nor the April case is resolved in these two channels, and the outcome of that separate channel is not visible here.
 
 \end{description}
 
 \noindent\textit{REB firmware}
 \begin{description}
-\item[FW-01]\label{iss:FW-01} \textbf{REB firmware self-heating regression.}
-  \emph{First to last mention 2025-08-11 to 2025-08-23; status \textcolor{stwrk}{\textbf{Workaround}}\,\textbf{?}.}
-  The firmware booted during the August~11 recovery made the CCDs run measurably warmer, which was initially misread as lost cryo capacity during the storm.  Power-cycling the focal plane and rolling the firmware back confirmed a real power-draw regression of roughly 30\,W, tentatively attributed to a new sequencer-override register; bench and test-stand comparisons of the FPGA and jitter-cleaner draw ran for several days without a firm root cause.  Whether the cause was later identified is not visible in the logs.
+\item[FW-01]\label{iss:FW-01} \textbf{REB firmware applying maximum heater power.}
+  \emph{First to last mention 2025-08-11 to 2025-08-23; status \textcolor{stres}{\textbf{Resolved}}.}
+  The firmware booted during the August~11 recovery made the CCDs run measurably warmer, which was initially misread as lost cryo capacity during the storm.  Power-cycling the focal plane and rolling the firmware back confirmed a real power-draw increase of roughly 30\,W, and the cause was a register-map conflict in 0x313a5013 that applied maximum heater power --- a defect introduced together with the sequencer-override register in 0x31395011 and unnoticed until then.  It was fixed by the firmware upgrade to 0x313a5014. See the version history in Table~\ref{tab:science_reb_fw_en}.
 
 \item[FW-02]\label{iss:FW-02} \textbf{REB serial-number read race leaving REBs INVALID.}
   \emph{First to last mention 2025-10-13 to 2025-12-15; status \textcolor{stopn}{\textbf{Open}}.}
@@ -626,9 +635,9 @@ not necessarily inactivity.}
 
 \item[CCS-06]\label{iss:CCS-06} \textbf{jGroups multicast storms (``meltdowns'').}
   \emph{First to last mention 2025-02-15 to 2025-11-23; status \textcolor{stopn}{\textbf{Open}}.}
-  Retransmit storms on the CCS group-communication layer that break CCS--DAQ communication and, in the worst cases, require nearly every subsystem to be killed and restarted (\rubintkt{OBS-950}).  Several distinct triggers were identified over the year --- a console process hitting its memory limit, IGMP snooping enabled on particular switches, guiding at an untested 5\,s cadence with high DAQ traffic, a locked console, message-broker memory exhaustion --- and each was addressed, yet the class of failure recurred in November.  No single root cause was established.
+  Retransmit storms on the CCS group-communication layer that break CCS--DAQ communication and, in the worst cases, require nearly every subsystem to be killed and restarted (\rubintkt{OBS-950}).  Several distinct triggers were identified over the year --- a console process hitting its memory limit, IGMP snooping enabled on particular switches, guiding at an untested 5\,s cadence with high DAQ traffic, a locked console, Kafka broker memory exhaustion --- and each was addressed, yet the class of failure recurred in November.  No single root cause was established.
 
-\item[CCS-07]\label{iss:CCS-07} \textbf{Message-broker and rebpower memory exhaustion.}
+\item[CCS-07]\label{iss:CCS-07} \textbf{Kafka broker and rebpower memory exhaustion.}
   \emph{First to last mention 2025-11-01 to 2025-11-24; status \textcolor{stmit}{\textbf{Mitigated}}.}
   The Kafka broker service and the REB-power subsystem exhausted their Java memory, the broker reaching extreme CPU use and the subsystem dropping to tens of megabytes free, which triggered an overnight storm (\rubintkt{LSSTCAM-149}, \rubintkt{LSSTCAM-150}).  Restarting both services at the start of each night became standing practice --- a workaround, not a fix.
 
@@ -642,7 +651,7 @@ not necessarily inactivity.}
 
 \item[SHT-02]\label{iss:SHT-02} \textbf{Shutter PTP time synchronisation.}
   \emph{First to last mention 2025-06-04 to 2025-11-20; status \textcolor{stmit}{\textbf{Mitigated}}.}
-  Repeated ``timed out waiting for shutter exposure to complete'' failures in June were traced not to the mechanism but to PTP clocking: enabling a boundary clock on the shutter's switch reproduced the fault on the clean-room system, and transparent-clock mode and then the leaf switch as boundary clock removed the offset from master.  The analysis and recovery procedure are documented in \href{https://ctn-003.lsst.io}{CTN-003}.  Synchronisation still falls out of lock after major network events, as it did twice in November, and recovery then requires PLC power cycles and a full recalibration. See Section~\ref{sec:shutter-timing}.
+  Repeated ``timed out waiting for shutter exposure to complete'' failures in June were traced not to the mechanism but to PTP clocking: enabling a boundary clock on the shutter's switch reproduced the fault on the clean-room system, and transparent-clock mode and then the leaf switch as boundary clock removed the offset from master.  The analysis and recovery procedure are documented in \href{https://ctn-003.lsst.io}{CTN-003}.  Synchronisation still falls out of lock after major network events.  It did so twice in November: during the recovery from the November~3 jGroups meltdown, where \texttt{readPtpDiag.sh} was run repeatedly from 20:53 to 22:42\,UTC and the offset from master ranged from tens of milliseconds up to 0.96\,s before the shutter was recalibrated in a closed dome, and again on November~20 during the Dynalene recovery, when the shutter was restarted and the synchronisation was reported as bad at 19:52\,UTC.  Recovery in both cases required PLC power cycles and recalibration. See Section~\ref{sec:shutter-timing}.
 
 \end{description}
 
@@ -657,7 +666,7 @@ not necessarily inactivity.}
   Socket~3 lost communication intermittently during carousel rotation, worse at speed and dependent on telescope orientation.  The cause was a spring-loaded carbon collector contact that was not sliding freely; it was replaced on April~24--25 and the socket recovered (\rubintkt{SUMMIT-10680}).  The eight untouched collectors, and the effect of the very dry camera atmosphere on them, were noted as a residual risk.
 
 \item[FES-03]\label{iss:FES-03} \textbf{Autochanger trucks, homing and the damaged X+ clamp motor.}
-  \emph{First to last mention 2025-02-13 to 2025-12-13; status \textcolor{stdor}{\textbf{Dormant}}\,\textbf{?}.}
+  \emph{First to last mention 2025-02-13 to 2025-12-13; status \textcolor{stopn}{\textbf{Open}}\,\textbf{?}.}
   The autochanger truck controllers fault with undervoltage errors after losing homing, a problem that first blocked filter exchange in February and reappeared in December (\rubintkt{OBS-1454}); a new automated homing procedure was qualified in hardware in March but the old method was kept for first photon.  Separately the X+ online clamp motor, damaged in summer 2023, faulted repeatedly during April exchanges and was never repaired.  Alignment test campaigns ran in September; what they concluded is not recorded in these channels.
 
 \end{description}
@@ -677,7 +686,7 @@ not necessarily inactivity.}
 \noindent\textit{Mechanical and integration}
 \begin{description}
 \item[MEC-01]\label{iss:MEC-01} \textbf{Integration-era mechanical problems closed with interim fixes.}
-  \emph{First to last mention 2025-01-21 to 2025-02-04; status \textcolor{stdor}{\textbf{Dormant}}\,\textbf{?}.}
+  \emph{First to last mention 2025-01-21 to 2025-02-04; status \textcolor{stopn}{\textbf{Open}}\,\textbf{?}.}
   Two items from the installation campaign were closed operationally rather than understood.  Several socket-head bolts holding the pancake wrap's central rotating assembly sheared and were found loose in the cable wrap; the wrap was removed and rebuilt with new hardware at a reduced torque, but a subsequent bolt test to 75\,ft-lb showed no failure and the original cause was left unexplained.  Separately the camera doors, riding on non-conductive tracks, can charge electrostatically as they slide, and the accepted measure was an operational step to ground them by hand, with a permanent fix requested but not recorded as delivered.  The REB power-supply trips that motivated the grounding concern are registered separately as FP-06.
 
 \item[MEC-02]\label{iss:MEC-02} \textbf{Camera cable wrap interlock and telemetry faults.}
@@ -685,7 +694,7 @@ not necessarily inactivity.}
   In February the cable-wrap local interlock at Level~3 was found to be entirely isolated from the rotator interlock, so the rotator would not stop on a cable-wrap fault, and the two were joined.  Since installation the wrap has instead blocked rotation: loss of its telemetry faulted the rotator in August (\rubintkt{OBS-1200}) and it stuck in a fault state during October maintenance rotations, recovered by bypassing the interlock at the mount engineering interface.  Described in the logs as a known issue.
 
 \item[MEC-03]\label{iss:MEC-03} \textbf{Creaking noise during large camera rotations.}
-  \emph{First to last mention 2025-09-07 to 2025-09-07; status \textcolor{stdor}{\textbf{Dormant}}\,\textbf{?}.}
+  \emph{First to last mention 2025-09-07 to 2025-09-07; status \textcolor{stopn}{\textbf{Open}}\,\textbf{?}.}
   Observers reported an unfamiliar creaking or clicking over the shutter microphone during large rotations, with correlated spikes in camera-hexapod motor currents; the M2 hexapod, the camera hexapod and the rotator recirculating-ball bearings were all raised as candidates and a ticket was opened (\rubintkt{OBS-1158}).  Nothing further appears in these channels.
 
 \end{description}
@@ -699,10 +708,10 @@ not necessarily inactivity.}
 \end{description}
 
 \paragraph{Scope of these judgements.}
-An issue is called dormant when the channels contain no resolution and no
-later mention; that is a statement about the record, not proof that nothing
-was done.  ``Open'' means the issue was still generating traffic in December.
-Statements of cause are those recorded in the channels at the time.  Two
-issues, \texttt{GLY-01} and \texttt{FW-04}, were open through the end of 2025
-and closed in early 2026, after the period covered here.
+An issue is called open when the channels record no resolution, whether or not
+it was still being discussed in December; that is a statement about the record,
+not proof that nothing was done.  Statements of cause are those recorded in the
+channels at the time.  Two issues, \texttt{GLY-01} and \texttt{FW-04}, were
+open through the end of 2025 and closed in early 2026, after the period covered
+here.
 
