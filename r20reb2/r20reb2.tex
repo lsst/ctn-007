@@ -1,0 +1,214 @@
+% ---------------------------------------------------------------------------
+% R20/Reb2/S21: faulty RD voltage read-back (~54.2 V, top of the +/-55 V ADC
+% range), which blocked the power-on of all three CCDs on the REB, and the
+% software exception (LSSTCCSRAFTS-777) that recovered them.
+% Sources: CCS log of the failed power-on of 2025-04-08 (Y. Utsumi);
+% #cam-issues-ccd Slack discussion of 2025-04-08 to -17 (A. Roodman,
+% S. Marshall, Y. Utsumi, S. Digel); Slack thread on the read-back hypothesis
+% (S. Marshall, G. Thayer, C. Juramy) with REB schematic extracts and the REB
+% board RD acceptance test; Slack transcript of the recovery session of
+% 2025-04-24 (S. Marshall, S. MacBride, Y. Utsumi); SLAC JIRA
+% LSSTCCSRAFTS-777; org-lsst-ccs-subsystem-rafts commit 829a8f2.
+% No figures.
+% ---------------------------------------------------------------------------
+
+\subsubsection{R20/Reb2/S21: faulty RD voltage read-back}
+\label{sec:r20reb2}
+
+R20/Reb2 could not be powered on from the first days of April 2025 until
+2025-04-24. Neither the CCDs nor the biases were at fault: the RD voltage
+read-back of \texttt{Bias1}, the bias block of S21, had stuck at
+$\simeq54.2$~V. That value lies in neither the ON nor the OFF window of the
+bias level test, so the CCD power state of the board could not be resolved,
+\texttt{setCCDsPowerState()} failed and the sequence was aborted
+(\S\ref{sec:r20reb2-failure}). All three CCDs read by that REB, S20, S21 and
+S22, were therefore off; they were the only CCDs in the focal plane not
+powered on, and not exercised by the CCD shorts test, during the first week of
+April.
+
+The read-back is not a physically attainable voltage
+(\S\ref{sec:r20reb2-notreal}), and the fault is understood as an open
+connection between the RD sample point and the monitoring ADC, upstream of the
+analogue multiplexer (\S\ref{sec:r20reb2-where}). The mitigation is a software
+exception for this one channel \citep{jira:rafts777}: its RD read-back is
+excluded from the shorts test, from the range check during power-on and from
+the ON/OFF bias count, but only while the reading stays above 53~V
+(\S\ref{sec:r20reb2-fix}). With that code in place the REB passed the shorts
+test and powered on at the first attempt on 2025-04-24, and S21 delivers
+nominal images (\S\ref{sec:r20reb2-recovery}). The cost is that S21 is
+operated without an RD voltage monitor.
+
+\paragraph{The failed power-on.}
+\label{sec:r20reb2-failure}
+
+\texttt{setCCDsPowerState()} evaluates eight tests on a REB: firmware bias
+protection, the board-level ODI, CLKLI and CLKHI currents, the bias levels of
+each of the three bias blocks, and the clock rails. On R20/Reb2 seven of them
+passed. The attempt of 2025-04-08 reads
+
+\begin{quote}\small\ttfamily
+[2025-04-08T14:15:35.088+0000] SEVERE: R20/Reb2/Bias1 RD1 voltage = 54.21 NOT
+in range for ON|OFF \\
+$[$2025-04-08T14:15:35.089+0000] SEVERE: R20/Reb2/Bias1:
+getBiasDacsPowerState() found 0(3) ON(OFF) of biases \\
+$[$2025-04-08T14:15:35.089+0000] SEVERE: R20/Reb2: CCDs Bias voltage test
+FAILED \\
+$[$2025-04-08T14:15:35.089+0000] SEVERE: Test 6: FAILED Bias level test for
+R20/Reb2/Bias1 \\
+$[$2025-04-08T14:15:35.090+0000] SEVERE: R20/Reb2: setCCDsPowerState()
+FAILED: 7:0:0 OFF:ON:DELTA of 8 tests passed \\
+$[$2025-04-08T14:15:35.090+0000] SEVERE: R20/Reb2 CCDsPowerState updated to
+FAULT
+\end{quote}
+
+\noindent followed by an automatic \texttt{powerCCDsOff()}. The OD, GD and OG
+read-backs of that block were all in the OFF range, at $-0.03$, $-0.03$ and
+$-0.01$~V, and \texttt{Bias0} and \texttt{Bias2} reported all four of their
+biases OFF. \texttt{getBiasDacsPowerState()} required all four biases of a
+block to agree before it would return OFF or ON, so with the RD read-back
+outside both windows only three of four could ever be counted and the state
+was unresolvable by construction, not merely out of tolerance. The board
+stayed off throughout the period: \texttt{focal-plane/R20/Reb2/ODI} never
+exceeded 8.8~mA.
+
+\paragraph{The read-back is not a real voltage.}
+\label{sec:r20reb2-notreal}
+
+The channel returned only two distinct values, 54.18071 and 54.20757~V. Read
+as adjacent codes of the 12-bit slow ADC, the step of
+%
+\begin{equation}
+  54.20757 - 54.18071 = 0.02686~\mathrm{V}
+  \label{eq:rdv-step}
+\end{equation}
+%
+is one LSB, which implies a full-scale span of
+$0.02686\times4096 = 110.0$~V, or $\pm55$~V. That is the range of this
+channel. The REB driver scales the 12-bit conversions as
+
+\begin{quote}\small\ttfamily
+VOLT\_12\_SCALE\_R5 = 10.0 / 4095, \quad // +-5V ADC input range \\
+VOLT\_12\_SCALE\_M5 = VOLT\_12\_SCALE\_R5 * 3, \\
+VOLT\_12\_SCALE\_H5 = VOLT\_12\_SCALE\_R5 * 11,
+\end{quote}
+
+\noindent and \texttt{CHAN\_RD\_2} uses \texttt{VOLT\_12\_SCALE\_H5}. The ADC
+input range is $\pm5$~V, so one code is $10/4095 = 2.442$~mV at the ADC input;
+RD reaches that input through a divide-by-eleven network, so in units of RD
+volts one code is $2.442\times11 = 26.862$~mV, matching
+Eq.~(\ref{eq:rdv-step}) to five digits. The channel is therefore pinned near
+the top of its range with about one count of noise, which is what a floating
+ADC input looks like.
+
+RD itself cannot reach that voltage. It is generated by a DAC output of at most
+5~V multiplied by five, so it is limited to $\simeq25$~V, as verified in the
+REB board acceptance tests; even a failure driving the output to its amplifier
+supply would give the regulated 35~V, not 55~V. A reading of 54.2~V thus
+cannot represent RD, and the bias itself was never suspect.
+
+\paragraph{Where the fault is.}
+\label{sec:r20reb2-where}
+
+RD is monitored through the REB slow ADC, which multiplexes of order seventy
+parameters. Following the board schematic, \texttt{VDD\_RD} is generated on
+p.~32, divided on p.~31, enters an eight-channel analogue multiplexer on
+p.~8, is buffered on p.~65 and digitised on p.~64. Other quantities on the
+same multiplexer continued to read correctly, which places the fault upstream
+of it, in the path specific to this channel. Since the failure is most likely
+an open connection rather than a failed component, the behaviour may be
+temperature dependent.
+
+Three questions were left open. Whether the break is before the voltage
+divider or after it was not established, the second case being the less
+damaging. The raw ADC code was not recorded, and a value of identically zero,
+as opposed to one moving by a few bits, would distinguish a divider tied to
+ground from other failure modes; the corresponding channels of the other two
+sensors on the board provide the comparison. No review of the affected
+section of the board by an electronics engineer is documented.
+
+\paragraph{Software mitigation.}
+\label{sec:r20reb2-fix}
+
+The decision was to make an exception for this channel in the CCD turn-on,
+turn-off and status procedures and to ignore its value
+\citep{jira:rafts777}. The exception is keyed on the bias path
+\texttt{R20/Reb2/Bias1} together with the ADC identifier
+\texttt{REBDevice.ADC\_RD\_1}, and is applied in three places in
+\texttt{BiasControl.java} \citep{ccs:rafts777merge}:
+
+\begin{itemize}
+  \item \texttt{testShorts()} no longer drives and tests the RD channel of
+        that block. The GD and OG channels are still tested. The skip is
+        logged, so that it is visible in the CCS log.
+  \item \texttt{checkAdc()}, which compares each read-back against its
+        setpoint during power-on, skips the comparison for that channel
+        \emph{only while the reading exceeds 53~V}. The exception is therefore
+        self-disarming: should the read-back ever recover, the normal check
+        applies again without a code change.
+  \item \texttt{getBiasDacsPowerState()} counts three biases instead of four
+        for that block, under the same 53~V condition, through a new variable
+        \texttt{nbiases} that replaces the literal 4 in the OFF and ON
+        conditions. This is the change that removes the \texttt{FAULT}.
+\end{itemize}
+
+The work was tracked as \texttt{LSSTCCSRAFTS-777}, raised on 2025-04-19,
+reopened on 2025-05-05 as not yet merged, and resolved on 2025-05-07 with the
+merge of commit \texttt{829a8f2}, released in
+\texttt{org-lsst-ccs-subsystem-rafts} 3.0.10. The code was exercised on the
+summit two weeks before that merge, as described next. The same commit also
+carries changes to the OD ramp and to the sampling of the slow currents during
+power-on that are unrelated to this mitigation.
+
+\paragraph{Verification and recovery.}
+\label{sec:r20reb2-recovery}
+
+On 2025-04-24 the REB initialised cleanly with the patched CCS: firmware
+\texttt{0x3139500e}, serial number 418254201, sequencer idle, six ASPICs
+loaded, back bias enabled, \texttt{CCDsPowerState} OFF. The added log message
+is not printed on a successful initialisation, so at that point the log did
+not by itself confirm that the exception was in the running code.
+
+A CCD shorts test was run on this REB alone before any attempt to power on:
+
+\begin{quote}\small\ttfamily
+[2025-04-24T19:57:38.742+0000] INFO: R20/Reb2 lowering sequencer clocks for
+shorts test: 0x3bc --> 0xc \\
+$[$2025-04-24T19:57:40.249+0000] INFO: R20/Reb2/Bias1: skipping testShorts()
+on RD voltage, jira:LSSTCCSRAFTS-777 \\
+$[$2025-04-24T19:57:44.258+0000] INFO: R20/Reb2 restoring sequencer clocks
+after shorts test: 0xc --> 0x3bc \\
+$[$2025-04-24T19:57:44.556+0000] INFO: testCCDShorts() finished successfully
+\end{quote}
+
+\noindent which confirmed both that the exception was active and that it
+behaves as intended. In the trending of the test the block shows eight bias
+excursions instead of the usual nine, three GD, two RD and three OG; the
+missing one is S21/RD, whose read-back stays at $\simeq55$~V and dominates the
+vertical scale unless that trace is excluded.
+
+\texttt{powerCCDsOn} was then invoked once, with the agreement that work would
+stop on any failure, and succeeded at the first attempt.
+\texttt{focal-plane/R20/Reb2/ODI} read 91.3~mA and the per-CCD currents and
+voltages were nominal. The faulty read-back moved slightly upward as the
+biases came on, so the broken channel is not entirely decoupled from the ADC.
+Clears and images followed, with stray light visible in the frames. A quick
+statistics pass on the first image of S21,
+\texttt{MC\_C\_20250424\_000016\_R20\_S21}, gives read noise of
+3.44--3.70~ADU across the sixteen segments, serial CTE of 0.99997 or better
+and parallel CTE of unity to the precision quoted, with no dead or anomalous
+segment.
+
+\paragraph{Operational consequences.}
+
+Three CCDs were recovered by a change of a few tens of lines, and no hardware
+intervention was needed or attempted. Two points follow from how it is done.
+First, S21 runs without an RD voltage monitor: a genuine RD fault on that
+sensor would no longer be caught by the bias level test, and the ON/OFF state
+of that block is decided by three biases rather than four. Second, the
+exception is hard-coded against a bias path string and a threshold rather than
+being configuration, so it must be carried forward through releases of
+\texttt{org-lsst-ccs-subsystem-rafts} and would silently stop protecting the
+board if the path naming changed. Both should be tracked in configuration
+management. The hardware fault is unrepaired and only partly characterised,
+and the initialisation logging that would positively confirm that the
+exception is active was left to be revised.
