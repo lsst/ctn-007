@@ -1,0 +1,940 @@
+% =====================================================================
+%  Chronology of LSSTCam operations in 2025
+%  Intended for inclusion in CTN-007.
+%
+%  Compiled from the Rubin Observatory Slack channels
+%    #cam-summit-ops  (top-level summit/camera operations)
+%    #cam-operator    (day-to-day operator traffic)
+%  covering 2025-01-01 to 2025-12-31 (top-level messages and all
+%  thread replies).  All dates and times are UTC.  Ticket identifiers
+%  (SUMMIT-, OBS-, FRACAS-, LSSTCAM-, LSSTCCS*-, IT-, DM-, BLOCK-T)
+%  are quoted verbatim as they appear in the logs.  Individuals are
+%  not named.
+%
+%  Uses only the standard "description" environment; no extra
+%  packages are required.  Temperatures are in degrees Celsius.
+% =====================================================================
+
+\section{Chronology of LSSTCam operations in 2025}
+\label{sec:chronology-2025}
+
+The year 2025 took LSSTCam from the Level~3 clean room to routine
+on-sky operation on the Simonyi Survey Telescope.  The chronology
+below records the milestones of that transition together with the
+principal incidents and their resolutions, since much of the
+operational context relevant to individual focal-plane channels --
+including the R30/Reb1 events discussed in this note -- is only
+legible against the wider integration and commissioning history.
+It is compiled from the camera operations Slack channels
+(\#cam-summit-ops and \#cam-operator); entries are restricted to what
+those logs state explicitly.  Throughout, ``Hx'' or ``heat exchanger''
+refers to the heat exchanger inside the camera and its vacuum volume, not
+to the camera hexapod; where the hexapod itself is meant it is named as
+such.
+
+\subsection{January --- final clean-room work and preparation for the lift}
+\begin{description}
+\item[Jan 5--6] The camera was powered back up in the Level~3 clean
+  room after the holiday break, opening a year planned around
+  installation, first photon and the start of the survey.  Breakers
+  were closed in the sequence main/protection, 24\,V clean, 24\,V and
+  48\,V dirty, and it was confirmed that the FES PLC power correctly
+  defaults to off.
+
+\item[Jan 7] ComCam was removed from the Top End Assembly (TEA) and
+  relocated onto the camera shipping frame, clearing the top end for
+  LSSTCam.
+
+\item[Jan 6--15] An intermittent utility-trunk leak-detector fault
+  (\texttt{UtLeakDetcFault}) produced three ALARM events and two
+  after-hours callouts with no liquid ever found.  A deliberate test
+  with Dynalene drops on the leak cable produced the distinct correct
+  alert (\texttt{UtCoolantLeak}), showing that the recurring fault was
+  a sensor/cable fault; on Jan~15 a load resistor was added to the
+  detector's 24\,V-to-5\,V DC-DC converter, after which the fault
+  behaved correctly.
+
+\item[Jan 8--14] The TEA was modified to receive the spiral and
+  pancake wraps: holes were drilled and tapped through the first
+  flange of the camera cable wrap (CCW) with chip-capture tooling and
+  the pancake-wrap mounting blocks were installed and torqued.
+
+\item[Jan 7--22] A sustained refrigeration campaign recovered the six
+  Level~1 MRCR circuits: filter/dryer assemblies were removed for
+  return to SLAC, 2919C refrigerant was recovered from the compressors
+  and surge tanks, and all six cryo control boxes were repaired and
+  reinstalled.  Open faults included a Cryo~2 pressure transducer,
+  Cryo~4 PLC communications and a broken Cryo~5 thermocouple.
+
+\item[Jan 13--16] Dynalene Chiller~02, the unit serving LSSTCam,
+  suffered an internal short circuit and was taken out of service;
+  Dynalene continued to circulate through the camera via Chiller~01.
+
+\item[Jan 18] Dynalene flow to the camera was lost unexpectedly with
+  facility staff off site.  The camera team opened the quadbox
+  switches and stopped the FCS, vacuum and shutter processes as a
+  precaution; flow was restored by powering the Dynalene cRIO back on.
+
+\item[Jan 10--20] Final filter-exchange-system (FES) and OCS-bridge
+  testing was completed, all filters were confirmed stored in the
+  carousel, and on Jan~20 the camera and pump cart were powered off at
+  the main breakers, removing any dependence on Dynalene.
+
+\item[Jan 20--24] The pancake wrap was installed on the CCW and mated
+  to the spiral wrap, every utility was disconnected, the
+  utility-trunk skins were installed and the bulkhead limit switches
+  were replaced.  Removal of temporary grounding wires exposed an
+  unresolved electrostatic grounding problem with the camera doors,
+  which ride on non-conductive UHMW tracks; grounding the doors by
+  hand was adopted as an interim operational step.
+
+\item[Jan 27--31] Two hardware problems delayed the lift out of the
+  clean room.  Torquing the skin fasteners to a newly specified
+  34\,in-lb repeatedly stripped screw heads, and several 3/8-16 SHCS
+  holding the pancake wrap's central rotating assembly to the adapter
+  plate were found sheared, forcing removal and reinstallation of the
+  wrap with new hardware at a reduced interim torque.  A separate
+  bolt test to 75\,ft-lb showed no failure, leaving the original
+  failure unexplained.
+\end{description}
+
+\subsection{February --- installation on the Top End Assembly}
+\begin{description}
+\item[Feb 3--4] The pancake-wrap interface was reworked (pin holes
+  reamed, bolts set to half torque, internal sliding blocks removed)
+  and the camera was sealed and moved out of the Level~3 clean room.
+
+\item[Feb 5] LSSTCam was lifted from the saddle stand and installed on
+  the camera rotator of the Top End Assembly --- the first time the
+  camera was integrated with part of the telescope.  Staged hardware
+  was found to be the wrong grade and a full set of A4-80 stainless
+  bolts was used for the final installation.
+
+\item[Feb 7--11] MTP data fibres at the camera bulkhead were found
+  contaminated with Dynalene residue.  The connectors were cleaned and
+  Fluke-tested; many failed certification because of scratches, and
+  the cables were finally accepted as adequate for the DAQ on a
+  best-effort basis (IT-5920, IT-5885).
+
+\item[Feb 6--13] Summit glycol upgrades and computer-room work left
+  the camera unpowered and the control system down for about a week.
+  The first power-on of LSSTCam on the TEA on Feb~13 was aborted
+  minutes after the breakers closed when a back-flange temperature
+  channel ran out of range together with a faint plastic smell; the
+  reading was subsequently identified as a bad sensor and the power-on
+  was repeated successfully.
+
+\item[Feb 13--14] FES carousel verification failed on the first
+  attempt (autochanger truck undervoltage; carousel ``Status 3, error
+  register 32'', then a Following Error with no motion) and was
+  recovered the following day by reseating the encoder ribbon cable
+  between controller and motor.
+
+\item[Feb 17--26] All six cryo circuits were pressurised to 150\,psig
+  for pressure-hold tests.  Leaks on circuits 1, 3 and 5 were
+  tightened out; two Cryo~2 pressure-transducer channels read
+  incorrectly with the fault localised inside the utility-trunk MAQ20
+  and worked around using spare cables; a Cryo~5 transducer of the
+  wrong pressure range was replaced.  All circuits were declared
+  ready for transport by Feb~27.
+
+\item[Feb 18--28] The rotator, camera cable wrap and camera hexapod
+  motion-test campaign ran on Level~3, with the camera rotating for
+  the first time on Feb~18.  On the same day the CCW local interlock
+  at Level~3 was found to be entirely isolated from the rotator
+  interlock --- so that the rotator would not stop on a CCW fault ---
+  and the two were joined that afternoon.
+
+\item[Feb 21--26] REB power-on and fibre-link verification concluded
+  with all 71 camera links declared good; only R20/Reb2 showed link
+  errors during the raft-by-raft cycling, and these did not repeat on
+  retest.
+
+\item[Feb 21--24] A clogged glycol filter at the Dynalene chiller
+  drove utility-trunk Dynalene to $22\,^{\circ}$C over a weekend and
+  forced the camera down to minimum power (roughly 400\,W); why the
+  alarms did not trigger remained under investigation.
+
+\item[Feb 25--28] A vacuum-subsystem software fault left seven MKS
+  gauges --- including the safety-critical cryostat and heat-exchanger
+  (Hx) gauges --- offline for over 15\,hours and aborted the low-vacuum
+  check, so the \texttt{REFRIG\_NOT\_PERMITTED} alarm was never
+  re-raised despite high pressures.  A fix was prepared under
+  LSSTCCSSUB-212.
+\end{description}
+
+\subsection{March --- the camera reaches the telescope}
+\begin{description}
+\item[Mar 1--4] LSSTCam was fully disconnected on Level~3: HFE was
+  purged back to the chiller reservoir, a temporary grounding chain
+  was built, the CCS subsystems and HCUs were stopped and the camera
+  breakers opened.
+
+\item[Mar 3--4] The observatory-wide Cycle~40 update was applied and
+  CCS restarted, but the vacuum subsystem crashed on the new build
+  with a null-pointer exception in the cryo turbo vent-valve update
+  and had to be patched by hand on the summit.
+
+\item[Mar 5--6] The camera was lifted from Level~3 to Level~8 on
+  Mar~5 and installed onto the TMA on Mar~6.
+
+\item[Mar 10--13] Camera utilities were reconnected on the TMA
+  (Dynalene hoses, MTP fibres, main power, compressed dry air) and
+  ComCam was moved back to the white room.  The roughing pump cart was
+  swapped after two kinks were found in its hose; a rate-of-rise test
+  confirmed the repair.
+
+\item[Mar 11--13] Image acquisition in emulated mode through OCS was
+  restored after the DAQ was found to be rejecting triggers because
+  the image metadata contained guider sources not present in the
+  partition; the emulation configuration was reshaped to science plus
+  wavefront sensors only.  Rapid Analysis went live on the summit on
+  Mar~13, with camera readouts appearing on RubinTV.
+
+\item[Mar 14--18] The first attempt to power the camera on the TMA
+  failed with no network connectivity to any HCU.  The two LC fibres
+  of the CCS pair were found swapped relative to the TMA breakout box;
+  connectivity was made by changing which media converter carried the
+  TMA fibre, and power-on was achieved on Mar~18 (IT-6016).
+
+\item[Mar 18--20] The TMA pump cart failed and was replaced by the
+  previously removed unit, whose internal gauge was found
+  miscalibrated for the summit elevation (corrected in the vacuum
+  code).  Both the heat-exchanger and cryostat chambers reached roughing
+  vacuum, and repeated USB disconnects of the cart link forced a
+  switch to the serial interface.
+
+\item[Mar 18--24] The FES carousel fault carried over from February
+  was fixed with a 3D-printed retainer on the encoder cable, and five
+  filter exchanges were demonstrated with the camera on the telescope
+  on Mar~24.
+
+\item[Mar 24--26] Systematic REB/DAQ link verification found the whole
+  focal plane good on the OTM-A side and four bad links on the B side,
+  all connected to the same RCE; all four were recovered by swapping
+  DPM transceivers in the DAQ, confirming the fault was on the DAQ
+  side rather than in the camera or the fibre run.
+
+\item[Mar 27] With the PCS chiller cooled from $+14.5$ to
+  $-40\,^{\circ}$C, all REBs were powered on, the GREB firmware was
+  updated into guider mode, and roughly 350 full focal-plane images
+  with guiding were taken under CCS control.
+
+\item[Mar 28--31] PCS chiller~2 tripped twice when its upstream
+  circuit breaker opened; the installed 32\,A breaker was found
+  under-rated against the chiller's 50\,A service requirement
+  (OBS-826).  Restarting the chiller after the breaker work took
+  roughly a dozen attempts over two days, repeatedly tripping on low
+  HFE flow until the coolant tank was pressurised.  Renewed Dynalene
+  instability over Mar~30--31 tripped the REB power supplies on high
+  temperature and led the team to conclude that starting the cryo
+  system was too risky.
+
+\item[Mar 13, Mar 27] Meeting and shift structure was changed for the
+  installation period: a daily Camera Coordination meeting was
+  introduced, daily plans moved to threaded summit posts, and a
+  weekend on-call person and an overnight alert address were named.
+\end{description}
+
+\subsection{April --- first full focal-plane operation and the R30/Reb1 short}
+\begin{description}
+\item[Apr 1] The cryostat cooldown and refrigeration restart uncovered
+  failed water solenoid valves on Cryo~3 and Cryo~6 (swapped with MRCR
+  spares) and a Cryo~6 compressor failure; all cryostat and heat-exchanger
+  ion pumps were subsequently turned on successfully.
+
+\item[Apr 2] The CCD shorts test passed for nearly the whole focal
+  plane.  The exception was R20/Reb2/S21, whose reset-drain voltage
+  read an unphysical $+54$\,V instead of the expected value; power
+  cycling the REB and resetting the RCE did not change it, and the
+  working theory was an open ADC input on the board.  That sensor was
+  left off while the rest of the focal plane was powered on.
+
+\item[Apr 3--6] A PCS chiller firmware upgrade was followed by a major
+  PCS failure: stage-1 refrigerant leaked out slowly, the control
+  valve would not open and flow could not be sustained.  The camera
+  was held overnight in a quiescent state with CCDs and REBs off and
+  the cryo circuits running, and the chiller was restarted
+  successfully on Apr~6 --- described by the team as the fastest
+  recovery of its kind.
+
+\item[Apr 7] After a routine power cycle, R30/Reb1 raised a
+  \emph{Bias2 OD2 overcurrent} fault on S12, measuring
+  $\mathrm{ODI}=0.213$\,A against an $0.082$\,A limit; S12 reached its
+  bias voltage in two steps and then tripped off on both attempts.
+  The behaviour was assessed in the moment as consistent with a real
+  short.  All CCDs were powered off camera-wide and further CCD
+  power-on was suspended pending expert review, in part because the
+  fault appeared after that day's reorientation of the camera to
+  zenith.  R30/Reb1 was left powered off.
+
+\item[Apr 7--8] Repeated CCS jGroups multicast storms disrupted
+  trending and control, apparently triggered by starting CCS processes
+  on the spare shutter subsystem whose network port lacked IGMP
+  snooping; the summit Cycle~41 software and OS upgrade fell on the
+  same day.
+
+\item[Apr 8--11] Intermittent PCS chiller~2 trips with no
+  corresponding chiller anomaly were traced to an unseated pin in a
+  refrigeration-permit connector on the telescope-side cabling,
+  aggravated by TMA shaking tests; the pins and shell were replaced
+  (SUMMIT-10642, SUMMIT-10652).
+
+\item[Apr 11] The L1 lens cover and lens cap were removed --- a step
+  towards first photon --- and a shutter and CCD soak test was
+  authorised with the dome lights administratively controlled.
+
+\item[Apr 13--25] The filter carousel developed an intermittent
+  communication fault on socket~3 that depended on rotation speed and
+  telescope orientation.  It was diagnosed as a sticking spring-loaded
+  carbon collector contact rather than a wiring problem, and the
+  collector was replaced on Apr~24--25 (SUMMIT-10680), with the
+  ageing of the other eight collectors noted as a residual concern.
+
+\item[Apr 14--16] The first full focal-plane CCD power-on campaign was
+  run raft by raft, followed by the first HV bias ramp across the
+  REBs, which took about 1.5\,hours to reach full voltage.  R30/Reb1
+  again tripped on an OD2 overcurrent (0.087\,A) and was left off with
+  R20/Reb2.  Over the same nights the camera took part in TMA soak
+  testing (BLOCK-T447, BLOCK-T449), giving tracking with shutter
+  readouts for the first time, and in the first bright-star tests,
+  whose largest observed CCD current jump was benign.
+
+\item[Apr 16--19] Guider idle-clearing was found to inject noise into
+  neighbouring sensors during bias readout, making early bias images
+  unusable; manual guider sleep/wake was adopted as an interim
+  workaround while a proper non-guider clearing scheme was developed
+  (LSSTCCSRAFTS-778).
+
+\item[Apr 17--29] A series of HV bias trips was traced to stray light
+  reaching the focal plane: head lamps and light past the filter-loader
+  door during FES work, sunlight through an open P-flow door with the
+  mirror covers open, and a laser tracker left running.  New
+  procedures were proposed tying HV state to P-flow and mirror-cover
+  status.
+
+\item[Apr 24] R20/Reb2 was returned to service by configuring the
+  erroneous reset-drain reading to be ignored in software rather than
+  repairing the board, and HV was restored to the full camera.  The
+  same day a REB-firmware register-size bug was fixed, allowing three
+  previously off corner CCDs to be powered and validated.
+
+\item[Apr 24--25] A renewed attempt to recover R30/Reb1 was abandoned.
+  A shorts test showed an unexplained digital-current spike of order
+  1\,A on the REB, seen in neither repeated retests nor 24\,hours of
+  monitoring of any other REB, and it was decided not to attempt
+  powering it on; R30/Reb1 ended the month as the only REB switched
+  off camera-wide.
+
+\item[Apr 26--28] A new sequencer file was tested on sky
+  (BLOCK-T469, BLOCK-T471) to address e2v noise and covariance
+  anomalies; e2v channels improved clearly while ITL channels changed
+  little, and the default sequencer was restored for scheduled
+  active-optics measurements.
+\end{description}
+
+\subsection{May --- cold weather and the first loss of cryo capacity}
+\begin{description}
+\item[May 1--7] Memory faults on the data-collection nodes forced
+  image handling off \texttt{lsstcam-dc10} onto \texttt{lsstcam-dc02},
+  with a DIMM replacement on another node and a full reboot of the
+  LSSTCam machines on May~7 with the camera taken offline first.
+
+\item[May 4] A filter-repeatability test using the collimated beam
+  projector (BLOCK-T486) measured spot shifts of roughly 5\,pixels
+  (about 52\,$\mu$m) before and after a filter swap, within the
+  100\,$\mu$m repeatability specification.
+
+\item[May 6--20] Four in-camera filter exchanges were carried out at
+  horizon pointing, taking the loaded complement through
+  $[g,r,i,z,y]$ to $[g,r,i,z,u]$.  Extraction of a single filter took
+  slightly under an hour; swaps required the mirror cover closed
+  against light leaks and the HV switches open.
+
+\item[May 7] The cryostat pressure reached the $10^{-8}$\,Torr regime
+  for the first time in the reported monitoring.
+
+\item[May 8--11] The camera lost essentially all cryo cooling capacity
+  overnight (OBS-931, FRACAS-280).  The cryo plate began deviating
+  from $-127\,^{\circ}$C in the early hours, all five running circuits
+  appeared to lose capacity, and CCDs and REBs were shut down around
+  08:10--08:20 UTC as both cryostat and heat-exchanger vacuum climbed; the
+  heat-exchanger gauge reached about $1\times10^{-5}$\,Torr against an
+  ion-pump shutdown threshold of $1.1\times10^{-5}$\,Torr.  Oil was
+  found dripping from a liquid-line filter dryer, three dryers were
+  swapped, and recovery took three days, with all REBs back on by
+  May~10 and HV restored the same evening.  Low ambient temperature,
+  with a transition near $7\,^{\circ}$C, was identified as the likely
+  driver: cryo trim heat went from about 60\,W before the event to
+  about 180\,W after recovery.
+
+\item[May 9--11] The focal plane was fully re-powered after the
+  cooling event, with shorts tests on all sensors and REB power-on
+  gated on power-supply board temperature.  R30/Reb1 was deliberately
+  skipped, its HV switches left open by direction; R21/Reb0, which had
+  repeatedly glitched near 50\,V, was set to run permanently at
+  46\,V.
+
+\item[May 12--27] A cold-weather operating regime was established.
+  Quantitative ``leading indicator'' thresholds (Cryo~1 heat-exchanger return
+  temperature below the dome dew point, trim-heat drift, dome ambient
+  below $8\,^{\circ}$C, rapid warming of circuit exit temperatures)
+  were defined and put on Chronograf dashboards for the observing
+  specialists, later reworked to use derivatives; the dome-warming
+  procedure was rewritten to use HVAC only.  Two further near-crashes
+  (May~16--17 and May~25--27) were managed by closing the dome,
+  running closed-dome calibrations and walking the telescope down to
+  low elevation to keep the Cryo~1 heat-exchanger return above the dew point.
+
+\item[May 19--23] A refrigerant-additive and insulation campaign
+  recovered a large part of the lost capacity: R124 and R245fa were
+  added to four circuits and 2919C to all five running circuits, after
+  which cryo capacity was assessed as roughly 90--100\,W higher, and
+  the Level~8 cryo liquid supply lines were progressively insulated.
+
+\item[May 21] A power glitch stuck the glycol remote control valve
+  closed, dumping the glycol charge and taking down the PCS and three
+  of four running cryo circuits (FRACAS-282).  With the CCS shell
+  effectively unusable, REBs were powered off with a direct command;
+  the cold plate rose to $-16\,^{\circ}$C before flow was restored via
+  the manual valve.
+
+\item[May 15--16] Two software faults cost observing time: a 0.1\,s
+  exposure request left the focal plane stuck integrating because the
+  configured minimum exposure time was below the shutter's real 1\,s
+  minimum (OBS-947), and a broadcast packet storm from three camera
+  hosts faulted the camera (OBS-950).
+
+\item[May 28--30] A new CCS refrigeration release added interlocks and
+  alarms drawn from the month's failures (blocking coolant flow below
+  a configurable glycol flow, warning on high discharge and low return
+  pressure, fixing reversed Cryo~3 water connections), and approval was
+  given to replace the failed Cryo~6 module with the Cryo~5 unit from
+  the MRCR.
+\end{description}
+
+\subsection{June --- First Look, and completion of the science array}
+\begin{description}
+\item[Jun 1--4] Throttling the Cryo~1 liquid-line isolation valve
+  rebalanced liquid and vapour flow and, for the first time, allowed
+  Cryo~1 to run continuously overnight at a workable heat-exchanger return
+  temperature.
+
+\item[Jun 2--3] The shutter jammed part-open in the middle of a flat
+  calibration and could not be recovered by the standard procedure;
+  the blade appeared to overrun its high limit until both PLCs and the
+  HCU were power-cycled and the shutter recalibrated (OBS-1013).
+
+\item[Jun 3--4] Dynalene flow was lost overnight, forcing an
+  emergency power-down of CCDs, REBs and most electronics and a switch
+  to the second Dynalene chiller (OBS-1014).  During recovery HV was
+  enabled with the REB back-bias switches still open, producing strong
+  tree rings and large gain shifts in flats; this was corrected the
+  next morning by zeroing HV and closing the switches raft by raft.
+
+\item[Jun 2--7] The Cryo~6 compressor module was replaced with the
+  MRCR unit, and the circuit was evacuated, charged, started and
+  gas-chromatographed, restoring six of six cryo circuits.
+
+\item[Jun 4--11] Recurring ``timed out waiting for shutter exposure to
+  complete'' failures were traced to PTP clocking rather than to the
+  shutter mechanism.  Enabling a boundary clock on the shutter's
+  network switch reproduced the fault on the clean-room system;
+  transparent-clock mode and then the leaf switch as boundary clock
+  eliminated the offset from master.  The investigation is documented
+  in CTN-003.
+
+\item[Jun 6--7, Jun 16--18, Jun 27--30] Three severe cold-driven cryo
+  degradation events dominated the second half of the month.  With
+  dome air down to $3.6\,^{\circ}$C, then near $5\,^{\circ}$C, then
+  near freezing, cryo-plate trim heat was driven to zero, and each
+  event required powering off the CCDs, the HV and --- in the second
+  and third events --- nearly all REBs, with recovery taking from
+  seven hours to three days.  Moving the telescope from high elevation
+  to horizon was found to produce a step recovery in cooling capacity.
+
+\item[Jun 7] A multicast storm on the camera network, attributed to
+  enabling IGMP snooping on one switch, forced most CCS services to be
+  stopped and restarted and left the camera in fault.
+
+\item[Jun 10--11] A screw dropped into the camera body through the FES
+  access during Auto Changer PLC work (SUMMIT-10747) triggered a
+  stop-work and cancelled that night's observing; the camera was
+  wrapped, scaffolding erected and side panels removed, and the screw
+  was recovered the following morning.
+
+\item[Jun 12--17] Cold-sensitivity mitigation was attempted with
+  heater blankets and insulation on the refrigeration lines --- a
+  thermocouple measurement initially showed the existing insulation
+  had ``zero effect'' because the lines were bare up- and downstream
+  --- and refrigerant was removed from Cryo~1 to raise its
+  heat-exchanger return temperature clear of the dew point.  Of four dome air
+  handlers only one was healthy, so dome heaters were ruled out as a
+  mitigation.
+
+\item[Jun 14--15] The compressed dry air supply to the Top End
+  Assembly was found to have been silently off for an unknown period,
+  and was restored; the TEA air valve was shown to have little
+  authority over humidity in the camera region, and the camera team
+  stated that dry air to the camera was necessary to survive the
+  winter.
+
+\item[Jun 23] Rubin Observatory's public First Look event took place.
+  Camera shifts were flexed the previous night around it, and a
+  telescope slew with the mirror covers open and dome floodlights on
+  during the associated demonstration tripped HV on one REB.
+
+\item[Jun 23--30] CCS 41.0.4 was activated in a staged full-summit
+  restart, delivering idle-clear support and the software needed to
+  turn on the remaining R30 CCDs.  Idle clear was tested on sky but
+  initially kept disabled because early measurements suggested it
+  raised the read noise; after two locking bugs were fixed --- skipped
+  invocations piling up and a sequencer-reload race --- it was
+  declared available for operational use on Jun~30 and nightly
+  operations moved to the 3\,s readout sequencer with idle clear
+  enabled.
+
+\item[Jun 25--26] The last two focal-plane sensors, on R30/Reb1, were
+  powered on and biased, completing the science array.  The turn-on
+  required an R30/Reb1 firmware update, an NTP fix, and configuration
+  changes that hit a hard-coded firmware parameter range, forcing an
+  emergency change to the bias-control limits and a same-day rebuild
+  of the rafts subsystem.  During the subsequent telemetry review the
+  CCD current on S12/Seg17 was noted as anomalously low
+  ($0.017$), and the channel was again described as the only
+  non-nominal one when R30/Reb1 was checked on Jun~29.
+
+\item[Jun 28--30] During re-power-up after the third cold event,
+  R30/Reb2 showed its clock-high current ramping continuously for
+  about an hour, prompting a near stop-work.  The cause was found to be
+  idle clear interacting with the REB because the idle-clear pause had
+  timed out during the shorts test; a power cycle with idle clear
+  correctly paused resolved it, and disabling idle clear during REB,
+  CCD and HV turn-on became standing practice.
+\end{description}
+
+\subsection{July --- operational maturity of idle clear and the FES}
+\begin{description}
+\item[Jul 1--4] Idle clear was validated through a series of
+  diagnostic bias and dark acquisitions and adopted as the default
+  configuration for all on-sky observations, replacing continuous
+  all-day bias acquisition.
+
+\item[Jul 1, Jul 15] Filter swaps continued: $u$ out and the pinhole
+  filter in on Jul~1 (followed by an approved pinhole illumination
+  test with HV off), and $y$ out and $u$ in on Jul~15
+  (SUMMIT-10923).
+
+\item[Jul 4] A power outage briefly interrupted both glycol and
+  Dynalene flow, and glycol chiller~3 showed a rising-temperature
+  anomaly overnight (OBS-1074), prompting discussion of resilience to
+  future outages.
+
+\item[Jul 5--11] A formal shutter and camera-to-OCS-control training
+  programme for observing specialists and commissioning scientists was
+  launched, together with an overhaul of the CCS command-level policy
+  that granted a trained-observer group level-1 access to the filter
+  changer and shutter subsystems.
+
+\item[Jul 6--13] Recurring carousel clamp faults, which had been
+  costing significant observing time, were addressed with an automated
+  unclamping-recovery patch; by Jul~13 recovery was succeeding
+  essentially every time, sharply reducing the need for expert
+  intervention.  On Jul~20--21 the FES passed 1000 filter changes
+  since April with the error rate below 1 in 400.
+
+\item[Jul 11--13] A dangling guider-initialisation command left the
+  guider stuck in a paused state for as long as 22\,hours undetected,
+  halting guider file production; the root cause was traced to
+  double-commanding between CCS and OCS.
+
+\item[Jul 13--28] Repeated \texttt{ocs-bridge} failures to release the
+  mount and rotator motion locks after filter changes cost observing
+  time on several nights (OBS-1098, OBS-1079, OBS-1119), tentatively
+  linked to a SAL/Kafka interface version mismatch and worked around
+  by manual restarts.
+
+\item[Jul 15--16] Candidate REB FPGA firmware was loaded into the
+  inactive EEPROM slot on all 71 xREBs in subsets --- wavefront and
+  guider REBs, R30/Reb1, and the remainder --- in preparation for a
+  later activation during a planned power cycle.
+
+\item[Jul 23--29] A serious clamp fault developed at carousel
+  socket~3, with repeated position-sensor errors and failed locking
+  recovery suspected to be an autochanger alignment problem.  The
+  socket was taken out of service and the $g$-band filter was removed
+  from the camera on Jul~29 for bench inspection.
+
+\item[Jul 16--31] Cold-weather mitigation continued with heater tape
+  and insulation on the cryo liquid lines, refrigerant top-ups on
+  Cryo~1, 2 and 6, and the adoption of quantitative dome open/close
+  temperature criteria derived from analysis of the four earlier cryo
+  crashes.
+\end{description}
+
+\subsection{August --- winter storms, power failures and firmware}
+\begin{description}
+\item[Aug 1--3] A winter storm closed the mountain road with outside
+  temperatures down to $-5\,^{\circ}$C; most of the crew descended
+  before the closure and monitored remotely while Cryo~1 and Cryo~2
+  lost some capacity.
+
+\item[Aug 5--12] Filter operations were disrupted twice: the $u \to y$
+  swap was rescheduled after a clamp timeout during a new
+  interface-cleaning step and completed on Aug~7 (SUMMIT-11029), and a
+  defective batch of filter pins was found to trip FCS limit errors
+  and was replaced before the $g$ filter was reinstalled
+  (SUMMIT-11092, LCA-13232).
+
+\item[Aug 11--16] Power glitches during summit UPS and generator
+  inspection tripped the PCS chiller twice on a drive fault
+  (FRACAS-292) and forced an emergency camera shutdown.  The outage was
+  used to boot the xREB EEPROMs into the candidate firmware slot, which
+  preserves HV bias across REB resets.  Recovery was then complicated
+  by days of jGroups retransmit storms that broke CCS--DAQ
+  communication whenever an image was taken with the guider running;
+  by Aug~15 the trigger was traced to guiding at an untested 5\,s
+  exposure cadence combined with high DAQ node traffic, and reverting
+  to the normal cadence stopped the storms.
+
+\item[Aug 15] The cryo system was deliberately driven towards its
+  crash threshold, with the dome air handler stopped and the glycol
+  chiller lowered, to validate a lower glycol setpoint.  The system
+  held --- camera air temperature reached about $5.7\,^{\circ}$C with
+  trim heat above 90\,W --- and the test was curtailed only because of
+  a condensation risk.
+
+\item[Aug 18] A cold night pushed ambient temperature more than two
+  degrees below the phase-separator setpoint, causing refrigerant
+  condensation in the vapour lines of all six cryo circuits and
+  warming the cryostat plate; the glycol chiller was lowered further
+  and a portable 60\,kW heater was deployed as mitigation.
+
+\item[Aug 21--23] CCDs had been running measurably warmer since the
+  Aug~11 firmware change.  Power-cycling the whole focal plane and
+  rolling the firmware back confirmed a genuine power-draw regression
+  of roughly 30\,W, tentatively attributed to a new sequencer-override
+  register; the apparent loss of cryo capacity during the storm had in
+  part been this self-heating.  R30/Reb1 was left running its own
+  firmware version, required for its bias-threshold adjustment.
+
+\item[Aug 23--27] A new automated HV-bias ramp-up and regulation
+  subsystem ran through a full night on sky for the first time and was
+  then enabled camera-wide, with the procedure trained to a new
+  operator.  An anomalously high HV current on R03/Reb1 was managed by
+  temporarily lowering its setpoint (LSSTCAM-124, LSSTCAM-125) and
+  resolved by Aug~26.
+
+\item[Aug 23--30] Both Level-1 air compressors degraded in the cold
+  --- the dryers froze at $-8\,^{\circ}$C, blocking airflow --- and
+  were fitted with insulating jackets.  Loss of the dry-air purge was
+  a direct camera concern, both for the vacuum gate valves and for
+  frosting on the L3 lens.
+
+\item[Aug 26--27] Large-scale summit OS and Kubernetes patching
+  (SUMMIT-11198) forced a reboot cascade across the camera servers.  A
+  scripting error included the shutter HCU, which had been meant to be
+  excluded, and an authentication race condition then cost access to
+  it for several hours; the incident was judged serious because the
+  same fault on a hardware-safety host would have been far worse.
+
+\item[Aug 30--31] The summit generator tripped, cutting glycol flow
+  and leaving the camera on UPS alone.  REBs and their power supplies
+  were deliberately powered off while cryostat pressure rose towards
+  the ion-pump shutdown limit; recovery of the refrigeration, shutter,
+  FES and DAQ took the rest of the day, and the full camera power-on
+  was completed on Aug~31 after overnight snow.
+\end{description}
+
+\subsection{September --- recovery, then preparation for the shutdown}
+\begin{description}
+\item[Sep 1--5] The camera recovered from the generator failure, whose
+  root cause was ice and snow blocking the generator air inlet
+  (FRACAS-299); the summit server-room UPS had separately exhausted its
+  roughly 30-minute battery and dropped camera network communications
+  (FRACAS-300).  Recurring generator voltage glitches caused repeated
+  minute-scale glycol interruptions --- close to the observed 90 to
+  120\,s PCS trip threshold --- and observing on generator power was
+  restricted in pointing.  Commercial power was confirmed restored on
+  Sep~5.
+
+\item[Sep 3--9] Cryo~1 again showed cold-ambient degradation on
+  several nights as outside temperatures approached the
+  phase-separator setpoint.  It was decided that the circuit need not
+  be switched off, and Cryo~1 was removed from the dome-closure
+  decision criteria.
+
+\item[Sep 6] An HV trip occurred with the moon only about 20\,degrees
+  away, and after recovery the guider was left in an inconsistent
+  state between CCS and the DAQ; the case prompted discussion of a
+  proper fault path for HV bias trips at the control-system level.
+
+\item[Sep 7] Observers reported an unfamiliar creaking sound over the
+  shutter microphone during large camera rotations, with correlated
+  spikes in camera-hexapod motor currents; the M2 hexapod, camera
+  hexapod and rotator bearings were all considered as possible
+  sources (OBS-1158).
+
+\item[Sep 14--18] A cluster of DAQ and control-system faults occurred:
+  a data-transport module on one crate needed rebooting for the second
+  time in a month (LSSTCAM-130), leaving the DAQ data store
+  inconsistent and image acquisition failing; a storage-node switch
+  failed; and a duplicated guider-initialisation left the system in an
+  error state.
+
+\item[Sep 17--25] The refurbished vacuum pump cart was commissioned on
+  the camera elevation platform, and both the cryostat and heat-exchanger
+  turbo pumps were run for their semi-annual maintenance cycle ahead
+  of the October cryo work.  Entanglement of the cart hoses during
+  platform motion was flagged as a safety hazard.
+
+\item[Sep 20--21] Cryo-line heater-tape circuits repeatedly blew
+  fuses after termination work --- five to six failures across several
+  attempts, including with slow-blow replacements --- and the cause
+  was not resolved within the month.
+
+\item[Sep 21--22] Dome lights were switched on briefly by accident,
+  tripping roughly 20 REB HV bias channels, all on ITL rafts;
+  recovery followed the documented HV turn-on procedure without
+  incident.
+
+\item[Sep 23--25] The $r$ and $g$ filters were extracted ahead of the
+  October carousel maintenance (SUMMIT-11343), leaving $i$, $z$ and
+  the pinhole filter in the camera, and setting a record of
+  2\,h\,10\,min for a two-filter operation.
+
+\item[Sep 9--30] The camera state for the coming shutdown was defined
+  and executed --- REBs on for thermal monitoring, CCDs off, HV off
+  --- while the CCS database underwent a raw-data partitioning
+  migration and CCS Cycle~41 was rolled out to all summit nodes.
+\end{description}
+
+\subsection{October --- the maintenance shutdown and the loss of Cryo 3}
+\begin{description}
+\item[Oct 1] Starting a new turbo-test-station subsystem broadcast a
+  ``refrigeration not permitted'' message that the refrigeration
+  subsystem accepted as real, shutting down all six cryo cabinets.
+  Three circuits then refused to restart on low discharge temperature
+  and needed a heat gun on the lines before they would run.
+
+\item[Oct 1--20] A roughly three-week planned camera downtime ran in
+  parallel with facility work: the FES team serviced and reinstalled
+  the carousel clamps on sockets 1--4 and fixed an autochanger
+  overcurrent problem, cryo filter dryers were replaced on three
+  circuits, CCS was upgraded to cycle~42, the MCM, DAQ-management and
+  diagnostic-cluster machines were replaced, and the HCU operating
+  systems were patched.
+
+\item[Oct 3, Oct 9] The camera cable wrap interlock faulted and
+  blocked rotator motion during FES maintenance rotations, recovered by
+  bypassing the interlock at the mount engineering interface and
+  re-aligning the wrap to the rotator; the same problem recurred on
+  Oct~9 and cost the FES team over an hour.
+
+\item[Oct 3] A major fibre-optic failure on the AURA base to Pachón
+  link, ongoing since Sep~30, left base-to-summit communications
+  fluctuating between the primary fibre and a microwave backup, with
+  no estimated repair time; camera systems were not reported as
+  directly affected.
+
+\item[Oct 14--15] The $+X$ deployable platform jammed about 42\,cm
+  short of full extension after a hose-drape test, the extension
+  encoder having mis-reported position because of motor slip under
+  excess load.  Both platforms were taken out of service and returned
+  the next day under new hard load limits with no personnel aboard
+  during motion.
+
+\item[Oct 15--20] Cryo~3 developed a capillary or expansion-valve clog
+  during recharge that could not be cleared by power cycling,
+  refrigerant addition or running the telescope horizontal.  The
+  circuit was given up on Oct~20 and the camera continued on five of
+  six circuits, with the cryo trim setpoint raised to recover about
+  10\,W of margin; procedure revisions on isolation-valve handling
+  were planned in response (LCA-14625, LCA-17726).
+
+\item[Oct 13--16] Candidate REB, WREB and GREB firmware was loaded to
+  the spare EEPROM slot and booted across the focal plane, including
+  the special R30/Reb1 variant.  The rollout repeatedly exposed a REB
+  serial-number read race that left REBs in an invalid validation
+  state, and a sequencer opcode-error bug when REBs were power-cycled
+  while idle clear was active, mitigated by delaying the start of idle
+  clear until the subsystem reached its operational state.
+
+\item[Oct 20--21] The camera returned to on-sky operation.  The first
+  night surfaced a stuck shutter requiring reinitialisation
+  (OBS-1013), incorrect guider bias voltages in the new guider
+  firmware, which was rolled back, a recurrence of a long-standing
+  wavefront-REB power-on issue (LSSTCAM-37), and corrupted FITS
+  headers introduced by a recent software change --- the last fixed and
+  verified end to end the same day.
+
+\item[Oct 22--23] The final science-filter complement was loaded via
+  the FES after re-qualification at horizon and zenith, and a new rule
+  was deployed requiring the FES to be in a loaded state before it can
+  be handed to observatory control.  With cryo capacity reduced by the
+  loss of Cryo~3, the CCD and raft-support-assembly setpoints were
+  raised by about one degree for thermal margin.
+
+\item[Oct 28--30] Two Dynalene cooling-loss events forced protective
+  shutdowns.  In the first, REB board temperatures approached the
+  HV-trip limit and REBs were powered off; on power-up they reported a
+  zero serial number and stayed invalid, needing repeated RCE resets
+  and clearing of a DAQ opcode-error register.  The second, caused by a
+  crash of the Dynalene control computer, required a full camera
+  shutdown and a two-to-three hour recovery.  A review of the earlier
+  Aug~11 event had established that the camera tolerates only about
+  13\,minutes without Dynalene flow before board temperatures approach
+  the trip limit.
+\end{description}
+
+\subsection{November --- control-system instabilities and the Cryo 6 trip}
+\begin{description}
+\item[Nov 1--3] A subsystem network fault pegged the REB-power process
+  at full CPU and filled the management host's filesystem, and on
+  Nov~3 a major jGroups meltdown during a dark sequence forced nearly
+  every subsystem to be killed and restarted.  In the aftermath the
+  shutter's PTP synchronisation fell badly out of lock and required
+  repeated PLC power cycles and a full recalibration in a closed dome
+  (LSSTCAM-144; recovery procedure in CTN-003).
+
+\item[Nov 4] A planned swap of the Dynalene control computer required
+  a roughly three-hour full camera power cycle, with REBs powered off
+  in groups to protect the power-supply boards while flow was cut.
+  Several REBs returned in an invalid state and a corner REB tripped
+  because its heater had not been switched off first.
+
+\item[Nov 5] A power glitch with no UPS backing tripped the PCS
+  chiller and the Cryo~6 compressor and briefly dropped Dynalene flow;
+  systems recovered within about ten minutes, and a second smaller
+  event later the same day again disturbed the chillers.
+
+\item[Nov 6] A dynamic guider region-of-interest test crashed the
+  focal-plane subsystem: an out-of-range ROI produced a parameter
+  exception and a core dump rather than a rejected command, and
+  recurred on a second attempt (LSSTCCSRAFTS-821).
+
+\item[Nov 10--21] Weekly planning surfaced thermal problems in the Top
+  End Assembly --- infrared imaging showed hot spots near the shutter
+  electronics box and cavity humidity above ambient, attributed to a
+  dry-air leak near the heat-exchanger return --- and the FES carousel
+  developed an intermittent following-error and overcurrent fault on
+  the first move of the night, addressed incrementally with a warm-up
+  brake sequence and automated recovery.
+
+\item[Nov 17--18] A scheduled summit OS and Kubernetes upgrade took
+  the control system offline for a morning, after which the camera
+  team rebooted essentially every LSSTCam server and verified the DAQ
+  link speeds before returning the camera to observatory control.
+
+\item[Nov 18--19] Hours after the Top End Assembly air nozzle was
+  replaced, Cryo~6 was lost: the circuit's PLC was reported dead, the
+  discharge temperature spiked to $122\,^{\circ}$C and the oil level
+  read negative.  The PLC recovered by itself after about half an hour.
+  The root cause was traced to a software update elsewhere on the
+  summit mis-setting the chiller setpoint in response to bad
+  environmental temperature readings, and the control logic that closes
+  the coolant valve on a dead PLC was flagged for revision
+  (FRACAS-322, OBS-1394, OBS-1395).
+
+\item[Nov 20] A generator-to-commercial power switchover caused a
+  total loss of Dynalene, and the automatic REB shutdown response
+  failed because the board-temperature limit had been left set too
+  high.  The team shut the camera down manually and carried out a
+  multi-hour recovery including RCE reboots, invalid REB states and a
+  shutter PTP resynchronisation (FRACAS-321).
+
+\item[Nov 21--24] The focal-plane subsystem repeatedly hung in an
+  active command state after guider initialisation on several nights,
+  once timing out after 45\,minutes and each time requiring a subsystem
+  restart (LSSTCAM-148); a parallel memory-exhaustion event in the
+  message broker triggered an overnight jGroups storm (LSSTCAM-149,
+  LSSTCAM-150).  On Nov~24 the DAQ link on one data-collection node was
+  found to be dropping packets, with register-read retries up by one to
+  two orders of magnitude since Nov~20, and the link was bounced and
+  the switch power-cycled (LSSTCAM-151).
+
+\item[Nov 24--25] A newly trained loader operator completed a filter
+  swap using the simplified loader procedure without camera-team
+  intervention for the first time, following weeks of FES software
+  fixes.
+
+\item[Nov 24] The ``natural frequency'' project, retuning the REB
+  sequencer timing to 6.4\,ns, neared completion and was revalidated on
+  the test stand, with dedicated dark-dome engineering time requested
+  ahead of a deployment decision.
+\end{description}
+
+\subsection{December --- refrigeration margin and firmware campaigns}
+\begin{description}
+\item[Dec 3--11] With Cryo~3 out of service and failing to restart, a
+  capillary clog developed on Cryo~4 and drove cryo-plate trim heat
+  down to about 1\,W whenever the telescope moved to high elevation.
+  The raft-support and cryo-plate setpoints were raised in steps as
+  mitigation; the Cryo~4 clog cleared spontaneously on the evening of
+  Dec~10, trim heat recovered to tens of watts, and the setpoints were
+  restored.  An average cryostat temperature of $-120\,^{\circ}$C was
+  documented as the hard safety boundary against sublimation.
+
+\item[Dec 8--9, Dec 13] Two FES faults required expert intervention:
+  repeated PLC faults on an online clamp overnight on Dec~7--8, and
+  autochanger truck controllers going to fault with undervoltage
+  errors after the carousel was found out of standby, reset remotely
+  (OBS-1454).
+
+\item[Dec 9, Dec 14--15] The 6.4\,ns natural-frequency REB firmware was
+  tested on the summit in two phases, booted from the spare EEPROM
+  slot.  Both attempts left several REBs hung or in an invalid state
+  after RCE resets, and the planned bias and flat sequences
+  (BLOCK-T659, BLOCK-T661) were only partly completed before the
+  production firmware was restored.
+
+\item[Dec 15--16] Water droplets and streaks were found on M1M3, and a
+  stone under the telescope near the camera.  Inspection with a
+  cherry-picker and an infrared camera traced the water to condensation
+  on uninsulated Dynalene supply pipes at the Top End Assembly, where
+  the dew point exceeded the heat-exchanger return temperature (SUMMIT-11795,
+  OBS-1479).
+
+\item[Dec 16--17] Two Dynalene chiller outages, the first coinciding
+  with a summit-wide OS patching reboot, caused REBs and CCDs to be
+  powered off as an emergency response --- which worked as designed ---
+  and put the camera into fault; a few REBs needed a focal-plane
+  restart to clear data corruption (FRACAS-328).
+
+\item[Dec 22] A changeover between Dynalene chillers warmed the supply
+  to the camera and drove REB power-supply board temperatures towards
+  their safety limit, forcing HV bias and then the CCDs off for about
+  an hour until cooling was restored by switching back (OBS-1490).
+
+\item[Dec 21--25] A natural-frequency firmware test on the auxiliary
+  telescope's wavefront electronics failed, producing anomalous bias
+  levels at both clock rates that no reset sequence would fix.  The
+  cause was an inverted-polarity reset signal continuously holding the
+  ASPIC in reset; the fix was applied and retested successfully on
+  Dec~24, although a new stripe-pattern noise appeared and required
+  further study (SUMMIT-11822).
+
+\item[Dec 27--29] The science REBs were switched again to the 6.4\,ns
+  firmware for an extended holiday calibration campaign, completing a
+  partial photon-transfer curve on the night of Dec~27--28 before
+  reverting to production firmware; opcode errors recurred on three
+  REBs after RCE resets even with idle clear confirmed off, pointing at
+  a firmware or boot-sequence cause (LSSTCAM-153).
+
+\item[Dec 12, Dec 18] Operations structure changed at year end: the
+  camera weekly planning meeting moved from Monday to Thursday, and
+  from Dec~28 the summit support scientists moved to a single daily
+  shift, with active support from 14:00 to 22:00 local time and
+  on-call support thereafter until sunrise.
+\end{description}
+
+\paragraph{Sources and method.}
+The entries above were extracted from the complete 2025 message
+history of the Rubin Observatory Slack channels \#cam-summit-ops and
+\#cam-operator, including all thread replies (roughly 2400 and 11\,700
+top-level messages respectively, with about 5400 thread replies in
+\#cam-summit-ops).  Where the logs give a ticket identifier it is
+reproduced verbatim so that the underlying record can be retrieved;
+where the logs are ambiguous about a date the entry gives a range.
+Statements of cause reflect the assessment recorded in the channel at
+the time and are not independent confirmations.
