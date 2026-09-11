@@ -523,6 +523,13 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-04-01 to 2025-06-07; status \textcolor{stres}{\textbf{Resolved}}.}
   Cryo~6 tripped on a compressor failure on April~1 and stayed out of service.  The compressor module was replaced with the Cryo~5 unit from the MRCR between June~2 and June~7 (\lsstls{LCA-14623}), and after charging, gas chromatography and additive top-up the circuit returned to service, restoring six of six cryo circuits.
 
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.62\textwidth]{issues2025/figs/CRYO-03-a.jpg}
+\caption{\textbf{CRYO-03.} Oil level in the sight glass of the Cryo~6 compressor, marked against a scale during the work on the circuit (2025-04-25, \#cam-operator).}
+\label{fig:iss-CRYO-03}
+\end{figure}
+
 \item[CRYO-04]\label{iss:CRYO-04} \textbf{Capillary clogs (Cryo 3 lost, Cryo 4 self-cleared).}
   \emph{First to last mention 2025-10-15 to 2025-12-11; status \textcolor{stopn}{\textbf{Open}}.}
   During the October recharge Cryo~3 developed a clog --- the capillary is the suspected location --- that survived repeated power cycles, refrigerant additions and running the telescope horizontal; the circuit was given up on October~20 and the camera has run on five of six circuits since.  A second clog, on the Cryo~4 capillary, developed in early December, drove cryo trim heat down to about 1\,W, and cleared spontaneously on the evening of December~10 without intervention.  The open question is whether contamination was introduced into Cryo~3 during the October maintenance itself; it was on that suspicion that revisions to the evacuation and charging procedure and to filter-dryer replacement (\lsstls{LCA-14625}, \lsstls{LCA-17726}) were proposed.  Cryo~3 was still out of service at year end.
@@ -547,6 +554,14 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-06-14 to 2025-12-16; status \textcolor{stopn}{\textbf{Open}}.}
   The camera region of the Top End Assembly runs more humid than ambient, and the compressed dry air supplied there has little authority over it --- the June investigation found the supply had been silently off for an unknown period and that the air reaching the camera is heavily mixed with dome air.  In November infrared imaging showed hot spots and a suspected dry-air leak near the heat-exchanger return, and in December water droplets were found on M1M3, traced to condensation on uninsulated Dynalene supply pipes at the Top End Assembly (\rubintkt{SUMMIT-11795}, \rubintkt{OBS-1479}).  Open at year end, with insulation the proposed fix.
 
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.47\textwidth]{issues2025/figs/DYN-04-a.jpg}\hfill
+\includegraphics[width=0.47\textwidth]{issues2025/figs/DYN-04-b.jpg}
+\caption{\textbf{DYN-04.} Refrigeration and Dynalene lines at the Top End Assembly, photographed during the June investigation of humidity and insulation in the camera region; the uninsulated runs of this kind are where the condensation found in December formed (2025-06-14).}
+\label{fig:iss-DYN-04}
+\end{figure}
+
 \end{description}
 
 \noindent\textit{Glycol (facility)}
@@ -562,6 +577,14 @@ not necessarily inactivity.}
 \item[PCS-01]\label{iss:PCS-01} \textbf{PCS chiller reliability.}
   \emph{First to last mention 2025-03-28 to 2025-08-11; status \textcolor{stres}{\textbf{Resolved}}.}
   A cluster of PCS chiller problems in spring, all of them traced and fixed: an under-rated 32\,A supply breaker against a 50\,A service requirement, which tripped the chiller twice in one morning (\rubintkt{OBS-826}); a stage-1 refrigerant leak that took the chiller out of service for a day and left the camera quiescent overnight; and spurious trips with no real chiller anomaly, traced to an unseated pin in a refrigeration-permit connector on the telescope-side cabling and aggravated by TMA shaking tests (\rubintkt{SUMMIT-10642}, \rubintkt{SUMMIT-10652}).  The breaker was replaced, the leak repaired and the connector pins and shell renewed.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.47\textwidth]{issues2025/figs/PCS-01-a.jpg}\hfill
+\includegraphics[width=0.47\textwidth]{issues2025/figs/PCS-01-b.jpg}
+\caption{\textbf{PCS-01.} Left: the pin face of the refrigeration-permit connector on the telescope-side cabling, whose unseated pin produced the spurious chiller trips (2025-04-11).  Right: recovery from the chiller failure two days earlier --- chiller-2 fluid temperature and the cold-plate supply and return temperatures being ramped from about $+10$ to $-35\,^{\circ}$C (2025-04-09).}
+\label{fig:iss-PCS-01}
+\end{figure}
 
 \item[PCS-02]\label{iss:PCS-02} \textbf{PCS chiller restart difficulty, and the MRCR unit.}
   \emph{First to last mention 2025-03-28 to 2025-07-02; status \textcolor{stopn}{\textbf{Open}}.}
@@ -590,6 +613,13 @@ not necessarily inactivity.}
 \item[FP-01]\label{iss:FP-01} \textbf{R30/Reb1/S12 suspected OD short (subject of this note).}
   \emph{First to last mention 2025-04-07 to 2025-12-10; status \textcolor{stwrk}{\textbf{Workaround}}.}
   On April~7, after a routine power cycle and a reorientation of the camera to zenith, R30/Reb1 raised a Bias2 OD2 overcurrent on S12 ($\mathrm{ODI}=0.213$\,A against an $0.082$\,A limit); S12 reached bias voltage in two steps and tripped off on both attempts, and the behaviour was read at the time as a real short.  A retest on April~25 showed an unexplained digital-current spike of order 1\,A, and the REB was left as the only one switched off camera-wide through May.  It was returned to service on June~25--26 running two of three CCDs, which required an R30/Reb1 firmware update and relaxed bias-control limits; the CCD current on S12/Seg17 was noted as anomalously low at that turn-on and again on June~29.  The REB has carried its own firmware variant through every subsequent firmware campaign.  The workaround --- running two of the three CCDs on Reb1 --- was implemented on June~25--26 and has been in place since; the fault itself is unresolved. Described in detail in Sections~\ref{sec:r30s12} and~\ref{sec:r30s12-solution}.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.62\textwidth]{issues2025/figs/FP-01-a.jpg}
+\caption{\textbf{FP-01.} Bias voltages and currents on R30/Reb1 during the 7 April turn-on attempt, for S10, S11 and S12 from top to bottom; S10 and S11 follow the ramp while S12 trips off (2025-04-07, \#cam-operator).}
+\label{fig:iss-FP-01}
+\end{figure}
 
 \item[FP-02]\label{iss:FP-02} \textbf{R20/Reb2/S21 unphysical RD voltage read-back.}
   \emph{First to last mention 2025-04-02 to 2025-04-24; status \textcolor{stwrk}{\textbf{Workaround}}.}
@@ -699,6 +729,13 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-05-02 to 2025-12-13; status \textcolor{stopn}{\textbf{Open}}.}
   The dominant filter-exchange failure mode: a carousel clamp fails to open or lock within the allowed time, faulting the changer and costing observing time.  It was attacked from three sides --- automated unclamping recovery in July (essentially 100\,\% success once deployed, error rate below 1 in 400 over 1000 exchanges), mechanical servicing and greasing of the socket clamps during the October shutdown (the grease not having been renewed since 2021), and a warm-up brake sequence in November --- yet socket-specific faults were still occurring in December.  A filter had to be removed from the camera in July when socket~3 could not be trusted.
 
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.62\textwidth]{issues2025/figs/FES-01-a.jpg}
+\caption{\textbf{FES-01.} The camera on the telescope with the filter-exchange region in view, on the night the final science-filter complement was in place (2025-10-30, \#cam-summit-ops).}
+\label{fig:iss-FES-01}
+\end{figure}
+
 \item[FES-02]\label{iss:FES-02} \textbf{Carousel socket 3 slip-ring collector.}
   \emph{First to last mention 2025-04-13 to 2025-04-25; status \textcolor{stres}{\textbf{Resolved}}.}
   Socket~3 lost communication intermittently during carousel rotation, worse at speed and dependent on telescope orientation.  The cause was a spring-loaded carbon collector contact that was not sliding freely; it was replaced on April~24--25 and the socket recovered (\rubintkt{SUMMIT-10680}).  The eight untouched collectors, and the effect of the very dry camera atmosphere on them, were noted as a residual risk.
@@ -706,6 +743,14 @@ not necessarily inactivity.}
 \item[FES-03]\label{iss:FES-03} \textbf{Autochanger trucks, homing and the damaged X+ clamp motor.}
   \emph{First to last mention 2025-02-13 to 2025-12-13; status \textcolor{stopn}{\textbf{Open}}\,\textbf{?}.}
   The autochanger truck controllers fault with undervoltage errors after losing homing, a problem that first blocked filter exchange in February and reappeared in December (\rubintkt{OBS-1454}); a new automated homing procedure was qualified in hardware in March but the old method was kept for first photon.  Separately the X+ online clamp motor, damaged in summer 2023, faulted repeatedly during April exchanges and was never repaired.  Alignment test campaigns ran in September; what they concluded is not recorded in these channels.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.47\textwidth]{issues2025/figs/FES-03-a.jpg}\hfill
+\includegraphics[width=0.47\textwidth]{issues2025/figs/FES-03-b.jpg}
+\caption{\textbf{FES-03.} Left: an autochanger on its stand in the clean room, where the homing procedure was qualified (2025-04-07).  Right: the quadbox power panel, whose FES carousel, clamp, loader and brake channels are the supplies behind the truck undervoltage faults (2025-02-13).}
+\label{fig:iss-FES-03}
+\end{figure}
 
 \end{description}
 
@@ -726,6 +771,14 @@ not necessarily inactivity.}
 \item[MEC-01]\label{iss:MEC-01} \textbf{Sheared pancake-wrap bolts.}
   \emph{First to last mention 2025-01-28 to 2025-02-04; status \textcolor{stres}{\textbf{Resolved}}.}
   Several socket-head bolts holding the pancake wrap's central rotating assembly to the adapter plate sheared during the installation campaign and were found loose in the cable wrap.  The wrap was removed and rebuilt with new hardware at a reduced torque, and the interface was reworked (pin holes reamed, internal sliding blocks removed) in early February; a subsequent bolt test to 75\,ft-lb showed no failure.  The joint has given no trouble since and the item is treated as closed.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.47\textwidth]{issues2025/figs/MEC-01-a.jpg}\hfill
+\includegraphics[width=0.47\textwidth]{issues2025/figs/MEC-01-b.jpg}
+\caption{\textbf{MEC-01.} Two of the sheared 3/8-16 socket-head bolts recovered from the cable wrap, and the bolt test that followed a few days later: 75.2\,ft-lb applied with no sign of failure (2025-01-30, \#cam-summit-ops).}
+\label{fig:iss-MEC-01}
+\end{figure}
 
 \item[MEC-02]\label{iss:MEC-02} \textbf{Camera cable wrap interlock and telemetry faults.}
   \emph{First to last mention 2025-02-18 to 2025-10-09; status \textcolor{stopn}{\textbf{Open}}.}
