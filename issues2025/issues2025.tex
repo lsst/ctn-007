@@ -10,6 +10,21 @@
 %
 %  Preamble requirements: tikz, xcolor, graphicx, booktabs.
 %
+%  Revision 4 (author review):
+%    - GLY-02 retired -> PCS-01 (reliability) and PCS-02 (restart difficulty,
+%      plus the MRCR failure tracked as LSSTCAM-119); glycol and the PCS
+%      chiller are now separate categories
+%    - CCS-04 split: the vacuum-gauge interlock fault stays there, the general
+%      silent death of periodic tasks becomes CCS-08
+%    - MEC-01 split: sheared pancake-wrap bolts (closed) stay there, the camera
+%      door charging becomes MEC-04 (grounding strap being implemented)
+%    - FP-04 is an accepted, unrepairable defect; FP-06 is tracked in
+%      #cam-issues-esd; DAQ-01 notes the serial console (IHS-9431); DAQ-02
+%      names the affected host
+%
+%  Revision 3: dormant folded into open; FW-01 resolved by the 0x313a5014
+%    firmware; CCS-07 renamed to Kafka broker; SHT-02 evidence made explicit.
+%
 %  Revision 2 (author review):
 %    - DYN-03 retired  -> CCS-05 (protective logic is a control-system defect)
 %    - NET-01 retired  -> CCS-06 (jGroups storms)
@@ -45,7 +60,7 @@ separate three things that a chronology conflates --- issues that were closed,
 issues that the observatory learned to live with, and issues that were never
 closed at all.
 
-Identifiers carry a category prefix: \texttt{CRYO} (cryogenic refrigeration), \texttt{DYN} (dynalene (utility-trunk cooling)), \texttt{GLY} (glycol and pcs chiller), \texttt{PWR} (site power), \texttt{AIR} (compressed dry air), \texttt{FP} (focal plane), \texttt{FW} (reb firmware), \texttt{DAQ} (data acquisition), \texttt{CCS} (camera control system), \texttt{SHT} (shutter), \texttt{FES} (filter exchange system), \texttt{OPT} (stray light), \texttt{MEC} (mechanical and integration), \texttt{IT} (summit it).
+Identifiers carry a category prefix: \texttt{CRYO} (cryogenic refrigeration), \texttt{DYN} (dynalene (utility-trunk cooling)), \texttt{GLY} (glycol (facility)), \texttt{PCS} (pcs chiller), \texttt{PWR} (site power), \texttt{AIR} (compressed dry air), \texttt{FP} (focal plane), \texttt{FW} (reb firmware), \texttt{DAQ} (data acquisition), \texttt{CCS} (camera control system), \texttt{SHT} (shutter), \texttt{FES} (filter exchange system), \texttt{OPT} (stray light), \texttt{MEC} (mechanical and integration), \texttt{IT} (summit it).
 Status is assigned on the evidence of the operations channels, using five
 categories:
 
@@ -60,7 +75,7 @@ categories:
 \end{center}
 
 \noindent
-7 entries are marked ``\textbf{?}''.  In those cases the record stops before
+2 entries are marked ``\textbf{?}''.  In those cases the record stops before
 the outcome, so the classification has to be settled from sources outside
 these channels; the summary says in each case what is missing.
 
@@ -70,29 +85,29 @@ these channels; the summary says in each case what is missing.
 \toprule
  & Status & Issues \\
 \midrule
-\textcolor{stres}{\textbf{R}} & Resolved & 7 \\
+\textcolor{stres}{\textbf{R}} & Resolved & 9 \\
 \textcolor{stmit}{\textbf{M}} & Mitigated & 8 \\
-\textcolor{stwrk}{\textbf{W}} & Workaround & 4 \\
-\textcolor{stopn}{\textbf{O}} & Open & 22 \\
+\textcolor{stwrk}{\textbf{W}} & Workaround & 6 \\
+\textcolor{stopn}{\textbf{O}} & Open & 21 \\
 \textcolor{sttra}{\textbf{T}} & Transferred & 1 \\
 \midrule
- & \textbf{Total} & \textbf{42} \\
+ & \textbf{Total} & \textbf{45} \\
 \bottomrule
 \end{tabular}
-\caption{Status of the 42 issues identified in the 2025 camera operations
+\caption{Status of the 45 issues identified in the 2025 camera operations
 channels.  Open covers both ends of a spectrum: issues that were still
 generating traffic in December, and issues that were never closed and simply
 stopped being mentioned --- the timeline of
 Figure~\ref{fig:issue-timeline} distinguishes the two, since the latter show a
-long tail with no activity.  Those, together with the 4 workarounds, are the
+long tail with no activity.  Those, together with the 6 workarounds, are the
 entries most likely to need a decision.}
 \label{tab:issue-status}
 \end{table}
 \begin{figure}[htbp]
 \centering
 \begingroup\hypersetup{hidelinks}%
-\begin{tikzpicture}[x=1.10cm, y=-0.35cm]
-\foreach \m in {0,1,...,12} { \draw[issgrid,line width=0.4pt] (\m,-0.7) -- (\m,41.70); }
+\begin{tikzpicture}[x=1.10cm, y=-0.33cm]
+\foreach \m in {0,1,...,12} { \draw[issgrid,line width=0.4pt] (\m,-0.7) -- (\m,44.70); }
 \node[font=\scriptsize] at (0.50,-1.05) {J};
 \node[font=\scriptsize] at (1.50,-1.05) {F};
 \node[font=\scriptsize] at (2.50,-1.05) {M};
@@ -105,49 +120,49 @@ entries most likely to need a decision.}
 \node[font=\scriptsize] at (9.50,-1.05) {O};
 \node[font=\scriptsize] at (10.50,-1.05) {N};
 \node[font=\scriptsize] at (11.50,-1.05) {D};
-\fill[black!7] (9.000,-0.7) rectangle (9.613,41.70);
-\draw[black!40,dashed,line width=0.4pt] (1.143,-0.7) -- (1.143,41.70);
+\fill[black!7] (9.000,-0.7) rectangle (9.613,44.70);
+\draw[black!40,dashed,line width=0.4pt] (1.143,-0.7) -- (1.143,44.70);
 \node[font=\scriptsize,text=black!55,anchor=west,rotate=38] at (1.143,-1.15) {on TEA};
-\draw[black!40,dashed,line width=0.4pt] (2.161,-0.7) -- (2.161,41.70);
+\draw[black!40,dashed,line width=0.4pt] (2.161,-0.7) -- (2.161,44.70);
 \node[font=\scriptsize,text=black!55,anchor=west,rotate=38] at (2.161,-1.15) {on TMA};
-\draw[black!40,dashed,line width=0.4pt] (5.733,-0.7) -- (5.733,41.70);
+\draw[black!40,dashed,line width=0.4pt] (5.733,-0.7) -- (5.733,44.70);
 \node[font=\scriptsize,text=black!55,anchor=west,rotate=38] at (5.733,-1.15) {First Look};
-\draw[black!40,dashed,line width=0.4pt] (9.613,-0.7) -- (9.613,41.70);
+\draw[black!40,dashed,line width=0.4pt] (9.613,-0.7) -- (9.613,44.70);
 \node[font=\scriptsize,text=black!55,anchor=west,rotate=38] at (9.613,-1.15) {back on sky};
 \node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,0.00) {\hyperref[iss:CRYO-01]{CRYO-01}};
 \draw[issspan,line width=1.2pt] (4.226,0.00) -- (9.774,0.00);
-\fill[stmit] (4.224,-0.11) rectangle (4.324,0.11);
-\fill[stmit] (4.450,-0.11) rectangle (4.550,0.11);
-\fill[stmit] (4.756,-0.11) rectangle (4.856,0.11);
-\fill[stmit] (5.133,-0.11) rectangle (5.233,0.11);
-\fill[stmit] (5.483,-0.11) rectangle (5.583,0.11);
-\fill[stmit] (5.867,-0.11) rectangle (5.967,0.11);
-\fill[stmit] (6.982,-0.11) rectangle (7.082,0.11);
-\fill[stmit] (7.450,-0.11) rectangle (7.550,0.11);
-\fill[stmit] (8.067,-0.11) rectangle (8.267,0.11);
-\fill[stmit] (9.613,-0.11) rectangle (9.774,0.11);
+\fill[stmit] (4.224,-0.10) rectangle (4.324,0.10);
+\fill[stmit] (4.450,-0.10) rectangle (4.550,0.10);
+\fill[stmit] (4.756,-0.10) rectangle (4.856,0.10);
+\fill[stmit] (5.133,-0.10) rectangle (5.233,0.10);
+\fill[stmit] (5.483,-0.10) rectangle (5.583,0.10);
+\fill[stmit] (5.867,-0.10) rectangle (5.967,0.10);
+\fill[stmit] (6.982,-0.10) rectangle (7.082,0.10);
+\fill[stmit] (7.450,-0.10) rectangle (7.550,0.10);
+\fill[stmit] (8.067,-0.10) rectangle (8.267,0.10);
+\fill[stmit] (9.613,-0.10) rectangle (9.774,0.10);
 \node[font=\scriptsize\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,0.00) {M};
 \node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,1.00) {\hyperref[iss:CRYO-02]{CRYO-02}};
 \draw[issspan,line width=1.2pt] (4.355,1.00) -- (12.000,1.00);
-\fill[issspan] (12.00,0.89) -- (12.00,1.11) -- (12.20,1.00) -- cycle;
-\fill[stopn] (4.355,0.89) rectangle (4.581,1.11);
-\fill[stopn] (4.742,0.89) rectangle (5.367,1.11);
-\fill[stopn] (8.067,0.89) rectangle (8.267,1.11);
+\fill[issspan] (12.00,0.90) -- (12.00,1.10) -- (12.20,1.00) -- cycle;
+\fill[stopn] (4.355,0.90) rectangle (4.581,1.10);
+\fill[stopn] (4.742,0.90) rectangle (5.367,1.10);
+\fill[stopn] (8.067,0.90) rectangle (8.267,1.10);
 \node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,1.00) {O};
 \node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,2.00) {\hyperref[iss:CRYO-03]{CRYO-03}};
 \draw[issspan,line width=1.2pt] (3.000,2.00) -- (5.200,2.00);
-\fill[stres] (2.950,1.89) rectangle (3.050,2.11);
-\fill[stres] (4.935,1.89) rectangle (5.200,2.11);
+\fill[stres] (2.950,1.90) rectangle (3.050,2.10);
+\fill[stres] (4.935,1.90) rectangle (5.200,2.10);
 \node[font=\scriptsize\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,2.00) {R};
 \node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,3.00) {\hyperref[iss:CRYO-04]{CRYO-04}};
 \draw[issspan,line width=1.2pt] (9.452,3.00) -- (12.000,3.00);
-\fill[issspan] (12.00,2.89) -- (12.00,3.11) -- (12.20,3.00) -- cycle;
-\fill[stopn] (9.452,2.89) rectangle (11.323,3.11);
+\fill[issspan] (12.00,2.90) -- (12.00,3.10) -- (12.20,3.00) -- cycle;
+\fill[stopn] (9.452,2.90) rectangle (11.323,3.10);
 \node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,3.00) {O};
 \node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,4.00) {\hyperref[iss:CRYO-05]{CRYO-05}};
 \draw[issspan,line width=1.2pt] (10.567,4.00) -- (12.000,4.00);
-\fill[issspan] (12.00,3.89) -- (12.00,4.11) -- (12.20,4.00) -- cycle;
-\fill[stopn] (10.533,3.89) rectangle (10.633,4.11);
+\fill[issspan] (12.00,3.90) -- (12.00,4.11) -- (12.20,4.00) -- cycle;
+\fill[stopn] (10.533,3.90) rectangle (10.633,4.11);
 \node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,4.00) {O};
 \draw[issgrid,line width=0.6pt] (-2.6,4.50) -- (12.9,4.50);
 \node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,5.00) {\hyperref[iss:DYN-01]{DYN-01}};
@@ -191,274 +206,285 @@ entries most likely to need a decision.}
 \fill[stres] (10.083,7.89) rectangle (10.183,8.11);
 \fill[stres] (10.833,7.89) rectangle (10.933,8.11);
 \node[font=\scriptsize\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,8.00) {R};
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,9.00) {\hyperref[iss:GLY-02]{GLY-02}};
-\draw[issspan,line width=1.2pt] (2.871,9.00) -- (12.000,9.00);
-\fill[issspan] (12.00,8.89) -- (12.00,9.11) -- (12.20,9.00) -- cycle;
-\fill[stopn] (2.837,8.89) rectangle (2.937,9.11);
-\fill[stopn] (3.067,8.89) rectangle (3.167,9.11);
-\fill[stopn] (3.233,8.89) rectangle (3.333,9.11);
-\fill[stopn] (5.966,8.89) rectangle (6.066,9.11);
-\fill[stopn] (7.273,8.89) rectangle (7.373,9.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,9.00) {O\,?};
-\draw[issgrid,line width=0.6pt] (-2.6,9.50) -- (12.9,9.50);
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,10.00) {\hyperref[iss:PWR-01]{PWR-01}};
-\draw[issspan,line width=1.2pt] (1.857,10.00) -- (12.000,10.00);
+\draw[issgrid,line width=0.6pt] (-2.6,8.50) -- (12.9,8.50);
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,9.00) {\hyperref[iss:PCS-01]{PCS-01}};
+\draw[issspan,line width=1.2pt] (2.871,9.00) -- (7.323,9.00);
+\fill[stres] (2.837,8.89) rectangle (2.937,9.11);
+\fill[stres] (3.067,8.89) rectangle (3.167,9.11);
+\fill[stres] (3.233,8.89) rectangle (3.333,9.11);
+\fill[stres] (7.273,8.89) rectangle (7.373,9.11);
+\node[font=\scriptsize\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,9.00) {R};
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,10.00) {\hyperref[iss:PCS-02]{PCS-02}};
+\draw[issspan,line width=1.2pt] (2.871,10.00) -- (12.000,10.00);
 \fill[issspan] (12.00,9.89) -- (12.00,10.11) -- (12.20,10.00) -- cycle;
-\fill[stopn] (1.843,9.89) rectangle (1.943,10.11);
-\fill[stopn] (3.883,9.89) rectangle (3.983,10.11);
-\fill[stopn] (4.595,9.89) rectangle (4.695,10.11);
-\fill[stopn] (5.100,9.89) rectangle (5.333,10.11);
-\fill[stopn] (6.047,9.89) rectangle (6.147,10.11);
-\fill[stopn] (6.579,9.89) rectangle (6.679,10.11);
-\fill[stopn] (7.323,9.89) rectangle (7.484,10.11);
-\fill[stopn] (7.885,9.89) rectangle (7.985,10.11);
-\fill[stopn] (8.000,9.89) rectangle (8.133,10.11);
-\fill[stopn] (9.144,9.89) rectangle (9.244,10.11);
-\fill[stopn] (10.083,9.89) rectangle (10.183,10.11);
-\fill[stopn] (10.817,9.89) rectangle (10.917,10.11);
+\fill[stopn] (2.837,9.89) rectangle (2.937,10.11);
+\fill[stopn] (5.966,9.89) rectangle (6.066,10.11);
 \node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,10.00) {O};
 \draw[issgrid,line width=0.6pt] (-2.6,10.50) -- (12.9,10.50);
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,11.00) {\hyperref[iss:AIR-01]{AIR-01}};
-\draw[issspan,line width=1.2pt] (1.929,11.00) -- (9.226,11.00);
-\fill[stmit] (1.879,10.89) rectangle (1.979,11.11);
-\fill[stmit] (5.400,10.89) rectangle (5.500,11.11);
-\fill[stmit] (7.645,10.89) rectangle (7.935,11.11);
-\fill[stmit] (9.160,10.89) rectangle (9.260,11.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,11.00) {M};
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,11.00) {\hyperref[iss:PWR-01]{PWR-01}};
+\draw[issspan,line width=1.2pt] (1.857,11.00) -- (12.000,11.00);
+\fill[issspan] (12.00,10.89) -- (12.00,11.11) -- (12.20,11.00) -- cycle;
+\fill[stopn] (1.843,10.89) rectangle (1.943,11.11);
+\fill[stopn] (3.883,10.89) rectangle (3.983,11.11);
+\fill[stopn] (4.595,10.89) rectangle (4.695,11.11);
+\fill[stopn] (5.100,10.89) rectangle (5.333,11.11);
+\fill[stopn] (6.047,10.89) rectangle (6.147,11.11);
+\fill[stopn] (6.579,10.89) rectangle (6.679,11.11);
+\fill[stopn] (7.323,10.89) rectangle (7.484,11.11);
+\fill[stopn] (7.885,10.89) rectangle (7.985,11.11);
+\fill[stopn] (8.000,10.89) rectangle (8.133,11.11);
+\fill[stopn] (9.144,10.89) rectangle (9.244,11.11);
+\fill[stopn] (10.083,10.89) rectangle (10.183,11.11);
+\fill[stopn] (10.817,10.89) rectangle (10.917,11.11);
+\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,11.00) {O};
 \draw[issgrid,line width=0.6pt] (-2.6,11.50) -- (12.9,11.50);
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,12.00) {\hyperref[iss:FP-01]{FP-01}};
-\draw[issspan,line width=1.2pt] (3.200,12.00) -- (11.290,12.00);
-\fill[stwrk] (3.167,11.89) rectangle (3.267,12.11);
-\fill[stwrk] (3.400,11.89) rectangle (3.500,12.11);
-\fill[stwrk] (3.733,11.89) rectangle (3.833,12.11);
-\fill[stwrk] (4.240,11.89) rectangle (4.340,12.11);
-\fill[stwrk] (5.067,11.89) rectangle (5.167,12.11);
-\fill[stwrk] (5.800,11.89) rectangle (5.933,12.11);
-\fill[stwrk] (6.418,11.89) rectangle (6.518,12.11);
-\fill[stwrk] (7.355,11.89) rectangle (7.645,12.11);
-\fill[stwrk] (9.387,11.89) rectangle (9.613,12.11);
-\fill[stwrk] (11.208,11.89) rectangle (11.308,12.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stwrk,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,12.00) {W};
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,13.00) {\hyperref[iss:FP-02]{FP-02}};
-\draw[issspan,line width=1.2pt] (3.033,13.00) -- (3.767,13.00);
-\fill[stwrk] (2.983,12.89) rectangle (3.083,13.11);
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,12.00) {\hyperref[iss:AIR-01]{AIR-01}};
+\draw[issspan,line width=1.2pt] (1.929,12.00) -- (9.226,12.00);
+\fill[stmit] (1.879,11.89) rectangle (1.979,12.11);
+\fill[stmit] (5.400,11.89) rectangle (5.500,12.11);
+\fill[stmit] (7.645,11.89) rectangle (7.935,12.11);
+\fill[stmit] (9.160,11.89) rectangle (9.260,12.11);
+\node[font=\scriptsize\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,12.00) {M};
+\draw[issgrid,line width=0.6pt] (-2.6,12.50) -- (12.9,12.50);
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,13.00) {\hyperref[iss:FP-01]{FP-01}};
+\draw[issspan,line width=1.2pt] (3.200,13.00) -- (11.290,13.00);
+\fill[stwrk] (3.167,12.89) rectangle (3.267,13.11);
 \fill[stwrk] (3.400,12.89) rectangle (3.500,13.11);
-\fill[stwrk] (3.717,12.89) rectangle (3.817,13.11);
+\fill[stwrk] (3.733,12.89) rectangle (3.833,13.11);
+\fill[stwrk] (4.240,12.89) rectangle (4.340,13.11);
+\fill[stwrk] (5.067,12.89) rectangle (5.167,13.11);
+\fill[stwrk] (5.800,12.89) rectangle (5.933,13.11);
+\fill[stwrk] (6.418,12.89) rectangle (6.518,13.11);
+\fill[stwrk] (7.355,12.89) rectangle (7.645,13.11);
+\fill[stwrk] (9.387,12.89) rectangle (9.613,13.11);
+\fill[stwrk] (11.208,12.89) rectangle (11.308,13.11);
 \node[font=\scriptsize\bfseries,text=white,fill=stwrk,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,13.00) {W};
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,14.00) {\hyperref[iss:FP-03]{FP-03}};
-\draw[issspan,line width=1.2pt] (4.129,14.00) -- (9.774,14.00);
-\fill[stmit] (4.079,13.89) rectangle (4.179,14.11);
-\fill[stmit] (4.305,13.89) rectangle (4.405,14.11);
-\fill[stmit] (5.900,13.89) rectangle (6.000,14.11);
-\fill[stmit] (8.017,13.89) rectangle (8.117,14.11);
-\fill[stmit] (9.613,13.89) rectangle (9.774,14.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,14.00) {M};
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,15.00) {\hyperref[iss:FP-04]{FP-04}};
-\draw[issspan,line width=1.2pt] (3.167,15.00) -- (12.000,15.00);
-\fill[issspan] (12.00,14.89) -- (12.00,15.11) -- (12.20,15.00) -- cycle;
-\fill[stopn] (3.117,14.89) rectangle (3.217,15.11);
-\fill[stopn] (3.483,14.89) rectangle (3.583,15.11);
-\fill[stopn] (3.950,14.89) rectangle (4.050,15.11);
-\fill[stopn] (4.240,14.89) rectangle (4.340,15.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,15.00) {O\,?};
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,16.00) {\hyperref[iss:FP-05]{FP-05}};
-\draw[issspan,line width=1.2pt] (3.933,16.00) -- (9.645,16.00);
-\fill[stwrk] (3.900,15.89) rectangle (4.000,16.11);
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,14.00) {\hyperref[iss:FP-02]{FP-02}};
+\draw[issspan,line width=1.2pt] (3.033,14.00) -- (3.767,14.00);
+\fill[stwrk] (2.983,13.89) rectangle (3.083,14.11);
+\fill[stwrk] (3.400,13.89) rectangle (3.500,14.11);
+\fill[stwrk] (3.717,13.89) rectangle (3.817,14.11);
+\node[font=\scriptsize\bfseries,text=white,fill=stwrk,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,14.00) {W};
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,15.00) {\hyperref[iss:FP-03]{FP-03}};
+\draw[issspan,line width=1.2pt] (4.129,15.00) -- (9.774,15.00);
+\fill[stmit] (4.079,14.89) rectangle (4.179,15.11);
+\fill[stmit] (4.305,14.89) rectangle (4.405,15.11);
+\fill[stmit] (5.900,14.89) rectangle (6.000,15.11);
+\fill[stmit] (8.017,14.89) rectangle (8.117,15.11);
+\fill[stmit] (9.613,14.89) rectangle (9.774,15.11);
+\node[font=\scriptsize\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,15.00) {M};
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,16.00) {\hyperref[iss:FP-04]{FP-04}};
+\draw[issspan,line width=1.2pt] (3.167,16.00) -- (4.290,16.00);
+\fill[stwrk] (3.117,15.89) rectangle (3.217,16.11);
+\fill[stwrk] (3.483,15.89) rectangle (3.583,16.11);
+\fill[stwrk] (3.950,15.89) rectangle (4.050,16.11);
 \fill[stwrk] (4.240,15.89) rectangle (4.340,16.11);
-\fill[stwrk] (9.579,15.89) rectangle (9.679,16.11);
 \node[font=\scriptsize\bfseries,text=white,fill=stwrk,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,16.00) {W};
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,17.00) {\hyperref[iss:FP-06]{FP-06}};
-\draw[issspan,line width=1.2pt] (0.645,17.00) -- (12.000,17.00);
-\fill[issspan] (12.00,16.89) -- (12.00,17.11) -- (12.20,17.00) -- cycle;
-\fill[stopn] (0.611,16.89) rectangle (0.711,17.11);
-\fill[stopn] (3.883,16.89) rectangle (3.983,17.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,17.00) {O\,?};
-\draw[issgrid,line width=0.6pt] (-2.6,17.50) -- (12.9,17.50);
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,18.00) {\hyperref[iss:FW-01]{FW-01}};
-\draw[issspan,line width=1.2pt] (7.323,18.00) -- (7.710,18.00);
-\fill[stres] (7.273,17.89) rectangle (7.373,18.11);
-\fill[stres] (7.627,17.89) rectangle (7.727,18.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,18.00) {R};
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,19.00) {\hyperref[iss:FW-02]{FW-02}};
-\draw[issspan,line width=1.2pt] (9.387,19.00) -- (12.000,19.00);
-\fill[issspan] (12.00,18.89) -- (12.00,19.11) -- (12.20,19.00) -- cycle;
-\fill[stopn] (9.385,18.89) rectangle (9.485,19.11);
-\fill[stopn] (9.853,18.89) rectangle (9.953,19.11);
-\fill[stopn] (10.050,18.89) rectangle (10.150,19.11);
-\fill[stopn] (11.385,18.89) rectangle (11.485,19.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,19.00) {O};
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,20.00) {\hyperref[iss:FW-03]{FW-03}};
-\draw[issspan,line width=1.2pt] (9.258,20.00) -- (12.000,20.00);
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,17.00) {\hyperref[iss:FP-05]{FP-05}};
+\draw[issspan,line width=1.2pt] (3.933,17.00) -- (9.645,17.00);
+\fill[stwrk] (3.900,16.89) rectangle (4.000,17.11);
+\fill[stwrk] (4.240,16.89) rectangle (4.340,17.11);
+\fill[stwrk] (9.579,16.89) rectangle (9.679,17.11);
+\node[font=\scriptsize\bfseries,text=white,fill=stwrk,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,17.00) {W};
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,18.00) {\hyperref[iss:FP-06]{FP-06}};
+\draw[issspan,line width=1.2pt] (0.645,18.00) -- (12.000,18.00);
+\fill[issspan] (12.00,17.89) -- (12.00,18.11) -- (12.20,18.00) -- cycle;
+\fill[stopn] (0.611,17.89) rectangle (0.711,18.11);
+\fill[stopn] (3.883,17.89) rectangle (3.983,18.11);
+\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,18.00) {O};
+\draw[issgrid,line width=0.6pt] (-2.6,18.50) -- (12.9,18.50);
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,19.00) {\hyperref[iss:FW-01]{FW-01}};
+\draw[issspan,line width=1.2pt] (7.323,19.00) -- (7.710,19.00);
+\fill[stres] (7.273,18.89) rectangle (7.373,19.11);
+\fill[stres] (7.627,18.89) rectangle (7.727,19.11);
+\node[font=\scriptsize\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,19.00) {R};
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,20.00) {\hyperref[iss:FW-02]{FW-02}};
+\draw[issspan,line width=1.2pt] (9.387,20.00) -- (12.000,20.00);
 \fill[issspan] (12.00,19.89) -- (12.00,20.11) -- (12.20,20.00) -- cycle;
-\fill[stopn] (9.258,19.89) rectangle (9.613,20.11);
-\fill[stopn] (11.208,19.89) rectangle (11.308,20.11);
+\fill[stopn] (9.385,19.89) rectangle (9.485,20.11);
+\fill[stopn] (9.853,19.89) rectangle (9.953,20.11);
+\fill[stopn] (10.050,19.89) rectangle (10.150,20.11);
 \fill[stopn] (11.385,19.89) rectangle (11.485,20.11);
-\fill[stopn] (11.821,19.89) rectangle (11.921,20.11);
 \node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,20.00) {O};
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,21.00) {\hyperref[iss:FW-04]{FW-04}};
-\draw[issspan,line width=1.2pt] (3.833,21.00) -- (12.000,21.00);
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,21.00) {\hyperref[iss:FW-03]{FW-03}};
+\draw[issspan,line width=1.2pt] (9.258,21.00) -- (12.000,21.00);
 \fill[issspan] (12.00,20.89) -- (12.00,21.11) -- (12.20,21.00) -- cycle;
-\fill[stres] (3.817,20.89) rectangle (3.917,21.11);
-\fill[stres] (5.267,20.89) rectangle (5.833,21.11);
-\fill[stres] (10.717,20.89) rectangle (10.817,21.11);
-\fill[stres] (11.208,20.89) rectangle (11.308,21.11);
-\fill[stres] (11.385,20.89) rectangle (11.485,21.11);
-\fill[stres] (11.821,20.89) rectangle (11.921,21.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,21.00) {R};
-\draw[issgrid,line width=0.6pt] (-2.6,21.50) -- (12.9,21.50);
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,22.00) {\hyperref[iss:DAQ-01]{DAQ-01}};
-\draw[issspan,line width=1.2pt] (2.742,22.00) -- (12.000,22.00);
+\fill[stopn] (9.258,20.89) rectangle (9.613,21.11);
+\fill[stopn] (11.208,20.89) rectangle (11.308,21.11);
+\fill[stopn] (11.385,20.89) rectangle (11.485,21.11);
+\fill[stopn] (11.821,20.89) rectangle (11.921,21.11);
+\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,21.00) {O};
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,22.00) {\hyperref[iss:FW-04]{FW-04}};
+\draw[issspan,line width=1.2pt] (3.833,22.00) -- (12.000,22.00);
 \fill[issspan] (12.00,21.89) -- (12.00,22.11) -- (12.20,22.00) -- cycle;
-\fill[stopn] (2.724,21.89) rectangle (2.824,22.11);
-\fill[stopn] (3.567,21.89) rectangle (3.667,22.11);
-\fill[stopn] (4.000,21.89) rectangle (4.194,22.11);
-\fill[stopn] (7.498,21.89) rectangle (7.598,22.11);
-\fill[stopn] (7.789,21.89) rectangle (7.889,22.11);
-\fill[stopn] (8.433,21.89) rectangle (8.567,22.11);
-\fill[stopn] (9.224,21.89) rectangle (9.324,22.11);
-\fill[stopn] (9.563,21.89) rectangle (9.663,22.11);
-\fill[stopn] (10.717,21.89) rectangle (10.817,22.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,22.00) {O};
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,23.00) {\hyperref[iss:DAQ-02]{DAQ-02}};
-\draw[issspan,line width=1.2pt] (9.290,23.00) -- (9.387,23.00);
-\fill[stmit] (9.289,22.89) rectangle (9.389,23.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,23.00) {M};
-\draw[issgrid,line width=0.6pt] (-2.6,23.50) -- (12.9,23.50);
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,24.00) {\hyperref[iss:CCS-01]{CCS-01}};
-\draw[issspan,line width=1.2pt] (4.000,24.00) -- (12.000,24.00);
-\fill[issspan] (12.00,23.89) -- (12.00,24.11) -- (12.20,24.00) -- cycle;
-\fill[stopn] (4.000,23.89) rectangle (4.129,24.11);
-\fill[stopn] (6.305,23.89) rectangle (6.405,24.11);
-\fill[stopn] (8.167,23.89) rectangle (8.500,24.11);
-\fill[stopn] (9.918,23.89) rectangle (10.018,24.11);
-\fill[stopn] (9.983,23.89) rectangle (10.083,24.11);
-\fill[stopn] (10.667,23.89) rectangle (10.767,24.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,24.00) {O};
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,25.00) {\hyperref[iss:CCS-02]{CCS-02}};
-\draw[issspan,line width=1.2pt] (3.500,25.00) -- (6.097,25.00);
-\fill[stres] (3.500,24.89) rectangle (3.600,25.11);
-\fill[stres] (5.733,24.89) rectangle (6.097,25.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,25.00) {R};
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,26.00) {\hyperref[iss:CCS-03]{CCS-03}};
-\draw[issspan,line width=1.2pt] (6.387,26.00) -- (12.000,26.00);
-\fill[issspan] (12.00,25.89) -- (12.00,26.11) -- (12.20,26.00) -- cycle;
-\fill[stopn] (6.387,25.89) rectangle (6.871,26.11);
-\fill[stopn] (10.217,25.89) rectangle (10.317,26.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,26.00) {O};
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,27.00) {\hyperref[iss:CCS-04]{CCS-04}};
-\draw[issspan,line width=1.2pt] (1.857,27.00) -- (9.194,27.00);
-\fill[stmit] (1.857,26.89) rectangle (2.097,27.11);
-\fill[stmit] (2.627,26.89) rectangle (2.727,27.11);
-\fill[stmit] (9.144,26.89) rectangle (9.244,27.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,27.00) {M\,?};
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,28.00) {\hyperref[iss:CCS-05]{CCS-05}};
-\draw[issspan,line width=1.2pt] (10.633,28.00) -- (12.000,28.00);
-\fill[issspan] (12.00,27.89) -- (12.00,28.11) -- (12.20,28.00) -- cycle;
-\fill[stopn] (10.583,27.89) rectangle (10.683,28.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,28.00) {O};
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,29.00) {\hyperref[iss:CCS-06]{CCS-06}};
-\draw[issspan,line width=1.2pt] (1.500,29.00) -- (12.000,29.00);
+\fill[stres] (3.817,21.89) rectangle (3.917,22.11);
+\fill[stres] (5.267,21.89) rectangle (5.833,22.11);
+\fill[stres] (10.717,21.89) rectangle (10.817,22.11);
+\fill[stres] (11.208,21.89) rectangle (11.308,22.11);
+\fill[stres] (11.385,21.89) rectangle (11.485,22.11);
+\fill[stres] (11.821,21.89) rectangle (11.921,22.11);
+\node[font=\scriptsize\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,22.00) {R};
+\draw[issgrid,line width=0.6pt] (-2.6,22.50) -- (12.9,22.50);
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,23.00) {\hyperref[iss:DAQ-01]{DAQ-01}};
+\draw[issspan,line width=1.2pt] (2.742,23.00) -- (12.000,23.00);
+\fill[issspan] (12.00,22.89) -- (12.00,23.11) -- (12.20,23.00) -- cycle;
+\fill[stopn] (2.724,22.89) rectangle (2.824,23.11);
+\fill[stopn] (3.567,22.89) rectangle (3.667,23.11);
+\fill[stopn] (4.000,22.89) rectangle (4.194,23.11);
+\fill[stopn] (7.498,22.89) rectangle (7.598,23.11);
+\fill[stopn] (7.789,22.89) rectangle (7.889,23.11);
+\fill[stopn] (8.433,22.89) rectangle (8.567,23.11);
+\fill[stopn] (9.224,22.89) rectangle (9.324,23.11);
+\fill[stopn] (9.563,22.89) rectangle (9.663,23.11);
+\fill[stopn] (10.717,22.89) rectangle (10.817,23.11);
+\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,23.00) {O};
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,24.00) {\hyperref[iss:DAQ-02]{DAQ-02}};
+\draw[issspan,line width=1.2pt] (9.290,24.00) -- (9.387,24.00);
+\fill[stmit] (9.289,23.89) rectangle (9.389,24.11);
+\node[font=\scriptsize\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,24.00) {M};
+\draw[issgrid,line width=0.6pt] (-2.6,24.50) -- (12.9,24.50);
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,25.00) {\hyperref[iss:CCS-01]{CCS-01}};
+\draw[issspan,line width=1.2pt] (4.000,25.00) -- (12.000,25.00);
+\fill[issspan] (12.00,24.89) -- (12.00,25.11) -- (12.20,25.00) -- cycle;
+\fill[stopn] (4.000,24.89) rectangle (4.129,25.11);
+\fill[stopn] (6.305,24.89) rectangle (6.405,25.11);
+\fill[stopn] (8.167,24.89) rectangle (8.500,25.11);
+\fill[stopn] (9.918,24.89) rectangle (10.018,25.11);
+\fill[stopn] (9.983,24.89) rectangle (10.083,25.11);
+\fill[stopn] (10.667,24.89) rectangle (10.767,25.11);
+\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,25.00) {O};
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,26.00) {\hyperref[iss:CCS-02]{CCS-02}};
+\draw[issspan,line width=1.2pt] (3.500,26.00) -- (6.097,26.00);
+\fill[stres] (3.500,25.89) rectangle (3.600,26.11);
+\fill[stres] (5.733,25.89) rectangle (6.097,26.11);
+\node[font=\scriptsize\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,26.00) {R};
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,27.00) {\hyperref[iss:CCS-03]{CCS-03}};
+\draw[issspan,line width=1.2pt] (6.387,27.00) -- (12.000,27.00);
+\fill[issspan] (12.00,26.89) -- (12.00,27.11) -- (12.20,27.00) -- cycle;
+\fill[stopn] (6.387,26.89) rectangle (6.871,27.11);
+\fill[stopn] (10.217,26.89) rectangle (10.317,27.11);
+\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,27.00) {O};
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,28.00) {\hyperref[iss:CCS-04]{CCS-04}};
+\draw[issspan,line width=1.2pt] (1.857,28.00) -- (2.097,28.00);
+\fill[stmit] (1.857,27.89) rectangle (2.097,28.11);
+\node[font=\scriptsize\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,28.00) {M};
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,29.00) {\hyperref[iss:CCS-05]{CCS-05}};
+\draw[issspan,line width=1.2pt] (10.633,29.00) -- (12.000,29.00);
 \fill[issspan] (12.00,28.89) -- (12.00,29.11) -- (12.20,29.00) -- cycle;
-\fill[stopn] (1.500,28.89) rectangle (1.607,29.11);
-\fill[stopn] (3.167,28.89) rectangle (3.267,29.11);
-\fill[stopn] (4.418,28.89) rectangle (4.518,29.11);
-\fill[stopn] (5.150,28.89) rectangle (5.250,29.11);
-\fill[stopn] (7.323,28.89) rectangle (7.581,29.11);
-\fill[stopn] (9.289,28.89) rectangle (9.389,29.11);
-\fill[stopn] (9.983,28.89) rectangle (10.083,29.11);
-\fill[stopn] (10.667,28.89) rectangle (10.767,29.11);
+\fill[stopn] (10.583,28.89) rectangle (10.683,29.11);
 \node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,29.00) {O};
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,30.00) {\hyperref[iss:CCS-07]{CCS-07}};
-\draw[issspan,line width=1.2pt] (10.000,30.00) -- (10.767,30.00);
-\fill[stmit] (9.950,29.89) rectangle (10.050,30.11);
-\fill[stmit] (10.667,29.89) rectangle (10.767,30.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,30.00) {M};
-\draw[issgrid,line width=0.6pt] (-2.6,30.50) -- (12.9,30.50);
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,31.00) {\hyperref[iss:SHT-01]{SHT-01}};
-\draw[issspan,line width=1.2pt] (2.742,31.00) -- (9.645,31.00);
-\fill[stres] (2.708,30.89) rectangle (2.808,31.11);
-\fill[stres] (5.000,30.89) rectangle (5.100,31.11);
-\fill[stres] (9.516,30.89) rectangle (9.645,31.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,31.00) {R};
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,32.00) {\hyperref[iss:SHT-02]{SHT-02}};
-\draw[issspan,line width=1.2pt] (5.100,32.00) -- (10.633,32.00);
-\fill[stmit] (5.100,31.89) rectangle (5.333,32.11);
-\fill[stmit] (10.017,31.89) rectangle (10.117,32.11);
-\fill[stmit] (10.583,31.89) rectangle (10.683,32.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,32.00) {M};
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,30.00) {\hyperref[iss:CCS-06]{CCS-06}};
+\draw[issspan,line width=1.2pt] (1.500,30.00) -- (12.000,30.00);
+\fill[issspan] (12.00,29.89) -- (12.00,30.11) -- (12.20,30.00) -- cycle;
+\fill[stopn] (1.500,29.89) rectangle (1.607,30.11);
+\fill[stopn] (3.167,29.89) rectangle (3.267,30.11);
+\fill[stopn] (4.418,29.89) rectangle (4.518,30.11);
+\fill[stopn] (5.150,29.89) rectangle (5.250,30.11);
+\fill[stopn] (7.323,29.89) rectangle (7.581,30.11);
+\fill[stopn] (9.289,29.89) rectangle (9.389,30.11);
+\fill[stopn] (9.983,29.89) rectangle (10.083,30.11);
+\fill[stopn] (10.667,29.89) rectangle (10.767,30.11);
+\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,30.00) {O};
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,31.00) {\hyperref[iss:CCS-07]{CCS-07}};
+\draw[issspan,line width=1.2pt] (10.000,31.00) -- (10.767,31.00);
+\fill[stmit] (9.950,30.89) rectangle (10.050,31.11);
+\fill[stmit] (10.667,30.89) rectangle (10.767,31.11);
+\node[font=\scriptsize\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,31.00) {M};
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,32.00) {\hyperref[iss:CCS-08]{CCS-08}};
+\draw[issspan,line width=1.2pt] (2.677,32.00) -- (12.000,32.00);
+\fill[issspan] (12.00,31.89) -- (12.00,32.10) -- (12.20,32.00) -- cycle;
+\fill[stopn] (2.627,31.89) rectangle (2.727,32.10);
+\fill[stopn] (9.144,31.89) rectangle (9.244,32.10);
+\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,32.00) {O\,?};
 \draw[issgrid,line width=0.6pt] (-2.6,32.50) -- (12.9,32.50);
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,33.00) {\hyperref[iss:FES-01]{FES-01}};
-\draw[issspan,line width=1.2pt] (4.032,33.00) -- (12.000,33.00);
-\fill[issspan] (12.00,32.89) -- (12.00,33.11) -- (12.20,33.00) -- cycle;
-\fill[stopn] (4.032,32.89) rectangle (4.935,33.11);
-\fill[stopn] (5.650,32.89) rectangle (5.750,33.11);
-\fill[stopn] (6.161,32.89) rectangle (6.387,33.11);
-\fill[stopn] (6.710,32.89) rectangle (6.903,33.11);
-\fill[stopn] (7.127,32.89) rectangle (7.227,33.11);
-\fill[stopn] (9.000,32.89) rectangle (9.613,33.11);
-\fill[stopn] (10.367,32.89) rectangle (10.667,33.11);
-\fill[stopn] (11.226,32.89) rectangle (11.387,33.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,33.00) {O};
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,34.00) {\hyperref[iss:FES-02]{FES-02}};
-\draw[issspan,line width=1.2pt] (3.400,34.00) -- (3.800,34.00);
-\fill[stres] (3.400,33.89) rectangle (3.800,34.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,34.00) {R};
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,35.00) {\hyperref[iss:FES-03]{FES-03}};
-\draw[issspan,line width=1.2pt] (1.429,35.00) -- (12.000,35.00);
-\fill[issspan] (12.00,34.89) -- (12.00,35.11) -- (12.20,35.00) -- cycle;
-\fill[stopn] (1.396,34.89) rectangle (1.496,35.11);
-\fill[stopn] (2.742,34.89) rectangle (2.903,35.11);
-\fill[stopn] (3.633,34.89) rectangle (3.733,35.11);
-\fill[stopn] (8.033,34.89) rectangle (8.133,35.11);
-\fill[stopn] (11.337,34.89) rectangle (11.437,35.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,35.00) {O\,?};
-\draw[issgrid,line width=0.6pt] (-2.6,35.50) -- (12.9,35.50);
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,36.00) {\hyperref[iss:OPT-01]{OPT-01}};
-\draw[issspan,line width=1.2pt] (3.533,36.00) -- (9.677,36.00);
-\fill[stwrk] (3.533,35.89) rectangle (3.933,36.11);
-\fill[stwrk] (4.161,35.89) rectangle (4.355,36.11);
-\fill[stwrk] (5.217,35.89) rectangle (5.317,36.11);
-\fill[stwrk] (5.683,35.89) rectangle (5.783,36.11);
-\fill[stwrk] (8.117,35.89) rectangle (8.217,36.11);
-\fill[stwrk] (8.633,35.89) rectangle (8.733,36.11);
-\fill[stwrk] (9.627,35.89) rectangle (9.727,36.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stwrk,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,36.00) {W};
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,37.00) {\hyperref[iss:OPT-02]{OPT-02}};
-\draw[issspan,line width=1.2pt] (3.600,37.00) -- (3.633,37.00);
-\fill[sttra] (3.567,36.89) rectangle (3.667,37.11);
-\node[font=\scriptsize\bfseries,text=white,fill=sttra,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,37.00) {T};
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,33.00) {\hyperref[iss:SHT-01]{SHT-01}};
+\draw[issspan,line width=1.2pt] (2.742,33.00) -- (9.645,33.00);
+\fill[stres] (2.708,32.90) rectangle (2.808,33.10);
+\fill[stres] (5.000,32.90) rectangle (5.100,33.10);
+\fill[stres] (9.516,32.90) rectangle (9.645,33.10);
+\node[font=\scriptsize\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,33.00) {R};
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,34.00) {\hyperref[iss:SHT-02]{SHT-02}};
+\draw[issspan,line width=1.2pt] (5.100,34.00) -- (10.633,34.00);
+\fill[stmit] (5.100,33.90) rectangle (5.333,34.10);
+\fill[stmit] (10.017,33.90) rectangle (10.117,34.10);
+\fill[stmit] (10.583,33.90) rectangle (10.683,34.10);
+\node[font=\scriptsize\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,34.00) {M};
+\draw[issgrid,line width=0.6pt] (-2.6,34.50) -- (12.9,34.50);
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,35.00) {\hyperref[iss:FES-01]{FES-01}};
+\draw[issspan,line width=1.2pt] (4.032,35.00) -- (12.000,35.00);
+\fill[issspan] (12.00,34.90) -- (12.00,35.10) -- (12.20,35.00) -- cycle;
+\fill[stopn] (4.032,34.90) rectangle (4.935,35.10);
+\fill[stopn] (5.650,34.90) rectangle (5.750,35.10);
+\fill[stopn] (6.161,34.90) rectangle (6.387,35.10);
+\fill[stopn] (6.710,34.90) rectangle (6.903,35.10);
+\fill[stopn] (7.127,34.90) rectangle (7.227,35.10);
+\fill[stopn] (9.000,34.90) rectangle (9.613,35.10);
+\fill[stopn] (10.367,34.90) rectangle (10.667,35.10);
+\fill[stopn] (11.226,34.90) rectangle (11.387,35.10);
+\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,35.00) {O};
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,36.00) {\hyperref[iss:FES-02]{FES-02}};
+\draw[issspan,line width=1.2pt] (3.400,36.00) -- (3.800,36.00);
+\fill[stres] (3.400,35.90) rectangle (3.800,36.10);
+\node[font=\scriptsize\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,36.00) {R};
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,37.00) {\hyperref[iss:FES-03]{FES-03}};
+\draw[issspan,line width=1.2pt] (1.429,37.00) -- (12.000,37.00);
+\fill[issspan] (12.00,36.90) -- (12.00,37.10) -- (12.20,37.00) -- cycle;
+\fill[stopn] (1.396,36.90) rectangle (1.496,37.10);
+\fill[stopn] (2.742,36.90) rectangle (2.903,37.10);
+\fill[stopn] (3.633,36.90) rectangle (3.733,37.10);
+\fill[stopn] (8.033,36.90) rectangle (8.133,37.10);
+\fill[stopn] (11.337,36.90) rectangle (11.437,37.10);
+\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,37.00) {O\,?};
 \draw[issgrid,line width=0.6pt] (-2.6,37.50) -- (12.9,37.50);
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,38.00) {\hyperref[iss:MEC-01]{MEC-01}};
-\draw[issspan,line width=1.2pt] (0.645,38.00) -- (12.000,38.00);
-\fill[issspan] (12.00,37.89) -- (12.00,38.11) -- (12.20,38.00) -- cycle;
-\fill[stopn] (0.645,37.89) rectangle (1.107,38.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,38.00) {O\,?};
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,39.00) {\hyperref[iss:MEC-02]{MEC-02}};
-\draw[issspan,line width=1.2pt] (1.607,39.00) -- (12.000,39.00);
-\fill[issspan] (12.00,38.89) -- (12.00,39.11) -- (12.20,39.00) -- cycle;
-\fill[stopn] (1.557,38.89) rectangle (1.657,39.11);
-\fill[stopn] (7.789,38.89) rectangle (7.889,39.11);
-\fill[stopn] (9.065,38.89) rectangle (9.258,39.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,39.00) {O};
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,40.00) {\hyperref[iss:MEC-03]{MEC-03}};
-\draw[issspan,line width=1.2pt] (8.200,40.00) -- (12.000,40.00);
-\fill[issspan] (12.00,39.89) -- (12.00,40.11) -- (12.20,40.00) -- cycle;
-\fill[stopn] (8.150,39.89) rectangle (8.250,40.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,40.00) {O\,?};
-\draw[issgrid,line width=0.6pt] (-2.6,40.50) -- (12.9,40.50);
-\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,41.00) {\hyperref[iss:IT-01]{IT-01}};
-\draw[issspan,line width=1.2pt] (1.179,41.00) -- (11.484,41.00);
-\fill[stmit] (1.179,40.89) rectangle (1.429,41.11);
-\fill[stmit] (3.183,40.89) rectangle (3.283,41.11);
-\fill[stmit] (4.111,40.89) rectangle (4.211,41.11);
-\fill[stmit] (5.050,40.89) rectangle (5.150,41.11);
-\fill[stmit] (6.402,40.89) rectangle (6.502,41.11);
-\fill[stmit] (7.773,40.89) rectangle (7.873,41.11);
-\fill[stmit] (8.900,40.89) rectangle (9.000,41.11);
-\fill[stmit] (9.192,40.89) rectangle (9.292,41.11);
-\fill[stmit] (10.500,40.89) rectangle (10.600,41.11);
-\fill[stmit] (11.434,40.89) rectangle (11.534,41.11);
-\node[font=\scriptsize\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,41.00) {M};
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,38.00) {\hyperref[iss:OPT-01]{OPT-01}};
+\draw[issspan,line width=1.2pt] (3.533,38.00) -- (9.677,38.00);
+\fill[stwrk] (3.533,37.90) rectangle (3.933,38.10);
+\fill[stwrk] (4.161,37.90) rectangle (4.355,38.10);
+\fill[stwrk] (5.217,37.90) rectangle (5.317,38.10);
+\fill[stwrk] (5.683,37.90) rectangle (5.783,38.10);
+\fill[stwrk] (8.117,37.90) rectangle (8.217,38.10);
+\fill[stwrk] (8.633,37.90) rectangle (8.733,38.10);
+\fill[stwrk] (9.627,37.90) rectangle (9.727,38.10);
+\node[font=\scriptsize\bfseries,text=white,fill=stwrk,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,38.00) {W};
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,39.00) {\hyperref[iss:OPT-02]{OPT-02}};
+\draw[issspan,line width=1.2pt] (3.600,39.00) -- (3.633,39.00);
+\fill[sttra] (3.567,38.90) rectangle (3.667,39.10);
+\node[font=\scriptsize\bfseries,text=white,fill=sttra,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,39.00) {T};
+\draw[issgrid,line width=0.6pt] (-2.6,39.50) -- (12.9,39.50);
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,40.00) {\hyperref[iss:MEC-01]{MEC-01}};
+\draw[issspan,line width=1.2pt] (0.871,40.00) -- (1.107,40.00);
+\fill[stres] (0.871,39.90) rectangle (1.107,40.10);
+\node[font=\scriptsize\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,40.00) {R};
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,41.00) {\hyperref[iss:MEC-02]{MEC-02}};
+\draw[issspan,line width=1.2pt] (1.607,41.00) -- (12.000,41.00);
+\fill[issspan] (12.00,40.90) -- (12.00,41.10) -- (12.20,41.00) -- cycle;
+\fill[stopn] (1.557,40.90) rectangle (1.657,41.10);
+\fill[stopn] (7.789,40.90) rectangle (7.889,41.10);
+\fill[stopn] (9.065,40.90) rectangle (9.258,41.10);
+\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,41.00) {O};
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,42.00) {\hyperref[iss:MEC-03]{MEC-03}};
+\draw[issspan,line width=1.2pt] (8.200,42.00) -- (12.000,42.00);
+\fill[issspan] (12.00,41.90) -- (12.00,42.10) -- (12.20,42.00) -- cycle;
+\fill[stopn] (8.150,41.90) rectangle (8.250,42.10);
+\node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,42.00) {O};
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,43.00) {\hyperref[iss:MEC-04]{MEC-04}};
+\draw[issspan,line width=1.2pt] (0.645,43.00) -- (0.677,43.00);
+\fill[stwrk] (0.611,42.90) rectangle (0.711,43.10);
+\node[font=\scriptsize\bfseries,text=white,fill=stwrk,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,43.00) {W};
+\draw[issgrid,line width=0.6pt] (-2.6,43.50) -- (12.9,43.50);
+\node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,44.00) {\hyperref[iss:IT-01]{IT-01}};
+\draw[issspan,line width=1.2pt] (1.179,44.00) -- (11.484,44.00);
+\fill[stmit] (1.179,43.90) rectangle (1.429,44.10);
+\fill[stmit] (3.183,43.90) rectangle (3.283,44.10);
+\fill[stmit] (4.111,43.90) rectangle (4.211,44.10);
+\fill[stmit] (5.050,43.90) rectangle (5.150,44.10);
+\fill[stmit] (6.402,43.90) rectangle (6.502,44.10);
+\fill[stmit] (7.773,43.90) rectangle (7.873,44.10);
+\fill[stmit] (8.900,43.90) rectangle (9.000,44.10);
+\fill[stmit] (9.192,43.90) rectangle (9.292,44.10);
+\fill[stmit] (10.500,43.90) rectangle (10.600,44.10);
+\fill[stmit] (11.434,43.90) rectangle (11.534,44.10);
+\node[font=\scriptsize\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,44.00) {M};
 \end{tikzpicture}%
 \endgroup
 \caption{Activity timeline of the issues in the register.  A solid bar marks a period in
@@ -523,15 +549,23 @@ not necessarily inactivity.}
 
 \end{description}
 
-\noindent\textit{Glycol and PCS chiller}
+\noindent\textit{Glycol (facility)}
 \begin{description}
 \item[GLY-01]\label{iss:GLY-01} \textbf{Glycol flow interruptions to the PCS on power events.}
   \emph{First to last mention 2025-04-28 to 2025-11-28; status \textcolor{stres}{\textbf{Resolved}}.}
   Every commercial power glitch or generator transfer stops the glycol recirculation pumps for roughly 70--90 seconds, against an observed PCS chiller trip threshold of 90--120 seconds --- so each event is a near miss, and several were not (\rubintkt{FRACAS-277}, \rubintkt{FRACAS-278}, \rubintkt{FRACAS-279}).  The identified fix, putting the recirculating pumps on UPS, was still pending throughout 2025; in September, observing on generator power had to be restricted in pointing because of it.  The issue was closed in early February 2026, after the period covered here.
 
-\item[GLY-02]\label{iss:GLY-02} \textbf{PCS chiller reliability and restart difficulty.}
-  \emph{First to last mention 2025-03-28 to 2025-08-11; status \textcolor{stopn}{\textbf{Open}}\,\textbf{?}.}
-  A cluster of PCS chiller problems in spring: an under-rated 32\,A supply breaker against a 50\,A service requirement (\rubintkt{OBS-826}), a stage-1 refrigerant leak that took the chiller out for a day, and spurious trips traced to an unseated pin in a refrigeration-permit connector aggravated by TMA shaking tests (\rubintkt{SUMMIT-10642}).  All three were fixed.  What was not fixed is the restart behaviour: the unit repeatedly trips on low HFE flow from gas bubbles in the longer line configuration, which procedure \lsstls{LCA-20281} does not cover.  Troubleshooting of the spare unit at the MRCR ran through July without resolution and then disappears from the logs.
+\end{description}
+
+\noindent\textit{PCS chiller}
+\begin{description}
+\item[PCS-01]\label{iss:PCS-01} \textbf{PCS chiller reliability.}
+  \emph{First to last mention 2025-03-28 to 2025-08-11; status \textcolor{stres}{\textbf{Resolved}}.}
+  A cluster of PCS chiller problems in spring, all of them traced and fixed: an under-rated 32\,A supply breaker against a 50\,A service requirement, which tripped the chiller twice in one morning (\rubintkt{OBS-826}); a stage-1 refrigerant leak that took the chiller out of service for a day and left the camera quiescent overnight; and spurious trips with no real chiller anomaly, traced to an unseated pin in a refrigeration-permit connector on the telescope-side cabling and aggravated by TMA shaking tests (\rubintkt{SUMMIT-10642}, \rubintkt{SUMMIT-10652}).  The breaker was replaced, the leak repaired and the connector pins and shell renewed.
+
+\item[PCS-02]\label{iss:PCS-02} \textbf{PCS chiller restart difficulty, and the MRCR unit.}
+  \emph{First to last mention 2025-03-28 to 2025-07-02; status \textcolor{stopn}{\textbf{Open}}.}
+  Restarting the chiller is a separate problem from the failures above and was never solved: the unit repeatedly trips on low HFE flow because gas bubbles form in the longer line configuration, which procedure \lsstls{LCA-20281} does not cover.  In March it took roughly a dozen attempts over two days, and was recovered only by pressurising the coolant tank; a loud bypass-valve noise during those attempts was later explained as the high-pressure bypass cracking at an 80\,psi pump differential.  The same behaviour blocked the restart of the unit at the MRCR in July.  The MRCR system was found to have failed during the year and is tracked as \rubintkt{LSSTCAM-119}.
 
 \end{description}
 
@@ -557,25 +591,25 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-04-07 to 2025-12-10; status \textcolor{stwrk}{\textbf{Workaround}}.}
   On April~7, after a routine power cycle and a reorientation of the camera to zenith, R30/Reb1 raised a Bias2 OD2 overcurrent on S12 ($\mathrm{ODI}=0.213$\,A against an $0.082$\,A limit); S12 reached bias voltage in two steps and tripped off on both attempts, and the behaviour was read at the time as a real short.  A retest on April~25 showed an unexplained digital-current spike of order 1\,A, and the REB was left as the only one switched off camera-wide through May.  It was returned to service on June~25--26 running two of three CCDs, which required an R30/Reb1 firmware update and relaxed bias-control limits; the CCD current on S12/Seg17 was noted as anomalously low at that turn-on and again on June~29.  The REB has carried its own firmware variant through every subsequent firmware campaign.  The workaround --- running two of the three CCDs on Reb1 --- was implemented on June~25--26 and has been in place since; the fault itself is unresolved. Described in detail in Sections~\ref{sec:r30s12} and~\ref{sec:r30s12-solution}.
 
-\item[FP-02]\label{iss:FP-02} \textbf{R20/Reb2/S21 unphysical reset-drain readback.}
+\item[FP-02]\label{iss:FP-02} \textbf{R20/Reb2/S21 unphysical RD voltage read-back.}
   \emph{First to last mention 2025-04-02 to 2025-04-24; status \textcolor{stwrk}{\textbf{Workaround}}.}
-  The April~2 CCD shorts test found R20/Reb2/S21 reading an unphysical $+54$\,V reset-drain voltage; power cycling the REB and resetting the RCE did not change it, and the working theory was an open ADC input on the board.  The sensor blocked power-on of the raft until April~24, when the erroneous reading was configured to be ignored in software and R20 was returned to service.  No hardware repair was attempted. Described in detail in Section~\ref{sec:r20reb2}.
+  The April~2 CCD shorts test found R20/Reb2/S21 reading an unphysical $+54$\,V RD (reset drain) voltage; power cycling the REB and resetting the RCE did not change it, and the working theory was an open ADC input on the board.  The sensor blocked power-on of the raft until April~24, when the erroneous RD reading was configured to be ignored in software and R20 was returned to service.  No hardware repair was attempted. Described in detail in Section~\ref{sec:r20reb2}.
 
 \item[FP-03]\label{iss:FP-03} \textbf{Non-linear HV bias behaviour on R21/Reb0 and R12/Reb0.}
   \emph{First to last mention 2025-05-05 to 2025-10-25; status \textcolor{stmit}{\textbf{Mitigated}}.}
   R21/Reb0 repeatedly glitched and tripped its HV bias near 50\,V, where its DC-DC converter behaves non-linearly, once producing visible tree rings mid-integration.  It was set to run permanently at 46\,V, and R12/Reb0 later showed similar sensitivity requiring extra care during ramp-up.  Managed by lowered setpoints and careful ramping rather than repaired.
 
 \item[FP-04]\label{iss:FP-04} \textbf{R03/Reb1/S11/Seg00 chronic bad amplifier.}
-  \emph{First to last mention 2025-04-06 to 2025-05-10; status \textcolor{stopn}{\textbf{Open}}\,\textbf{?}.}
-  A long-standing bad channel described in the logs as having gone ``back and forth from working to not, over the last few years''.  Its current stayed pinned at 0.5\,mA through repeated power cycles in April and May, and the neighbouring Amp16 also failed to return once.  There is no further mention after May~10 and no recorded decision about it.
+  \emph{First to last mention 2025-04-06 to 2025-05-10; status \textcolor{stwrk}{\textbf{Workaround}}.}
+  A long-standing bad channel described in the logs as having gone ``back and forth from working to not, over the last few years''.  Its current stayed pinned at 0.5\,mA through repeated power cycles in April and May, and the neighbouring Amp16 also failed to return once.  The channel cannot be repaired in place; since the impact of a single amplifier is small, the decision is not to repair it and to continue operating with it as it is.
 
 \item[FP-05]\label{iss:FP-05} \textbf{Corner-raft and wavefront-REB power-on workarounds.}
   \emph{First to last mention 2025-04-29 to 2025-10-21; status \textcolor{stwrk}{\textbf{Workaround}}.}
   Corner rafts do not reach the correct dphi level on power-on and need an undocumented DAC-toggle workaround (\rubintkt{LSSTCAM-107}), and a wavefront REB power-on failure requiring a REB power cycle recurred after the October shutdown (\rubintkt{LSSTCAM-37}).  Both were still being worked around at year end rather than fixed.
 
 \item[FP-06]\label{iss:FP-06} \textbf{REB power-supply trips suspected to be electrostatic discharge.}
-  \emph{First to last mention 2025-01-21 to 2025-04-29; status \textcolor{stopn}{\textbf{Open}}\,\textbf{?}.}
-  Recalled in January: in September 2024 there had been one or two REB power-supply trips that seemed to correlate with people touching or standing near the utility trunk, which is what put the camera-door grounding question on the agenda in the first place.  A concrete case followed on April~29, when R21/Reb0 tripped during carbon-snow cleaning of M2 with no light-leak explanation and was tentatively attributed to an electrostatic discharge; a dedicated investigation channel was opened for it.  Neither the general susceptibility nor the April case is resolved in these two channels, and the outcome of that separate channel is not visible here.
+  \emph{First to last mention 2025-01-21 to 2025-04-29; status \textcolor{stopn}{\textbf{Open}}.}
+  Recalled in January: in September 2024 there had been one or two REB power-supply trips that seemed to correlate with people touching or standing near the utility trunk, which is what put the camera-door grounding question (MEC-04) on the agenda in the first place.  A concrete case followed on April~29, when R21/Reb0 tripped during carbon-snow cleaning of M2 with no light-leak explanation and was tentatively attributed to an electrostatic discharge.  The investigation is tracked in the dedicated channel \#cam-issues-esd.
 
 \end{description}
 
@@ -603,11 +637,11 @@ not necessarily inactivity.}
 \begin{description}
 \item[DAQ-01]\label{iss:DAQ-01} \textbf{Crate, RCE and data-node crashes.}
   \emph{First to last mention 2025-03-24 to 2025-11-24; status \textcolor{stopn}{\textbf{Open}}.}
-  A steady background of DAQ hardware and host faults: bad B-side links traced to DAQ transceivers (March, fixed), memory failures on the data-collection nodes (\rubintkt{OBS-859}), crashed storage and switch-controlling RCEs (\rubintkt{OBS-1208}), a data-transport module needing rebooting twice in a month (\rubintkt{LSSTCAM-130}), and links auto-negotiating down or dropping packets (\rubintkt{LSSTCAM-151}).  Individual instances were cleared by reboots and reseating; the recurrence rate was not, and a serial console to debug the worst offender was still being requested in September (\rubintkt{IHS-9431}).
+  A steady background of DAQ hardware and host faults: bad B-side links traced to DAQ transceivers (March, fixed), memory failures on the data-collection nodes (\rubintkt{OBS-859}), crashed storage and switch-controlling RCEs (\rubintkt{OBS-1208}), a data-transport module needing rebooting twice in a month (\rubintkt{LSSTCAM-130}), and links auto-negotiating down or dropping packets (\rubintkt{LSSTCAM-151}).  Individual instances were cleared by reboots and reseating; the recurrence rate was not.  A serial console was subsequently connected to the worst offender to allow it to be debugged, as documented in \rubintkt{IHS-9431}.
 
 \item[DAQ-02]\label{iss:DAQ-02} \textbf{Dropped guider stamps at high ROI rates.}
   \emph{First to last mention 2025-10-10 to 2025-10-13; status \textcolor{stmit}{\textbf{Mitigated}}.}
-  Stress-testing large guider regions of interest with the new DAQ release repeatedly dropped UDP stamp packets and triggered communication storms on one data node.  Extensive network diagnosis found no definitive cause, but running the guider data relay locally on that node --- removing one network hop --- eliminated the dropped stamps in repeated trials, and that configuration was kept.
+  Stress-testing large guider regions of interest with the new DAQ release repeatedly dropped guider stamps on the path from the DAQ to \texttt{lsstcam-dc10}, the host that receives and writes them, and the same episodes coincided with dropped group-communication messages.  Extensive network diagnosis of the ATCA switches and the backplane found no definitive cause; the GDS socket buffers were enlarged to 16\,MB and a buffer monitor was run on \texttt{lsstcam-dc10}, after which a 20-image run completed with no dropped packets.
 
 \end{description}
 
@@ -625,9 +659,9 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-07-13 to 2025-11-09; status \textcolor{stopn}{\textbf{Open}}.}
   After a filter change the bridge between CCS and the observatory control system intermittently fails to acknowledge the unlock command to the mount and rotator, leaving them motion-locked and the filter command rejected (\rubintkt{OBS-1098}, \rubintkt{OBS-1079}, \rubintkt{OBS-1119}, \rubintkt{OBS-1360}).  A SAL interface version mismatch is suspected.  The standing recovery is to take the camera offline and restart the bridge; it cost whole nights in July and recurred in November.
 
-\item[CCS-04]\label{iss:CCS-04} \textbf{Faults that silently disabled safety-relevant monitoring.}
-  \emph{First to last mention 2025-02-25 to 2025-10-07; status \textcolor{stmit}{\textbf{Mitigated}}\,\textbf{?}.}
-  Two related classes of failure in which protection remained nominally configured but stopped working.  In February a vacuum-subsystem fault left seven MKS gauges --- including the safety-critical cryostat and heat-exchanger (Hx) gauges --- offline for over 15 hours and aborted the low-vacuum check, so the refrigeration-not-permitted alarm was never re-raised despite high pressures; this was fixed under \slactkt{LSSTCCSSUB-212}.  In March a chiller control panel was found frozen while the chiller ran, because a periodic task had died silently after ten exceptions --- ``the silent death of periodic tasks'' --- and the failure alert did not reach the Slack channels.  A similar periodic-task failure recurred in October.  Whether the general problem (silent task death plus alerts that do not reach anyone) was addressed is not visible in the logs.
+\item[CCS-04]\label{iss:CCS-04} \textbf{Vacuum-subsystem fault that silently disabled a safety interlock.}
+  \emph{First to last mention 2025-02-25 to 2025-03-04; status \textcolor{stmit}{\textbf{Mitigated}}.}
+  In February a vacuum-subsystem fault left seven MKS gauges --- including the safety-critical cryostat and heat-exchanger (Hx) gauges --- offline for over 15 hours and aborted the low-vacuum check, so the refrigeration-not-permitted alarm was never re-raised despite high pressures: protection remained nominally configured while not working.  The defect was fixed under \slactkt{LSSTCCSSUB-212} and the corrected build was installed by hand on the summit in early March.
 
 \item[CCS-05]\label{iss:CCS-05} \textbf{Automatic REB protective shutdown did not fire.}
   \emph{First to last mention 2025-11-20 to 2025-11-20; status \textcolor{stopn}{\textbf{Open}}.}
@@ -640,6 +674,10 @@ not necessarily inactivity.}
 \item[CCS-07]\label{iss:CCS-07} \textbf{Kafka broker and rebpower memory exhaustion.}
   \emph{First to last mention 2025-11-01 to 2025-11-24; status \textcolor{stmit}{\textbf{Mitigated}}.}
   The Kafka broker service and the REB-power subsystem exhausted their Java memory, the broker reaching extreme CPU use and the subsystem dropping to tens of megabytes free, which triggered an overnight storm (\rubintkt{LSSTCAM-149}, \rubintkt{LSSTCAM-150}).  Restarting both services at the start of each night became standing practice --- a workaround, not a fix.
+
+\item[CCS-08]\label{iss:CCS-08} \textbf{Silent death of periodic tasks.}
+  \emph{First to last mention 2025-03-22 to 2025-10-07; status \textcolor{stopn}{\textbf{Open}}\,\textbf{?}.}
+  A separate and more general defect than CCS-04: a periodic task stops executing after reaching its maximum allowed number of exceptions and the subsystem carries on as if nothing had happened.  In March a chiller control panel was found frozen, showing the chiller off with the emergency stop asserted while it was in fact running, because the state-update task had died on a null-pointer exception; the resulting failure alert appeared in the log and the alert viewer but did not reach the Slack channels, which is what allowed it to go unnoticed.  A similar periodic-task failure recurred in October.  Whether the general problem was addressed afterwards is not visible in the operations channels.
 
 \end{description}
 
@@ -685,17 +723,21 @@ not necessarily inactivity.}
 
 \noindent\textit{Mechanical and integration}
 \begin{description}
-\item[MEC-01]\label{iss:MEC-01} \textbf{Integration-era mechanical problems closed with interim fixes.}
-  \emph{First to last mention 2025-01-21 to 2025-02-04; status \textcolor{stopn}{\textbf{Open}}\,\textbf{?}.}
-  Two items from the installation campaign were closed operationally rather than understood.  Several socket-head bolts holding the pancake wrap's central rotating assembly sheared and were found loose in the cable wrap; the wrap was removed and rebuilt with new hardware at a reduced torque, but a subsequent bolt test to 75\,ft-lb showed no failure and the original cause was left unexplained.  Separately the camera doors, riding on non-conductive tracks, can charge electrostatically as they slide, and the accepted measure was an operational step to ground them by hand, with a permanent fix requested but not recorded as delivered.  The REB power-supply trips that motivated the grounding concern are registered separately as FP-06.
+\item[MEC-01]\label{iss:MEC-01} \textbf{Sheared pancake-wrap bolts.}
+  \emph{First to last mention 2025-01-28 to 2025-02-04; status \textcolor{stres}{\textbf{Resolved}}.}
+  Several socket-head bolts holding the pancake wrap's central rotating assembly to the adapter plate sheared during the installation campaign and were found loose in the cable wrap.  The wrap was removed and rebuilt with new hardware at a reduced torque, and the interface was reworked (pin holes reamed, internal sliding blocks removed) in early February; a subsequent bolt test to 75\,ft-lb showed no failure.  The joint has given no trouble since and the item is treated as closed.
 
 \item[MEC-02]\label{iss:MEC-02} \textbf{Camera cable wrap interlock and telemetry faults.}
   \emph{First to last mention 2025-02-18 to 2025-10-09; status \textcolor{stopn}{\textbf{Open}}.}
   In February the cable-wrap local interlock at Level~3 was found to be entirely isolated from the rotator interlock, so the rotator would not stop on a cable-wrap fault, and the two were joined.  Since installation the wrap has instead blocked rotation: loss of its telemetry faulted the rotator in August (\rubintkt{OBS-1200}) and it stuck in a fault state during October maintenance rotations, recovered by bypassing the interlock at the mount engineering interface.  Described in the logs as a known issue.
 
 \item[MEC-03]\label{iss:MEC-03} \textbf{Creaking noise during large camera rotations.}
-  \emph{First to last mention 2025-09-07 to 2025-09-07; status \textcolor{stopn}{\textbf{Open}}\,\textbf{?}.}
+  \emph{First to last mention 2025-09-07 to 2025-09-07; status \textcolor{stopn}{\textbf{Open}}.}
   Observers reported an unfamiliar creaking or clicking over the shutter microphone during large rotations, with correlated spikes in camera-hexapod motor currents; the M2 hexapod, the camera hexapod and the rotator recirculating-ball bearings were all raised as candidates and a ticket was opened (\rubintkt{OBS-1158}).  Nothing further appears in these channels.
+
+\item[MEC-04]\label{iss:MEC-04} \textbf{Electrostatic charging of the camera doors.}
+  \emph{First to last mention 2025-01-21 to 2025-01-22; status \textcolor{stwrk}{\textbf{Workaround}}.}
+  The camera doors ride on non-conductive tracks and are not electrically bonded, so they can charge as they slide; the temporary grounding wires used in the clean room had to be removed before the utility-trunk skins went on.  The accepted interim measure was an operational step to ground the doors by hand when opening or closing them.  A proper workaround using a grounding strap is being implemented.  The REB power-supply trips that motivated the concern are registered separately as FP-06.
 
 \end{description}
 
