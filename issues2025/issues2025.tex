@@ -619,7 +619,15 @@ not necessarily inactivity.}
 
 \item[PCS-02]\label{iss:PCS-02} \textbf{PCS chiller restart difficulty, and the MRCR unit.}
   \emph{First to last mention 2025-03-28 to 2025-07-02; status \textcolor{stopn}{\textbf{Open}}.}
-  Restarting the chiller is a separate problem from the failures above and was never solved: the unit repeatedly trips on low HFE flow because gas bubbles form in the longer line configuration, which procedure \lsstls{LCA-20281} does not cover.  In March it took roughly a dozen attempts over two days, and was recovered only by pressurising the coolant tank; a loud bypass-valve noise during those attempts was later explained as the high-pressure bypass cracking at an 80\,psi pump differential.  The same behaviour blocked the restart of the unit at the MRCR in July.  The MRCR system was found to have failed during the year and is tracked as \rubintkt{LSSTCAM-119}. A successful restart ends in the ramp shown on the right of Figure~\ref{fig:iss-PCS-01}.
+  Restarting the chiller is a separate problem from the failures above and was never solved: the unit repeatedly trips on low HFE flow because gas bubbles form in the longer line configuration, which procedure \lsstls{LCA-20281} does not cover.  In March it took roughly a dozen attempts over two days, and was recovered only by pressurising the coolant tank; a loud bypass-valve noise during those attempts was later explained as the high-pressure bypass cracking at an 80\,psi pump differential.  The same behaviour blocked the restart of the unit at the MRCR in July.  The MRCR system was found to have failed during the year and is tracked as \rubintkt{LSSTCAM-119}.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.47\textwidth]{issues2025/figs/PCS-02-a.jpg}\hfill
+\includegraphics[width=0.47\textwidth]{issues2025/figs/PCS-02-b.jpg}
+\caption{\textbf{PCS-02.} Left: the chiller PLC panel during a restart attempt, stopped with every error condition clear --- the state from which the low-flow trips occur (2025-03-28).  Right: glycol input flow and chiller fluid temperature through a sequence of restart attempts (2025-04-11).}
+\label{fig:iss-PCS-02}
+\end{figure}
 
 \end{description}
 
@@ -668,6 +676,13 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-05-05 to 2025-10-25; status \textcolor{stmit}{\textbf{Mitigated}}.}
   R21/Reb0 repeatedly glitched and tripped its HV bias near 50\,V, where its DC-DC converter behaves non-linearly, once producing visible tree rings mid-integration.  It was set to run permanently at 46\,V, and R12/Reb0 later showed similar sensitivity requiring extra care during ramp-up.  Managed by lowered setpoints and careful ramping rather than repaired.
 
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.62\textwidth]{issues2025/figs/FP-03-a.jpg}
+\caption{\textbf{FP-03.} The glitches on R21/Reb0: HV bias voltage, current and DAC setting stepping and spiking as the bias is ramped, the behaviour for which the operating point was lowered (2025-05-05, \#cam-operator).}
+\label{fig:iss-FP-03}
+\end{figure}
+
 \item[FP-04]\label{iss:FP-04} \textbf{R03/Reb1/S11/Seg00 chronic bad amplifier.}
   \emph{First to last mention 2025-04-06 to 2025-05-10; status \textcolor{stwrk}{\textbf{Workaround}}.}
   A long-standing bad channel described in the logs as having gone ``back and forth from working to not, over the last few years''.  Its current stayed pinned at 0.5\,mA through repeated power cycles in April and May, and the neighbouring Amp16 also failed to return once.  The channel cannot be repaired in place; since the impact of a single amplifier is small, the decision is not to repair it and to continue operating with it as it is.
@@ -687,6 +702,14 @@ not necessarily inactivity.}
 \item[FW-01]\label{iss:FW-01} \textbf{REB firmware applying maximum heater power.}
   \emph{First to last mention 2025-08-11 to 2025-08-23; status \textcolor{stres}{\textbf{Resolved}}.}
   The firmware booted during the August~11 recovery made the CCDs run measurably warmer, which was initially misread as lost cryo capacity during the storm.  Power-cycling the focal plane and rolling the firmware back confirmed a real power-draw increase of roughly 30\,W, and the cause was a register-map conflict in 0x313a5013 that applied maximum heater power --- a defect introduced together with the sequencer-override register in 0x31395011 and unnoticed until then.  It was fixed by the firmware upgrade to 0x313a5014. See the version history in Table~\ref{tab:science_reb_fw_en}.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.47\textwidth]{issues2025/figs/FW-01-a.jpg}\hfill
+\includegraphics[width=0.47\textwidth]{issues2025/figs/FW-01-b.jpg}
+\caption{\textbf{FW-01.} Left: CCD temperatures and CCD heater power across the firmware rollback, the step in heater power being the extra draw the faulty build was applying (2025-08-21).  Right: the same measurement annotated during the investigation, with the moment the sensors were turned off marked and the firmware version under test named (2025-08-22).}
+\label{fig:iss-FW-01}
+\end{figure}
 
 \item[FW-02]\label{iss:FW-02} \textbf{REB serial-number read race leaving REBs INVALID.}
   \emph{First to last mention 2025-10-13 to 2025-12-15; status \textcolor{stopn}{\textbf{Open}}.}
@@ -770,6 +793,14 @@ not necessarily inactivity.}
 \item[SHT-01]\label{iss:SHT-01} \textbf{Shutter blade overrun and stuck states.}
   \emph{First to last mention 2025-03-24 to 2025-10-21; status \textcolor{stres}{\textbf{Resolved}}.}
   The shutter jammed part-open during a flat calibration in June, with the blade apparently overrunning its limit, and was recovered only by power-cycling both PLCs and the HCU and recalibrating (\rubintkt{OBS-1013}).  It stuck again during a 15\,s exposure at a non-zero rotator angle in October, throwing an illegal-duration exception in the controller (\rubintkt{LSSTCAM-135}), and needed reinitialisation on the first night back from the shutdown.  An earlier motion-profile study in March had already shown anomalous Hall-sensor transitions and higher jerk than the 2022 reference set.  These stuck and overrun states are accounted for by the shutter timing analysis and were resolved with it. See Section~\ref{sec:shutter-timing}.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.47\textwidth]{issues2025/figs/SHT-01-a.jpg}\hfill
+\includegraphics[width=0.47\textwidth]{issues2025/figs/SHT-01-b.jpg}
+\caption{\textbf{SHT-01.} Left: the shutter motion-profile study of March, fitting model start time, pivot points and jerk for each blade and comparing them with the 2022 reference set (2025-03-24).  Right: shutter status and the quadbox 24\,V supply across one of the stuck-shutter events (2025-04-23).}
+\label{fig:iss-SHT-01}
+\end{figure}
 
 \item[SHT-02]\label{iss:SHT-02} \textbf{Shutter PTP time synchronisation.}
   \emph{First to last mention 2025-06-04 to 2025-11-20; status \textcolor{stmit}{\textbf{Mitigated}}.}
