@@ -591,6 +591,15 @@ such.
   and was replaced before the $g$ filter was reinstalled
   (\rubintkt{SUMMIT-11092}, \lsstls{LCA-13232}).
 
+\item[Aug 4--12] A repetitive clicking picked up by the shutter
+  microphone, described as sounding like a Geiger counter, was analysed
+  for the first time.  It ran from 23:06:13 to 23:07:18\,UTC on Aug~4 at
+  2--6\,kHz while the telescope was slewing; M2-hexapod telemetry showed
+  the hexapod holding position with its actuator currents oscillating,
+  which made it the first suspect.  On Aug~12 the flapping straps of a
+  temporary safety barrier on the mesh platform, blown by the HVAC fans,
+  were proposed instead and taped down.
+
 \item[Aug 11--16] Power glitches during summit UPS and generator
   inspection tripped the PCS chiller twice on a drive fault
   (\rubintkt{FRACAS-292}) and forced an emergency camera shutdown.  The outage was
@@ -674,11 +683,14 @@ such.
   state between CCS and the DAQ; the case prompted discussion of a
   proper fault path for HV bias trips at the control-system level.
 
-\item[Sep 7] Observers reported an unfamiliar creaking sound over the
-  shutter microphone during large camera rotations, with correlated
-  spikes in camera-hexapod motor currents; the M2 hexapod, camera
-  hexapod and rotator bearings were all considered as possible
-  sources (\rubintkt{OBS-1158}).
+\item[Sep 7] The same sound returned over the shutter microphone during
+  20-degree camera rotations every three minutes, which disposed of the
+  safety-barrier explanation of August: this time the M2 hexapod was
+  stationary while the camera hexapod moved with every rotation, though
+  M2-hexapod motor currents still spiked at each one.  The recirculating
+  ball bearings of the hexapod roller-screw actuators, or of the rotator,
+  were proposed as the source and a ticket was opened
+  (\rubintkt{OBS-1158}).
 
 \item[Sep 14--18] A cluster of DAQ and control-system faults occurred:
   a data-transport module on one crate needed rebooting for the second

@@ -463,8 +463,9 @@ entries most likely to need a decision.}
 \fill[stopn] (9.065,40.90) rectangle (9.258,41.10);
 \node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,41.00) {O};
 \node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,42.00) {\hyperref[iss:MEC-03]{MEC-03}};
-\draw[issspan,line width=1.2pt] (8.200,42.00) -- (12.000,42.00);
+\draw[issspan,line width=1.2pt] (7.097,42.00) -- (12.000,42.00);
 \fill[issspan] (12.00,41.90) -- (12.00,42.10) -- (12.20,42.00) -- cycle;
+\fill[stopn] (7.097,41.90) rectangle (7.355,42.10);
 \fill[stopn] (8.150,41.90) rectangle (8.250,42.10);
 \node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,42.00) {O};
 \node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,43.00) {\hyperref[iss:MEC-04]{MEC-04}};
@@ -517,9 +518,10 @@ not necessarily inactivity.}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.47\textwidth]{issues2025/figs/CRYO-01-a.jpg}\hfill
-\includegraphics[width=0.47\textwidth]{issues2025/figs/CRYO-01-b.jpg}
-\caption{\textbf{CRYO-01.} Left: the 8 May loss of capacity as it was reconstructed afterwards --- cryo temperatures, cryostat and heat-exchanger vacuum and the cryo-plate trim heat, with the moments the dome-closure decision was taken and completed marked (2025-05-27).  Right: trim heat applied to the cryo plate falling to 0.78\,W, the floor at which the plate can no longer be held in control (2025-05-25).}
+\includegraphics[width=0.60\textwidth]{issues2025/figs/CRYO-01-a.jpg}
+\\[4pt]
+\includegraphics[width=0.90\textwidth]{issues2025/figs/CRYO-01-b.jpg}
+\caption{\textbf{CRYO-01.} Top: the 8 May loss of capacity as it was reconstructed afterwards --- cryo temperatures, cryostat and heat-exchanger vacuum and the cryo-plate trim heat, with the moments the dome-closure decision was taken and completed marked (2025-05-27).  Bottom: trim heat applied to the cryo plate falling to 0.78\,W, the floor at which the plate can no longer be held in control (2025-05-25).}
 \label{fig:iss-CRYO-01}
 \end{figure}
 
@@ -544,7 +546,7 @@ not necessarily inactivity.}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.62\textwidth]{issues2025/figs/CRYO-04-a.jpg}
+\includegraphics[width=0.90\textwidth]{issues2025/figs/CRYO-04-a.jpg}
 \caption{\textbf{CRYO-04.} The Cryo~4 clog developing through November: the C4 exit temperature (blue) drifts up towards the pre-capillary temperature over five weeks, the signature by which the clog was recognised (2025-12-11, \#cam-operator).}
 \label{fig:iss-CRYO-04}
 \end{figure}
@@ -601,6 +603,13 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-04-28 to 2025-11-28; status \textcolor{stres}{\textbf{Resolved}}.}
   Every commercial power glitch or generator transfer stops the glycol recirculation pumps for roughly 70--90 seconds, against an observed PCS chiller trip threshold of 90--120 seconds --- so each event is a near miss, and several were not (\rubintkt{FRACAS-277}, \rubintkt{FRACAS-278}, \rubintkt{FRACAS-279}).  The identified fix, putting the recirculating pumps on UPS, was still pending throughout 2025; in September, observing on generator power had to be restricted in pointing because of it.  The issue was closed in early February 2026, after the period covered here.
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.90\textwidth]{issues2025/figs/GLY-01-a.jpg}
+\caption{\textbf{GLY-01.} One of the near misses, at second resolution.  Glycol input flow to the PCS (top) drops from 5.2\,gallons per minute to zero at 20:45:30 and is restored about 70 seconds later; the chiller outlet temperature (middle) had already climbed from 12 to 30\,$^{\circ}$C before the interruption and overshoots to 54\,$^{\circ}$C on restart, and the cryo water-out temperatures (bottom) follow it up.  The chiller trips if the flow is lost for 90 to 120 seconds (2025-10-07, \#cam-operator).}
+\label{fig:iss-GLY-01}
+\end{figure}
+
 \end{description}
 
 \noindent\textit{PCS chiller}
@@ -637,6 +646,15 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-02-25 to 2025-11-28; status \textcolor{stopn}{\textbf{Open}}.}
   The camera is exposed to the summit's power quality throughout: glitches stick valves closed (\rubintkt{FRACAS-282}), trip chillers and compressors, and interrupt cooling.  The most severe event was August~30, when the generator tripped --- its air inlet blocked by ice and snow (\rubintkt{FRACAS-299}) --- leaving the camera on UPS alone with cryostat pressure rising towards the ion-pump shutdown limit, while the server-room UPS exhausted its roughly 30-minute battery (\rubintkt{FRACAS-300}) and the backup diesel generator was found already out of service.  UPS batteries were replaced in November; the underlying exposure remains.
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.90\textwidth]{issues2025/figs/PWR-01-a.jpg}
+\\[4pt]
+\includegraphics[width=0.60\textwidth]{issues2025/figs/PWR-01-b.jpg}
+\caption{\textbf{PWR-01.} The generator failure of 30 August as the camera saw it.  Top: cryostat and heat-exchanger pressure leaving $10^{-7}$\,Torr and rising past $1.1\times10^{-6}$ from 18:25 onwards, with the cryo plate warming from $-124$ to $-113\,^{\circ}$C; this is the rise towards the ion-pump shutdown limit that made the event serious.  Bottom: the same twenty minutes at the chiller --- glycol input flow collapsing and the chiller outlet temperature stepping up when it goes (2025-08-30).}
+\label{fig:iss-PWR-01}
+\end{figure}
+
 \end{description}
 
 \noindent\textit{Compressed dry air}
@@ -672,6 +690,15 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-04-02 to 2025-04-24; status \textcolor{stwrk}{\textbf{Workaround}}.}
   The April~2 CCD shorts test found R20/Reb2/S21 reading an unphysical $+54$\,V RD (reset drain) voltage; power cycling the REB and resetting the RCE did not change it, and the working theory was an open ADC input on the board.  The sensor blocked power-on of the raft until April~24, when the erroneous RD reading was configured to be ignored in software and R20 was returned to service.  No hardware repair was attempted. Described in detail in Section~\ref{sec:r20reb2}.
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.60\textwidth]{issues2025/figs/FP-02-a.jpg}
+\\[4pt]
+\includegraphics[width=0.90\textwidth]{issues2025/figs/FP-02-b.jpg}
+\caption{\textbf{FP-02.} Top: the CCD shorts test on R20/Reb2 of 15 April, which the raft fails on the RD read-back alone --- the lowest panel holds one trace pinned near $+54$\,V while every other rail sits where it should (2025-04-15).  Bottom: the same channel watched through a power-on the following week, stepping between 54.2 and 54.5\,V; a reading that moves, but not to anything physical (2025-04-24).}
+\label{fig:iss-FP-02}
+\end{figure}
+
 \item[FP-03]\label{iss:FP-03} \textbf{Non-linear HV bias behaviour on R21/Reb0 and R12/Reb0.}
   \emph{First to last mention 2025-05-05 to 2025-10-25; status \textcolor{stmit}{\textbf{Mitigated}}.}
   R21/Reb0 repeatedly glitched and tripped its HV bias near 50\,V, where its DC-DC converter behaves non-linearly, once producing visible tree rings mid-integration.  It was set to run permanently at 46\,V, and R12/Reb0 later showed similar sensitivity requiring extra care during ramp-up.  Managed by lowered setpoints and careful ramping rather than repaired.
@@ -686,6 +713,13 @@ not necessarily inactivity.}
 \item[FP-04]\label{iss:FP-04} \textbf{R03/Reb1/S11/Seg00 chronic bad amplifier.}
   \emph{First to last mention 2025-04-06 to 2025-05-10; status \textcolor{stwrk}{\textbf{Workaround}}.}
   A long-standing bad channel described in the logs as having gone ``back and forth from working to not, over the last few years''.  Its current stayed pinned at 0.5\,mA through repeated power cycles in April and May, and the neighbouring Amp16 also failed to return once.  The channel cannot be repaired in place; since the impact of a single amplifier is small, the decision is not to repair it and to continue operating with it as it is.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.62\textwidth]{issues2025/figs/FP-04-a.jpg}
+\caption{\textbf{FP-04.} R03/Reb1 being powered on, 15 April.  In the bottom panel every segment current rises to about 1.2\,mA except one, which stays flat: S11/Seg00, the channel that has gone back and forth for years and did not come back this time either (2025-04-15, \#cam-operator).}
+\label{fig:iss-FP-04}
+\end{figure}
 
 \item[FP-05]\label{iss:FP-05} \textbf{Corner-raft and wavefront-REB power-on workarounds.}
   \emph{First to last mention 2025-04-29 to 2025-10-21; status \textcolor{stwrk}{\textbf{Workaround}}.}
@@ -1274,8 +1308,17 @@ java.lang.NullPointerException: Cannot invoke "java.lang.Boolean.booleanValue()"
 \end{figure}
 
 \item[MEC-03]\label{iss:MEC-03} \textbf{Creaking noise during large camera rotations.}
-  \emph{First to last mention 2025-09-07 to 2025-09-07; status \textcolor{stopn}{\textbf{Open}}.}
-  Observers reported an unfamiliar creaking or clicking over the shutter microphone during large rotations, with correlated spikes in camera-hexapod motor currents; the M2 hexapod, the camera hexapod and the rotator recirculating-ball bearings were all raised as candidates and a ticket was opened (\rubintkt{OBS-1158}).  Nothing further appears in these channels.
+  \emph{First to last mention 2025-08-04 to 2025-09-07; status \textcolor{stopn}{\textbf{Open}}.}
+  A repetitive clicking or creaking picked up by the camera shutter microphone, described as sounding like a Geiger counter.  It was first analysed on August~4--5, when it appeared between 23:06:13 and 23:07:18\,UTC at 2--6\,kHz while the telescope was slewing: the M2 hexapod was found not to be moving but to be holding position with its actuator currents oscillating in a zigzag, which made it the first suspect.  On August~12 an alternative explanation --- the flapping straps of a temporary safety barrier on the mesh platform, blown by the HVAC fans and heard as the telescope slewed past --- was proposed and the straps were taped down.  The same sound returned on September~7 during 20-degree rotations every three minutes, which disproved the strap theory: this time the M2 hexapod was stationary while the camera hexapod moved with every rotation, though M2-hexapod motor currents still spiked at each one.  The recirculating ball bearings of the hexapod roller-screw actuators, or of the rotator, were then proposed as the source, and whether the sound has grown louder with age was raised and not answered.  A ticket was opened (\rubintkt{OBS-1158}) and nothing further appears in these channels.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.90\textwidth]{issues2025/figs/MEC-03-a.jpg}
+\\[4pt]
+\includegraphics[width=0.90\textwidth]{issues2025/figs/MEC-03-b.jpg}
+\caption{\textbf{MEC-03.} The August analysis.  Top: spectrogram of the shutter microphone recording of 2025-08-04, with the click visible as a vertical line across the band at about 18\,s into the excerpt.  Bottom: M2-hexapod telemetry for the same minute --- the hexapod is holding position, not moving, while its six actuator currents oscillate in the zigzag pattern that first made it the suspect (2025-08-05, \#cam-operator).  The September recurrence, which ruled out the safety-barrier explanation, is not illustrated here: the camera hexapod was the one moving then.}
+\label{fig:iss-MEC-03}
+\end{figure}
 
 \item[MEC-04]\label{iss:MEC-04} \textbf{Electrostatic charging of the camera doors.}
   \emph{First to last mention 2025-01-21 to 2025-01-22; status \textcolor{stwrk}{\textbf{Workaround}}.}
