@@ -155,8 +155,9 @@ entries most likely to need a decision.}
 \fill[stres] (4.935,1.90) rectangle (5.200,2.10);
 \node[font=\scriptsize\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,2.00) {R};
 \node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,3.00) {\hyperref[iss:CRYO-04]{CRYO-04}};
-\draw[issspan,line width=1.2pt] (9.452,3.00) -- (12.000,3.00);
+\draw[issspan,line width=1.2pt] (4.355,3.00) -- (12.000,3.00);
 \fill[issspan] (12.00,2.90) -- (12.00,3.10) -- (12.20,3.00) -- cycle;
+\fill[stopn] (4.355,2.90) rectangle (5.100,3.10);
 \fill[stopn] (9.452,2.90) rectangle (11.323,3.10);
 \node[font=\scriptsize\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,3.00) {O};
 \node[font=\scriptsize\ttfamily,anchor=east] at (-0.12,4.00) {\hyperref[iss:CRYO-05]{CRYO-05}};
@@ -533,16 +534,9 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-04-01 to 2025-06-07; status \textcolor{stres}{\textbf{Resolved}}.}
   Cryo~6 tripped on a compressor failure on April~1 and stayed out of service.  The compressor module was replaced with the Cryo~5 unit from the MRCR between June~2 and June~7 (\lsstls{LCA-14623}), and after charging, gas chromatography and additive top-up the circuit returned to service, restoring six of six cryo circuits.
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.62\textwidth]{issues2025/figs/CRYO-03-a.jpg}
-\caption{\textbf{CRYO-03.} Oil level in the sight glass of the Cryo~6 compressor, marked against a scale during the work on the circuit (2025-04-25, \#cam-operator).}
-\label{fig:iss-CRYO-03}
-\end{figure}
-
-\item[CRYO-04]\label{iss:CRYO-04} \textbf{Capillary clogs (Cryo 3 lost, Cryo 4 self-cleared).}
-  \emph{First to last mention 2025-10-15 to 2025-12-11; status \textcolor{stopn}{\textbf{Open}}.}
-  During the October recharge Cryo~3 developed a clog --- the capillary is the suspected location --- that survived repeated power cycles, refrigerant additions and running the telescope horizontal; the circuit was given up on October~20 and the camera has run on five of six circuits since.  A second clog, on the Cryo~4 capillary, developed in early December, drove cryo trim heat down to about 1\,W, and cleared spontaneously on the evening of December~10 without intervention.  The open question is whether contamination was introduced into Cryo~3 during the October maintenance itself; it was on that suspicion that revisions to the evacuation and charging procedure and to filter-dryer replacement (\lsstls{LCA-14625}, \lsstls{LCA-17726}) were proposed.  Cryo~3 was still out of service at year end.
+\item[CRYO-04]\label{iss:CRYO-04} \textbf{Capillary clogs (Cryo 1 cycled clear, Cryo 3 lost, Cryo 4 self-cleared).}
+  \emph{First to last mention 2025-05-12 to 2025-12-11; status \textcolor{stopn}{\textbf{Open}}.}
+  The first of the three is Cryo~1, and it is the one that was never named as a clog at the time.  The circuit is believed to have been clogged by the recovery activity of around May~10, after which its heat-exchanger return temperature ran persistently low --- the condition registered separately as CRYO-02, since what was managed nightly was the dew-point risk rather than the clog behind it.  From May~12 the circuit was power-cycled repeatedly, at times daily, in the hope of cycling the obstruction clear; that continued for some months and the circuit did eventually recover, but no single intervention can be identified as the one that cleared it.  During the October recharge Cryo~3 developed a clog --- the capillary is the suspected location --- that survived repeated power cycles, refrigerant additions and running the telescope horizontal; the circuit was given up on October~20 and the camera has run on five of six circuits since.  A second clog, on the Cryo~4 capillary, developed in early December, drove cryo trim heat down to about 1\,W, and cleared spontaneously on the evening of December~10 without intervention.  The open question is whether contamination was introduced into Cryo~3 during the October maintenance itself; it was on that suspicion that revisions to the evacuation and charging procedure and to filter-dryer replacement (\lsstls{LCA-14625}, \lsstls{LCA-17726}) were proposed.  Cryo~3 was still out of service at year end.
 
 \begin{figure}[H]
 \centering
@@ -557,8 +551,8 @@ not necessarily inactivity.}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.47\textwidth]{issues2025/figs/CRYO-05-a.jpg}\hfill
-\includegraphics[width=0.47\textwidth]{issues2025/figs/CRYO-05-b.jpg}
+\includegraphics[height=6.20cm]{issues2025/figs/CRYO-05-a.jpg}\hfill
+\includegraphics[height=6.20cm]{issues2025/figs/CRYO-05-b.jpg}
 \caption{\textbf{CRYO-05.} Left: the CCS Cryo~6 panel during the failure, reporting \texttt{State: PLC\_DEAD} with every PLC error condition ACTIVE.  Right: the discharge temperature and compressor current across the event, the temperature rising while the compressor is off (2025-11-19).}
 \label{fig:iss-CRYO-05}
 \end{figure}
@@ -573,9 +567,8 @@ not necessarily inactivity.}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.47\textwidth]{issues2025/figs/DYN-01-a.jpg}\hfill
-\includegraphics[width=0.47\textwidth]{issues2025/figs/DYN-01-b.jpg}
-\caption{\textbf{DYN-01.} Left: utility-trunk Dynalene flow collapsing to zero, the signature common to every one of these events (2025-06-03).  Right: the same loss in March seen across the subsystem --- flow, utility-trunk temperatures and the power that had to be shed (2025-03-21).}
+\includegraphics[width=0.62\textwidth]{issues2025/figs/DYN-01-a.jpg}
+\caption{\textbf{DYN-01.} Utility-trunk Dynalene flow collapsing to zero.  This is the signature the events have in common: whatever the cause upstream --- a cRIO reboot, a chiller fault, a power event --- what the camera sees is the flow going away, and from that moment it has about thirteen minutes before the REB power-supply boards approach their $48\,^{\circ}$C trip limit (2025-06-03, \#cam-operator).}
 \label{fig:iss-DYN-01}
 \end{figure}
 
@@ -589,9 +582,9 @@ not necessarily inactivity.}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.47\textwidth]{issues2025/figs/DYN-04-a.jpg}\hfill
-\includegraphics[width=0.47\textwidth]{issues2025/figs/DYN-04-b.jpg}
-\caption{\textbf{DYN-04.} Refrigeration and Dynalene lines at the Top End Assembly, photographed during the June investigation of humidity and insulation in the camera region; the uninsulated runs of this kind are where the condensation found in December formed (2025-06-14).}
+\includegraphics[height=6.50cm]{issues2025/figs/DYN-04-a.jpg}\hfill
+\includegraphics[height=6.50cm]{issues2025/figs/DYN-04-b.jpg}
+\caption{\textbf{DYN-04.} Left: the liquid found below the camera cable wrap on 16~December, a little left of centre looking into the mirror --- the drops that were traced back to the Top End Assembly.  Right: the source, measured a week later: an uninsulated Dynalene line at the cable wrap reading $1.6\,^{\circ}$C on its surface, well below the dew point of the air around it (2025-12-16 and 2025-12-24, \#cam-summit-ops).}
 \label{fig:iss-DYN-04}
 \end{figure}
 
@@ -620,9 +613,8 @@ not necessarily inactivity.}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.47\textwidth]{issues2025/figs/PCS-01-a.jpg}\hfill
-\includegraphics[width=0.47\textwidth]{issues2025/figs/PCS-01-b.jpg}
-\caption{\textbf{PCS-01.} Left: the pin face of the refrigeration-permit connector on the telescope-side cabling, whose unseated pin produced the spurious chiller trips (2025-04-11).  Right: recovery from the chiller failure two days earlier --- chiller-2 fluid temperature and the cold-plate supply and return temperatures being ramped from about $+10$ to $-35\,^{\circ}$C (2025-04-09).}
+\includegraphics[width=0.62\textwidth]{issues2025/figs/PCS-01-a.jpg}
+\caption{\textbf{PCS-01.} The pin face of the refrigeration-permit connector on the telescope-side cabling.  An unseated pin here is what produced the spurious chiller trips --- no chiller anomaly, a permit signal that came and went as the TMA moved.  The pins and the shell were renewed (2025-04-11, \#cam-operator).}
 \label{fig:iss-PCS-01}
 \end{figure}
 
@@ -632,9 +624,8 @@ not necessarily inactivity.}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.47\textwidth]{issues2025/figs/PCS-02-a.jpg}\hfill
-\includegraphics[width=0.47\textwidth]{issues2025/figs/PCS-02-b.jpg}
-\caption{\textbf{PCS-02.} Left: the chiller PLC panel during a restart attempt, stopped with every error condition clear --- the state from which the low-flow trips occur (2025-03-28).  Right: glycol input flow and chiller fluid temperature through a sequence of restart attempts (2025-04-11).}
+\includegraphics[width=0.62\textwidth]{issues2025/figs/PCS-02-a.jpg}
+\caption{\textbf{PCS-02.} The chiller PLC panel during a restart attempt: stopped, with every error condition clear.  Nothing is reported as wrong, and the unit will still trip on low HFE flow when it is asked to start again --- which is why the restarts took about a dozen attempts over two days (2025-03-28, \#cam-operator).}
 \label{fig:iss-PCS-02}
 \end{figure}
 
@@ -644,14 +635,14 @@ not necessarily inactivity.}
 \begin{description}
 \item[PWR-01]\label{iss:PWR-01} \textbf{Site power: grid glitches, generator failure and UPS capacity.}
   \emph{First to last mention 2025-02-25 to 2025-11-28; status \textcolor{stopn}{\textbf{Open}}.}
-  The camera is exposed to the summit's power quality throughout: glitches stick valves closed (\rubintkt{FRACAS-282}), trip chillers and compressors, and interrupt cooling.  The most severe event was August~30, when the generator tripped --- its air inlet blocked by ice and snow (\rubintkt{FRACAS-299}) --- leaving the camera on UPS alone with cryostat pressure rising towards the ion-pump shutdown limit, while the server-room UPS exhausted its roughly 30-minute battery (\rubintkt{FRACAS-300}) and the backup diesel generator was found already out of service.  UPS batteries were replaced in November; the underlying exposure remains.
+  The camera is exposed to the summit's power quality throughout: glitches stick valves closed (\rubintkt{FRACAS-282}), trip chillers and compressors, and interrupt cooling.  The most severe event was August~30, when the generator tripped --- its air inlet blocked by ice and snow (\rubintkt{FRACAS-299}) --- and left the camera on UPS alone.  The damage was not done by the loss of power to the camera itself but through the cooling chain: the glycol feeding the cryo circuits stopped with the recirculation pumps (GLY-01), the cryo systems were lost, and with them the cryostat pressure began to rise towards the ion-pump shutdown limit, at one point estimated to be about fifteen minutes away.  The REBs and REB power supplies were shut down by hand while this was happening; generator power returned first and the pressure recovered.  Separately the server-room UPS exhausted its roughly 30-minute battery (\rubintkt{FRACAS-300}) and the backup diesel generator was found already out of service.  UPS batteries were replaced in November; the underlying exposure remains.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.90\textwidth]{issues2025/figs/PWR-01-a.jpg}
-\\[4pt]
 \includegraphics[width=0.60\textwidth]{issues2025/figs/PWR-01-b.jpg}
-\caption{\textbf{PWR-01.} The generator failure of 30 August as the camera saw it.  Top: cryostat and heat-exchanger pressure leaving $10^{-7}$\,Torr and rising past $1.1\times10^{-6}$ from 18:25 onwards, with the cryo plate warming from $-124$ to $-113\,^{\circ}$C; this is the rise towards the ion-pump shutdown limit that made the event serious.  Bottom: the same twenty minutes at the chiller --- glycol input flow collapsing and the chiller outlet temperature stepping up when it goes (2025-08-30).}
+\\[4pt]
+\includegraphics[width=0.90\textwidth]{issues2025/figs/PWR-01-a.jpg}
+\caption{\textbf{PWR-01.} The chain of 30 August, in the order it happened.  Top: glycol input flow to the chiller collapsing when the generator trips, and the chiller outlet temperature stepping up as it goes --- ``No glycol flow to chiller.  Tripped.''  The cryo circuits go with it.  Bottom: the consequence some twenty minutes later --- cryostat and heat-exchanger pressure leaving $10^{-7}$\,Torr and rising past $1.1\times10^{-6}$, with the cryo plate warming from $-124$ towards $-113\,^{\circ}$C at about $0.6\,^{\circ}$C per minute.  The ion-pump shutdown limit was estimated to be fifteen minutes away when generator power came back (2025-08-30).}
 \label{fig:iss-PWR-01}
 \end{figure}
 
@@ -665,8 +656,8 @@ not necessarily inactivity.}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.47\textwidth]{issues2025/figs/AIR-01-a.jpg}\hfill
-\includegraphics[width=0.47\textwidth]{issues2025/figs/AIR-01-b.jpg}
+\includegraphics[height=6.50cm]{issues2025/figs/AIR-01-a.jpg}\hfill
+\includegraphics[height=6.50cm]{issues2025/figs/AIR-01-b.jpg}
 \caption{\textbf{AIR-01.} The compressed-air dryers at Level~1, whose freezing in August stopped the air: the towers with their exhaust and drain lines, and the insulating jacket being fitted (2025-08-23 and 2025-08-26).}
 \label{fig:iss-AIR-01}
 \end{figure}
@@ -679,25 +670,9 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-04-07 to 2025-12-10; status \textcolor{stwrk}{\textbf{Workaround}}.}
   On April~7, after a routine power cycle and a reorientation of the camera to zenith, R30/Reb1 raised a Bias2 OD2 overcurrent on S12 ($\mathrm{ODI}=0.213$\,A against an $0.082$\,A limit); S12 reached bias voltage in two steps and tripped off on both attempts, and the behaviour was read at the time as a real short.  A retest on April~25 showed an unexplained digital-current spike of order 1\,A, and the REB was left as the only one switched off camera-wide through May.  It was returned to service on June~25--26 running two of three CCDs, which required an R30/Reb1 firmware update and relaxed bias-control limits; the CCD current on S12/Seg17 was noted as anomalously low at that turn-on and again on June~29.  The REB has carried its own firmware variant through every subsequent firmware campaign.  The workaround --- running two of the three CCDs on Reb1 --- was implemented on June~25--26 and has been in place since; the fault itself is unresolved. Described in detail in Sections~\ref{sec:r30s12} and~\ref{sec:r30s12-solution}.
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.62\textwidth]{issues2025/figs/FP-01-a.jpg}
-\caption{\textbf{FP-01.} Bias voltages and currents on R30/Reb1 during the 7 April turn-on attempt, for S10, S11 and S12 from top to bottom; S10 and S11 follow the ramp while S12 trips off (2025-04-07, \#cam-operator).}
-\label{fig:iss-FP-01}
-\end{figure}
-
 \item[FP-02]\label{iss:FP-02} \textbf{R20/Reb2/S21 unphysical RD voltage read-back.}
   \emph{First to last mention 2025-04-02 to 2025-04-24; status \textcolor{stwrk}{\textbf{Workaround}}.}
   The April~2 CCD shorts test found R20/Reb2/S21 reading an unphysical $+54$\,V RD (reset drain) voltage; power cycling the REB and resetting the RCE did not change it, and the working theory was an open ADC input on the board.  The sensor blocked power-on of the raft until April~24, when the erroneous RD reading was configured to be ignored in software and R20 was returned to service.  No hardware repair was attempted. Described in detail in Section~\ref{sec:r20reb2}.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.60\textwidth]{issues2025/figs/FP-02-a.jpg}
-\\[4pt]
-\includegraphics[width=0.90\textwidth]{issues2025/figs/FP-02-b.jpg}
-\caption{\textbf{FP-02.} Top: the CCD shorts test on R20/Reb2 of 15 April, which the raft fails on the RD read-back alone --- the lowest panel holds one trace pinned near $+54$\,V while every other rail sits where it should (2025-04-15).  Bottom: the same channel watched through a power-on the following week, stepping between 54.2 and 54.5\,V; a reading that moves, but not to anything physical (2025-04-24).}
-\label{fig:iss-FP-02}
-\end{figure}
 
 \item[FP-03]\label{iss:FP-03} \textbf{Non-linear HV bias behaviour on R21/Reb0 and R12/Reb0.}
   \emph{First to last mention 2025-05-05 to 2025-10-25; status \textcolor{stmit}{\textbf{Mitigated}}.}
@@ -725,39 +700,6 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-04-29 to 2025-10-21; status \textcolor{stwrk}{\textbf{Workaround}}.}
   Corner rafts do not reach the correct dphi level on power-on and need an undocumented DAC-toggle workaround (\rubintkt{LSSTCAM-107}), and a wavefront REB power-on failure requiring a REB power cycle recurred after the October shutdown (\rubintkt{LSSTCAM-37}).  Both were still being worked around at year end rather than fixed.
 
-\begin{figure}[H]
-\centering
-\begin{minipage}{\textwidth}
-\hrule\vspace{4pt}
-\begingroup\scriptsize
-\begin{verbatim}
--- 2025-04-15 20:49 UTC, #cam-operator: a routine limits update silently reverting the
--- corner-raft settings
-
-The change dropped off the dphi changes....
-
- ccs>rebpower printConfigurationParameters -d
-Category : General
-R00/RebG dphi* 2080 volts
-R00/RebW dphi* 2070 volts
-R04/RebG dphi* 2100 volts
-R04/RebW dphi* 2070 volts
-R40/RebG dphi* 2140 volts
-R40/RebW dphi* 2050 volts
-R44/RebG dphi* 2060 volts
-R44/RebW dphi* 2080 volts
-
-"... when we updated the changes by `rebpower updateCategories Limits`"
-"Restarting the subsystem didn't clear what it applied but it cleared the DAC number.
- We had to set it back.  We should put the DAC numbers in the configuration file."
-\end{verbatim}
-\endgroup
-\vspace{-10pt}\hrule
-\end{minipage}
-\caption{\textbf{FP-05.} Why the corner rafts need hand-holding at power-on: the values they must be brought up with are per-REB and live outside the configuration, so an unrelated update drops them and the operator has to put them back.  The undocumented DAC-toggle workaround (\rubintkt{LSSTCAM-107}) is the same defect seen from the other side; neither was fixed in 2025.}
-\label{fig:iss-FP-05}
-\end{figure}
-
 \item[FP-06]\label{iss:FP-06} \textbf{REB power-supply trips suspected to be electrostatic discharge.}
   \emph{First to last mention 2025-01-21 to 2025-04-29; status \textcolor{stopn}{\textbf{Open}}.}
   Recalled in January: in September 2024 there had been one or two REB power-supply trips that seemed to correlate with people touching or standing near the utility trunk, which is what put the camera-door grounding question (MEC-04) on the agenda in the first place.  A concrete case followed on April~29, when R21/Reb0 tripped during carbon-snow cleaning of M2 with no light-leak explanation and was tentatively attributed to an electrostatic discharge.  The investigation is tracked in the dedicated channel \#cam-issues-esd. The door interface a permanent strap has to use is shown in Figure~\ref{fig:iss-MEC-04}.
@@ -772,8 +714,8 @@ R44/RebW dphi* 2080 volts
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.47\textwidth]{issues2025/figs/FW-01-a.jpg}\hfill
-\includegraphics[width=0.47\textwidth]{issues2025/figs/FW-01-b.jpg}
+\includegraphics[height=5.63cm]{issues2025/figs/FW-01-a.jpg}\hfill
+\includegraphics[height=5.63cm]{issues2025/figs/FW-01-b.jpg}
 \caption{\textbf{FW-01.} Left: CCD temperatures and CCD heater power across the firmware rollback, the step in heater power being the extra draw the faulty build was applying (2025-08-21).  Right: the same measurement annotated during the investigation, with the moment the sensors were turned off marked and the firmware version under test named (2025-08-22).}
 \label{fig:iss-FW-01}
 \end{figure}
@@ -854,8 +796,8 @@ R43/Reb1
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.47\textwidth]{issues2025/figs/FW-04-a.jpg}\hfill
-\includegraphics[width=0.47\textwidth]{issues2025/figs/FW-04-b.jpg}
+\includegraphics[height=6.31cm]{issues2025/figs/FW-04-a.jpg}\hfill
+\includegraphics[height=6.31cm]{issues2025/figs/FW-04-b.jpg}
 \caption{\textbf{FW-04.} Left: read noise per e2v amplifier with the new sequencer against the old one --- most amplifiers unchanged, the worst improved (2025-04-28).  Right: segment signal with the 3\,s corner-raft sequencer against the ITL one, compared with the expected ratio (2025-06-25).}
 \label{fig:iss-FW-04}
 \end{figure}
@@ -1182,8 +1124,8 @@ java.lang.NullPointerException: Cannot invoke "java.lang.Boolean.booleanValue()"
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.47\textwidth]{issues2025/figs/SHT-01-a.jpg}\hfill
-\includegraphics[width=0.47\textwidth]{issues2025/figs/SHT-01-b.jpg}
+\includegraphics[height=4.07cm]{issues2025/figs/SHT-01-a.jpg}\hfill
+\includegraphics[height=4.07cm]{issues2025/figs/SHT-01-b.jpg}
 \caption{\textbf{SHT-01.} Left: the shutter motion-profile study of March, fitting model start time, pivot points and jerk for each blade and comparing them with the 2022 reference set (2025-03-24).  Right: shutter status and the quadbox 24\,V supply across one of the stuck-shutter events (2025-04-23).}
 \label{fig:iss-SHT-01}
 \end{figure}
@@ -1228,16 +1170,9 @@ java.lang.NullPointerException: Cannot invoke "java.lang.Boolean.booleanValue()"
   \emph{First to last mention 2025-05-02 to 2025-12-13; status \textcolor{stopn}{\textbf{Open}}.}
   The dominant filter-exchange failure mode: a carousel clamp fails to open or lock within the allowed time, faulting the changer and costing observing time.  It was attacked from three sides --- automated unclamping recovery in July (essentially 100\,\% success once deployed, error rate below 1 in 400 over 1000 exchanges), mechanical servicing and greasing of the socket clamps during the October shutdown (the grease not having been renewed since 2021), and a warm-up brake sequence in November --- yet socket-specific faults were still occurring in December.  A filter had to be removed from the camera in July when socket~3 could not be trusted.
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.62\textwidth]{issues2025/figs/FES-01-a.jpg}
-\caption{\textbf{FES-01.} The camera on the telescope with the filter-exchange region in view, on the night the final science-filter complement was in place (2025-10-30, \#cam-summit-ops).}
-\label{fig:iss-FES-01}
-\end{figure}
-
 \item[FES-02]\label{iss:FES-02} \textbf{Carousel socket 3 slip-ring collector.}
   \emph{First to last mention 2025-04-13 to 2025-04-25; status \textcolor{stres}{\textbf{Resolved}}.}
-  Socket~3 lost communication intermittently during carousel rotation, worse at speed and dependent on telescope orientation.  The cause was a spring-loaded carbon collector contact that was not sliding freely; it was replaced on April~24--25 and the socket recovered (\rubintkt{SUMMIT-10680}).  The eight untouched collectors, and the effect of the very dry camera atmosphere on them, were noted as a residual risk. The carousel sits behind the filter aperture visible in Figure~\ref{fig:iss-FES-01}.
+  Socket~3 lost communication intermittently during carousel rotation, worse at speed and dependent on telescope orientation.  The cause was a spring-loaded carbon collector contact that was not sliding freely; it was replaced on April~24--25 and the socket recovered (\rubintkt{SUMMIT-10680}).  The eight untouched collectors, and the effect of the very dry camera atmosphere on them, were noted as a residual risk.
 
 \item[FES-03]\label{iss:FES-03} \textbf{Autochanger trucks, homing and the damaged X+ clamp motor.}
   \emph{First to last mention 2025-02-13 to 2025-12-13; status \textcolor{stopn}{\textbf{Open}}\,\textbf{?}.}
@@ -1245,8 +1180,8 @@ java.lang.NullPointerException: Cannot invoke "java.lang.Boolean.booleanValue()"
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.47\textwidth]{issues2025/figs/FES-03-a.jpg}\hfill
-\includegraphics[width=0.47\textwidth]{issues2025/figs/FES-03-b.jpg}
+\includegraphics[height=4.98cm]{issues2025/figs/FES-03-a.jpg}\hfill
+\includegraphics[height=4.98cm]{issues2025/figs/FES-03-b.jpg}
 \caption{\textbf{FES-03.} Left: an autochanger on its stand in the clean room, where the homing procedure was qualified (2025-04-07).  Right: the quadbox power panel, whose FES carousel, clamp, loader and brake channels are the supplies behind the truck undervoltage faults (2025-02-13).}
 \label{fig:iss-FES-03}
 \end{figure}
@@ -1261,8 +1196,8 @@ java.lang.NullPointerException: Cannot invoke "java.lang.Boolean.booleanValue()"
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.47\textwidth]{issues2025/figs/OPT-01-a.jpg}\hfill
-\includegraphics[width=0.47\textwidth]{issues2025/figs/OPT-01-b.jpg}
+\includegraphics[height=6.19cm]{issues2025/figs/OPT-01-a.jpg}\hfill
+\includegraphics[height=6.19cm]{issues2025/figs/OPT-01-b.jpg}
 \caption{\textbf{OPT-01.} Left: a focal-plane image taken while light was reaching the sensors with the shutter closed (2025-04-17).  Right: the camera and the open P-flow area on the day light through that route tripped the HV bias (2025-05-06).}
 \label{fig:iss-OPT-01}
 \end{figure}
@@ -1273,8 +1208,8 @@ java.lang.NullPointerException: Cannot invoke "java.lang.Boolean.booleanValue()"
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.47\textwidth]{issues2025/figs/OPT-02-a.jpg}\hfill
-\includegraphics[width=0.47\textwidth]{issues2025/figs/OPT-02-b.jpg}
+\includegraphics[height=6.50cm]{issues2025/figs/OPT-02-a.jpg}\hfill
+\includegraphics[height=6.50cm]{issues2025/figs/OPT-02-b.jpg}
 \caption{\textbf{OPT-02.} Left: the banana-shaped feature in the focal plane that gave the issue its name.  Right: the dome interior photographed the same evening while looking for its source (2025-04-19, \#cam-operator).}
 \label{fig:iss-OPT-02}
 \end{figure}
@@ -1289,8 +1224,8 @@ java.lang.NullPointerException: Cannot invoke "java.lang.Boolean.booleanValue()"
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.47\textwidth]{issues2025/figs/MEC-01-a.jpg}\hfill
-\includegraphics[width=0.47\textwidth]{issues2025/figs/MEC-01-b.jpg}
+\includegraphics[height=6.50cm]{issues2025/figs/MEC-01-a.jpg}\hfill
+\includegraphics[height=6.50cm]{issues2025/figs/MEC-01-b.jpg}
 \caption{\textbf{MEC-01.} Two of the sheared 3/8-16 socket-head bolts recovered from the cable wrap, and the bolt test that followed a few days later: 75.2\,ft-lb applied with no sign of failure (2025-01-30, \#cam-summit-ops).}
 \label{fig:iss-MEC-01}
 \end{figure}
@@ -1301,8 +1236,8 @@ java.lang.NullPointerException: Cannot invoke "java.lang.Boolean.booleanValue()"
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.47\textwidth]{issues2025/figs/MEC-02-a.jpg}\hfill
-\includegraphics[width=0.47\textwidth]{issues2025/figs/MEC-02-b.jpg}
+\includegraphics[height=5.27cm]{issues2025/figs/MEC-02-a.jpg}\hfill
+\includegraphics[height=5.27cm]{issues2025/figs/MEC-02-b.jpg}
 \caption{\textbf{MEC-02.} Left: the operating note for the interlock, which has to be reset from the mount engineering interface after a fault or power cycle even when the status lights are green (2025-09-23).  Right: the camera rotator and cable-wrap region on the Top End Assembly (2025-03-03).}
 \label{fig:iss-MEC-02}
 \end{figure}
@@ -1326,8 +1261,8 @@ java.lang.NullPointerException: Cannot invoke "java.lang.Boolean.booleanValue()"
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.47\textwidth]{issues2025/figs/MEC-04-a.jpg}\hfill
-\includegraphics[width=0.47\textwidth]{issues2025/figs/MEC-04-b.jpg}
+\includegraphics[height=6.41cm]{issues2025/figs/MEC-04-a.jpg}\hfill
+\includegraphics[height=6.41cm]{issues2025/figs/MEC-04-b.jpg}
 \caption{\textbf{MEC-04.} Left: one of the temporary grounding wires used in the clean room, which had to come off before the utility-trunk skins were installed (2025-01-21).  Right: the utility-trunk door seen from inside, with the chrome-plated lug surface and the door magnet marked --- the interface a permanent grounding strap has to use (2025-01-21).}
 \label{fig:iss-MEC-04}
 \end{figure}
