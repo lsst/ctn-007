@@ -515,7 +515,7 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-05-08 to 2025-10-25; status \textcolor{stmit}{\textbf{Mitigated}}.}
   The dominant operational problem of the year.  Below a dome air temperature of roughly $7\,^{\circ}$C the cryo circuits lose capacity, the cryo-plate trim heat falls to zero and the focal plane can no longer be held in thermal control; six distinct events between May and September required powering off the CCDs, the HV and in the worst cases nearly all REBs, with recoveries of seven hours to three days (\rubintkt{OBS-931}, \rubintkt{FRACAS-280}).  Pointing the telescope to horizon to regain capacity, and adjusting the refrigerant charge, were immediate tweaks.  The lasting mitigation only became possible once the mechanism was understood --- re-condensation of vapour refrigerant in the line, governed by the relation between the ambient temperature and the phase-separator temperature.  With that understanding, insulation and heater tape on the refrigeration lines became the major activity and their implementation was carried through, together with a matching adjustment of the glycol temperature, which is what sets the phase-separator temperature. Treated in detail in Sections~\ref{sec:cryo-tempsens-intro} to \ref{sec:cryo-tempsens-solution}.
 
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.47\textwidth]{issues2025/figs/CRYO-01-a.jpg}\hfill
 \includegraphics[width=0.47\textwidth]{issues2025/figs/CRYO-01-b.jpg}
@@ -531,7 +531,7 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-04-01 to 2025-06-07; status \textcolor{stres}{\textbf{Resolved}}.}
   Cryo~6 tripped on a compressor failure on April~1 and stayed out of service.  The compressor module was replaced with the Cryo~5 unit from the MRCR between June~2 and June~7 (\lsstls{LCA-14623}), and after charging, gas chromatography and additive top-up the circuit returned to service, restoring six of six cryo circuits.
 
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.62\textwidth]{issues2025/figs/CRYO-03-a.jpg}
 \caption{\textbf{CRYO-03.} Oil level in the sight glass of the Cryo~6 compressor, marked against a scale during the work on the circuit (2025-04-25, \#cam-operator).}
@@ -542,7 +542,7 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-10-15 to 2025-12-11; status \textcolor{stopn}{\textbf{Open}}.}
   During the October recharge Cryo~3 developed a clog --- the capillary is the suspected location --- that survived repeated power cycles, refrigerant additions and running the telescope horizontal; the circuit was given up on October~20 and the camera has run on five of six circuits since.  A second clog, on the Cryo~4 capillary, developed in early December, drove cryo trim heat down to about 1\,W, and cleared spontaneously on the evening of December~10 without intervention.  The open question is whether contamination was introduced into Cryo~3 during the October maintenance itself; it was on that suspicion that revisions to the evacuation and charging procedure and to filter-dryer replacement (\lsstls{LCA-14625}, \lsstls{LCA-17726}) were proposed.  Cryo~3 was still out of service at year end.
 
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.62\textwidth]{issues2025/figs/CRYO-04-a.jpg}
 \caption{\textbf{CRYO-04.} The Cryo~4 clog developing through November: the C4 exit temperature (blue) drifts up towards the pre-capillary temperature over five weeks, the signature by which the clog was recognised (2025-12-11, \#cam-operator).}
@@ -553,7 +553,7 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-11-18 to 2025-11-19; status \textcolor{stopn}{\textbf{Open}}.}
   On November~19 the Cryo~6 PLC was declared dead at 00:34\,UTC with the discharge temperature reading $122\,^{\circ}$C and the oil level negative; the PLC recovered by itself 33 minutes later.  The overheating of the cabinet that preceded it was attributed to a software update elsewhere on the summit mis-setting the glycol setpoint in response to bad environmental sensor readings (\rubintkt{FRACAS-322}, \rubintkt{OBS-1394}, \rubintkt{OBS-1395}).  The PLC failure itself is suspected to be a problem in the PLC, and its root cause is not known.  The CCS logic that closes the coolant valve when a PLC is declared dead was flagged as needing revision (\slactkt{LSSTCCSREFRIG-319} and \slactkt{LSSTCCSREFRIG-332}).
 
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.47\textwidth]{issues2025/figs/CRYO-05-a.jpg}\hfill
 \includegraphics[width=0.47\textwidth]{issues2025/figs/CRYO-05-b.jpg}
@@ -569,7 +569,7 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-01-18 to 2025-12-17; status \textcolor{stopn}{\textbf{Open}}.}
   Dynalene, which cools the utility-trunk electronics, failed repeatedly all year --- from control computer (cRIO) reboots and crashes, chiller faults and power events --- each time forcing an emergency power-down of CCDs, REBs and often the shutter and filter changer (\rubintkt{OBS-1014}, \rubintkt{FRACAS-321}, \rubintkt{FRACAS-328}).  A review of the August~11 event established that the camera tolerates only about 13 minutes without flow before REB power-supply boards approach their $48\,^{\circ}$C trip limit.  The cRIO was replaced on November~4 and a small UPS was added in late November, but outages continued into the second half of December.
 
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.47\textwidth]{issues2025/figs/DYN-01-a.jpg}\hfill
 \includegraphics[width=0.47\textwidth]{issues2025/figs/DYN-01-b.jpg}
@@ -585,7 +585,7 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-06-14 to 2025-12-16; status \textcolor{stopn}{\textbf{Open}}.}
   The camera region of the Top End Assembly runs more humid than ambient, and the compressed dry air supplied there has little authority over it --- the June investigation found the supply had been silently off for an unknown period and that the air reaching the camera is heavily mixed with dome air.  In November infrared imaging showed hot spots and a suspected dry-air leak near the heat-exchanger return, and in December water droplets were found on M1M3, traced to condensation on uninsulated Dynalene supply pipes at the Top End Assembly (\rubintkt{SUMMIT-11795}, \rubintkt{OBS-1479}).  Open at year end, with insulation the proposed fix.
 
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.47\textwidth]{issues2025/figs/DYN-04-a.jpg}\hfill
 \includegraphics[width=0.47\textwidth]{issues2025/figs/DYN-04-b.jpg}
@@ -609,7 +609,7 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-03-28 to 2025-08-11; status \textcolor{stres}{\textbf{Resolved}}.}
   A cluster of PCS chiller problems in spring, all of them traced and fixed: an under-rated 32\,A supply breaker against a 50\,A service requirement, which tripped the chiller twice in one morning (\rubintkt{OBS-826}); a stage-1 refrigerant leak that took the chiller out of service for a day and left the camera quiescent overnight; and spurious trips with no real chiller anomaly, traced to an unseated pin in a refrigeration-permit connector on the telescope-side cabling and aggravated by TMA shaking tests (\rubintkt{SUMMIT-10642}, \rubintkt{SUMMIT-10652}).  The breaker was replaced, the leak repaired and the connector pins and shell renewed.
 
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.47\textwidth]{issues2025/figs/PCS-01-a.jpg}\hfill
 \includegraphics[width=0.47\textwidth]{issues2025/figs/PCS-01-b.jpg}
@@ -621,7 +621,7 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-03-28 to 2025-07-02; status \textcolor{stopn}{\textbf{Open}}.}
   Restarting the chiller is a separate problem from the failures above and was never solved: the unit repeatedly trips on low HFE flow because gas bubbles form in the longer line configuration, which procedure \lsstls{LCA-20281} does not cover.  In March it took roughly a dozen attempts over two days, and was recovered only by pressurising the coolant tank; a loud bypass-valve noise during those attempts was later explained as the high-pressure bypass cracking at an 80\,psi pump differential.  The same behaviour blocked the restart of the unit at the MRCR in July.  The MRCR system was found to have failed during the year and is tracked as \rubintkt{LSSTCAM-119}.
 
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.47\textwidth]{issues2025/figs/PCS-02-a.jpg}\hfill
 \includegraphics[width=0.47\textwidth]{issues2025/figs/PCS-02-b.jpg}
@@ -645,7 +645,7 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-02-27 to 2025-10-08; status \textcolor{stmit}{\textbf{Mitigated}}.}
   Compressed dry air operates the vacuum gate valves and purges the camera body, so its loss is a direct camera concern --- including frosting risk on the L3 lens.  Supply was cut for two hours for compressor maintenance in February, both Level-1 compressors degraded in August when their dryers froze at $-8\,^{\circ}$C, and a compressor was lost to a packing-seal failure in October.  Insulating jackets on the dryers addressed the freezing mode; single-compressor operation remains a routine condition.
 
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.47\textwidth]{issues2025/figs/AIR-01-a.jpg}\hfill
 \includegraphics[width=0.47\textwidth]{issues2025/figs/AIR-01-b.jpg}
@@ -661,7 +661,7 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-04-07 to 2025-12-10; status \textcolor{stwrk}{\textbf{Workaround}}.}
   On April~7, after a routine power cycle and a reorientation of the camera to zenith, R30/Reb1 raised a Bias2 OD2 overcurrent on S12 ($\mathrm{ODI}=0.213$\,A against an $0.082$\,A limit); S12 reached bias voltage in two steps and tripped off on both attempts, and the behaviour was read at the time as a real short.  A retest on April~25 showed an unexplained digital-current spike of order 1\,A, and the REB was left as the only one switched off camera-wide through May.  It was returned to service on June~25--26 running two of three CCDs, which required an R30/Reb1 firmware update and relaxed bias-control limits; the CCD current on S12/Seg17 was noted as anomalously low at that turn-on and again on June~29.  The REB has carried its own firmware variant through every subsequent firmware campaign.  The workaround --- running two of the three CCDs on Reb1 --- was implemented on June~25--26 and has been in place since; the fault itself is unresolved. Described in detail in Sections~\ref{sec:r30s12} and~\ref{sec:r30s12-solution}.
 
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.62\textwidth]{issues2025/figs/FP-01-a.jpg}
 \caption{\textbf{FP-01.} Bias voltages and currents on R30/Reb1 during the 7 April turn-on attempt, for S10, S11 and S12 from top to bottom; S10 and S11 follow the ramp while S12 trips off (2025-04-07, \#cam-operator).}
@@ -676,7 +676,7 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-05-05 to 2025-10-25; status \textcolor{stmit}{\textbf{Mitigated}}.}
   R21/Reb0 repeatedly glitched and tripped its HV bias near 50\,V, where its DC-DC converter behaves non-linearly, once producing visible tree rings mid-integration.  It was set to run permanently at 46\,V, and R12/Reb0 later showed similar sensitivity requiring extra care during ramp-up.  Managed by lowered setpoints and careful ramping rather than repaired.
 
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.62\textwidth]{issues2025/figs/FP-03-a.jpg}
 \caption{\textbf{FP-03.} The glitches on R21/Reb0: HV bias voltage, current and DAC setting stepping and spiking as the bias is ramped, the behaviour for which the operating point was lowered (2025-05-05, \#cam-operator).}
@@ -691,6 +691,39 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-04-29 to 2025-10-21; status \textcolor{stwrk}{\textbf{Workaround}}.}
   Corner rafts do not reach the correct dphi level on power-on and need an undocumented DAC-toggle workaround (\rubintkt{LSSTCAM-107}), and a wavefront REB power-on failure requiring a REB power cycle recurred after the October shutdown (\rubintkt{LSSTCAM-37}).  Both were still being worked around at year end rather than fixed.
 
+\begin{figure}[H]
+\centering
+\begin{minipage}{\textwidth}
+\hrule\vspace{4pt}
+\begingroup\scriptsize
+\begin{verbatim}
+-- 2025-04-15 20:49 UTC, #cam-operator: a routine limits update silently reverting the
+-- corner-raft settings
+
+The change dropped off the dphi changes....
+
+ ccs>rebpower printConfigurationParameters -d
+Category : General
+R00/RebG dphi* 2080 volts
+R00/RebW dphi* 2070 volts
+R04/RebG dphi* 2100 volts
+R04/RebW dphi* 2070 volts
+R40/RebG dphi* 2140 volts
+R40/RebW dphi* 2050 volts
+R44/RebG dphi* 2060 volts
+R44/RebW dphi* 2080 volts
+
+"... when we updated the changes by `rebpower updateCategories Limits`"
+"Restarting the subsystem didn't clear what it applied but it cleared the DAC number.
+ We had to set it back.  We should put the DAC numbers in the configuration file."
+\end{verbatim}
+\endgroup
+\vspace{-10pt}\hrule
+\end{minipage}
+\caption{\textbf{FP-05.} Why the corner rafts need hand-holding at power-on: the values they must be brought up with are per-REB and live outside the configuration, so an unrelated update drops them and the operator has to put them back.  The undocumented DAC-toggle workaround (\rubintkt{LSSTCAM-107}) is the same defect seen from the other side; neither was fixed in 2025.}
+\label{fig:iss-FP-05}
+\end{figure}
+
 \item[FP-06]\label{iss:FP-06} \textbf{REB power-supply trips suspected to be electrostatic discharge.}
   \emph{First to last mention 2025-01-21 to 2025-04-29; status \textcolor{stopn}{\textbf{Open}}.}
   Recalled in January: in September 2024 there had been one or two REB power-supply trips that seemed to correlate with people touching or standing near the utility trunk, which is what put the camera-door grounding question (MEC-04) on the agenda in the first place.  A concrete case followed on April~29, when R21/Reb0 tripped during carbon-snow cleaning of M2 with no light-leak explanation and was tentatively attributed to an electrostatic discharge.  The investigation is tracked in the dedicated channel \#cam-issues-esd. The door interface a permanent strap has to use is shown in Figure~\ref{fig:iss-MEC-04}.
@@ -703,7 +736,7 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-08-11 to 2025-08-23; status \textcolor{stres}{\textbf{Resolved}}.}
   The firmware booted during the August~11 recovery made the CCDs run measurably warmer, which was initially misread as lost cryo capacity during the storm.  Power-cycling the focal plane and rolling the firmware back confirmed a real power-draw increase of roughly 30\,W, and the cause was a register-map conflict in 0x313a5013 that applied maximum heater power --- a defect introduced together with the sequencer-override register in 0x31395011 and unnoticed until then.  It was fixed by the firmware upgrade to 0x313a5014. See the version history in Table~\ref{tab:science_reb_fw_en}.
 
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.47\textwidth]{issues2025/figs/FW-01-a.jpg}\hfill
 \includegraphics[width=0.47\textwidth]{issues2025/figs/FW-01-b.jpg}
@@ -715,15 +748,77 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-10-13 to 2025-12-15; status \textcolor{stopn}{\textbf{Open}}.}
   Whenever REBs are power-cycled or booted from a different firmware slot, some come back reporting a serial number of zero and stay in an invalid validation state, requiring link resets or RCE reboots before they can be used.  It appeared with the October candidate-firmware rollout and recurred through every subsequent power cycle to the end of the year; tooling improvements (single-RCE reboot, a re-initialise command) were proposed but not delivered.
 
+\begin{figure}[H]
+\centering
+\begin{minipage}{\textwidth}
+\hrule\vspace{4pt}
+\begingroup\scriptsize
+\begin{verbatim}
+-- 2025-10-13 19:10 and 21:26 UTC, after the candidate-firmware rollout, #cam-operator
+
+R01/Reb1: CCDsPowerState:OFF HVBiasState:OFF RebDeviceState:ONLINE RebValidationState:INVALID
+R01/Reb2: CCDsPowerState:OFF HVBiasState:OFF RebDeviceState:ONLINE RebValidationState:INVALID
+R30/Reb1: CCDsPowerState:OFF HVBiasState:OFF RebDeviceState:ONLINE RebValidationState:INVALID
+R31/Reb1: CCDsPowerState:OFF HVBiasState:OFF RebDeviceState:ONLINE RebValidationState:INVALID
+R32/Reb1: CCDsPowerState:OFF HVBiasState:OFF RebDeviceState:ONLINE RebValidationState:INVALID
+
+-- 2025-11-04 15:31 UTC: the standing recovery, written out for the night crew
+
+Check ID:
+rms_read camera 0x800001
+Re-read ID:
+rms_write camera 0x800000 1
+Reset opcode error:
+rms_write camera 0x390001 1
+
+-- "Reading 0x800000 shows you the IDs, the firmware bug means that sometimes they come up
+--  0x00000000.  If they do, you can cause the REB to re-read the ID by writing 1 to 0x800001."
+\end{verbatim}
+\endgroup
+\vspace{-10pt}\hrule
+\end{minipage}
+\caption{\textbf{FW-02.} REBs online but refusing validation after a power cycle, and the register recipe that became the standing workaround.  The identifier read is a firmware race, not a hardware fault: the board is reachable, it simply reports a serial number of zero until it is told to read it again.  No fix was delivered in 2025.}
+\label{fig:iss-FW-02}
+\end{figure}
+
 \item[FW-03]\label{iss:FW-03} \textbf{Sequencer opcode errors after RCE reset.}
   \emph{First to last mention 2025-10-09 to 2025-12-29; status \textcolor{stopn}{\textbf{Open}}.}
-  REBs reset or power-cycled while idle clear was running came up with the sequencer opcode-error bit set, needing a register write to clear.  Delaying the start of idle clear until the subsystem is operational was adopted as the mitigation, but the error recurred at the end of December with idle clear confirmed off, pointing at a firmware or boot-sequence cause instead (\rubintkt{LSSTCAM-153}).  Open. The firmware campaigns during which this appears are those of Figure~\ref{fig:iss-FW-04}.
+  REBs reset or power-cycled while idle clear was running came up with the sequencer opcode-error bit set, needing a register write to clear.  Delaying the start of idle clear until the subsystem is operational was adopted as the mitigation, but the error recurred at the end of December with idle clear confirmed off, pointing at a firmware or boot-sequence cause instead (\rubintkt{LSSTCAM-153}).  Open.
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{\textwidth}
+\hrule\vspace{4pt}
+\begingroup\scriptsize
+\begin{verbatim}
+-- 2025-12-14 20:17 UTC, #cam-operator, after an RCE restart with idle clear disabled
+
+The RCE restart left three issues. Disabling the idle clear didn't resolve all the issue.
+
+2 Links went down
+R22/Reb0: CCDsPowerState:UNKNOWN HVBiasState:UNKNOWN RebDeviceState:OFFLINE RebValidationState:UNKNOWN
+R23/Reb2: CCDsPowerState:UNKNOWN HVBiasState:UNKNOWN RebDeviceState:OFFLINE RebValidationState:UNKNOWN
+
+3 REBs have DELTA state in the CCD power
+R13/Reb2: CCDsPowerState:DELTA HVBiasState:ON RebDeviceState:ONLINE RebValidationState:VALID
+R14/Reb0: CCDsPowerState:DELTA HVBiasState:ON RebDeviceState:ONLINE RebValidationState:VALID
+R34/Reb2: CCDsPowerState:DELTA HVBiasState:ON RebDeviceState:ONLINE RebValidationState:VALID
+
+1 opcode error in rms_read
+R43/Reb1
+\end{verbatim}
+\endgroup
+\vspace{-10pt}\hrule
+\end{minipage}
+\caption{\textbf{FW-03.} The observation that reopened the issue.  Idle clear --- the mitigation adopted earlier in the year --- was confirmed off, and an RCE restart still produced a sequencer opcode error, which points the cause at the firmware or the boot sequence rather than at idle clear (\rubintkt{LSSTCAM-153}).}
+\label{fig:iss-FW-03}
+\end{figure}
 
 \item[FW-04]\label{iss:FW-04} \textbf{Sequencer optimisation and the 6.4 ns natural-frequency firmware.}
   \emph{First to last mention 2025-04-26 to 2025-12-29; status \textcolor{stres}{\textbf{Resolved}}.}
   A year-long programme rather than a fault: new sequencer files to address e2v noise and covariance anomalies (clear improvement on e2v, little change on ITL), the 3\,s readout sequencers, and finally the retuning of the sequencer clock to 6.4\,ns.  The natural-frequency firmware was tested on the summit in December in three campaigns and used for a holiday calibration run, but was not promoted to the default slot; the dense photon-transfer curve that these changes require was repeatedly deferred through the year.  The programme was closed in early January 2026, after the period covered here.
 
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.47\textwidth]{issues2025/figs/FW-04-a.jpg}\hfill
 \includegraphics[width=0.47\textwidth]{issues2025/figs/FW-04-b.jpg}
@@ -739,9 +834,69 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-03-24 to 2025-11-24; status \textcolor{stopn}{\textbf{Open}}.}
   A steady background of DAQ hardware and host faults: bad B-side links traced to DAQ transceivers (March, fixed), memory failures on the data-collection nodes (\rubintkt{OBS-859}), crashed storage and switch-controlling RCEs (\rubintkt{OBS-1208}), a data-transport module needing rebooting twice in a month (\rubintkt{LSSTCAM-130}), and links auto-negotiating down or dropping packets (\rubintkt{LSSTCAM-151}).  Individual instances were cleared by reboots and reseating; the recurrence rate was not.  A serial console was subsequently connected to the worst offender to allow it to be debugged, as documented in \rubintkt{IHS-9431}.
 
+\begin{figure}[H]
+\centering
+\begin{minipage}{\textwidth}
+\hrule\vspace{4pt}
+\begingroup\scriptsize
+\begin{verbatim}
+-- lsstcam-dc06 kernel log, 2025-04-21 03:12 UTC, found during the 1 May investigation
+-- and posted to #cam-operator
+
+[Mon Apr 21 03:12:16 2025] {1}[Hardware Error]: Hardware error from APEI Generic Hardware Error Source:
+        8
+[Mon Apr 21 03:12:16 2025] {1}[Hardware Error]: event severity: corrected
+[Mon Apr 21 03:12:16 2025] {1}[Hardware Error]:  fru_text: DIMM_A8
+[Mon Apr 21 03:12:16 2025] {1}[Hardware Error]:   section_type: memory error
+[Mon Apr 21 03:12:16 2025] {1}[Hardware Error]:    error_status: Storage error in DRAM memory
+        (0x0000000000040400)
+[Mon Apr 21 03:12:16 2025] {1}[Hardware Error]:   physical_address: 0x0000001e772bb000
+[Mon Apr 21 03:12:16 2025] {1}[Hardware Error]:   node:0 card:4 module:1 rank:2 bank:9 row:61369
+        column:512
+[Mon Apr 21 03:12:16 2025] {1}[Hardware Error]:   error_type: 2, single-bit ECC
+[Mon Apr 21 03:12:16 2025] mce: [Hardware Error]: Machine check events logged
+\end{verbatim}
+\endgroup
+\vspace{-10pt}\hrule
+\end{minipage}
+\caption{\textbf{DAQ-01.} One of the hardware faults behind this entry: a corrected single-bit ECC error on a data-collection node, recorded ten days before anyone went looking for it.  Faults of this class were cleared individually --- reseating, reboots, transceiver swaps --- but the rate at which they arrived was not addressed.  A serial console was later connected to the worst offender so that it could be debugged when it next fell over (\rubintkt{IHS-9431}).}
+\label{fig:iss-DAQ-01}
+\end{figure}
+
 \item[DAQ-02]\label{iss:DAQ-02} \textbf{Dropped guider stamps at high ROI rates.}
   \emph{First to last mention 2025-10-10 to 2025-10-13; status \textcolor{stmit}{\textbf{Mitigated}}.}
-  Stress-testing large guider regions of interest with the new DAQ release repeatedly dropped guider stamps on the path from the DAQ to \texttt{lsstcam-dc10}, the host that receives and writes them, and the same episodes coincided with dropped group-communication messages.  Extensive network diagnosis of the ATCA switches and the backplane found no definitive cause; the GDS socket buffers were enlarged to 16\,MB and a buffer monitor was run on \texttt{lsstcam-dc10}, after which a 20-image run completed with no dropped packets. The guider path involved is the one whose artefacts appear in Figure~\ref{fig:iss-CCS-02}.
+  Stress-testing large guider regions of interest with the new DAQ release repeatedly dropped guider stamps on the path from the DAQ to \texttt{lsstcam-dc10}, the host that receives and writes them, and the same episodes coincided with dropped group-communication messages.  Extensive network diagnosis of the ATCA switches and the backplane found no definitive cause; the GDS socket buffers were enlarged to 16\,MB and a buffer monitor was run on \texttt{lsstcam-dc10}, after which a 20-image run completed with no dropped packets.
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{\textwidth}
+\hrule\vspace{4pt}
+\begingroup\scriptsize
+\begin{verbatim}
+-- 2025-10-10 18:59--19:15 UTC, guider stress test on lsstcam-dc10, #cam-operator
+
+  "I just took one image MC_C_20251010_000004.  It seems that there were some dropped stamps."
+
+  "N_STAMPS" : 139,   "N_STAMPS" : 138,   "N_STAMPS" : 139,   "N_STAMPS" : 139,
+  "N_STAMPS" : 138,   "N_STAMPS" : 136,   "N_STAMPS" : 139,   "N_STAMPS" : 139,
+
+  ("There should have been 139 stamps in that series.")
+
+[2025-10-10T18:59:30.132+0000] WARNING: MC_C_20251010_000004: DAQ stamp count 139 not equal to number
+        of stamps received 138 (org.lsst.ccs.daq.guider.FitsWriterFactory$FitsWriter fixupStampCount)
+[2025-10-10T18:59:30.174+0000] WARNING: MC_C_20251010_000004: DAQ stamp count 139 not equal to number
+        of stamps received 138
+[2025-10-10T18:59:30.174+0000] WARNING: MC_C_20251010_000004: DAQ stamp count 139 not equal to number
+        of stamps received 136
+
+-- after a buffer monitor was put on the receiving host, 35 minutes later: "That time they all had 139."
+\end{verbatim}
+\endgroup
+\vspace{-10pt}\hrule
+\end{minipage}
+\caption{\textbf{DAQ-02.} The loss counted at the receiving end.  The DAQ reports how many stamps it sent and the image handler reports how many it wrote, and the two do not agree --- by one to three stamps per sensor per series.  Enlarging the GDS socket buffers to 16\,MB and watching them on \texttt{lsstcam-dc10} removed the loss without ever identifying where it occurred.}
+\label{fig:iss-DAQ-02}
+\end{figure}
 
 \end{description}
 
@@ -751,11 +906,45 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-05-01 to 2025-11-24; status \textcolor{stopn}{\textbf{Open}}.}
   The guider state held by CCS and by the DAQ drift apart --- from dangling initialisation commands, double commanding between CCS and OCS, or new pause timeouts --- leaving the guider stuck paused (once for 22 hours, unnoticed, with no guider data written) or the focal-plane subsystem hung in an active command state needing a restart.  Individual manifestations were patched repeatedly; the pattern was still recurring on multiple nights in late November (\rubintkt{LSSTCAM-148}).
 
+\begin{figure}[H]
+\centering
+\begin{minipage}{\textwidth}
+\hrule\vspace{4pt}
+\begingroup\scriptsize
+\begin{verbatim}
+-- 2025-11-24 09:47 UTC, focal-plane log, posted to #cam-operator the same morning
+
+[2025-11-24T09:47:03.412+0000] INFO: Received command from mcm (user mcm): Command(RawCommand)
+        initGuiders with 1 argument ({"common":{"rows":400,"cols":400,"integrationTimeMillis":200}, ...
+[2025-11-24T09:47:03.455+0000] WARNING: Accepting initGuiders when guiders already in PAUSED state
+        (org.lsst.ccs.subsystem.focalplane.Guiding initGuiders)
+
+   ... no command response for the next 46 minutes ...
+
+[2025-11-24T10:33:08.699+0000] SEVERE: Raised Alert CMDFAIL (Command failed) at severity ALARM 1 time.
+        Last cause : "Execution of command "initGuiders" failed unexpectedly due to: Guider start
+        failed, status -1 (rc=-1 GDS - Command Timeout)". Overall AlertState= ALARM
+org.lsst.ccs.command.CommandInvocationException: org.lsst.ccs.CommandHelper$CommandFailedException:
+        Exception while executing command, fault state entered: Guider start failed, status -1 (rc=-1
+        GDS - Command Timeout)
+
+-- 2025-11-02 03:24 UTC, the same disagreement seen from the operator's side
+
+initGuiders failed
+Guider entered unexpected state, expected=PAUSED actual=ERROR
+\end{verbatim}
+\endgroup
+\vspace{-10pt}\hrule
+\end{minipage}
+\caption{\textbf{CCS-01.} The state disagreement in one place.  CCS accepts an \texttt{initGuiders} for guiders it already believes are paused, gets no answer from the guider, and only declares failure 46 minutes later; three weeks earlier the same disagreement surfaced as a state the operator could not act on.  The pattern was still recurring at the end of November (\rubintkt{LSSTCAM-148}).}
+\label{fig:iss-CCS-01}
+\end{figure}
+
 \item[CCS-02]\label{iss:CCS-02} \textbf{Idle clear: from guider clearing noise to default operation.}
   \emph{First to last mention 2025-04-16 to 2025-07-04; status \textcolor{stres}{\textbf{Resolved}}.}
   Guider idle-clearing was found in April to inject noise into neighbouring sensors during bias readout, making early bias images unusable and producing stripes in wavefront images (\slactkt{LSSTCCSRAFTS-778}).  The proper fix --- a non-guider idle-clear scheme --- arrived with CCS 41.0.4 in late June, needed two further locking fixes (skipped invocations piling up, and a sequencer-reload race that showed up as a runaway clock current on R30/Reb2), and was declared operational on June~30.  Idle clear has been the default for all on-sky observations since early July, replacing continuous all-day biases.
 
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.62\textwidth]{issues2025/figs/CCS-02-a.jpg}
 \caption{\textbf{CCS-02.} A bias exposure with the guider running: the structure across the upper rafts is the artefact that idle clear was introduced to remove (2025-07-01).}
@@ -766,9 +955,79 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-07-13 to 2025-11-09; status \textcolor{stopn}{\textbf{Open}}.}
   After a filter change the bridge between CCS and the observatory control system intermittently fails to acknowledge the unlock command to the mount and rotator, leaving them motion-locked and the filter command rejected (\rubintkt{OBS-1098}, \rubintkt{OBS-1079}, \rubintkt{OBS-1119}, \rubintkt{OBS-1360}).  A SAL interface version mismatch is suspected.  The standing recovery is to take the camera offline and restart the bridge; it cost whole nights in July and recurred in November.
 
+\begin{figure}[H]
+\centering
+\begin{minipage}{\textwidth}
+\hrule\vspace{4pt}
+\begingroup\scriptsize
+\begin{verbatim}
+-- 2025-04-30 02:40 UTC, ocs-bridge log, posted to #cam-operator
+
+[2025-04-30T02:39:51.323+0000] INFO: MTRotator MotionLockStateEvent MotionLockStateEvent{lockState=2,
+        identity=Script:100003}
+[2025-04-30T02:39:55.421+0000] INFO: MTRotator MotionLockStateEvent MotionLockStateEvent{lockState=0,
+        identity=Script:100003}
+[2025-04-30T02:40:22.490+0000] INFO: Received command: SetFilterCommand{name=g_6}
+[2025-04-30T02:40:22.491+0000] INFO: Sending MTRotator: LockMotionCommand{}
+[2025-04-30T02:40:26.601+0000] INFO: Command complete ack=303
+[2025-04-30T02:40:26.601+0000] INFO: Sending MTMount: LockMotionCommand{}
+[2025-04-30T02:40:26.603+0000] INFO: MTRotator MotionLockStateEvent MotionLockStateEvent{lockState=3,
+        identity=ocs-bridge}
+[2025-04-30T02:40:26.627+0000] SEVERE: Command failed: errorCode=1, ack=-302, message=Failed: Currently
+        <MotionLockState.UNLOCKING: 2>. Cannot lock motion.
+[2025-04-30T02:40:26.627+0000] SEVERE: Failed to get motion lock during setFilter command
+[2025-04-30T02:40:26.627+0000] INFO: Reject command: SetFilterCommand{name=g_6} because Command
+        rejected: Failed: Currently <MotionLockState.UNLOCKING: 2>. Cannot lock motion.
+
+-- and from the CCS console a quarter of an hour later
+
+ ccs>fcs setFilter 6
+Error: Error dispatching command: The telescope motion and rotator need to be locked before
+performing a filter exchange. Current status of the lock is UNLOCKED
+\end{verbatim}
+\endgroup
+\vspace{-10pt}\hrule
+\end{minipage}
+\caption{\textbf{CCS-03.} A filter change refused because the mount is stuck between lock states.  The rotator reports \texttt{UNLOCKING} when the bridge tries to lock it, the \texttt{setFilter} command is rejected, and the console shows the same lock reported as \texttt{UNLOCKED}.  Recovery on this night needed the MTMount CSC to be cycled.}
+\label{fig:iss-CCS-03}
+\end{figure}
+
 \item[CCS-04]\label{iss:CCS-04} \textbf{Vacuum-subsystem fault that silently disabled a safety interlock.}
   \emph{First to last mention 2025-02-25 to 2025-03-04; status \textcolor{stmit}{\textbf{Mitigated}}.}
   In February a vacuum-subsystem fault left seven MKS gauges --- including the safety-critical cryostat and heat-exchanger (Hx) gauges --- offline for over 15 hours and aborted the low-vacuum check, so the refrigeration-not-permitted alarm was never re-raised despite high pressures: protection remained nominally configured while not working.  The defect was fixed under \slactkt{LSSTCCSSUB-212} and the corrected build was installed by hand on the summit in early March.
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{\textwidth}
+\hrule\vspace{4pt}
+\begingroup\scriptsize
+\begin{verbatim}
+-- 2025-02-25 19:31--19:37 UTC, vacuum subsystem log, posted to #cam-operator
+
+[2025-02-25T18:09:58.533+0000] SEVERE: Setting ASM380 offline due to error retrieving initial status
+        ASM380: org.lsst.ccs.drivers.commons.DriverException: Device not connected
+        (org.lsst.ccs.subsystem.vacuum.ASM380Device initialize)
+
+-- and, from the subsystem restart the previous evening:
+
+java.lang.NullPointerException: Name is null
+        at java.base/java.lang.Enum.valueOf(Enum.java:271)
+        at org.lsst.ccs.subsystem.vacuum.constants.DeviceState.valueOf(DeviceState.java:11)
+        at org.lsst.ccs.subsystem.vacuum.VacuumMain.updateCryoTurboPumpVentValve(VacuumMain.java:1118)
+        at org.lsst.ccs.subsystem.vacuum.VacuumMain.updateSwitchState(VacuumMain.java:976)
+        at org.lsst.ccs.subsystem.vacuum.VacuumMain.updateVacuumState(VacuumMain.java:676)
+        at org.lsst.ccs.services.PeriodicTaskComponent$PeriodicTaskRunnableWrapper.run(PeriodicTaskCompo
+        nent.java:205)
+        at org.lsst.ccs.utilities.scheduler.PeriodicTask.run(PeriodicTask.java:186)
+[2025-02-24T21:05:33.518+0000] SEVERE: Exception thrown by periodic task vacuum-state
+        (org.lsst.ccs.utilities.scheduler.PeriodicTaskExceptionHandler onException)
+\end{verbatim}
+\endgroup
+\vspace{-10pt}\hrule
+\end{minipage}
+\caption{\textbf{CCS-04.} The February fault as it appears in the log.  Devices are set offline at subsystem start-up and the \texttt{vacuum-state} periodic task --- the task that evaluates the pressures and raises \texttt{RefrigNotPermitted} --- dies on a null device state.  Seven MKS gauges, including the cryostat and heat-exchanger gauges, stayed offline for more than 15 hours; the interlock was configured throughout and did nothing.}
+\label{fig:iss-CCS-04}
+\end{figure}
 
 \item[CCS-05]\label{iss:CCS-05} \textbf{Automatic REB protective shutdown did not fire.}
   \emph{First to last mention 2025-11-20 to 2025-11-20; status \textcolor{stopn}{\textbf{Open}}.}
@@ -778,13 +1037,106 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-02-15 to 2025-11-23; status \textcolor{stopn}{\textbf{Open}}.}
   Retransmit storms on the CCS group-communication layer that break CCS--DAQ communication and, in the worst cases, require nearly every subsystem to be killed and restarted (\rubintkt{OBS-950}).  Several distinct triggers were identified over the year --- a console process hitting its memory limit, IGMP snooping enabled on particular switches, guiding at an untested 5\,s cadence with high DAQ traffic, a locked console, Kafka broker memory exhaustion --- and each was addressed, yet the class of failure recurred in November.  No single root cause was established.
 
+\begin{figure}[H]
+\centering
+\begin{minipage}{\textwidth}
+\hrule\vspace{4pt}
+\begingroup\scriptsize
+\begin{verbatim}
+-- 2025-02-18 17:00 UTC, chiller (refrig) log on lsstcam-pcs02, posted to #cam-operator
+
+Feb 18 17:00:39 lsstcam-pcs02 refrig[2624]: 4561 INFO: [STATUS] NAKACK2: retransmit request from
+        CCSAddress s-CCS-Graphical-Console_lsstcam-mcm_FEutSUX uuid=9d3f19e...
+Feb 18 17:00:40 lsstcam-pcs02 refrig[2624]: 4562 INFO: [STATUS] NAKACK2: retransmit request from
+        CCSAddress s-CCS-Graphical-Console_lsstcam-mcm_FEutSUX uuid=9d3f19e...
+Feb 18 17:00:41 lsstcam-pcs02 refrig[2624]: 4563 INFO: [STATUS] NAKACK2: retransmit request from
+        CCSAddress s-CCS-Graphical-Console_lsstcam-mcm_FEutSUX uuid=9d3f19e...
+Feb 18 17:00:43 lsstcam-pcs02 refrig[2624]: 4564 INFO: [STATUS] NAKACK2: retransmit request from
+        CCSAddress s-CCS-Graphical-Console_lsstcam-mcm_FEutSUX uuid=9d3f19e...
+Feb 18 17:00:56 lsstcam-pcs02 refrig[2624]: 4567 INFO: [STATUS] NAKACK2: retransmit request from
+        CCSAddress s-CCS-Graphical-Console_lsstcam-mcm_FEutSUX uuid=9d3f19e...
+
+-- 2025-04-07 18:39 UTC, mcm log: the other face of the same layer
+
+[2025-04-07T18:39:02.871+0000] WARNING: [STATUS] JGRP000011: s-mcm: dropped message from non-member
+        s-image-handling-lsstcam-dc09 (view=[s-camera-mmm|59166] (36) [s-camera-mmm, s-lockmanager,
+        s-ocs-bridge, s-mcm, s-cluster-monitor, s-kafkaService, ...]) (org.jgroups.ccs.CCSLog warn)
+\end{verbatim}
+\endgroup
+\vspace{-10pt}\hrule
+\end{minipage}
+\caption{\textbf{CCS-06.} What a meltdown looks like in the log: an unbroken stream of \texttt{NAKACK2} retransmit requests, here all provoked by a single graphical console, and --- from a different episode --- a subsystem dropped from the group view while it is still running and still sending.  Neither line names a cause, which is the difficulty with this class of failure.}
+\label{fig:iss-CCS-06}
+\end{figure}
+
 \item[CCS-07]\label{iss:CCS-07} \textbf{Kafka broker and rebpower memory exhaustion.}
   \emph{First to last mention 2025-11-01 to 2025-11-24; status \textcolor{stmit}{\textbf{Mitigated}}.}
   The Kafka broker service and the REB-power subsystem exhausted their Java memory, the broker reaching extreme CPU use and the subsystem dropping to tens of megabytes free, which triggered an overnight storm (\rubintkt{LSSTCAM-149}, \rubintkt{LSSTCAM-150}).  Restarting both services at the start of each night became standing practice --- a workaround, not a fix.
 
+\begin{figure}[H]
+\centering
+\begin{minipage}{\textwidth}
+\hrule\vspace{4pt}
+\begingroup\scriptsize
+\begin{verbatim}
+-- 2025-11-23 04:48--04:50 UTC, rebpower and kafkaService logs, posted to #cam-operator
+
+[2025-11-23T04:48:15.803+0000] WARNING: Raised Alert JVM/memory/available (JVM available memory is
+        below 50 MB.) at severity WARNING 1 time. Last cause : "PULSE: Low available memory: 32 MB.
+        Max: 1979 MB, Allocated: 1979 MB, Used: 1947 MB.". Overall AlertState= WARNING
+[2025-11-23T04:48:18.017+0000] INFO: [STATUS] NAKACK2: retransmit request from CCSAddress
+        s-kafkaService uuid=eab348cf... for (1): {96968562}
+[2025-11-23T04:48:20.754+0000] INFO: [STATUS] NAKACK2: retransmit request from CCSAddress
+        s-kafkaService uuid=eab348cf... for (1): {96969728}
+[2025-11-23T04:48:49.643+0000] WARNING: REB PS board (192.168.1.53): Read of seqno a0135940 took
+        unexpectedly long time 763ms (org.lsst.ccs.drivers.auxelex.Srp receive)
+[2025-11-23T04:48:49.644+0000] SEVERE: Periodic task monitor-update/RebPS/P03 did not finish execution
+        by the end of its period of 1000 ms. Still runnung. ... GC: G1 Young Generation from 254 to 255
+        for 1, G1 Old Generation from 255 to 1017 for 762.
+[2025-11-23T04:49:59.230+0000] WARNING: [STATUS] JGRP000011: s-kafkaService: dropped message from
+        non-member s-rebpower (view=[s-camera-mmm|80414] (36) [...])
+\end{verbatim}
+\endgroup
+\vspace{-10pt}\hrule
+\end{minipage}
+\caption{\textbf{CCS-07.} Ninety seconds of the November~23 storm, in order: \texttt{rebpower} down to 32\,MB of its 1979\,MB heap, retransmit requests from the Kafka service, REB power-supply reads taking three quarters of a second, the monitoring task overrunning its 1\,s period in old-generation garbage collection, and finally \texttt{rebpower} dropped from the group view.  The memory exhaustion precedes the communication failure rather than following it (\rubintkt{LSSTCAM-149}, \rubintkt{LSSTCAM-150}).}
+\label{fig:iss-CCS-07}
+\end{figure}
+
 \item[CCS-08]\label{iss:CCS-08} \textbf{Silent death of periodic tasks.}
   \emph{First to last mention 2025-03-22 to 2025-10-07; status \textcolor{stopn}{\textbf{Open}}\,\textbf{?}.}
   A separate and more general defect than CCS-04: a periodic task stops executing after reaching its maximum allowed number of exceptions and the subsystem carries on as if nothing had happened.  In March a chiller control panel was found frozen, showing the chiller off with the emergency stop asserted while it was in fact running, because the state-update task had died on a null-pointer exception; the resulting failure alert appeared in the log and the alert viewer but did not reach the Slack channels, which is what allowed it to go unnoticed.  A similar periodic-task failure recurred in October.  Whether the general problem was addressed afterwards is not visible in the operations channels.
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{\textwidth}
+\hrule\vspace{4pt}
+\begingroup\scriptsize
+\begin{verbatim}
+-- 2025-03-22 18:59 UTC, chiller-ccs log of 2025-03-16, retrieved after the panel was
+-- found frozen six days later and posted to #cam-operator
+
+ccs-logs-chiller-ccs-20250316.log.0.gz:
+[2025-03-16T22:51:52.603+0000] SEVERE: Raised Alert PeriodicTaskFailure (Alert raised when periodic
+        tasks have failures (exceptions) during execution. At ALARM level the task execution is
+        terminated.) at severity ALARM 1 time. Last cause : "Task updateCtrlState has experenced the
+        maximum allowed number of exceptions: 10 (max:10). It has stopped executing.
+        ([updateCtrlState])."
+
+-- the exception itself
+
+[2025-03-16T22:51:45.047+0000] SEVERE: Exception thrown by periodic task updateCtrlState
+        (org.lsst.ccs.utilities.scheduler.PeriodicTaskExceptionHandler onException)
+java.lang.NullPointerException: Cannot invoke "java.lang.Boolean.booleanValue()" because the return
+        value of "org.lsst.ccs.subsystem.refrig.ChillerMaq20Device.isLightOn(org.lsst.ccs.subsystem.refr
+        ig.ChillerMaq20Device$LightNumber)" is null
+\end{verbatim}
+\endgroup
+\vspace{-10pt}\hrule
+\end{minipage}
+\caption{\textbf{CCS-08.} The failure mode in full.  A periodic task reaches its allowed number of exceptions, stops executing, and the subsystem goes on serving the last state it managed to write --- here a chiller shown as off with the emergency stop asserted while it was running normally.  The alert was raised on 16~March and the condition was noticed on 22~March: it reached the log and the alert viewer, but not the operations channels.}
+\label{fig:iss-CCS-08}
+\end{figure}
 
 \end{description}
 
@@ -794,7 +1146,7 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-03-24 to 2025-10-21; status \textcolor{stres}{\textbf{Resolved}}.}
   The shutter jammed part-open during a flat calibration in June, with the blade apparently overrunning its limit, and was recovered only by power-cycling both PLCs and the HCU and recalibrating (\rubintkt{OBS-1013}).  It stuck again during a 15\,s exposure at a non-zero rotator angle in October, throwing an illegal-duration exception in the controller (\rubintkt{LSSTCAM-135}), and needed reinitialisation on the first night back from the shutdown.  An earlier motion-profile study in March had already shown anomalous Hall-sensor transitions and higher jerk than the 2022 reference set.  These stuck and overrun states are accounted for by the shutter timing analysis and were resolved with it. See Section~\ref{sec:shutter-timing}.
 
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.47\textwidth]{issues2025/figs/SHT-01-a.jpg}\hfill
 \includegraphics[width=0.47\textwidth]{issues2025/figs/SHT-01-b.jpg}
@@ -806,6 +1158,34 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-06-04 to 2025-11-20; status \textcolor{stmit}{\textbf{Mitigated}}.}
   Repeated ``timed out waiting for shutter exposure to complete'' failures in June were traced not to the mechanism but to PTP clocking: enabling a boundary clock on the shutter's switch reproduced the fault on the clean-room system, and transparent-clock mode and then the leaf switch as boundary clock removed the offset from master.  The analysis and recovery procedure are documented in \href{https://ctn-003.lsst.io}{CTN-003}.  Synchronisation still falls out of lock after major network events.  It did so twice in November: during the recovery from the November~3 jGroups meltdown, where \texttt{readPtpDiag.sh} was run repeatedly from 20:53 to 22:42\,UTC and the offset from master ranged from tens of milliseconds up to 0.96\,s before the shutter was recalibrated in a closed dome, and again on November~20 during the Dynalene recovery, when the shutter was restarted and the synchronisation was reported as bad at 19:52\,UTC.  Recovery in both cases required PLC power cycles and recalibration. See Section~\ref{sec:shutter-timing}.
 
+\begin{figure}[H]
+\centering
+\begin{minipage}{\textwidth}
+\hrule\vspace{4pt}
+\begingroup\scriptsize
+\begin{verbatim}
+-- 2025-11-03, recovery from the jGroups meltdown: readPtpDiag.sh on lsstcam-shutter01,
+-- run repeatedly between 20:53 and 22:42 UTC.  Two of the readings, unedited except for
+-- the lines common to both.
+
+  22:14:25                                   |    22:42:06  (after the network settled)
+  PTP state:               SLAVE (9)         |    PTP state:               SLAVE (9)
+  Offset from master (ns): 961,800,987       |    Offset from master (ns): 43,082
+  Mean path delay (ns):    9,466             |    Mean path delay (ns):    26,598
+  Steps removed:           4                 |    Steps removed:           4
+
+-- and the field that shows what the shutter itself believed the time was:
+
+  External (PTP) time:     Wed, 10 Dec 2025 21:58:45.689932 UTC
+  (the HCU clock read 2025-11-03 22:14:25 at that moment)
+\end{verbatim}
+\endgroup
+\vspace{-10pt}\hrule
+\end{minipage}
+\caption{\textbf{SHT-02.} Loss of lock after a network event, in the diagnostic the shutter provides.  An offset from master of 0.96\,s --- against the tens of nanoseconds of a healthy lock --- and a PTP time five weeks ahead of the real one; both recover without intervention once the network settles.  This is the November recurrence referred to in the entry; the analysis and the recovery procedure are in \href{https://ctn-003.lsst.io}{CTN-003}.}
+\label{fig:iss-SHT-02}
+\end{figure}
+
 \end{description}
 
 \noindent\textit{Filter exchange system}
@@ -814,7 +1194,7 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-05-02 to 2025-12-13; status \textcolor{stopn}{\textbf{Open}}.}
   The dominant filter-exchange failure mode: a carousel clamp fails to open or lock within the allowed time, faulting the changer and costing observing time.  It was attacked from three sides --- automated unclamping recovery in July (essentially 100\,\% success once deployed, error rate below 1 in 400 over 1000 exchanges), mechanical servicing and greasing of the socket clamps during the October shutdown (the grease not having been renewed since 2021), and a warm-up brake sequence in November --- yet socket-specific faults were still occurring in December.  A filter had to be removed from the camera in July when socket~3 could not be trusted.
 
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.62\textwidth]{issues2025/figs/FES-01-a.jpg}
 \caption{\textbf{FES-01.} The camera on the telescope with the filter-exchange region in view, on the night the final science-filter complement was in place (2025-10-30, \#cam-summit-ops).}
@@ -829,7 +1209,7 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-02-13 to 2025-12-13; status \textcolor{stopn}{\textbf{Open}}\,\textbf{?}.}
   The autochanger truck controllers fault with undervoltage errors after losing homing, a problem that first blocked filter exchange in February and reappeared in December (\rubintkt{OBS-1454}); a new automated homing procedure was qualified in hardware in March but the old method was kept for first photon.  Separately the X+ online clamp motor, damaged in summer 2023, faulted repeatedly during April exchanges and was never repaired.  Alignment test campaigns ran in September; what they concluded is not recorded in these channels.
 
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.47\textwidth]{issues2025/figs/FES-03-a.jpg}\hfill
 \includegraphics[width=0.47\textwidth]{issues2025/figs/FES-03-b.jpg}
@@ -845,7 +1225,7 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-04-17 to 2025-10-22; status \textcolor{stwrk}{\textbf{Workaround}}.}
   Light reaching the focal plane with the shutter closed repeatedly tripped the HV bias: sunlight through an open P-flow door with the mirror covers open, head lamps and light past the filter-loader door during FES work, a laser tracker left running all day, dome floodlights during a public demonstration, dome lights switched on by accident (about 20 channels tripped, all ITL rafts), and specular reflection of the moon within roughly 20 degrees.  Each case produced a procedural rule --- mirror covers closed when the P-flow is open, a minimum moon-avoidance angle, HV off during dome-shutter and filter operations --- and the trips became less frequent, but the mechanism is unchanged.
 
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.47\textwidth]{issues2025/figs/OPT-01-a.jpg}\hfill
 \includegraphics[width=0.47\textwidth]{issues2025/figs/OPT-01-b.jpg}
@@ -857,7 +1237,7 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-04-19 to 2025-04-20; status \textcolor{sttra}{\textbf{Transferred}}.}
   A banana-shaped feature appeared in dark and flat images, partly rotating with telescope azimuth and partly fixed, with equipment near M1M3 such as a laser tracker suspected as the source; reinstalling the pinhole filter was proposed as a partial mitigation for extended stray light.  No follow-up appears in either channel: the investigation was handed over to the stray-light group and is tracked there.
 
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.47\textwidth]{issues2025/figs/OPT-02-a.jpg}\hfill
 \includegraphics[width=0.47\textwidth]{issues2025/figs/OPT-02-b.jpg}
@@ -873,7 +1253,7 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-01-28 to 2025-02-04; status \textcolor{stres}{\textbf{Resolved}}.}
   Several socket-head bolts holding the pancake wrap's central rotating assembly to the adapter plate sheared during the installation campaign and were found loose in the cable wrap.  The wrap was removed and rebuilt with new hardware at a reduced torque, and the interface was reworked (pin holes reamed, internal sliding blocks removed) in early February; a subsequent bolt test to 75\,ft-lb showed no failure.  The joint has given no trouble since and the item is treated as closed.
 
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.47\textwidth]{issues2025/figs/MEC-01-a.jpg}\hfill
 \includegraphics[width=0.47\textwidth]{issues2025/figs/MEC-01-b.jpg}
@@ -885,7 +1265,7 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-02-18 to 2025-10-09; status \textcolor{stopn}{\textbf{Open}}.}
   In February the cable-wrap local interlock at Level~3 was found to be entirely isolated from the rotator interlock, so the rotator would not stop on a cable-wrap fault, and the two were joined.  Since installation the wrap has instead blocked rotation: loss of its telemetry faulted the rotator in August (\rubintkt{OBS-1200}) and it stuck in a fault state during October maintenance rotations, recovered by bypassing the interlock at the mount engineering interface.  Described in the logs as a known issue.
 
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.47\textwidth]{issues2025/figs/MEC-02-a.jpg}\hfill
 \includegraphics[width=0.47\textwidth]{issues2025/figs/MEC-02-b.jpg}
@@ -901,7 +1281,7 @@ not necessarily inactivity.}
   \emph{First to last mention 2025-01-21 to 2025-01-22; status \textcolor{stwrk}{\textbf{Workaround}}.}
   The camera doors ride on non-conductive tracks and are not electrically bonded, so they can charge as they slide; the temporary grounding wires used in the clean room had to be removed before the utility-trunk skins went on.  The accepted interim measure was an operational step to ground the doors by hand when opening or closing them.  A proper workaround using a grounding strap is being implemented.  The REB power-supply trips that motivated the concern are registered separately as FP-06.
 
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.47\textwidth]{issues2025/figs/MEC-04-a.jpg}\hfill
 \includegraphics[width=0.47\textwidth]{issues2025/figs/MEC-04-b.jpg}
@@ -916,6 +1296,37 @@ not necessarily inactivity.}
 \item[IT-01]\label{iss:IT-01} \textbf{Collateral damage from summit OS and Kubernetes patching.}
   \emph{First to last mention 2025-02-06 to 2025-12-16; status \textcolor{stmit}{\textbf{Mitigated}}.}
   Roughly monthly summit patching costs the camera a day and a full reboot cascade across its servers, and has twice done real harm: in August a scripting error included the shutter HCU that was meant to be excluded and an authentication race condition then locked it out for hours --- judged serious because the same fault on a hardware-safety host would have been worse --- and in December the reboot coincided with a Dynalene outage.  The camera team's response was procedural: take the camera offline first, reboot in a defined order, verify link speeds and images before handing back.
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{\textwidth}
+\hrule\vspace{4pt}
+\begingroup\scriptsize
+\begin{verbatim}
+-- 2025-08-26 21:25--21:39 UTC, #cam-operator.  The shutter HCU had been rebooted by summit
+-- patching that was supposed to exclude it.  The subsystem came back and kept producing
+-- telemetry; nobody could log in to it.
+
+lsstcam-vw02$ ssh lsstcam-shutter01.cp.lsst.org
+Connection closed by UNKNOWN port 65535
+
+$ nmap -p 22 lsstcam-shutter01.cp.lsst.org
+Host is up (0.023s latency).
+PORT   STATE SERVICE
+22/tcp open  ssh
+
+$ ssh lsstcam-shutter01
+The authenticity of host 'lsstcam-shutter01' can't be established.
+ED25519 key fingerprint is SHA256:enI61SsU+a9SGdEwIPkAF5LfqhOwTDvi8xLylPPZEMk.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Server host/lsstcam-shutter01.cp.lsst.org@LSST.CLOUD not found in Kerberos database
+\end{verbatim}
+\endgroup
+\vspace{-10pt}\hrule
+\end{minipage}
+\caption{\textbf{IT-01.} Patching collateral damage at its most awkward: the host is up, the port is open, the subsystem is running and sending telemetry, and the camera team is locked out of it for hours by an authentication race.  The shutter was not used until access was restored.  The same fault on a host carrying hardware protection would have been considerably worse, which is why this entry is kept.}
+\label{fig:iss-IT-01}
+\end{figure}
 
 \end{description}
 
