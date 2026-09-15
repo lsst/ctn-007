@@ -51,32 +51,32 @@
 \subsection{Issue register and activity timeline for 2025}
 \label{sec:issues-2025}
 
-This section organises the 2025 camera operations record by
+This section organizes the 2025 LSSTCam operations record by
 \emph{problem}: each recurring or distinct issue is given an identifier,
-summarised once, and placed on a timeline showing when it was actually being
+summarized once, and placed on a timeline showing when it was actually being
 worked on.  The date-ordered account it is drawn from is reproduced in
-Appendix~\ref{sec:chronology-2025}.  The purpose of the organisation is to
-separate three things that a chronology conflates --- issues that were closed,
+Appendix~\ref{sec:chronology-2025}.  The purpose of the organization is to
+separate three categories of issues that a chronology conflates --- issues that were closed,
 issues that the observatory learned to live with, and issues that were never
 closed at all.
 
-Identifiers carry a category prefix: \texttt{CRYO} (cryogenic refrigeration), \texttt{DYN} (dynalene (utility-trunk cooling)), \texttt{GLY} (glycol (facility)), \texttt{PCS} (pcs chiller), \texttt{PWR} (site power), \texttt{AIR} (compressed dry air), \texttt{FP} (focal plane), \texttt{FW} (reb firmware), \texttt{DAQ} (data acquisition), \texttt{CCS} (camera control system), \texttt{SHT} (shutter), \texttt{FES} (filter exchange system), \texttt{OPT} (stray light), \texttt{MEC} (mechanical and integration), \texttt{IT} (summit it).
-Status is assigned on the evidence of the operations channels, using five
+Identifiers carry a category prefix: \texttt{CRYO} (cryogenic refrigeration), \texttt{DYN} (dynalene [utility-trunk cooling]), \texttt{GLY} (glycol [facility cooling]), \texttt{PCS} (pumped-coolant system chiller), \texttt{PWR} (site power), \texttt{AIR} (compressed dry air), \texttt{FP} (focal plane), \texttt{FW} (reb firmware), \texttt{DAQ} (data acquisition), \texttt{CCS} (Camera Control System), \texttt{SHT} (shutter), \texttt{FES} (filter exchange system), \texttt{OPT} (stray light), \texttt{MEC} (mechanical and integration), \texttt{IT} (summit IT).
+Status is assigned based on the evidence of the operations channels, using five
 categories:
 
 \begin{center}
 \begin{tabular}{@{}clp{10.2cm}@{}}
-\textcolor{stres}{\textbf{R}} & Resolved & cause found and fixed, no recurrence in the logs \\
-\textcolor{stmit}{\textbf{M}} & Mitigated & recurrence contained by a procedure or design change, mechanism unchanged \\
-\textcolor{stwrk}{\textbf{W}} & Workaround & operated around a known defect that was never repaired \\
-\textcolor{stopn}{\textbf{O}} & Open & not closed: still active or recurring at the end of the year, or never resolved and no longer being mentioned \\
-\textcolor{sttra}{\textbf{T}} & Transferred & handed to another group and tracked outside camera operations \\
+\textcolor{stres}{\textbf{R}} & Resolved & Cause found and fixed, no recurrence in the logs \\
+\textcolor{stmit}{\textbf{M}} & Mitigated & Recurrence contained by a procedure or design change, mechanism unchanged \\
+\textcolor{stwrk}{\textbf{W}} & Workaround & Operated around a known defect that was never repaired \\
+\textcolor{stopn}{\textbf{O}} & Open & Not closed: still active or recurring at the end of the year, or never resolved and no longer being mentioned \\
+\textcolor{sttra}{\textbf{T}} & Transferred & Handed to another group and tracked outside LSSTCam operations \\
 \end{tabular}
 \end{center}
 
 \noindent
-3 entries are marked ``\textbf{?}''.  In those cases the record stops before
-the outcome, so the classification has to be settled from sources outside
+Three entries are also marked with a ``\textbf{?}''.  In those cases the record stops before
+the outcome is entered, so the classification has to be settled from sources outside
 these channels; the summary says in each case what is missing.
 
 \begin{table}[htb]
@@ -99,8 +99,8 @@ channels.  Open covers both ends of a spectrum: issues that were still
 generating traffic in December, and issues that were never closed and simply
 stopped being mentioned --- the timeline of
 Figure~\ref{fig:issue-timeline} distinguishes the two, since the latter show a
-long tail with no activity.  Those, together with the 6 workarounds, are the
-entries most likely to need a decision.}
+long tail with no activity.  Those, together with the six Workaround issues, are the
+entries most likely to need a decision and action.}
 \label{tab:issue-status}
 \end{table}
 \begin{figure}[htbp]
@@ -495,7 +495,7 @@ entries most likely to need a decision.}
 \node[font=\scriptsize\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.2pt,minimum width=0.30cm,anchor=west] at (12.35,45.00) {M};
 \end{tikzpicture}%
 \endgroup
-\caption{Activity timeline of the issues in the register.  A solid bar marks a period in
+\caption{Activity timeline in 2025 of the issues in the register.  A solid bar marks a period in
 which the issue was actively being discussed or worked on in \#cam-summit-ops
 or \#cam-operator; the thin grey line joins first to last mention, so gaps in
 it show how long an issue lay untouched between episodes.  Issues that were
@@ -509,7 +509,7 @@ to the corresponding entry in Section~\ref{sec:issue-summaries}.  The grey band 
 maintenance shutdown of October~1--20; the dashed lines mark the installation
 on the Top End Assembly (February~5), the installation on the telescope
 (March~6), the First Look event (June~23) and the return to sky after the
-shutdown (October~20).  Absence of a bar means silence in these two channels,
+shutdown (October~20).  Absence of a bar means silence in the two channels,
 not necessarily inactivity.}
 \label{fig:issue-timeline}
 \end{figure}
@@ -521,7 +521,7 @@ not necessarily inactivity.}
 \begin{description}
 \item[CRYO-01]\label{iss:CRYO-01} \textbf{Loss of cryo cooling capacity in cold ambient air.}
   \emph{First to last mention 2025-05-08 to 2025-10-25; status \textcolor{stmit}{\textbf{Mitigated}}.}
-  The dominant operational problem of the year.  Below a dome air temperature of roughly $7\,^{\circ}$C the cryo circuits lose capacity, cryo-plate trim heat falls to zero and the focal plane can no longer be held in thermal control; six events between May and September forced the CCDs, the HV and in the worst cases nearly all REBs off, with recoveries of seven hours to three days (\rubintkt{OBS-931}, \rubintkt{FRACAS-280}).  Pointing to horizon and adjusting the refrigerant charge were stopgaps.  The mechanism is re-condensation of vapour refrigerant in the line, set by the ambient temperature against the phase-separator temperature; the fix carried through during the year was insulation and heater tape on the refrigeration lines, with a matching glycol setpoint. Treated in detail in Sections~\ref{sec:cryo-tempsens-intro} to \ref{sec:cryo-tempsens-solution}.
+  The dominant operational problem of the year.  Below a dome air temperature of roughly 7\,$^{\circ}$C the cryo circuits lose capacity, cryo-plate trim heat falls to zero and the focal plane can no longer be held in thermal control; six events between May and September forced the CCDs, the HV and in the worst cases nearly all REBs off, with recoveries of seven hours to three days (\rubintkt{OBS-931}, \rubintkt{FRACAS-280}).  Pointing to horizon and adjusting the refrigerant charge were stopgaps.  The mechanism is re-condensation of vapor refrigerant in the line, set by the ambient temperature against the phase-separator temperature; the fix carried through during the year was insulation and heater tape on the refrigeration lines, with a matching glycol setpoint. Treated in detail in Sections~\ref{sec:cryo-tempsens-intro} to \ref{sec:cryo-tempsens-solution}.
 
 \begin{figure}[H]
 \centering
@@ -534,7 +534,7 @@ not necessarily inactivity.}
 
 \item[CRYO-02]\label{iss:CRYO-02} \textbf{Cryo 1 heat-exchanger return temperature below the dome dew point.}
   \emph{First to last mention 2025-05-12 to 2025-09-09; status \textcolor{stopn}{\textbf{Open}}.}
-  Cryo~1's heat-exchanger return line ran colder than the in-dome dew point, risking frost or an ice sheet on the plumbing, and the circuit had to be stopped nightly for several weeks.  Throttling the liquid-line isolation valve (June~1--4) and then removing refrigerant to lower the discharge pressure raised the return temperature to about $+3\,^{\circ}$C, and in September the circuit was removed from the dome-closure decision criteria.  None of that was a fix: Cryo~1 recovered by itself, and the underlying question --- whether a low heat-exchanger return temperature at low refrigerant flow is acceptable --- has never been settled either way.  The clog now thought to lie behind it is registered as CRYO-04.  Experience since, including in high humidity, gives no indication that it is critical, but establishing that would require measuring the tube temperature against the temperature and humidity of the surrounding air. The trim-heat and dome-closure behaviour that accompanies these nights is shown in Figure~\ref{fig:iss-CRYO-01}.
+  Cryo~1's heat-exchanger return line ran colder than the in-dome dew point, risking frost or an ice sheet on the plumbing, and the circuit had to be stopped nightly for several weeks.  Throttling the liquid-line isolation valve (June~1--4) and then removing refrigerant to lower the discharge pressure raised the return temperature to about +3\,$^{\circ}$C, and in September the circuit was removed from the dome-closure decision criteria.  None of that was a fix: Cryo~1 recovered by itself, and the underlying question --- whether a low heat-exchanger return temperature at low refrigerant flow is acceptable --- has never been settled either way.  The clog now thought to lie behind it is registered as CRYO-04.  Experience since, including in high humidity, gives no indication that it is critical, but establishing that would require measuring the tube temperature against the temperature and humidity of the surrounding air. The trim-heat and dome-closure behavior that accompanies these nights is shown in Figure~\ref{fig:iss-CRYO-01}.
 
 \item[CRYO-03]\label{iss:CRYO-03} \textbf{Cryo 6 compressor failure.}
   \emph{First to last mention 2025-04-01 to 2025-06-07; status \textcolor{stres}{\textbf{Resolved}}.}
@@ -542,18 +542,18 @@ not necessarily inactivity.}
 
 \item[CRYO-04]\label{iss:CRYO-04} \textbf{Suspected capillary clogs on Cryo 1, Cryo 3 and Cryo 4.}
   \emph{First to last mention 2025-05-12 to 2025-12-11; status \textcolor{stopn}{\textbf{Open}}.}
-  Three circuits developed what was read as a restriction at the capillary: Cryo~1 from around May~10, Cryo~3 on the recharge that followed the nitrogen contamination of CRYO-06, and Cryo~4 in early December.  Power cycling did not clear any of them --- Cryo~1 was cycled of order thirty to sixty times --- and neither did adding refrigerant or running the telescope horizontal.  Two came back on their own: Cryo~4 overnight on December~10, Cryo~1 over some months, with no one intervention creditable.  Cryo~3 did not; it was given up on October~20 and the camera has run on five of six circuits since.  The low heat-exchanger return temperature Cryo~1 was left with is CRYO-02.
+  Three circuits developed what was read as a restriction at the capillary: Cryo~1 from around May~10, Cryo~3 on the recharge that followed the nitrogen contamination of CRYO-06, and Cryo~4 in early December.  Power cycling did not clear any of them --- Cryo~1 was cycled of order 30--60 times --- and neither did adding refrigerant or running the telescope horizontal.  Two came back on their own: Cryo~4 overnight on December~10, Cryo~1 over some months, with no one intervention creditable.  Cryo~3 did not; it was given up on October~20 and the camera has run on five of six circuits since.  The low heat-exchanger return temperature Cryo~1 was left with is issueCRYO-02.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.90\textwidth]{issues2025/figs/CRYO-04-a.jpg}
-\caption{\textbf{CRYO-04.} The Cryo~4 clog developing through November: the C4 exit temperature (blue) drifts up towards the pre-capillary temperature over five weeks, the signature by which the clog was recognised (2025-12-11, \#cam-operator).}
+\caption{\textbf{CRYO-04.} The Cryo~4 clog developing through November: the C4 exit temperature (blue) drifts up toward the pre-capillary temperature over five weeks, the signature by which the clog was recognized (2025-12-11, \#cam-operator).}
 \label{fig:iss-CRYO-04}
 \end{figure}
 
 \item[CRYO-05]\label{iss:CRYO-05} \textbf{Cryo 6 PLC death after an external setpoint change.}
   \emph{First to last mention 2025-11-18 to 2025-11-19; status \textcolor{stopn}{\textbf{Open}}.}
-  On November~19 the Cryo~6 PLC was declared dead at 00:34\,UTC with the discharge temperature reading $122\,^{\circ}$C and the oil level negative; the PLC recovered by itself 33 minutes later.  The overheating of the cabinet that preceded it was attributed to a software update elsewhere on the summit mis-setting the glycol setpoint in response to bad environmental sensor readings (\rubintkt{FRACAS-322}, \rubintkt{OBS-1394}, \rubintkt{OBS-1395}).  The PLC failure itself is suspected to be a problem in the PLC, and its root cause is not known.  The CCS logic that closes the coolant valve when a PLC is declared dead was flagged as needing revision (\slactkt{LSSTCCSREFRIG-319} and \slactkt{LSSTCCSREFRIG-332}).
+  On November~19 the Cryo~6 PLC was declared dead at 00:34\,UTC with the discharge temperature reading 122\,$^{\circ}$C and the oil level negative; the PLC recovered by itself 33 minutes later.  The overheating of the cabinet that preceded it was attributed to a software update elsewhere on the summit mis-setting the glycol setpoint in response to bad environmental sensor readings (\rubintkt{FRACAS-322}, \rubintkt{OBS-1394}, \rubintkt{OBS-1395}).  The PLC failure itself is suspected to be a problem in the PLC, and its root cause is not known.  The CCS logic that closes the coolant valve when a PLC is declared dead was flagged as needing revision (\slactkt{LSSTCCSREFRIG-319} and \slactkt{LSSTCCSREFRIG-332}).
 
 \begin{figure}[H]
 \centering
@@ -565,7 +565,7 @@ not necessarily inactivity.}
 
 \item[CRYO-06]\label{iss:CRYO-06} \textbf{Nitrogen contamination of cryo circuits during maintenance.}
   \emph{First to last mention 2025-05-26 to 2025-10-16; status \textcolor{stmit}{\textbf{Mitigated}}\,\textbf{?}.}
-  Twice in the year nitrogen got into a refrigeration circuit during work on it, by two different routes, and in both cases it was recognised only afterwards.  Cryo~2 took about 45\,grams during an oil addition on April~2; the resulting high discharge pressure was carried for months and was not explained until May~26, and the circuit was still sitting at 420\,psi discharge in mid-June with refrigerant removal under discussion as the remedy.  In October, during the filter-dryer replacement campaign, nitrogen reached the refrigerant in Cryo~3: the filter dryer was pressurised with nitrogen above the pressure of the rest of the circuit and a cross-leaking isolation valve --- described afterwards as stuck open --- let it through.  Cryo~3 had to be evacuated over the weekend of October~11--12 and recharged, and it is on that recharge that it developed the clog which cost it the rest of the year (CRYO-04).  The corrective action is procedural and was stated precisely on October~16: confirm the isolation valve is fully closed before pressurising the filter dryer with nitrogen, and never pressurise the filter dryer above the pressure of the remaining circuit.  Revisions to \lsstls{LCA-14625} (evacuation and charging) and \lsstls{LCA-17726} (filter-dryer replacement) were promised for that week; whether they were issued is not visible in these channels.  A third suspicion --- that nitrogen entered Cryo~1 during a filter-dryer swap and explained its poor performance --- was raised on May~26 and ruled out on the physics: nitrogen raises the discharge pressure but cannot produce a low heat-exchanger return temperature.
+  Twice in the year nitrogen got into a refrigeration circuit during work on it, by two different routes, and in both cases it was recognized only afterwards.  Cryo~2 took about 45\,grams during an oil addition on April~2; the resulting high discharge pressure was carried for months and was not explained until May~26, and the circuit was still sitting at 420\,psi discharge in mid-June with refrigerant removal under discussion as the remedy.  In October, during the filter-dryer replacement campaign, nitrogen reached the refrigerant in Cryo~3: the filter dryer was pressurized with nitrogen above the pressure of the rest of the circuit and a cross-leaking isolation valve --- described afterwards as stuck open --- let it through.  Cryo~3 had to be evacuated over the weekend of October~11--12 and recharged, and it is on that recharge that it developed the clog which cost it the rest of the year (CRYO-04).  The corrective action is procedural and was stated precisely on October~16: confirm the isolation valve is fully closed before pressurizing the filter dryer with nitrogen, and never pressurize the filter dryer above the pressure of the remaining circuit.  Revisions to \lsstls{LCA-14625} (evacuation and charging) and \lsstls{LCA-17726} (filter-dryer replacement) were promised for that week; whether they were issued is not visible in these channels.  A third suspicion --- that nitrogen entered Cryo~1 during a filter-dryer swap and explained its poor performance --- was raised on May~26 and ruled out on the physics: nitrogen raises the discharge pressure but cannot produce a low heat-exchanger return temperature.
 
 \end{description}
 
@@ -573,18 +573,18 @@ not necessarily inactivity.}
 \begin{description}
 \item[DYN-01]\label{iss:DYN-01} \textbf{Recurrent loss of Dynalene flow to the utility trunk.}
   \emph{First to last mention 2025-01-18 to 2025-12-17; status \textcolor{stopn}{\textbf{Open}}.}
-  Dynalene, which cools the utility-trunk electronics, failed repeatedly all year --- from control computer (cRIO) reboots and crashes, chiller faults and power events --- each time forcing an emergency power-down of CCDs, REBs and often the shutter and filter changer (\rubintkt{OBS-1014}, \rubintkt{FRACAS-321}, \rubintkt{FRACAS-328}).  A review of the August~11 event established that the camera tolerates only about 13 minutes without flow before REB power-supply boards approach their $48\,^{\circ}$C trip limit.  The cRIO was replaced on November~4 and a small UPS was added in late November, but outages continued into the second half of December.
+  Dynalene, which cools the utility-trunk electronics, failed repeatedly all year --- from control computer (cRIO) reboots and crashes, chiller faults and power events --- each time forcing an emergency power-down of CCDs, REBs and often the shutter and filter changer (\rubintkt{OBS-1014}, \rubintkt{FRACAS-321}, \rubintkt{FRACAS-328}).  A review of the August~11 event established that the camera tolerates only about 13 minutes without flow before REB power-supply boards approach their 48\,$^{\circ}$C trip limit.  The cRIO was replaced on November~4 and a small UPS was added in late November, but outages continued into the second half of December.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.62\textwidth]{issues2025/figs/DYN-01-a.jpg}
-\caption{\textbf{DYN-01.} Utility-trunk Dynalene flow collapsing to zero.  This is the signature the events have in common: whatever the cause upstream --- a cRIO reboot, a chiller fault, a power event --- what the camera sees is the flow going away, and from that moment it has about thirteen minutes before the REB power-supply boards approach their $48\,^{\circ}$C trip limit (2025-06-03, \#cam-operator).}
+\caption{\textbf{DYN-01.} Utility-trunk Dynalene flow collapsing to zero.  This is the signature the events have in common: whatever the cause upstream --- a cRIO reboot, a chiller fault, a power event --- what the camera sees is the flow stopping, and from that moment it has about 13 minutes before the REB power-supply boards approach their 48\,$^{\circ}$C trip limit (2025-06-03, \#cam-operator).}
 \label{fig:iss-DYN-01}
 \end{figure}
 
 \item[DYN-02]\label{iss:DYN-02} \textbf{Camera warm-up on Dynalene chiller changeover and filter cleaning.}
   \emph{First to last mention 2025-02-21 to 2025-12-22; status \textcolor{stopn}{\textbf{Open}}.}
-  Distinct from an outright loss of flow: routine facility actions --- weekly Dynalene filter cleaning, a clogged glycol filter, or switching between chillers --- warm the supply enough to push REB power-supply board temperatures towards their limit and trip the HV.  A clogged filter drove utility-trunk Dynalene to $22\,^{\circ}$C in February, and on December~22 a chiller changeover forced HV and then the CCDs off for about an hour (\rubintkt{OBS-1490}).  No interlock or procedural gate prevents this at year end. The flow signature is the one in Figure~\ref{fig:iss-DYN-01}; here it is the supply temperature rather than the flow that moves.
+  Distinct from an outright loss of flow: routine facility actions --- weekly Dynalene filter cleaning, a clogged glycol filter, or switching between chillers --- warm the supply enough to push REB power-supply board temperatures toward their limit and trip the HV.  A clogged filter drove utility-trunk Dynalene to 22\,$^{\circ}$C in February, and on December~22 a chiller changeover forced HV and then the CCDs off for about an hour (\rubintkt{OBS-1490}).  No interlock or procedural gate prevents this at year end. The flow signature is the one in Figure~\ref{fig:iss-DYN-01}; here it is the supply temperature rather than the flow that moves.
 
 \item[DYN-04]\label{iss:DYN-04} \textbf{Condensation and humidity around the Top End Assembly.}
   \emph{First to last mention 2025-06-14 to 2025-12-16; status \textcolor{stopn}{\textbf{Open}}.}
@@ -594,7 +594,7 @@ not necessarily inactivity.}
 \centering
 \includegraphics[height=6.50cm]{issues2025/figs/DYN-04-a.jpg}\hfill
 \includegraphics[height=6.50cm]{issues2025/figs/DYN-04-b.jpg}
-\caption{\textbf{DYN-04.} Left: the liquid found below the camera cable wrap on 16~December, a little left of centre looking into the mirror --- the drops that were traced back to the Top End Assembly.  Right: the source, measured a week later: an uninsulated Dynalene line at the cable wrap reading $1.6\,^{\circ}$C on its surface, well below the dew point of the air around it (2025-12-16 and 2025-12-24, \#cam-summit-ops).}
+\caption{\textbf{DYN-04.} Left: the liquid found below the camera cable wrap on 16~December, a little left of centre looking into the mirror --- the drops that were traced back to the Top End Assembly.  Right: the source, measured a week later: an uninsulated Dynalene line at the cable wrap reading 1.6\,$^{\circ}$C on its surface, well below the dew point of the air around it (2025-12-16 and 2025-12-24, \#cam-summit-ops).}
 \label{fig:iss-DYN-04}
 \end{figure}
 
@@ -630,7 +630,7 @@ not necessarily inactivity.}
 
 \item[PCS-02]\label{iss:PCS-02} \textbf{PCS chiller restart difficulty, and the MRCR unit.}
   \emph{First to last mention 2025-03-28 to 2025-07-02; status \textcolor{stopn}{\textbf{Open}}.}
-  Restarting the chiller is a separate problem from the failures above and was never solved: the unit repeatedly trips on low HFE flow because gas bubbles form in the longer line configuration, which procedure \lsstls{LCA-20281} does not cover.  In March it took roughly a dozen attempts over two days, and was recovered only by pressurising the coolant tank; a loud bypass-valve noise during those attempts was later explained as the high-pressure bypass cracking at an 80\,psi pump differential.  The same behaviour blocked the restart of the unit at the MRCR in July.  The MRCR system was found to have failed during the year and is tracked as \rubintkt{LSSTCAM-119}.
+  Restarting the chiller is a separate problem from the failures above and was never solved: the unit repeatedly trips on low HFE flow because gas bubbles form in the longer line configuration, which procedure \lsstls{LCA-20281} does not cover.  In March it took roughly a dozen attempts over two days, and was recovered only by pressurizing the coolant tank; a loud bypass-valve noise during those attempts was later explained as the high-pressure bypass cracking at an 80\,psi pump differential.  The same behavior blocked the restart of the unit at the MRCR in July.  The MRCR system was found to have failed during the year and is tracked as \rubintkt{LSSTCAM-119}.
 
 \begin{figure}[H]
 \centering
@@ -645,14 +645,14 @@ not necessarily inactivity.}
 \begin{description}
 \item[PWR-01]\label{iss:PWR-01} \textbf{Site power: grid glitches, generator failure and UPS capacity.}
   \emph{First to last mention 2025-02-25 to 2025-11-28; status \textcolor{stopn}{\textbf{Open}}.}
-  The camera is exposed to the summit's power quality throughout: glitches stick valves closed (\rubintkt{FRACAS-282}), trip chillers and compressors, and interrupt cooling.  The most severe event was August~30, when the generator tripped --- its air inlet blocked by ice and snow (\rubintkt{FRACAS-299}) --- and left the camera on UPS alone.  The damage was not done by the loss of power to the camera itself but through the cooling chain: the glycol feeding the cryo circuits stopped with the recirculation pumps (GLY-01), the cryo systems were lost, and with them the cryostat pressure began to rise towards the ion-pump shutdown limit, at one point estimated to be about fifteen minutes away.  The REBs and REB power supplies were shut down by hand while this was happening; generator power returned first and the pressure recovered.  Separately the server-room UPS exhausted its roughly 30-minute battery (\rubintkt{FRACAS-300}) and the backup diesel generator was found already out of service.  UPS batteries were replaced in November; the underlying exposure remains.
+  The camera is exposed to the summit's power quality throughout: glitches stick valves closed (\rubintkt{FRACAS-282}), trip chillers and compressors, and interrupt cooling.  The most severe event was August~30, when the generator tripped --- its air inlet blocked by ice and snow (\rubintkt{FRACAS-299}) --- and left the camera on UPS alone.  The damage was not done by the loss of power to the camera itself but through the cooling chain: the glycol feeding the cryo circuits stopped with the recirculation pumps (GLY-01), the cryo systems were lost, and with them the cryostat pressure began to rise toward the ion-pump shutdown limit, at one point estimated to be about 15 minutes away.  The REBs and REB power supplies were shut down by hand while this was happening; generator power returned first and the pressure recovered.  Separately the server-room UPS exhausted its roughly 30-minute battery (\rubintkt{FRACAS-300}) and the backup diesel generator was found already out of service.  UPS batteries were replaced in November; the underlying exposure remains.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.60\textwidth]{issues2025/figs/PWR-01-b.jpg}
 \\[4pt]
 \includegraphics[width=0.90\textwidth]{issues2025/figs/PWR-01-a.jpg}
-\caption{\textbf{PWR-01.} The chain of 30 August, in the order it happened.  Top: glycol input flow to the chiller collapsing when the generator trips, and the chiller outlet temperature stepping up as it goes --- ``No glycol flow to chiller.  Tripped.''  The cryo circuits go with it.  Bottom: the consequence some twenty minutes later --- cryostat and heat-exchanger pressure leaving $10^{-7}$\,Torr and rising past $1.1\times10^{-6}$, with the cryo plate warming from $-124$ towards $-113\,^{\circ}$C at about $0.6\,^{\circ}$C per minute.  The ion-pump shutdown limit was estimated to be fifteen minutes away when generator power came back (2025-08-30).}
+\caption{\textbf{PWR-01.} The chain of 30 August, in the order it happened.  Top: glycol input flow to the chiller collapsing when the generator trips, and the chiller outlet temperature stepping up as it goes --- ``No glycol flow to chiller.  Tripped.''  The cryo circuits go with it.  Bottom: the consequence some 20 minutes later --- cryostat and heat-exchanger pressure leaving $10^{-7}$\,Torr and rising past $1.1\times10^{-6}$, with the cryo plate warming from $-$124 toward $-$113\,$^{\circ}$C at about 0.6\,$^{\circ}$C per minute.  The ion-pump shutdown limit was estimated to be 15 minutes away when generator power came back (2025-08-30).}
 \label{fig:iss-PWR-01}
 \end{figure}
 
@@ -662,7 +662,7 @@ not necessarily inactivity.}
 \begin{description}
 \item[AIR-01]\label{iss:AIR-01} \textbf{Compressed dry air supply failures.}
   \emph{First to last mention 2025-02-27 to 2025-10-08; status \textcolor{stmit}{\textbf{Mitigated}}.}
-  Compressed dry air operates the vacuum gate valves and purges the camera body, so its loss is a direct camera concern --- including frosting risk on the L3 lens.  Supply was cut for two hours for compressor maintenance in February, both Level-1 compressors degraded in August when their dryers froze at $-8\,^{\circ}$C, and a compressor was lost to a packing-seal failure in October.  Insulating jackets on the dryers addressed the freezing mode; single-compressor operation remains a routine condition.
+  Compressed dry air operates the vacuum gate valves and purges the camera body, so its loss is a direct camera concern --- including frosting risk on the L3 lens.  Supply was cut for two hours for compressor maintenance in February, both Level-1 compressors degraded in August when their dryers froze at $-$8\,$^{\circ}$C, and a compressor was lost to a packing-seal failure in October.  Insulating jackets on the dryers addressed the freezing mode; single-compressor operation remains a routine condition.
 
 \begin{figure}[H]
 \centering
@@ -678,20 +678,20 @@ not necessarily inactivity.}
 \begin{description}
 \item[FP-01]\label{iss:FP-01} \textbf{R30/Reb1/S12 suspected OD short (subject of this note).}
   \emph{First to last mention 2025-04-07 to 2025-12-10; status \textcolor{stwrk}{\textbf{Workaround}}.}
-  On April~7, after a routine power cycle and a reorientation of the camera to zenith, R30/Reb1 raised a Bias2 OD2 overcurrent on S12 ($\mathrm{ODI}=0.213$\,A against an $0.082$\,A limit); S12 reached bias voltage in two steps and tripped off on both attempts, and the behaviour was read at the time as a real short.  A retest on April~25 showed an unexplained digital-current spike of order 1\,A, and the REB was left as the only one switched off camera-wide through May.  It was returned to service on June~25--26 running two of three CCDs, which required an R30/Reb1 firmware update and relaxed bias-control limits; the CCD current on S12/Seg17 was noted as anomalously low at that turn-on and again on June~29.  The REB has carried its own firmware variant through every subsequent firmware campaign.  The workaround --- running two of the three CCDs on Reb1 --- was implemented on June~25--26 and has been in place since; the fault itself is unresolved. Described in detail in Sections~\ref{sec:r30s12} and~\ref{sec:r30s12-solution}.
+  On April~7, after a routine power cycle and a reorientation of the camera to zenith, R30/Reb1 raised a Bias2 OD2 overcurrent on S12 ($\mathrm{ODI}=0.213$\,A against an $0.082$\,A limit); S12 reached bias voltage in two steps and tripped off on both attempts, and the behavior was read at the time as a real short.  A retest on April~25 showed an unexplained digital-current spike of order 1\,A, and the REB was left as the only one switched off camera-wide through May.  It was returned to service on June~25--26 running two of three CCDs, which required an R30/Reb1 firmware update and relaxed bias-control limits; the CCD current on S12/Seg17 was noted as anomalously low at that turn-on and again on June~29.  The REB has carried its own firmware variant through every subsequent firmware campaign.  The workaround --- running two of the three CCDs on Reb1 --- was implemented on June~25--26 and has been in place since; the fault itself is unresolved. Described in detail in Sections~\ref{sec:r30s12} and~\ref{sec:r30s12-solution}.
 
 \item[FP-02]\label{iss:FP-02} \textbf{R20/Reb2/S21 unphysical RD voltage read-back.}
   \emph{First to last mention 2025-04-02 to 2025-04-24; status \textcolor{stwrk}{\textbf{Workaround}}.}
   The April~2 CCD shorts test found R20/Reb2/S21 reading an unphysical $+54$\,V RD (reset drain) voltage; power cycling the REB and resetting the RCE did not change it, and the working theory was an open ADC input on the board.  The sensor blocked power-on of the raft until April~24, when the erroneous RD reading was configured to be ignored in software and R20 was returned to service.  No hardware repair was attempted. Described in detail in Section~\ref{sec:r20reb2}.
 
-\item[FP-03]\label{iss:FP-03} \textbf{Non-linear HV bias behaviour on R21/Reb0 and R12/Reb0.}
+\item[FP-03]\label{iss:FP-03} \textbf{Non-linear HV bias behavior on R21/Reb0 and R12/Reb0.}
   \emph{First to last mention 2025-05-05 to 2025-10-25; status \textcolor{stmit}{\textbf{Mitigated}}.}
   R21/Reb0 repeatedly glitched and tripped its HV bias near 50\,V, where its DC-DC converter behaves non-linearly, once producing visible tree rings mid-integration.  It was set to run permanently at 46\,V, and R12/Reb0 later showed similar sensitivity requiring extra care during ramp-up.  Managed by lowered setpoints and careful ramping rather than repaired.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.62\textwidth]{issues2025/figs/FP-03-a.jpg}
-\caption{\textbf{FP-03.} The glitches on R21/Reb0: HV bias voltage, current and DAC setting stepping and spiking as the bias is ramped, the behaviour for which the operating point was lowered (2025-05-05, \#cam-operator).}
+\caption{\textbf{FP-03.} The glitches on R21/Reb0: HV bias voltage, current and DAC setting stepping and spiking as the bias is ramped, the behavior for which the operating point was lowered (2025-05-05, \#cam-operator).}
 \label{fig:iss-FP-03}
 \end{figure}
 
@@ -732,7 +732,7 @@ not necessarily inactivity.}
 
 \item[FW-02]\label{iss:FW-02} \textbf{REB serial-number read race leaving REBs INVALID.}
   \emph{First to last mention 2025-10-13 to 2025-12-15; status \textcolor{stopn}{\textbf{Open}}.}
-  Whenever REBs are power-cycled or booted from a different firmware slot, some come back reporting a serial number of zero and stay in an invalid validation state, requiring link resets or RCE reboots before they can be used.  It appeared with the October candidate-firmware rollout and recurred through every subsequent power cycle to the end of the year; tooling improvements (single-RCE reboot, a re-initialise command) were proposed but not delivered.
+  Whenever REBs are power-cycled or booted from a different firmware slot, some come back reporting a serial number of zero and stay in an invalid validation state, requiring link resets or RCE reboots before they can be used.  It appeared with the October candidate-firmware rollout and recurred through every subsequent power cycle to the end of the year; tooling improvements (single-RCE reboot, a re-initialize command) were proposed but not delivered.
 
 \begin{figure}[H]
 \centering
@@ -1254,7 +1254,7 @@ java.lang.NullPointerException: Cannot invoke "java.lang.Boolean.booleanValue()"
 
 \item[MEC-03]\label{iss:MEC-03} \textbf{Creaking noise during large camera rotations.}
   \emph{First to last mention 2025-08-04 to 2025-09-07; status \textcolor{stopn}{\textbf{Open}}.}
-  A repetitive clicking or creaking picked up by the camera shutter microphone, described as sounding like a Geiger counter.  It was first analysed on August~4--5, when it appeared between 23:06:13 and 23:07:18\,UTC at 2--6\,kHz while the telescope was slewing: the M2 hexapod was found not to be moving but to be holding position with its actuator currents oscillating in a zigzag, which made it the first suspect.  On August~12 an alternative explanation --- the flapping straps of a temporary safety barrier on the mesh platform, blown by the HVAC fans and heard as the telescope slewed past --- was proposed and the straps were taped down.  The same sound returned on September~7 during 20-degree rotations every three minutes, which disproved the strap theory: this time the M2 hexapod was stationary while the camera hexapod moved with every rotation, though M2-hexapod motor currents still spiked at each one.  The recirculating ball bearings of the hexapod roller-screw actuators, or of the rotator, were then proposed as the source, and whether the sound has grown louder with age was raised and not answered.  A ticket was opened (\rubintkt{OBS-1158}) and nothing further appears in these channels.
+  A repetitive clicking or creaking picked up by the camera shutter microphone, described as sounding like a Geiger counter.  It was first analysed on August~4--5, when it appeared between 23:06:13 and 23:07:18\,UTC at 2--6\,kHz while the telescope was slewing: the M2 hexapod was found not to be moving but to be holding position with its actuator currents oscillating in a zigzag, which made it the first suspect.  On August~12 an alternative explanation --- the flapping straps of a temporary safety barrier on the mesh platform, blown by the HVAC fans and heard as the telescope slewed past --- was proposed and the straps were taped down.  The same sound returned on September~7 during 20-degree rotations every 3 minutes, which disproved the strap theory: this time the M2 hexapod was stationary while the camera hexapod moved with every rotation, though M2-hexapod motor currents still spiked at each one.  The recirculating ball bearings of the hexapod roller-screw actuators, or of the rotator, were then proposed as the source, and whether the sound has grown louder with age was raised and not answered.  A ticket was opened (\rubintkt{OBS-1158}) and nothing further appears in these channels.
 
 \begin{figure}[H]
 \centering
