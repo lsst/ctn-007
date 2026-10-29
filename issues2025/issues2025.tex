@@ -62,7 +62,7 @@ separate three categories of issues that a chronology conflates --- issues that 
 issues that the observatory learned to live with, and issues that were never
 closed at all.
 
-Identifiers carry a category prefix: \texttt{CRYO} (cryogenic refrigeration), \texttt{DYN} (dynalene [utility-trunk cooling]), \texttt{GLY} (glycol [facility cooling]), \texttt{PCS} (Pumped-coolant system chiller), \texttt{PWR} (site power), \texttt{AIR} (compressed dry air), \texttt{FP} (focal plane), \texttt{FW} (rEB firmware), \texttt{DAQ} (data acquisition), \texttt{CCS} (Camera Control System), \texttt{SHT} (shutter), \texttt{FES} (filter exchange system), \texttt{OPT} (stray light), \texttt{MEC} (mechanical and integration), \texttt{IT} (Summit IT), \texttt{VAC} (cryostat vacuum).
+Identifiers carry a category prefix: \texttt{CRYO} (cryogenic refrigeration), \texttt{DYN} (Dynalene [utility-trunk cooling]), \texttt{GLY} (glycol [facility cooling]), \texttt{PCS} (Pumped-coolant system chiller), \texttt{PWR} (site power), \texttt{AIR} (compressed dry air), \texttt{FP} (focal plane), \texttt{FW} (rEB firmware), \texttt{DAQ} (data acquisition), \texttt{CCS} (Camera Control System), \texttt{SHT} (shutter), \texttt{FES} (filter exchange system), \texttt{OPT} (stray light), \texttt{MEC} (mechanical and integration), \texttt{IT} (Summit IT), \texttt{VAC} (cryostat vacuum).
 Status is assigned based on the evidence of the operations channels, using five
 categories:
 
@@ -703,7 +703,7 @@ telescope, First Look, the two returns to sky, and the storm.}
 \includegraphics[width=0.60\textwidth]{issues2025/figs/CRYO-01-a.jpg}
 \\[4pt]
 \includegraphics[width=0.90\textwidth]{issues2025/figs/CRYO-01-b.jpg}
-\caption{\textbf{CRYO-01.} Top: the 8 May loss of capacity as it was reconstructed afterwards --- cryo temperatures, cryostat and heat-exchanger vacuum and the cryo-plate trim heat, with the moments the dome-closure decision was taken and completed marked (2025-05-27).  Bottom: trim heat applied to the cryo plate falling to 0.78\,W, the floor at which the plate can no longer be held in control (2025-05-25).}
+\caption{\textbf{CRYO-01.} Top: the 8 May loss of capacity as it was reconstructed afterwards --- cryo temperatures, cryostat and heat-exchanger vacuum and the cryo-plate trim heat, with the moments the dome-closure decision was taken and completed marked (2025-05-27).  Bottom: trim heat applied to the cryo plate falling to 0.78\,W, the floor at which the plate can no longer be held in control (2025-05-08).}
 \label{fig:iss-CRYO-01}
 \end{figure}
 
@@ -717,7 +717,7 @@ telescope, First Look, the two returns to sky, and the storm.}
 
 \item[CRYO-04]\label{iss:CRYO-04} \textbf{Suspected capillary clogs on Cryo 1, Cryo 3 and Cryo 4.}
   \emph{First to last mention 2025-05-12 to 2026-06-26; status \textcolor{stopn}{\textbf{Open}}.}
-  Three circuits developed what was read as a restriction at the capillary: Cryo~1 from around May~10, Cryo~3 on the recharge that followed the nitrogen contamination of CRYO-06, and Cryo~4 in early December.  Power cycling did not clear any of them --- Cryo~1 was cycled of order 30--60 times --- and neither did adding refrigerant or running the telescope horizontal.  Two came back on their own: Cryo~4 overnight on December~10, Cryo~1 over some months, with no one intervention creditable.  Cryo~3 did not; it was given up on October~20 and the camera has run on five of six circuits since.  The low heat-exchanger return temperature Cryo~1 was left with is CRYO-02.  Two more circuits joined in 2026.  Cryo~2 clogged at C3 and was flushed in March, clogged again, refused to pass nitrogen at all in May --- ``absolutely zero flow'' --- and was set aside until an R123 flush in August.  Cryo~6 clogged at C4 and was cleared by the June purge.  Cryo~1 clogged again on its liquid line in May, and the replacement compressor fitted to Cryo~4 in June arrived with a C3 clog of its own.  Refrigerant was added repeatedly to buy margin.  Of the six circuits, two were out of service and one degraded when the record ends.
+  Three circuits developed what was read as a restriction at the capillary: Cryo~1 from around May~10, Cryo~3 on the recharge that followed the nitrogen contamination of CRYO-06, and Cryo~4 in early December.  Power cycling did not clear any of them --- Cryo~1 power was cycled 30--60 times --- and neither did adding refrigerant or running the telescope horizontal.  Two came back on their own: Cryo~4 overnight on December~10, Cryo~1 over some months, with no one intervention creditable.  Cryo~3 did not; it was given up on October~20 and the camera has run on five of six circuits since.  The low heat-exchanger return temperature Cryo~1 was left with is CRYO-02.  Two more circuits clogged in 2026.  Cryo~2 clogged at C3 and was flushed in March, clogged again, refused to pass nitrogen at all in May --- ``absolutely zero flow'' --- and was set aside until an R123 flush in August.  Cryo~6 clogged at C4 and was cleared by the June purge.  Cryo~1 clogged again on its liquid line in May, and the replacement compressor fitted to Cryo~4 in June arrived with a C3 clog of its own.  Refrigerant was added repeatedly to buy margin.  Of the six circuits, two were out of service and one was degraded when the record ends.
 
 \begin{figure}[H]
 \centering
@@ -748,7 +748,7 @@ telescope, First Look, the two returns to sky, and the storm.}
 
 \item[CRYO-08]\label{iss:CRYO-08} \textbf{Cryo 4 compressor failure and the MRCR spare.}
   \emph{First to last mention 2026-06-20 to 2026-06-26; status \textcolor{stmit}{\textbf{Mitigated}}.}
-  Cryo~4 failed overnight on 2026 June~20 with blown fuses, on the same signature as the Cryo~5 failure 7 weeks earlier, and the CCDs had to be turned off camera-wide.  The response was decided in an emergency meeting the next morning: fit the unmounted MRCR spare compressor rather than wait (\rubintkt{SUMMIT-12941}).  It was hoisted and installed on June~22, charged on June~23 and brought back on line.  Two defects came with it --- a capillary clog on C3, and glycol flowing the wrong way through the unit, found on June~26, whose correction cost about 10\,W of cooling capacity.  The camera has run on four of six circuits since.
+  Cryo~4 failed overnight on 2026 June~20 with blown fuses, on the same signature as the Cryo~5 failure 7 weeks earlier, and the CCDs had to be turned off camera-wide.  The response was decided in an emergency meeting the next morning: fit the unmounted MRCR spare compressor rather than wait (\rubintkt{SUMMIT-12941}).  It was hoisted and installed on June~22, charged on June~23 and brought back on line.  Two defects came with it --- a capillary clog on C3, and glycol flowing the wrong way through the unit, found on June~26, whose correction cost about 10\,W of cooling capacity.  LSSTCam ran on four of six circuits since that time.
 
 \end{description}
 
