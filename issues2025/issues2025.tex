@@ -1084,8 +1084,8 @@ R43/Reb1
 \noindent\textit{Camera Control System}
 \begin{description}
 \item[CCS-01]\label{iss:CCS-01} \textbf{Guider state desynchronization and focal-plane hangs.}
-  \emph{First to last mention 2025-05-01 to 2026-07-06; status \textcolor{stmit}{\textbf{Mitigated}}.}
-  The guider state held by CCS and by the DAQ drift apart --- from dangling initialization commands, double commanding between CCS and OCS, or new pause timeouts --- leaving the guider stuck paused (once for 22 hours, unnoticed, with no guider data written) or the focal-plane subsystem hung in an active command state needing a restart.  Individual manifestations were patched repeatedly; the pattern was still recurring on multiple nights in late November (\rubintkt{LSSTCAM-148}).  Two real causes were found in 2026 and the rate came down.  The first was physical: a frame error rate of about $10^{-5}$ on the fiber between the DAQ and the control system, cured by cleaning both ends on February~24 --- ``There have been no Ethernet frame errors since this morning's cleaning'' (\rubintkt{LSSTCAM-151}, \rubintkt{IHS-9679}).  The second was self-inflicted: the guider pause timeout had been switched off after an incident in October 2025, which is what lets the two sides drift apart after a dangling \texttt{initGuiders} (\rubintkt{LSSTCAM-178}, \rubintkt{OBS-1909}).  Hangs still happened into July.
+  \emph{First to last mention 2025-05-01 to 2026-07-06; status \textcolor{stopn}{\textbf{Open}}.}
+  The guider state held by CCS and by the DAQ become inconsistent --- from incomplete initialization commands, double commanding between CCS and OCS, or new pause timeouts --- leaving the guider stuck paused (once for 22 hours, unnoticed, with no guider data written) or the focal-plane subsystem hung in an active command state needing a restart.  Individual manifestations were patched repeatedly; the pattern was still recurring on multiple nights in late November (\rubintkt{LSSTCAM-148}).  Two real causes were found in 2026 and the rate came down.  The first was physical: a frame error rate of about $10^{-5}$ on the fiber between the DAQ and the control system, cured by cleaning both ends on February~24 --- ``There have been no Ethernet frame errors since this morning's cleaning'' (\rubintkt{LSSTCAM-151}, \rubintkt{IHS-9679}).  The second was self-inflicted: the guider pause timeout had been switched off after an incident in October 2025, which is what lets the two sides drift apart after a dangling \texttt{initGuiders} (\rubintkt{LSSTCAM-178}, \rubintkt{OBS-1909}).  Hangs still happened into July.
 
 \begin{figure}[H]
 \centering
@@ -1121,20 +1121,13 @@ Guider entered unexpected state, expected=PAUSED actual=ERROR
 \label{fig:iss-CCS-01}
 \end{figure}
 
-\item[CCS-02]\label{iss:CCS-02} \textbf{Idle clear: from guider clearing noise to default operation.}
-  \emph{First to last mention 2025-04-16 to 2025-07-04; status \textcolor{stres}{\textbf{Resolved}}.}
-  Guider idle-clearing was found in April to inject noise into neighbouring sensors during bias readout, making early bias images unusable and producing stripes in wavefront images (\slactkt{LSSTCCSRAFTS-778}).  The proper fix --- a non-guider idle-clear scheme --- arrived with CCS 41.0.4 in late June, needed two further locking fixes (skipped invocations piling up, and a sequencer-reload race that showed up as a runaway clock current on R30/Reb2), and was declared operational on June~30.  Idle clear has been the default for all on-sky observations since early July, replacing continuous all-day biases.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.62\textwidth]{issues2025/figs/CCS-02-a.jpg}
-\caption{\textbf{CCS-02.} A bias exposure with the guider running: the structure across the upper rafts is the artefact that idle clear was introduced to remove (2025-07-01).}
-\label{fig:iss-CCS-02}
-\end{figure}
+\item[CCS-02]\label{iss:CCS-02} \textbf{Idle clear: from guider clearing to default operation.}
+  \emph{First to last mention 2025-04-15 to 2025-07-04; status \textcolor{stres}{\textbf{Resolved}}.}
+  In order to purge the charge that accumulates while the system sits idle, and to keep stray light reaching the focal plane during the day from tripping the HV off, idle clear --- flushing the charge continuously through a read that is discarded, at about 1\,Mpix per 34\,s --- was implemented and declared operational on June~30.  Idle clear has been the default for all on-sky observations since early July, replacing the continuous all-day biases.
 
 \item[CCS-03]\label{iss:CCS-03} \textbf{ocs-bridge failures to release the mount motion lock.}
   \emph{First to last mention 2025-07-13 to 2025-11-09; status \textcolor{stopn}{\textbf{Open}}.}
-  After a filter change the bridge between CCS and the observatory control system intermittently fails to acknowledge the unlock command to the mount and rotator, leaving them motion-locked and the filter command rejected (\rubintkt{OBS-1098}, \rubintkt{OBS-1079}, \rubintkt{OBS-1119}, \rubintkt{OBS-1360}).  A SAL interface version mismatch is suspected.  The standing recovery is to take the camera offline and restart the bridge; it cost whole nights in July and recurred in November.
+  After a filter change the bridge between CCS and the observatory control system intermittently fails to acknowledge the unlock command to the mount and rotator, leaving them motion-locked and the filter command rejected (\rubintkt{OBS-1098}, \rubintkt{OBS-1079}, \rubintkt{OBS-1119}, \rubintkt{OBS-1360}).  A SAL interface version mismatch is suspected.  The standing recovery is to take the camera offline and restart the bridge; it cost whole nights in July and recurred in November.  It is this failure that the daily \texttt{ocs-bridge} restart exists to pre-empt, adopted in late November 2025 and still part of the morning routine.  The cause has never been understood.
 
 \begin{figure}[H]
 \centering
@@ -1218,6 +1211,8 @@ java.lang.NullPointerException: Name is null
   \emph{First to last mention 2025-02-15 to 2026-04-28; status \textcolor{stmit}{\textbf{Mitigated}}.}
   Retransmit storms on the CCS group-communication layer that break CCS--DAQ communication and, in the worst cases, require nearly every subsystem to be killed and restarted (\rubintkt{OBS-950}).  Several distinct triggers were identified over the year --- a console process hitting its memory limit, IGMP snooping enabled on particular switches, guiding at an untested 5\,s cadence with high DAQ traffic, a locked console, Kafka broker memory exhaustion --- and each was addressed, yet the class of failure recurred in November.  No single root cause was established.  A cause was finally named, twice: a runaway graphical console on an operator workstation, in January (\rubintkt{OBS-1558}) and again on April~28.  ``JGroups is likely a victim in this case.''  A deliberate test in March reproduced a self-sustaining storm that took 35 minutes to clear, and a repeat after the server migration would not reproduce it.
 
+  The one trigger that was pinned down experimentally involves the DAQ.  Storms were reproduced by taking images with the guider running, and a controlled test on 2025 August~14 separated the two: images with the guider gave a meltdown, images without the guider did not, and guider data without images did not either.  A second test the following day split the work across two data-collection machines --- guider stamps on one, image data on the other --- which also avoided it, while putting both on one machine produced it on either machine.  The conclusion drawn was that the trigger is the amount of data crossing the DAQ interface on a single data-collection machine rather than a fault in any one machine.  Dropped messages from the DAQ to that machine were seen alongside the dropped jGroups messages.  No mechanism linking the two was established.
+
 \begin{figure}[H]
 \centering
 \begin{minipage}{\textwidth}
@@ -1252,7 +1247,7 @@ Feb 18 17:00:56 lsstcam-pcs02 refrig[2624]: 4567 INFO: [STATUS] NAKACK2: retrans
 
 \item[CCS-07]\label{iss:CCS-07} \textbf{Kafka broker and rebpower memory exhaustion.}
   \emph{First to last mention 2025-11-01 to 2026-05-20; status \textcolor{stres}{\textbf{Resolved}}.}
-  The Kafka broker service and the REB-power subsystem exhausted their Java memory, the broker reaching extreme CPU use and the subsystem dropping to tens of megabytes free, which triggered an overnight storm (\rubintkt{LSSTCAM-149}, \rubintkt{LSSTCAM-150}).  Restarting both services at the start of each night became standing practice --- a workaround, not a fix.  Fixed on 2026 May~20.  The broker was stopping on a full queue (\rubintkt{LSSTCAM-179}); the defect was found, a workaround patched into the installation on the master control machine, and the nightly restarts stopped being necessary.
+  The Kafka broker service and the REB-power subsystem exhausted their Java memory, the broker reaching extreme CPU use and the subsystem dropping to tens of megabytes free, which triggered an overnight storm (\rubintkt{LSSTCAM-149}, \rubintkt{LSSTCAM-150}).  Restarting the \texttt{kafka-broker-service} at the start of each night became standing practice --- a workaround, not a fix.  It was done together with the \texttt{ocs-bridge} restart of CCS-03, but only the kafka half of that routine belongs to this issue.  Fixed on 2026 May~20.  The broker was stopping on a full queue (\rubintkt{LSSTCAM-179}); the defect was found, a workaround patched into the installation on the master control machine, and the nightly restarts stopped being necessary.
 
 \begin{figure}[H]
 \centering
@@ -1286,7 +1281,7 @@ Feb 18 17:00:56 lsstcam-pcs02 refrig[2624]: 4567 INFO: [STATUS] NAKACK2: retrans
 
 \item[CCS-08]\label{iss:CCS-08} \textbf{Silent death of periodic tasks.}
   \emph{First to last mention 2025-03-22 to 2026-04-24; status \textcolor{stopn}{\textbf{Open}}\,\textbf{?}.}
-  A separate and more general defect than CCS-04: a periodic task stops executing after reaching its maximum allowed number of exceptions and the subsystem carries on as if nothing had happened.  In March a chiller control panel was found frozen, showing the chiller off with the emergency stop asserted while it was in fact running, because the state-update task had died on a null-pointer exception; the resulting failure alert appeared in the log and the alert viewer but did not reach the Slack channels, which is what allowed it to go unnoticed.  A similar periodic-task failure recurred in October.  Whether the general problem was addressed afterwards is not visible in the operations channels.  Twice more, and the second time with the point made plainly: a vacuum monitoring task died after its tenth read failure while the trending went on displaying its last values as though they were live.
+  A separate and more general defect than CCS-04: a periodic task stops executing after reaching its maximum allowed number of exceptions and the subsystem carries on as if nothing had happened.  In March a chiller control panel was found frozen, showing the chiller off with the emergency stop asserted while it was in fact running, because the state-update task had died on a null-pointer exception; the resulting failure alert was raised in the log and did appear in the console alert viewer, but it did not reach the Slack channels, which is what allowed it to go unnoticed.  Alerts do now reach the Slack channels.  A similar periodic-task failure recurred in October.  Whether the general problem was addressed afterwards is not visible in the operations channels.  Twice more, and the second time with the point made plainly: a vacuum monitoring task died after its tenth read failure while the trending went on displaying its last values as though they were live.
 
 \begin{figure}[H]
 \centering
