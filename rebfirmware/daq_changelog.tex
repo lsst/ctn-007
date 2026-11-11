@@ -1,0 +1,301 @@
+% Requires \usepackage{hyperref} in the main document.
+\providecommand{\code}[1]{\texttt{#1}}
+\providecommand{\compactlist}{\setlength{\itemsep}{1pt}\setlength{\parskip}{0pt}\setlength{\topsep}{2pt}}
+
+\subsubsection{DAQ library}
+The changelog of the DAQ library is published in a private GitHub repository:
+\url{https://github.com/lsst-camera-daq/daq-sdk/blob/main/CHANGELOG.md}.
+A snapshot of it is copied here for easy access.
+
+\begingroup\sloppy % long \texttt names otherwise overflow the margin
+% ======================================================================
+\paragraph{R5-V13.17}
+
+\noindent\textbf{API Changes}\par\nobreak
+\begin{itemize}\compactlist
+  \item \texttt{GDS::Client}
+  \begin{itemize}\compactlist
+    \item \textbf{New method:} \code{emu\_play(files, nfiles, status, loaded, reason)} ---
+      emulator-only; loads one file per sensor into a server-mode
+      \code{gds\_emulator} for the next START. A real GDS service rejects it with
+      \code{INVALID\_COMMAND} (a service predating this release does not answer:
+      \code{COMMAND\_TIMEOUT}).
+    \item \textbf{New header:} \code{gds/EmulatorPlay.hh} defines the PLAY request and
+      response (function code \code{F24}, reserved as \code{Function::EMULATOR\_PLAY}).
+  \end{itemize}
+  \item GDS System Service
+  \begin{itemize}\compactlist
+    \item \textbf{Changed:} The GDS service now rejects \code{F24} (emulator PLAY)
+      immediately with \code{INVALID\_COMMAND} instead of not answering.
+  \end{itemize}
+\end{itemize}
+\noindent\textbf{Enhancements}\par\nobreak
+\begin{itemize}\compactlist
+  \item \textbf{GDS Emulator --- real-time playback:} New \code{auto} rate reproduces the
+    input file's own stamp intervals. Wire timestamps now follow a shared
+    acquisition timeline (T0 at RESUME plus each stamp's input offset), so
+    stamp N carries an identical timestamp and number on every sensor.
+    In-file PAUSE/RESUME/STOP records are forwarded at their place on the
+    timeline. Rate \code{0} is documented as stress-test only (not
+    timing-faithful).
+  \item \textbf{GDS Emulator --- server mode (\code{-S}):} \code{gds\_emulator} can act as the
+    GDS control service for a partition, so unmodified \code{GDS::Client} users
+    (CCS, the \code{gds} tool) command it through the full GDS state machine
+    (WAKE/START/RESUME/PAUSE/STOP/CLEAR/SLEEP, series/config reports).
+    Data is published only on commanded transitions; every RESUME sets T0;
+    files rewind at end of file. Data is loaded per series with the
+    emulator-only PLAY command (\code{-d} sets the data directory). Refuses to
+    start if any GDS service already answers on the partition.
+  \item \textbf{gds:} New \code{play <file> [file...]} command (wraps
+    \code{GDS::Client::emu\_play()}).
+  \item \textbf{GDS Emulator:} Playback engine refactored into reusable classes
+    (\code{Source}, \code{Player}, \code{Streamer}, \code{Controller}, \code{Timeline},
+    \code{Rendezvous}, \code{Loader}, \code{Service}).
+\end{itemize}
+
+\noindent\textbf{Bug Fixes}\par\nobreak
+\begin{itemize}\compactlist
+  \item \textbf{GDS Emulator:} PAUSE/RESUME/STOP stamp counts now report
+    acquisitions (last stamp number + 1), matching real readout, instead
+    of stamps sent.
+  \item \textbf{GDS Emulator:} \code{StampFile} rewind restores the header START state
+    and series metadata, fixing looped replay of files with a mid-file
+    START.
+\end{itemize}
+
+See \code{GDS\_EMULATOR.md} (in the \code{gds/} package) for usage details.
+
+
+% ======================================================================
+\paragraph{R5-V13.16}
+
+\noindent\textbf{API Changes}\par\nobreak
+\begin{itemize}\compactlist
+  \item \texttt{DSID::Client}
+  \begin{itemize}\compactlist
+    \item \textbf{New method:} \code{setInterface()} --- runtime override of the network
+      interface name. Must be called early in \code{main()}, before any client
+      instances are created. Eliminates hardcoded \code{"lsst-daq"} interface
+      names across RMS, IMS, and EMU tools.
+  \end{itemize}
+\end{itemize}
+\noindent\textbf{Enhancements}\par\nobreak
+\begin{itemize}\compactlist
+  \item \textbf{REB:} \code{reb\_info} gained board ID display, selective field flags
+    (\code{--id}, \code{--build}, \code{--hash}, \code{--version}, \code{--clock}, \code{--all}), and
+    verbose version-register decoding. Multi-sequencer field now shows
+    \code{n/a} for WREBs (single-sensor boards where the concept doesn't apply).
+  \item \textbf{Build:} Documentation (\code{GDS\_EMULATOR.md}, \code{DAQ\_TOOLS.md},
+    \code{CHANGELOG.md}) now exported to \code{\$EXPORT\_ROOT/docs/} on build.
+\end{itemize}
+
+\noindent\textbf{New Tools --- GDS Emulator}\par\nobreak
+A new toolset for replaying archived guider stamps and FITS files through
+the live GDS multicast interface, so \code{GDS::Subscriber}/\code{Decoder} clients
+can be developed without hardware:
+
+\begin{itemize}\compactlist
+  \item \code{gds\_emulator} --- replays \code{.stamp}, \code{.rstamp}, and \code{.fits} files as a
+    stream publisher. Supports multi-sensor (threaded) playback, looping
+    (\code{-l}), sub-ranges (\code{-s}/\code{-n}), emulator-controlled sequence numbers
+    (\code{-q}), and RESUME comment override (\code{-c}).
+  \item \code{gds\_stampinfo} --- reports stamp count, ROI geometry, cadence, and
+    metadata for a stamp/FITS file.
+  \item \code{gds\_stamp\_roundtrip} --- validates encode/decode fidelity of stamp and
+    FITS files, pixel-by-pixel.
+  \item \code{dsid\_standalone} --- foreground DSID service for development; auto-creates
+    a partition and refuses to start if a DSID service is already running.
+\end{itemize}
+
+See \code{GDS\_EMULATOR.md} (in the \code{gds/} package) for usage details.
+
+
+% ======================================================================
+\paragraph{R5-V13.15}
+
+\noindent\textbf{API Changes}\par\nobreak
+\begin{itemize}\compactlist
+  \item \texttt{DAQ::Location}
+  \begin{itemize}\compactlist
+    \item \textbf{New method:} \code{encodeReb()} returns REB-style location names
+      (\code{R22/Reb0}, \code{R00/RebW}, \code{R00/RebG}). The existing \code{encode()}
+      method is unchanged and continues to return numeric \code{bay/board} format.
+    \item \textbf{New:} \code{Location(const char*)} parser now accepts both numeric (\code{22/0})
+      and REB (\code{R22/Reb0}) input formats.
+    \item \textbf{Removed:} \code{LocationSetCli.hh} --- location parsing consolidated into
+      \code{LocationSet}.
+  \end{itemize}
+  \item \texttt{DAQ::LocationSet}
+  \begin{itemize}\compactlist
+    \item \textbf{Changed:} \code{encode()} returns smart summaries for well-known sets
+      (e.g., \code{ScienceSet} instead of listing all 63 locations; \code{All except R22/Reb1}
+      for near-complete sets).
+  \end{itemize}
+  \item \texttt{RMS::Client}
+  \begin{itemize}\compactlist
+    \item \textbf{Renamed:} \code{reset\_link()} $\rightarrow$ \code{set\_link(targets, enable)}.
+      The new API supports both enabling and disabling PGP links.
+    \item \textbf{Renamed:} Wire protocol function \code{RESETLINK} $\rightarrow$ \code{SETLINK}
+      (opcode value unchanged: \code{F6}).
+  \end{itemize}
+\end{itemize}
+\noindent\textbf{Enhancements}\par\nobreak
+\begin{itemize}\compactlist
+  \item \textbf{IMS:} \code{Image::synopsis()} column order changed --- Readout Time is now
+    the first column, enabling \code{| sort} on \code{ims\_list} output.
+  \item \textbf{REB bitfile location metadata:} Bitfiles now carry a location trailer
+    enabling load-time gating --- firmware can only be loaded onto the REB it
+    was built for (override with \code{-i}).
+  \item \textbf{XDS::Stats:} New \code{title()} and \code{encode()} methods for compact tabular
+    output of storage server statistics.
+  \item \textbf{RMS/EMU/XDS:} Reboot and reset utilities now prompt for confirmation
+    before executing, showing the number of affected targets.
+\end{itemize}
+
+\noindent\textbf{Bug Fixes}\par\nobreak
+\begin{itemize}\compactlist
+  \item \textbf{GDS:} Fixed \code{\_get\_system()} discovery timeout; added \code{POST\_FAIL}
+    error string.
+  \item \textbf{CMS/EMU:} Fixed incorrect program names in USAGE strings
+    (\code{cms\_delete} said \code{cms\_trigger}; \code{emu\_reboot\_rce} said \code{rms\_reboot\_rce}).
+  \item \textbf{IMS:} Fixed path order in all help text, USAGE strings, and error
+    messages --- was \code{image/folder}, corrected to \code{folder/image} to match
+    actual \code{Path} class parsing.
+\end{itemize}
+
+\noindent\textbf{New Utilities}\par\nobreak
+\begin{itemize}\compactlist
+  \item \code{reb\_info} --- read FPGA build info from REB status registers
+  \item \code{reb\_pgpstats} --- PGP link statistics per REB
+  \item \code{reb\_imgstats} --- image statistics per REB virtual channel
+  \item \code{rms\_set\_link} --- control PGP link state (down/up/reset with duration)
+  \item \code{scs\_stats} --- SCS sequencer statistics
+  \item \code{ims\_list} --- list folders and images in the IMS data store
+  \item \code{ims\_inspect} --- inspect stored image metadata
+  \item \code{ims\_badpixel} --- scan images for bad pixels with optional stripe dump
+  \item \code{xds\_config} --- display XDS server configuration and consistency
+  \item \code{xds\_sample} --- tabular XDS server statistics with optional reset
+  \item \code{xds\_list} --- XDS storage capacity summary
+  \item \code{xds\_probe} --- probe XDS service for active servers
+  \item \code{xds\_reboot\_rce} --- reboot Storage RCEs by DSI location
+  \item \code{emu\_probe} --- probe EMU service for active locations
+\end{itemize}
+
+\noindent\textbf{Removed Utilities}\par\nobreak
+\begin{itemize}\compactlist
+  \item \code{rms\_reset} --- removed (duplicated by \code{rms\_reset\_reb})
+\end{itemize}
+
+See \href{DAQ_TOOLS.md}{\code{DAQ\_TOOLS.md}} for usage details.
+
+
+% ======================================================================
+\paragraph{R5-V13.14}
+
+\noindent\textbf{API Changes}\par\nobreak
+\begin{itemize}\compactlist
+  \item \texttt{DSI::Client / DSI::Socket / DSI::Stream}
+  \begin{itemize}\compactlist
+    \item \textbf{Changed:} Timeout parameters changed from 10\,ms ticks (\code{uint32\_t}) to
+      milliseconds (\code{uint64\_t}). Old tick-based constructors are deprecated
+      but still functional.
+  \end{itemize}
+  \item \texttt{DAQ::Sensor}
+  \begin{itemize}\compactlist
+    \item \textbf{New method:} \code{Sensor::xor\_mask()} centralizes the sensor XOR mask
+      computation (previously duplicated in GDS).
+  \end{itemize}
+\end{itemize}
+\noindent\textbf{Enhancements}\par\nobreak
+\begin{itemize}\compactlist
+  \item \textbf{SATA:} New \code{ssd}, \code{errors}, and \code{transport} shell commands for drive
+    diagnostics. Fixed \code{standby}/\code{idle} argument handling. Added \code{nowake}
+    flag to suppress drive wakeup before I/O.
+  \item \textbf{GDS:} New \code{version} command.
+  \item \textbf{IMS:} Bad-pixel counting added to \code{ims\_editor} and
+    \code{ims\_image\_monitor}. Dump mode prints bad stripes with surrounding
+    context.
+\end{itemize}
+
+\noindent\textbf{Bug Fixes}\par\nobreak
+\begin{itemize}\compactlist
+  \item \textbf{NET:} Fixed \code{uint32\_t} overflow in socket timeout conversion that
+    could produce incorrect timeout values for large tick counts.
+  \item \textbf{SATA:} Fixed \code{Drive::probe()} missing \code{SAS\_Wait(\_session)} call.
+  \item \textbf{IMS:} Fixed \code{Decoder} segfault on corrupt image data by validating
+    source size before decoding.
+  \item \textbf{GDS:} Fixed spurious command timeouts by adding per-command retry
+    loop with deadline budget. \code{series}/\code{config} now use \code{LONG\_TIMEOUT}.
+\end{itemize}
+
+\noindent\textbf{New Utilities}\par\nobreak
+\begin{itemize}\compactlist
+  \item \code{gds\_probe} --- consolidated GDS/GDR service probing
+\end{itemize}
+
+
+% ======================================================================
+\paragraph{R5-V13.13}
+
+\noindent\textbf{API Changes}\par\nobreak
+\begin{itemize}\compactlist
+  \item \texttt{DAQ::SyncCommands}
+  \begin{itemize}\compactlist
+    \item \textbf{Moved:} \code{SyncCommands} class moved from \code{dsm/} to \code{daq/} package.
+      New RCE firmware disables synchronous commands by default; the SDK
+      now explicitly enables them during partition startup.
+  \end{itemize}
+  \item \texttt{RMS::Client}
+  \begin{itemize}\compactlist
+    \item \textbf{New method:} \code{reboot\_rce()} --- reboot RCEs by DAQ location through
+      the RMS service.
+  \end{itemize}
+  \item \texttt{EMU::Client}
+  \begin{itemize}\compactlist
+    \item \textbf{New method:} \code{reboot\_rce()} --- reboot RCEs by DAQ location through
+      the EMU service.
+  \end{itemize}
+\end{itemize}
+\noindent\textbf{Enhancements}\par\nobreak
+\begin{itemize}\compactlist
+  \item \textbf{RMS/EMU:} Added ability to reboot RCEs by DAQ location
+    (\code{emu\_reboot\_rce}, \code{rms\_reboot\_rce}).
+\end{itemize}
+
+
+% ======================================================================
+\paragraph{R5-V13.12}
+
+\noindent\textbf{Bug Fixes}\par\nobreak
+\begin{itemize}\compactlist
+  \item \textbf{GDS:} Fixed split ROI calculation of next segment/amp that could
+    produce incorrect region-of-interest boundaries.
+  \item \textbf{RMS:} Fixed \code{HarvestLists} crash when REBs are offline --- the
+    harvest list now handles missing locations gracefully.
+\end{itemize}
+
+
+% ======================================================================
+\paragraph{R5-V13.11}
+
+\noindent\textbf{API Changes}\par\nobreak
+\begin{itemize}\compactlist
+  \item \texttt{RMS::Client}
+  \begin{itemize}\compactlist
+    \item \textbf{New method:} \code{reset\_link()} --- bounce the PGP link on the RCE
+      (subsequently renamed to \code{set\_link()} in V13.15).
+  \end{itemize}
+\end{itemize}
+\noindent\textbf{Enhancements}\par\nobreak
+\begin{itemize}\compactlist
+  \item \textbf{RMS:} Added \code{HarvestLists} that orders \code{rms\_read}/\code{rms\_write}
+    output by REB type (science, wavefront, guiding).
+\end{itemize}
+
+\noindent\textbf{Bug Fixes}\par\nobreak
+\begin{itemize}\compactlist
+  \item \textbf{GDS:} Fixed relay bug where a double \code{start} without an intervening
+    \code{stop} failed to clear the subscriber list, causing stale subscribers
+    to accumulate.
+\end{itemize}
+\par\endgroup
