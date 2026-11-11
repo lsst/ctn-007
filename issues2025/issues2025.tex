@@ -1166,9 +1166,9 @@ performing a filter exchange. Current status of the lock is UNLOCKED
 \label{fig:iss-CCS-03}
 \end{figure}
 
-\item[CCS-04]\label{iss:CCS-04} \textbf{Vacuum-subsystem fault that silently disabled a safety interlock.}
-  \emph{First to last mention 2025-02-25 to 2025-03-04; status \textcolor{stmit}{\textbf{Mitigated}}.}
-  In February a vacuum-subsystem fault left seven MKS gauges --- including the safety-critical cryostat and heat-exchanger (Hx) gauges --- offline for over 15 hours and aborted the low-vacuum check, so the refrigeration-not-permitted alarm was never re-raised despite high pressures: protection remained nominally configured while not working.  The defect was fixed under \slactkt{LSSTCCSSUB-212} and the corrected build was installed by hand on the summit in early March.
+\item[CCS-04]\label{iss:CCS-04} \textbf{Vacuum-subsystem bug that skipped the low-vacuum check.}
+  \emph{First to last mention 2025-02-25 to 2025-03-04; status \textcolor{stres}{\textbf{Resolved}}.}
+  After a restart of the vacuum subsystem in February, the \texttt{REFRIG\_NOT\_PERMITTED} alarm was cleared and never raised again, although the cryostat and heat-exchanger (Hx) pressures were high.  A bug in the vacuum-state periodic task stopped it before the low-vacuum check whenever some device data, in particular the turbo pumps', could not be read.  The protection stayed configured but did not act.  The fix was made under \slactkt{LSSTCCSSUB-212}, installed on the summit in early March 2025 and merged to main the same month; the ticket is now closed.  At the same time seven MKS gauges, the cryostat and Hx gauges among them, went unread for more than 15 hours.  That was not the bug: they had been switched off at the quadbox.  The check itself treats unreadable gauges as an alarm condition; it simply never ran.
 
 \begin{figure}[H]
 \centering
@@ -1199,7 +1199,7 @@ java.lang.NullPointerException: Name is null
 \endgroup
 \vspace{-10pt}\hrule
 \end{minipage}
-\caption{\textbf{CCS-04.} The February fault as it appears in the log.  Devices are set offline at subsystem start-up and the \texttt{vacuum-state} periodic task --- the task that evaluates the pressures and raises \texttt{RefrigNotPermitted} --- dies on a null device state.  Seven MKS gauges, including the cryostat and heat-exchanger gauges, stayed offline for more than 15 hours; the interlock was configured throughout and did nothing.}
+\caption{\textbf{CCS-04.} The February fault as it appears in the log.  Devices are set offline at subsystem start-up, and the \texttt{vacuum-state} periodic task, which evaluates the pressures and raises \texttt{RefrigNotPermitted}, throws on a null turbo-pump state before it reaches the pressure check.  The interlock was configured throughout and did nothing.}
 \label{fig:iss-CCS-04}
 \end{figure}
 

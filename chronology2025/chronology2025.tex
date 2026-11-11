@@ -161,11 +161,12 @@ such.
   forced the camera down to minimum power (roughly 400\,W); why the
   alarms did not trigger remained under investigation.
 
-\item[Feb 25--28] A vacuum-subsystem software fault left seven MKS
-  gauges --- including the safety-critical cryostat and heat-exchanger
-  (Hx) gauges --- offline for over 15\,hours and aborted the low-vacuum
-  check, so the \texttt{REFRIG\_NOT\_PERMITTED} alarm was never
-  re-raised despite high pressures.  A fix was prepared under
+\item[Feb 25--28] A vacuum-subsystem software fault stopped the
+  low-vacuum check after a restart, so the \texttt{REFRIG\_NOT\_PERMITTED}
+  alarm was not raised again despite high pressures.  Seven MKS gauges,
+  including the cryostat and Hx gauges, were unread for over 15\,hours at
+  the same time, but because they had been switched off at the quadbox,
+  not because of the fault.  A fix was prepared under
   \slactkt{LSSTCCSSUB-212}.
 \end{description}
 
