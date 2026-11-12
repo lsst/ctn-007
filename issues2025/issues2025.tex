@@ -10,6 +10,10 @@
 %
 %  Preamble requirements: tikz, xcolor, graphicx, booktabs.
 %
+%  Revision 5: PCS-01 limited to 2025; the 2026 heater/fan failure becomes
+%    PCS-04 and the MRCR spare chiller PCS-05 (LSSTCAM-119, LSSTCAM-192);
+%    PCS-02 rewritten from #cam-pumped-coolant-system.
+%
 %  Revision 4 (author review):
 %    - GLY-02 retired -> PCS-01 (reliability) and PCS-02 (restart difficulty,
 %      plus the MRCR failure tracked as LSSTCAM-119); glycol and the PCS
@@ -77,7 +81,7 @@ categories:
 \end{center}
 
 \noindent
-Four entries are also marked with a ``\textbf{?}''.  In those cases the record stops before
+Three entries are also marked with a ``\textbf{?}''.  In those cases the record stops before
 the outcome is entered, so the classification has to be settled from sources outside
 these channels; the summary says in each case what is missing.
 
@@ -87,16 +91,16 @@ these channels; the summary says in each case what is missing.
 \toprule
  & Status & Issues \\
 \midrule
-\textcolor{stres}{\textbf{R}} & Resolved & 11 \\
+\textcolor{stres}{\textbf{R}} & Resolved & 14 \\
 \textcolor{stmit}{\textbf{M}} & Mitigated & 14 \\
 \textcolor{stwrk}{\textbf{W}} & Workaround & 9 \\
-\textcolor{stopn}{\textbf{O}} & Open & 26 \\
+\textcolor{stopn}{\textbf{O}} & Open & 25 \\
 \textcolor{sttra}{\textbf{T}} & Transferred & 2 \\
 \midrule
- & \textbf{Total} & \textbf{62} \\
+ & \textbf{Total} & \textbf{64} \\
 \bottomrule
 \end{tabular}
-\caption{Status of the 62 issues identified in the LSSTCam operations
+\caption{Status of the 64 issues identified in the LSSTCam operations
 channels between January 2025 and July 2026.  Open covers both ends of a spectrum: issues that were still
 generating traffic in July 2026, and issues that were never closed and simply
 stopped being mentioned --- the timeline of
@@ -109,7 +113,7 @@ entries most likely to need a decision and action.}
 \centering
 \begingroup\hypersetup{hidelinks}%
 \begin{tikzpicture}[x=0.660cm, y=-0.258cm]
-\foreach \m in {0,1,...,19} { \draw[issgrid,line width=0.4pt] (\m,-0.7) -- (\m,61.70); }
+\foreach \m in {0,1,...,19} { \draw[issgrid,line width=0.4pt] (\m,-0.7) -- (\m,63.70); }
 \node[font=\tiny] at (0.500,-1.05) {J};
 \node[font=\tiny] at (1.500,-1.05) {F};
 \node[font=\tiny] at (2.500,-1.05) {M};
@@ -129,24 +133,24 @@ entries most likely to need a decision and action.}
 \node[font=\tiny] at (16.500,-1.05) {M};
 \node[font=\tiny] at (17.500,-1.05) {J};
 \node[font=\tiny] at (18.500,-1.05) {J};
-\draw[black!55,line width=0.7pt] (12,-0.7) -- (12,61.70);
+\draw[black!55,line width=0.7pt] (12,-0.7) -- (12,63.70);
 \node[font=\scriptsize\bfseries,text=black!60,anchor=west] at (0.15,-1.95) {2025};
 \node[font=\scriptsize\bfseries,text=black!60,anchor=west] at (12.15,-1.95) {2026};
-\fill[black!7] (9.000,-0.7) rectangle (9.613,61.70);
-\fill[black!7] (12.645,-0.7) rectangle (13.536,61.70);
-\fill[black!7] (16.065,-0.7) rectangle (16.226,61.70);
-\fill[black!7] (17.700,-0.7) rectangle (17.800,61.70);
-\draw[black!40,dashed,line width=0.4pt] (1.143,-0.7) -- (1.143,61.70);
+\fill[black!7] (9.000,-0.7) rectangle (9.613,63.70);
+\fill[black!7] (12.645,-0.7) rectangle (13.536,63.70);
+\fill[black!7] (16.065,-0.7) rectangle (16.226,63.70);
+\fill[black!7] (17.700,-0.7) rectangle (17.800,63.70);
+\draw[black!40,dashed,line width=0.4pt] (1.143,-0.7) -- (1.143,63.70);
 \node[font=\tiny,text=black!55,anchor=west,rotate=38] at (1.143,-1.15) {on TEA};
-\draw[black!40,dashed,line width=0.4pt] (2.161,-0.7) -- (2.161,61.70);
+\draw[black!40,dashed,line width=0.4pt] (2.161,-0.7) -- (2.161,63.70);
 \node[font=\tiny,text=black!55,anchor=west,rotate=38] at (2.161,-2.05) {on TMA};
-\draw[black!40,dashed,line width=0.4pt] (5.733,-0.7) -- (5.733,61.70);
+\draw[black!40,dashed,line width=0.4pt] (5.733,-0.7) -- (5.733,63.70);
 \node[font=\tiny,text=black!55,anchor=west,rotate=38] at (5.733,-1.15) {First Look};
-\draw[black!40,dashed,line width=0.4pt] (9.613,-0.7) -- (9.613,61.70);
+\draw[black!40,dashed,line width=0.4pt] (9.613,-0.7) -- (9.613,63.70);
 \node[font=\tiny,text=black!55,anchor=west,rotate=38] at (9.613,-1.15) {back on sky};
-\draw[black!40,dashed,line width=0.4pt] (13.536,-0.7) -- (13.536,61.70);
+\draw[black!40,dashed,line width=0.4pt] (13.536,-0.7) -- (13.536,63.70);
 \node[font=\tiny,text=black!55,anchor=west,rotate=38] at (13.536,-2.05) {vacuum repair};
-\draw[black!40,dashed,line width=0.4pt] (18.387,-0.7) -- (18.387,61.70);
+\draw[black!40,dashed,line width=0.4pt] (18.387,-0.7) -- (18.387,63.70);
 \node[font=\tiny,text=black!55,anchor=east,rotate=38] at (18.387,-1.15) {storm};
 \node[font=\tiny\ttfamily,anchor=east] at (-0.121,0.00) {\hyperref[iss:CRYO-01]{CRYO-01}};
 \draw[issspan,line width=1.0pt] (4.226,0.00) -- (18.161,0.00);
@@ -267,415 +271,431 @@ entries most likely to need a decision and action.}
 \node[font=\tiny\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,12.00) {M};
 \draw[issgrid,line width=0.6pt] (-4.33,12.50) -- (19.90,12.50);
 \node[font=\tiny\ttfamily,anchor=east] at (-0.121,13.00) {\hyperref[iss:PCS-01]{PCS-01}};
-\draw[issspan,line width=1.0pt] (2.871,13.00) -- (15.967,13.00);
-\fill[stopn] (2.807,12.91) rectangle (2.967,13.09);
-\fill[stopn] (3.037,12.91) rectangle (3.197,13.09);
-\fill[stopn] (3.203,12.91) rectangle (3.363,13.09);
-\fill[stopn] (7.243,12.91) rectangle (7.403,13.09);
-\fill[stopn] (14.097,12.91) rectangle (14.839,13.09);
-\fill[stopn] (15.800,12.91) rectangle (15.967,13.09);
-\node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,13.00) {O};
+\draw[issspan,line width=1.0pt] (2.871,13.00) -- (7.323,13.00);
+\fill[stres] (2.807,12.91) rectangle (2.967,13.09);
+\fill[stres] (3.037,12.91) rectangle (3.197,13.09);
+\fill[stres] (3.203,12.91) rectangle (3.363,13.09);
+\fill[stres] (7.243,12.91) rectangle (7.403,13.09);
+\node[font=\tiny\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,13.00) {R};
 \node[font=\tiny\ttfamily,anchor=east] at (-0.121,14.00) {\hyperref[iss:PCS-02]{PCS-02}};
-\draw[issspan,line width=1.0pt] (2.871,14.00) -- (14.097,14.00);
+\draw[issspan,line width=1.0pt] (2.871,14.00) -- (18.161,14.00);
 \fill[stopn] (2.807,13.91) rectangle (2.967,14.09);
-\fill[stopn] (5.936,13.91) rectangle (6.096,14.09);
-\fill[stopn] (12.694,13.91) rectangle (12.854,14.09);
-\fill[stopn] (14.017,13.91) rectangle (14.177,14.09);
+\fill[stopn] (3.133,13.91) rectangle (3.333,14.09);
+\fill[stopn] (12.323,13.91) rectangle (13.036,14.09);
+\fill[stopn] (14.033,13.91) rectangle (14.193,14.09);
+\fill[stopn] (15.920,13.91) rectangle (16.080,14.09);
+\fill[stopn] (18.081,13.91) rectangle (18.241,14.09);
 \node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,14.00) {O};
 \node[font=\tiny\ttfamily,anchor=east] at (-0.121,15.00) {\hyperref[iss:PCS-03]{PCS-03}};
-\draw[issspan,line width=1.0pt] (14.161,15.00) -- (18.387,15.00);
+\draw[issspan,line width=1.0pt] (9.032,15.00) -- (18.387,15.00);
 \fill[issspan] (18.387,14.91) -- (18.387,15.09) -- (18.599,15.00) -- cycle;
+\fill[stopn] (8.952,14.91) rectangle (9.112,15.09);
 \fill[stopn] (14.161,14.91) rectangle (14.968,15.09);
 \fill[stopn] (15.033,14.91) rectangle (15.967,15.09);
 \fill[stopn] (16.129,14.91) rectangle (16.839,15.09);
 \fill[stopn] (17.133,14.91) rectangle (17.600,15.09);
 \node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,15.00) {O};
-\draw[issgrid,line width=0.6pt] (-4.33,15.50) -- (19.90,15.50);
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,16.00) {\hyperref[iss:PWR-01]{PWR-01}};
-\draw[issspan,line width=1.0pt] (1.857,16.00) -- (18.387,16.00);
-\fill[issspan] (18.387,15.91) -- (18.387,16.09) -- (18.599,16.00) -- cycle;
-\fill[stopn] (1.813,15.91) rectangle (1.973,16.09);
-\fill[stopn] (3.853,15.91) rectangle (4.013,16.09);
-\fill[stopn] (4.565,15.91) rectangle (4.725,16.09);
-\fill[stopn] (5.100,15.91) rectangle (5.333,16.09);
-\fill[stopn] (6.017,15.91) rectangle (6.177,16.09);
-\fill[stopn] (6.549,15.91) rectangle (6.709,16.09);
-\fill[stopn] (7.323,15.91) rectangle (7.484,16.09);
-\fill[stopn] (7.855,15.91) rectangle (8.015,16.09);
-\fill[stopn] (7.987,15.91) rectangle (8.147,16.09);
-\fill[stopn] (9.114,15.91) rectangle (9.274,16.09);
-\fill[stopn] (10.053,15.91) rectangle (10.213,16.09);
-\fill[stopn] (10.787,15.91) rectangle (10.947,16.09);
-\fill[stopn] (12.419,15.91) rectangle (12.645,16.09);
-\fill[stopn] (13.071,15.91) rectangle (13.929,16.09);
-\fill[stopn] (14.000,15.91) rectangle (14.968,16.09);
-\fill[stopn] (15.103,15.91) rectangle (15.263,16.09);
-\fill[stopn] (16.161,15.91) rectangle (16.581,16.09);
-\fill[stopn] (17.233,15.91) rectangle (17.567,16.09);
-\fill[stopn] (18.065,15.91) rectangle (18.387,16.09);
-\node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,16.00) {O};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,17.00) {\hyperref[iss:PWR-02]{PWR-02}};
-\draw[issspan,line width=1.0pt] (18.194,17.00) -- (18.387,17.00);
-\fill[issspan] (18.387,16.91) -- (18.387,17.09) -- (18.599,17.00) -- cycle;
-\fill[stopn] (18.146,16.91) rectangle (18.306,17.09);
-\node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,17.00) {O\,?};
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,16.00) {\hyperref[iss:PCS-04]{PCS-04}};
+\draw[issspan,line width=1.0pt] (14.613,16.00) -- (16.161,16.00);
+\fill[stmit] (14.613,15.91) rectangle (14.839,16.09);
+\fill[stmit] (15.667,15.91) rectangle (15.967,16.09);
+\fill[stmit] (16.049,15.91) rectangle (16.209,16.09);
+\node[font=\tiny\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,16.00) {M};
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,17.00) {\hyperref[iss:PCS-05]{PCS-05}};
+\draw[issspan,line width=1.0pt] (6.032,17.00) -- (16.000,17.00);
+\fill[stopn] (5.968,16.91) rectangle (6.128,17.09);
+\fill[stopn] (6.516,16.91) rectangle (6.903,17.09);
+\fill[stopn] (9.388,16.91) rectangle (9.548,17.09);
+\fill[stopn] (12.630,16.91) rectangle (12.790,17.09);
+\fill[stopn] (14.533,16.91) rectangle (14.693,17.09);
+\fill[stopn] (15.500,16.91) rectangle (16.000,17.09);
+\node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,17.00) {O};
 \draw[issgrid,line width=0.6pt] (-4.33,17.50) -- (19.90,17.50);
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,18.00) {\hyperref[iss:AIR-01]{AIR-01}};
-\draw[issspan,line width=1.0pt] (1.929,18.00) -- (17.567,18.00);
-\fill[stmit] (1.849,17.91) rectangle (2.009,18.09);
-\fill[stmit] (5.370,17.91) rectangle (5.530,18.09);
-\fill[stmit] (7.645,17.91) rectangle (7.935,18.09);
-\fill[stmit] (9.130,17.91) rectangle (9.290,18.09);
-\fill[stmit] (16.307,17.91) rectangle (16.467,18.09);
-\fill[stmit] (17.300,17.91) rectangle (17.567,18.09);
-\node[font=\tiny\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,18.00) {M};
-\draw[issgrid,line width=0.6pt] (-4.33,18.50) -- (19.90,18.50);
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,19.00) {\hyperref[iss:FP-01]{FP-01}};
-\draw[issspan,line width=1.0pt] (3.200,19.00) -- (11.290,19.00);
-\fill[stwrk] (3.137,18.91) rectangle (3.297,19.09);
-\fill[stwrk] (3.370,18.91) rectangle (3.530,19.09);
-\fill[stwrk] (3.703,18.91) rectangle (3.863,19.09);
-\fill[stwrk] (4.210,18.91) rectangle (4.370,19.09);
-\fill[stwrk] (5.037,18.91) rectangle (5.197,19.09);
-\fill[stwrk] (5.787,18.91) rectangle (5.947,19.09);
-\fill[stwrk] (6.388,18.91) rectangle (6.548,19.09);
-\fill[stwrk] (7.355,18.91) rectangle (7.645,19.09);
-\fill[stwrk] (9.387,18.91) rectangle (9.613,19.09);
-\fill[stwrk] (11.178,18.91) rectangle (11.338,19.09);
-\node[font=\tiny\bfseries,text=white,fill=stwrk,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,19.00) {W};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,20.00) {\hyperref[iss:FP-02]{FP-02}};
-\draw[issspan,line width=1.0pt] (3.033,20.00) -- (3.767,20.00);
-\fill[stwrk] (2.953,19.91) rectangle (3.113,20.09);
-\fill[stwrk] (3.370,19.91) rectangle (3.530,20.09);
-\fill[stwrk] (3.687,19.91) rectangle (3.847,20.09);
-\node[font=\tiny\bfseries,text=white,fill=stwrk,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,20.00) {W};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,21.00) {\hyperref[iss:FP-03]{FP-03}};
-\draw[issspan,line width=1.0pt] (4.129,21.00) -- (18.387,21.00);
-\fill[issspan] (18.387,20.91) -- (18.387,21.09) -- (18.599,21.00) -- cycle;
-\fill[stwrk] (4.049,20.91) rectangle (4.209,21.09);
-\fill[stwrk] (4.275,20.91) rectangle (4.435,21.09);
-\fill[stwrk] (5.870,20.91) rectangle (6.030,21.09);
-\fill[stwrk] (7.987,20.91) rectangle (8.147,21.09);
-\fill[stwrk] (9.613,20.91) rectangle (9.774,21.09);
-\fill[stwrk] (14.258,20.91) rectangle (14.581,21.09);
-\fill[stwrk] (16.226,20.91) rectangle (16.386,21.09);
-\fill[stwrk] (17.233,20.91) rectangle (17.400,21.09);
-\fill[stwrk] (18.032,20.91) rectangle (18.258,21.09);
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,18.00) {\hyperref[iss:PWR-01]{PWR-01}};
+\draw[issspan,line width=1.0pt] (1.857,18.00) -- (18.387,18.00);
+\fill[issspan] (18.387,17.91) -- (18.387,18.09) -- (18.599,18.00) -- cycle;
+\fill[stopn] (1.813,17.91) rectangle (1.973,18.09);
+\fill[stopn] (3.853,17.91) rectangle (4.013,18.09);
+\fill[stopn] (4.565,17.91) rectangle (4.725,18.09);
+\fill[stopn] (5.100,17.91) rectangle (5.333,18.09);
+\fill[stopn] (6.017,17.91) rectangle (6.177,18.09);
+\fill[stopn] (6.549,17.91) rectangle (6.709,18.09);
+\fill[stopn] (7.323,17.91) rectangle (7.484,18.09);
+\fill[stopn] (7.855,17.91) rectangle (8.015,18.09);
+\fill[stopn] (7.987,17.91) rectangle (8.147,18.09);
+\fill[stopn] (9.114,17.91) rectangle (9.274,18.09);
+\fill[stopn] (10.053,17.91) rectangle (10.213,18.09);
+\fill[stopn] (10.787,17.91) rectangle (10.947,18.09);
+\fill[stopn] (12.419,17.91) rectangle (12.645,18.09);
+\fill[stopn] (13.071,17.91) rectangle (13.929,18.09);
+\fill[stopn] (14.000,17.91) rectangle (14.968,18.09);
+\fill[stopn] (15.103,17.91) rectangle (15.263,18.09);
+\fill[stopn] (16.161,17.91) rectangle (16.581,18.09);
+\fill[stopn] (17.233,17.91) rectangle (17.567,18.09);
+\fill[stopn] (18.065,17.91) rectangle (18.387,18.09);
+\node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,18.00) {O};
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,19.00) {\hyperref[iss:PWR-02]{PWR-02}};
+\draw[issspan,line width=1.0pt] (18.194,19.00) -- (18.387,19.00);
+\fill[issspan] (18.387,18.91) -- (18.387,19.09) -- (18.599,19.00) -- cycle;
+\fill[stopn] (18.146,18.91) rectangle (18.306,19.09);
+\node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,19.00) {O\,?};
+\draw[issgrid,line width=0.6pt] (-4.33,19.50) -- (19.90,19.50);
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,20.00) {\hyperref[iss:AIR-01]{AIR-01}};
+\draw[issspan,line width=1.0pt] (1.929,20.00) -- (17.567,20.00);
+\fill[stmit] (1.849,19.91) rectangle (2.009,20.09);
+\fill[stmit] (5.370,19.91) rectangle (5.530,20.09);
+\fill[stmit] (7.645,19.91) rectangle (7.935,20.09);
+\fill[stmit] (9.130,19.91) rectangle (9.290,20.09);
+\fill[stmit] (16.307,19.91) rectangle (16.467,20.09);
+\fill[stmit] (17.300,19.91) rectangle (17.567,20.09);
+\node[font=\tiny\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,20.00) {M};
+\draw[issgrid,line width=0.6pt] (-4.33,20.50) -- (19.90,20.50);
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,21.00) {\hyperref[iss:FP-01]{FP-01}};
+\draw[issspan,line width=1.0pt] (3.200,21.00) -- (11.290,21.00);
+\fill[stwrk] (3.137,20.91) rectangle (3.297,21.09);
+\fill[stwrk] (3.370,20.91) rectangle (3.530,21.09);
+\fill[stwrk] (3.703,20.91) rectangle (3.863,21.09);
+\fill[stwrk] (4.210,20.91) rectangle (4.370,21.09);
+\fill[stwrk] (5.037,20.91) rectangle (5.197,21.09);
+\fill[stwrk] (5.787,20.91) rectangle (5.947,21.09);
+\fill[stwrk] (6.388,20.91) rectangle (6.548,21.09);
+\fill[stwrk] (7.355,20.91) rectangle (7.645,21.09);
+\fill[stwrk] (9.387,20.91) rectangle (9.613,21.09);
+\fill[stwrk] (11.178,20.91) rectangle (11.338,21.09);
 \node[font=\tiny\bfseries,text=white,fill=stwrk,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,21.00) {W};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,22.00) {\hyperref[iss:FP-04]{FP-04}};
-\draw[issspan,line width=1.0pt] (3.167,22.00) -- (4.290,22.00);
-\fill[stwrk] (3.087,21.91) rectangle (3.247,22.09);
-\fill[stwrk] (3.453,21.91) rectangle (3.613,22.09);
-\fill[stwrk] (3.920,21.91) rectangle (4.080,22.09);
-\fill[stwrk] (4.210,21.91) rectangle (4.370,22.09);
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,22.00) {\hyperref[iss:FP-02]{FP-02}};
+\draw[issspan,line width=1.0pt] (3.033,22.00) -- (3.767,22.00);
+\fill[stwrk] (2.953,21.91) rectangle (3.113,22.09);
+\fill[stwrk] (3.370,21.91) rectangle (3.530,22.09);
+\fill[stwrk] (3.687,21.91) rectangle (3.847,22.09);
 \node[font=\tiny\bfseries,text=white,fill=stwrk,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,22.00) {W};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,23.00) {\hyperref[iss:FP-05]{FP-05}};
-\draw[issspan,line width=1.0pt] (3.933,23.00) -- (9.645,23.00);
-\fill[stwrk] (3.870,22.91) rectangle (4.030,23.09);
-\fill[stwrk] (4.210,22.91) rectangle (4.370,23.09);
-\fill[stwrk] (9.549,22.91) rectangle (9.709,23.09);
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,23.00) {\hyperref[iss:FP-03]{FP-03}};
+\draw[issspan,line width=1.0pt] (4.129,23.00) -- (18.387,23.00);
+\fill[issspan] (18.387,22.91) -- (18.387,23.09) -- (18.599,23.00) -- cycle;
+\fill[stwrk] (4.049,22.91) rectangle (4.209,23.09);
+\fill[stwrk] (4.275,22.91) rectangle (4.435,23.09);
+\fill[stwrk] (5.870,22.91) rectangle (6.030,23.09);
+\fill[stwrk] (7.987,22.91) rectangle (8.147,23.09);
+\fill[stwrk] (9.613,22.91) rectangle (9.774,23.09);
+\fill[stwrk] (14.258,22.91) rectangle (14.581,23.09);
+\fill[stwrk] (16.226,22.91) rectangle (16.386,23.09);
+\fill[stwrk] (17.233,22.91) rectangle (17.400,23.09);
+\fill[stwrk] (18.032,22.91) rectangle (18.258,23.09);
 \node[font=\tiny\bfseries,text=white,fill=stwrk,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,23.00) {W};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,24.00) {\hyperref[iss:FP-06]{FP-06}};
-\draw[issspan,line width=1.0pt] (0.645,24.00) -- (13.536,24.00);
-\fill[stopn] (0.581,23.91) rectangle (0.741,24.09);
-\fill[stopn] (3.853,23.91) rectangle (4.013,24.09);
-\fill[stopn] (13.438,23.91) rectangle (13.598,24.09);
-\node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,24.00) {O};
-\draw[issgrid,line width=0.6pt] (-4.33,24.50) -- (19.90,24.50);
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,25.00) {\hyperref[iss:FW-01]{FW-01}};
-\draw[issspan,line width=1.0pt] (7.323,25.00) -- (7.710,25.00);
-\fill[stres] (7.243,24.91) rectangle (7.403,25.09);
-\fill[stres] (7.597,24.91) rectangle (7.757,25.09);
-\node[font=\tiny\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,25.00) {R};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,26.00) {\hyperref[iss:FW-02]{FW-02}};
-\draw[issspan,line width=1.0pt] (9.387,26.00) -- (18.387,26.00);
-\fill[issspan] (18.387,25.91) -- (18.387,26.09) -- (18.599,26.00) -- cycle;
-\fill[stopn] (9.355,25.91) rectangle (9.515,26.09);
-\fill[stopn] (9.823,25.91) rectangle (9.983,26.09);
-\fill[stopn] (10.020,25.91) rectangle (10.180,26.09);
-\fill[stopn] (11.355,25.91) rectangle (11.515,26.09);
-\fill[stopn] (13.474,25.91) rectangle (13.634,26.09);
-\fill[stopn] (14.662,25.91) rectangle (14.822,26.09);
-\fill[stopn] (16.194,25.91) rectangle (16.354,26.09);
-\fill[stopn] (17.233,25.91) rectangle (17.800,26.09);
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,24.00) {\hyperref[iss:FP-04]{FP-04}};
+\draw[issspan,line width=1.0pt] (3.167,24.00) -- (4.290,24.00);
+\fill[stwrk] (3.087,23.91) rectangle (3.247,24.09);
+\fill[stwrk] (3.453,23.91) rectangle (3.613,24.09);
+\fill[stwrk] (3.920,23.91) rectangle (4.080,24.09);
+\fill[stwrk] (4.210,23.91) rectangle (4.370,24.09);
+\node[font=\tiny\bfseries,text=white,fill=stwrk,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,24.00) {W};
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,25.00) {\hyperref[iss:FP-05]{FP-05}};
+\draw[issspan,line width=1.0pt] (3.933,25.00) -- (9.645,25.00);
+\fill[stwrk] (3.870,24.91) rectangle (4.030,25.09);
+\fill[stwrk] (4.210,24.91) rectangle (4.370,25.09);
+\fill[stwrk] (9.549,24.91) rectangle (9.709,25.09);
+\node[font=\tiny\bfseries,text=white,fill=stwrk,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,25.00) {W};
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,26.00) {\hyperref[iss:FP-06]{FP-06}};
+\draw[issspan,line width=1.0pt] (0.645,26.00) -- (13.536,26.00);
+\fill[stopn] (0.581,25.91) rectangle (0.741,26.09);
+\fill[stopn] (3.853,25.91) rectangle (4.013,26.09);
+\fill[stopn] (13.438,25.91) rectangle (13.598,26.09);
 \node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,26.00) {O};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,27.00) {\hyperref[iss:FW-03]{FW-03}};
-\draw[issspan,line width=1.0pt] (9.258,27.00) -- (18.387,27.00);
-\fill[issspan] (18.387,26.91) -- (18.387,27.09) -- (18.599,27.00) -- cycle;
-\fill[stopn] (9.258,26.91) rectangle (9.613,27.09);
-\fill[stopn] (11.178,26.91) rectangle (11.338,27.09);
-\fill[stopn] (11.355,26.91) rectangle (11.515,27.09);
-\fill[stopn] (11.791,26.91) rectangle (11.951,27.09);
-\fill[stopn] (14.097,26.91) rectangle (14.742,27.09);
-\fill[stopn] (15.787,26.91) rectangle (15.947,27.09);
-\fill[stopn] (16.226,26.91) rectangle (16.548,27.09);
-\node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,27.00) {O};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,28.00) {\hyperref[iss:FW-04]{FW-04}};
-\draw[issspan,line width=1.0pt] (3.833,28.00) -- (16.323,28.00);
-\fill[stres] (3.787,27.91) rectangle (3.947,28.09);
-\fill[stres] (5.267,27.91) rectangle (5.833,28.09);
-\fill[stres] (10.687,27.91) rectangle (10.847,28.09);
-\fill[stres] (11.178,27.91) rectangle (11.338,28.09);
-\fill[stres] (11.355,27.91) rectangle (11.515,28.09);
-\fill[stres] (11.791,27.91) rectangle (11.951,28.09);
-\fill[stres] (12.548,27.91) rectangle (12.839,28.09);
-\fill[stres] (13.509,27.91) rectangle (13.669,28.09);
-\fill[stres] (14.032,27.91) rectangle (14.581,28.09);
-\fill[stres] (16.210,27.91) rectangle (16.370,28.09);
-\node[font=\tiny\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,28.00) {R};
-\draw[issgrid,line width=0.6pt] (-4.33,28.50) -- (19.90,28.50);
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,29.00) {\hyperref[iss:DAQ-01]{DAQ-01}};
-\draw[issspan,line width=1.0pt] (2.742,29.00) -- (18.387,29.00);
+\draw[issgrid,line width=0.6pt] (-4.33,26.50) -- (19.90,26.50);
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,27.00) {\hyperref[iss:FW-01]{FW-01}};
+\draw[issspan,line width=1.0pt] (7.323,27.00) -- (7.710,27.00);
+\fill[stres] (7.243,26.91) rectangle (7.403,27.09);
+\fill[stres] (7.597,26.91) rectangle (7.757,27.09);
+\node[font=\tiny\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,27.00) {R};
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,28.00) {\hyperref[iss:FW-02]{FW-02}};
+\draw[issspan,line width=1.0pt] (9.387,28.00) -- (18.387,28.00);
+\fill[issspan] (18.387,27.91) -- (18.387,28.09) -- (18.599,28.00) -- cycle;
+\fill[stopn] (9.355,27.91) rectangle (9.515,28.09);
+\fill[stopn] (9.823,27.91) rectangle (9.983,28.09);
+\fill[stopn] (10.020,27.91) rectangle (10.180,28.09);
+\fill[stopn] (11.355,27.91) rectangle (11.515,28.09);
+\fill[stopn] (13.474,27.91) rectangle (13.634,28.09);
+\fill[stopn] (14.662,27.91) rectangle (14.822,28.09);
+\fill[stopn] (16.194,27.91) rectangle (16.354,28.09);
+\fill[stopn] (17.233,27.91) rectangle (17.800,28.09);
+\node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,28.00) {O};
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,29.00) {\hyperref[iss:FW-03]{FW-03}};
+\draw[issspan,line width=1.0pt] (9.258,29.00) -- (18.387,29.00);
 \fill[issspan] (18.387,28.91) -- (18.387,29.09) -- (18.599,29.00) -- cycle;
-\fill[stopn] (2.694,28.91) rectangle (2.854,29.09);
-\fill[stopn] (3.537,28.91) rectangle (3.697,29.09);
-\fill[stopn] (4.000,28.91) rectangle (4.194,29.09);
-\fill[stopn] (7.468,28.91) rectangle (7.628,29.09);
-\fill[stopn] (7.759,28.91) rectangle (7.919,29.09);
-\fill[stopn] (8.420,28.91) rectangle (8.580,29.09);
-\fill[stopn] (9.194,28.91) rectangle (9.354,29.09);
-\fill[stopn] (9.533,28.91) rectangle (9.693,29.09);
-\fill[stopn] (10.687,28.91) rectangle (10.847,29.09);
-\fill[stopn] (12.097,28.91) rectangle (12.613,29.09);
+\fill[stopn] (9.258,28.91) rectangle (9.613,29.09);
+\fill[stopn] (11.178,28.91) rectangle (11.338,29.09);
+\fill[stopn] (11.355,28.91) rectangle (11.515,29.09);
+\fill[stopn] (11.791,28.91) rectangle (11.951,29.09);
 \fill[stopn] (14.097,28.91) rectangle (14.742,29.09);
-\fill[stopn] (15.567,28.91) rectangle (15.867,29.09);
-\fill[stopn] (16.226,28.91) rectangle (16.710,29.09);
-\fill[stopn] (17.233,28.91) rectangle (17.867,29.09);
+\fill[stopn] (15.787,28.91) rectangle (15.947,29.09);
+\fill[stopn] (16.226,28.91) rectangle (16.548,29.09);
 \node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,29.00) {O};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,30.00) {\hyperref[iss:DAQ-02]{DAQ-02}};
-\draw[issspan,line width=1.0pt] (9.290,30.00) -- (9.387,30.00);
-\fill[stmit] (9.259,29.91) rectangle (9.419,30.09);
-\node[font=\tiny\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,30.00) {M};
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,30.00) {\hyperref[iss:FW-04]{FW-04}};
+\draw[issspan,line width=1.0pt] (3.833,30.00) -- (16.323,30.00);
+\fill[stres] (3.787,29.91) rectangle (3.947,30.09);
+\fill[stres] (5.267,29.91) rectangle (5.833,30.09);
+\fill[stres] (10.687,29.91) rectangle (10.847,30.09);
+\fill[stres] (11.178,29.91) rectangle (11.338,30.09);
+\fill[stres] (11.355,29.91) rectangle (11.515,30.09);
+\fill[stres] (11.791,29.91) rectangle (11.951,30.09);
+\fill[stres] (12.548,29.91) rectangle (12.839,30.09);
+\fill[stres] (13.509,29.91) rectangle (13.669,30.09);
+\fill[stres] (14.032,29.91) rectangle (14.581,30.09);
+\fill[stres] (16.210,29.91) rectangle (16.370,30.09);
+\node[font=\tiny\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,30.00) {R};
 \draw[issgrid,line width=0.6pt] (-4.33,30.50) -- (19.90,30.50);
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,31.00) {\hyperref[iss:CCS-01]{CCS-01}};
-\draw[issspan,line width=1.0pt] (4.000,31.00) -- (18.387,31.00);
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,31.00) {\hyperref[iss:DAQ-01]{DAQ-01}};
+\draw[issspan,line width=1.0pt] (2.742,31.00) -- (18.387,31.00);
 \fill[issspan] (18.387,30.91) -- (18.387,31.09) -- (18.599,31.00) -- cycle;
-\fill[stmit] (3.985,30.91) rectangle (4.145,31.09);
-\fill[stmit] (6.275,30.91) rectangle (6.435,31.09);
-\fill[stmit] (8.167,30.91) rectangle (8.500,31.09);
-\fill[stmit] (9.888,30.91) rectangle (10.048,31.09);
-\fill[stmit] (9.953,30.91) rectangle (10.113,31.09);
-\fill[stmit] (10.637,30.91) rectangle (10.797,31.09);
-\fill[stmit] (13.643,30.91) rectangle (13.964,31.09);
-\fill[stmit] (14.694,30.91) rectangle (14.854,31.09);
-\fill[stmit] (15.203,30.91) rectangle (15.363,31.09);
-\fill[stmit] (16.419,30.91) rectangle (16.903,31.09);
-\fill[stmit] (17.020,30.91) rectangle (17.180,31.09);
-\fill[stmit] (18.081,30.91) rectangle (18.241,31.09);
-\node[font=\tiny\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,31.00) {M};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,32.00) {\hyperref[iss:CCS-02]{CCS-02}};
-\draw[issspan,line width=1.0pt] (3.500,32.00) -- (6.097,32.00);
-\fill[stres] (3.470,31.91) rectangle (3.630,32.09);
-\fill[stres] (5.733,31.91) rectangle (6.097,32.09);
-\node[font=\tiny\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,32.00) {R};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,33.00) {\hyperref[iss:CCS-03]{CCS-03}};
-\draw[issspan,line width=1.0pt] (6.387,33.00) -- (18.387,33.00);
+\fill[stopn] (2.694,30.91) rectangle (2.854,31.09);
+\fill[stopn] (3.537,30.91) rectangle (3.697,31.09);
+\fill[stopn] (4.000,30.91) rectangle (4.194,31.09);
+\fill[stopn] (7.468,30.91) rectangle (7.628,31.09);
+\fill[stopn] (7.759,30.91) rectangle (7.919,31.09);
+\fill[stopn] (8.420,30.91) rectangle (8.580,31.09);
+\fill[stopn] (9.194,30.91) rectangle (9.354,31.09);
+\fill[stopn] (9.533,30.91) rectangle (9.693,31.09);
+\fill[stopn] (10.687,30.91) rectangle (10.847,31.09);
+\fill[stopn] (12.097,30.91) rectangle (12.613,31.09);
+\fill[stopn] (14.097,30.91) rectangle (14.742,31.09);
+\fill[stopn] (15.567,30.91) rectangle (15.867,31.09);
+\fill[stopn] (16.226,30.91) rectangle (16.710,31.09);
+\fill[stopn] (17.233,30.91) rectangle (17.867,31.09);
+\node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,31.00) {O};
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,32.00) {\hyperref[iss:DAQ-02]{DAQ-02}};
+\draw[issspan,line width=1.0pt] (9.290,32.00) -- (9.387,32.00);
+\fill[stmit] (9.259,31.91) rectangle (9.419,32.09);
+\node[font=\tiny\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,32.00) {M};
+\draw[issgrid,line width=0.6pt] (-4.33,32.50) -- (19.90,32.50);
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,33.00) {\hyperref[iss:CCS-01]{CCS-01}};
+\draw[issspan,line width=1.0pt] (4.000,33.00) -- (18.387,33.00);
 \fill[issspan] (18.387,32.91) -- (18.387,33.09) -- (18.599,33.00) -- cycle;
-\fill[stopn] (6.387,32.91) rectangle (6.871,33.09);
-\fill[stopn] (10.187,32.91) rectangle (10.347,33.09);
-\node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,33.00) {O};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,34.00) {\hyperref[iss:CCS-04]{CCS-04}};
-\draw[issspan,line width=1.0pt] (1.857,34.00) -- (2.097,34.00);
-\fill[stmit] (1.857,33.91) rectangle (2.097,34.09);
-\node[font=\tiny\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,34.00) {M};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,35.00) {\hyperref[iss:CCS-05]{CCS-05}};
-\draw[issspan,line width=1.0pt] (10.633,35.00) -- (18.387,35.00);
+\fill[stmit] (3.985,32.91) rectangle (4.145,33.09);
+\fill[stmit] (6.275,32.91) rectangle (6.435,33.09);
+\fill[stmit] (8.167,32.91) rectangle (8.500,33.09);
+\fill[stmit] (9.888,32.91) rectangle (10.048,33.09);
+\fill[stmit] (9.953,32.91) rectangle (10.113,33.09);
+\fill[stmit] (10.637,32.91) rectangle (10.797,33.09);
+\fill[stmit] (13.643,32.91) rectangle (13.964,33.09);
+\fill[stmit] (14.694,32.91) rectangle (14.854,33.09);
+\fill[stmit] (15.203,32.91) rectangle (15.363,33.09);
+\fill[stmit] (16.419,32.91) rectangle (16.903,33.09);
+\fill[stmit] (17.020,32.91) rectangle (17.180,33.09);
+\fill[stmit] (18.081,32.91) rectangle (18.241,33.09);
+\node[font=\tiny\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,33.00) {M};
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,34.00) {\hyperref[iss:CCS-02]{CCS-02}};
+\draw[issspan,line width=1.0pt] (3.500,34.00) -- (6.097,34.00);
+\fill[stres] (3.470,33.91) rectangle (3.630,34.09);
+\fill[stres] (5.733,33.91) rectangle (6.097,34.09);
+\node[font=\tiny\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,34.00) {R};
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,35.00) {\hyperref[iss:CCS-03]{CCS-03}};
+\draw[issspan,line width=1.0pt] (6.387,35.00) -- (18.387,35.00);
 \fill[issspan] (18.387,34.91) -- (18.387,35.09) -- (18.599,35.00) -- cycle;
-\fill[stopn] (10.553,34.91) rectangle (10.713,35.09);
+\fill[stopn] (6.387,34.91) rectangle (6.871,35.09);
+\fill[stopn] (10.187,34.91) rectangle (10.347,35.09);
 \node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,35.00) {O};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,36.00) {\hyperref[iss:CCS-06]{CCS-06}};
-\draw[issspan,line width=1.0pt] (1.500,36.00) -- (15.900,36.00);
-\fill[stmit] (1.474,35.91) rectangle (1.634,36.09);
-\fill[stmit] (3.137,35.91) rectangle (3.297,36.09);
-\fill[stmit] (4.388,35.91) rectangle (4.548,36.09);
-\fill[stmit] (5.120,35.91) rectangle (5.280,36.09);
-\fill[stmit] (7.323,35.91) rectangle (7.581,36.09);
-\fill[stmit] (9.259,35.91) rectangle (9.419,36.09);
-\fill[stmit] (9.953,35.91) rectangle (10.113,36.09);
-\fill[stmit] (10.637,35.91) rectangle (10.797,36.09);
-\fill[stmit] (12.161,35.91) rectangle (12.935,36.09);
-\fill[stmit] (14.372,35.91) rectangle (14.532,36.09);
-\fill[stmit] (15.133,35.91) rectangle (15.900,36.09);
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,36.00) {\hyperref[iss:CCS-04]{CCS-04}};
+\draw[issspan,line width=1.0pt] (1.857,36.00) -- (2.097,36.00);
+\fill[stmit] (1.857,35.91) rectangle (2.097,36.09);
 \node[font=\tiny\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,36.00) {M};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,37.00) {\hyperref[iss:CCS-07]{CCS-07}};
-\draw[issspan,line width=1.0pt] (10.000,37.00) -- (16.613,37.00);
-\fill[stres] (9.920,36.91) rectangle (10.080,37.09);
-\fill[stres] (10.637,36.91) rectangle (10.797,37.09);
-\fill[stres] (12.791,36.91) rectangle (12.951,37.09);
-\fill[stres] (13.813,36.91) rectangle (13.973,37.09);
-\fill[stres] (16.468,36.91) rectangle (16.628,37.09);
-\node[font=\tiny\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,37.00) {R};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,38.00) {\hyperref[iss:CCS-08]{CCS-08}};
-\draw[issspan,line width=1.0pt] (2.677,38.00) -- (15.767,38.00);
-\fill[stopn] (2.597,37.91) rectangle (2.757,38.09);
-\fill[stopn] (9.114,37.91) rectangle (9.274,38.09);
-\fill[stopn] (13.420,37.91) rectangle (13.580,38.09);
-\fill[stopn] (15.687,37.91) rectangle (15.847,38.09);
-\node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,38.00) {O\,?};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,39.00) {\hyperref[iss:CCS-09]{CCS-09}};
-\draw[issspan,line width=1.0pt] (17.267,39.00) -- (18.032,39.00);
-\fill[stmit] (17.253,38.91) rectangle (17.413,39.09);
-\fill[stmit] (17.936,38.91) rectangle (18.096,39.09);
-\node[font=\tiny\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,39.00) {M};
-\draw[issgrid,line width=0.6pt] (-4.33,39.50) -- (19.90,39.50);
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,40.00) {\hyperref[iss:SHT-01]{SHT-01}};
-\draw[issspan,line width=1.0pt] (2.742,40.00) -- (9.645,40.00);
-\fill[stres] (2.678,39.91) rectangle (2.838,40.09);
-\fill[stres] (4.970,39.91) rectangle (5.130,40.09);
-\fill[stres] (9.501,39.91) rectangle (9.661,40.09);
-\node[font=\tiny\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,40.00) {R};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,41.00) {\hyperref[iss:SHT-02]{SHT-02}};
-\draw[issspan,line width=1.0pt] (5.100,41.00) -- (12.645,41.00);
-\fill[stmit] (5.100,40.91) rectangle (5.333,41.09);
-\fill[stmit] (9.987,40.91) rectangle (10.147,41.09);
-\fill[stmit] (10.553,40.91) rectangle (10.713,41.09);
-\fill[stmit] (12.258,40.91) rectangle (12.645,41.09);
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,37.00) {\hyperref[iss:CCS-05]{CCS-05}};
+\draw[issspan,line width=1.0pt] (10.633,37.00) -- (18.387,37.00);
+\fill[issspan] (18.387,36.91) -- (18.387,37.09) -- (18.599,37.00) -- cycle;
+\fill[stopn] (10.553,36.91) rectangle (10.713,37.09);
+\node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,37.00) {O};
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,38.00) {\hyperref[iss:CCS-06]{CCS-06}};
+\draw[issspan,line width=1.0pt] (1.500,38.00) -- (15.900,38.00);
+\fill[stmit] (1.474,37.91) rectangle (1.634,38.09);
+\fill[stmit] (3.137,37.91) rectangle (3.297,38.09);
+\fill[stmit] (4.388,37.91) rectangle (4.548,38.09);
+\fill[stmit] (5.120,37.91) rectangle (5.280,38.09);
+\fill[stmit] (7.323,37.91) rectangle (7.581,38.09);
+\fill[stmit] (9.259,37.91) rectangle (9.419,38.09);
+\fill[stmit] (9.953,37.91) rectangle (10.113,38.09);
+\fill[stmit] (10.637,37.91) rectangle (10.797,38.09);
+\fill[stmit] (12.161,37.91) rectangle (12.935,38.09);
+\fill[stmit] (14.372,37.91) rectangle (14.532,38.09);
+\fill[stmit] (15.133,37.91) rectangle (15.900,38.09);
+\node[font=\tiny\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,38.00) {M};
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,39.00) {\hyperref[iss:CCS-07]{CCS-07}};
+\draw[issspan,line width=1.0pt] (10.000,39.00) -- (16.613,39.00);
+\fill[stres] (9.920,38.91) rectangle (10.080,39.09);
+\fill[stres] (10.637,38.91) rectangle (10.797,39.09);
+\fill[stres] (12.791,38.91) rectangle (12.951,39.09);
+\fill[stres] (13.813,38.91) rectangle (13.973,39.09);
+\fill[stres] (16.468,38.91) rectangle (16.628,39.09);
+\node[font=\tiny\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,39.00) {R};
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,40.00) {\hyperref[iss:CCS-08]{CCS-08}};
+\draw[issspan,line width=1.0pt] (2.677,40.00) -- (15.767,40.00);
+\fill[stopn] (2.597,39.91) rectangle (2.757,40.09);
+\fill[stopn] (9.114,39.91) rectangle (9.274,40.09);
+\fill[stopn] (13.420,39.91) rectangle (13.580,40.09);
+\fill[stopn] (15.687,39.91) rectangle (15.847,40.09);
+\node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,40.00) {O\,?};
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,41.00) {\hyperref[iss:CCS-09]{CCS-09}};
+\draw[issspan,line width=1.0pt] (17.267,41.00) -- (18.032,41.00);
+\fill[stmit] (17.253,40.91) rectangle (17.413,41.09);
+\fill[stmit] (17.936,40.91) rectangle (18.096,41.09);
 \node[font=\tiny\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,41.00) {M};
 \draw[issgrid,line width=0.6pt] (-4.33,41.50) -- (19.90,41.50);
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,42.00) {\hyperref[iss:FES-01]{FES-01}};
-\draw[issspan,line width=1.0pt] (4.032,42.00) -- (17.467,42.00);
-\fill[stres] (4.032,41.91) rectangle (4.935,42.09);
-\fill[stres] (5.620,41.91) rectangle (5.780,42.09);
-\fill[stres] (6.161,41.91) rectangle (6.387,42.09);
-\fill[stres] (6.710,41.91) rectangle (6.903,42.09);
-\fill[stres] (7.097,41.91) rectangle (7.257,42.09);
-\fill[stres] (9.000,41.91) rectangle (9.613,42.09);
-\fill[stres] (10.367,41.91) rectangle (10.667,42.09);
-\fill[stres] (11.226,41.91) rectangle (11.387,42.09);
-\fill[stres] (12.388,41.91) rectangle (12.548,42.09);
-\fill[stres] (16.565,41.91) rectangle (16.725,42.09);
-\fill[stres] (17.387,41.91) rectangle (17.547,42.09);
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,42.00) {\hyperref[iss:SHT-01]{SHT-01}};
+\draw[issspan,line width=1.0pt] (2.742,42.00) -- (9.645,42.00);
+\fill[stres] (2.678,41.91) rectangle (2.838,42.09);
+\fill[stres] (4.970,41.91) rectangle (5.130,42.09);
+\fill[stres] (9.501,41.91) rectangle (9.661,42.09);
 \node[font=\tiny\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,42.00) {R};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,43.00) {\hyperref[iss:FES-02]{FES-02}};
-\draw[issspan,line width=1.0pt] (3.400,43.00) -- (3.800,43.00);
-\fill[stres] (3.400,42.91) rectangle (3.800,43.09);
-\node[font=\tiny\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,43.00) {R};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,44.00) {\hyperref[iss:FES-03]{FES-03}};
-\draw[issspan,line width=1.0pt] (1.429,44.00) -- (18.258,44.00);
-\fill[stmit] (1.366,43.91) rectangle (1.526,44.09);
-\fill[stmit] (2.742,43.91) rectangle (2.903,44.09);
-\fill[stmit] (3.603,43.91) rectangle (3.763,44.09);
-\fill[stmit] (8.003,43.91) rectangle (8.163,44.09);
-\fill[stmit] (9.662,43.91) rectangle (9.822,44.09);
-\fill[stmit] (10.985,43.91) rectangle (11.145,44.09);
-\fill[stmit] (11.307,43.91) rectangle (11.467,44.09);
-\fill[stmit] (13.000,43.91) rectangle (14.968,44.09);
-\fill[stmit] (16.759,43.91) rectangle (16.919,44.09);
-\fill[stmit] (17.067,43.91) rectangle (17.367,44.09);
-\fill[stmit] (18.178,43.91) rectangle (18.338,44.09);
-\node[font=\tiny\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,44.00) {M};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,45.00) {\hyperref[iss:FES-04]{FES-04}};
-\draw[issspan,line width=1.0pt] (8.433,45.00) -- (18.387,45.00);
-\fill[issspan] (18.387,44.91) -- (18.387,45.09) -- (18.599,45.00) -- cycle;
-\fill[stopn] (8.353,44.91) rectangle (8.513,45.09);
-\fill[stopn] (10.367,44.91) rectangle (10.767,45.09);
-\fill[stopn] (11.307,44.91) rectangle (11.467,45.09);
-\fill[stopn] (12.114,44.91) rectangle (12.274,45.09);
-\fill[stopn] (14.323,44.91) rectangle (14.581,45.09);
-\fill[stopn] (15.233,44.91) rectangle (15.433,45.09);
-\node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,45.00) {O};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,46.00) {\hyperref[iss:FES-05]{FES-05}};
-\draw[issspan,line width=1.0pt] (17.600,46.00) -- (18.387,46.00);
-\fill[issspan] (18.387,45.91) -- (18.387,46.09) -- (18.599,46.00) -- cycle;
-\fill[stopn] (17.600,45.91) rectangle (18.258,46.09);
-\node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,46.00) {O};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,47.00) {\hyperref[iss:FES-06]{FES-06}};
-\draw[issspan,line width=1.0pt] (6.742,47.00) -- (6.935,47.00);
-\fill[stres] (6.742,46.91) rectangle (6.935,47.09);
-\node[font=\tiny\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,47.00) {R};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,48.00) {\hyperref[iss:FES-07]{FES-07}};
-\draw[issspan,line width=1.0pt] (3.900,48.00) -- (5.333,48.00);
-\fill[stres] (3.820,47.91) rectangle (3.980,48.09);
-\fill[stres] (5.220,47.91) rectangle (5.380,48.09);
-\node[font=\tiny\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,48.00) {R};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,49.00) {\hyperref[iss:FES-08]{FES-08}};
-\draw[issspan,line width=1.0pt] (4.452,49.00) -- (18.387,49.00);
-\fill[issspan] (18.387,48.91) -- (18.387,49.09) -- (18.599,49.00) -- cycle;
-\fill[stopn] (4.452,48.91) rectangle (4.613,49.09);
-\fill[stopn] (5.387,48.91) rectangle (5.547,49.09);
-\node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,49.00) {O\,?};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,50.00) {\hyperref[iss:FES-09]{FES-09}};
-\draw[issspan,line width=1.0pt] (16.355,50.00) -- (18.387,50.00);
-\fill[issspan] (18.387,49.91) -- (18.387,50.09) -- (18.599,50.00) -- cycle;
-\fill[stopn] (16.355,49.91) rectangle (16.774,50.09);
-\node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,50.00) {O};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,51.00) {\hyperref[iss:FES-10]{FES-10}};
-\draw[issspan,line width=1.0pt] (15.867,51.00) -- (18.387,51.00);
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,43.00) {\hyperref[iss:SHT-02]{SHT-02}};
+\draw[issspan,line width=1.0pt] (5.100,43.00) -- (12.645,43.00);
+\fill[stmit] (5.100,42.91) rectangle (5.333,43.09);
+\fill[stmit] (9.987,42.91) rectangle (10.147,43.09);
+\fill[stmit] (10.553,42.91) rectangle (10.713,43.09);
+\fill[stmit] (12.258,42.91) rectangle (12.645,43.09);
+\node[font=\tiny\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,43.00) {M};
+\draw[issgrid,line width=0.6pt] (-4.33,43.50) -- (19.90,43.50);
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,44.00) {\hyperref[iss:FES-01]{FES-01}};
+\draw[issspan,line width=1.0pt] (4.032,44.00) -- (17.467,44.00);
+\fill[stres] (4.032,43.91) rectangle (4.935,44.09);
+\fill[stres] (5.620,43.91) rectangle (5.780,44.09);
+\fill[stres] (6.161,43.91) rectangle (6.387,44.09);
+\fill[stres] (6.710,43.91) rectangle (6.903,44.09);
+\fill[stres] (7.097,43.91) rectangle (7.257,44.09);
+\fill[stres] (9.000,43.91) rectangle (9.613,44.09);
+\fill[stres] (10.367,43.91) rectangle (10.667,44.09);
+\fill[stres] (11.226,43.91) rectangle (11.387,44.09);
+\fill[stres] (12.388,43.91) rectangle (12.548,44.09);
+\fill[stres] (16.565,43.91) rectangle (16.725,44.09);
+\fill[stres] (17.387,43.91) rectangle (17.547,44.09);
+\node[font=\tiny\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,44.00) {R};
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,45.00) {\hyperref[iss:FES-02]{FES-02}};
+\draw[issspan,line width=1.0pt] (3.400,45.00) -- (3.800,45.00);
+\fill[stres] (3.400,44.91) rectangle (3.800,45.09);
+\node[font=\tiny\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,45.00) {R};
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,46.00) {\hyperref[iss:FES-03]{FES-03}};
+\draw[issspan,line width=1.0pt] (1.429,46.00) -- (18.258,46.00);
+\fill[stmit] (1.366,45.91) rectangle (1.526,46.09);
+\fill[stmit] (2.742,45.91) rectangle (2.903,46.09);
+\fill[stmit] (3.603,45.91) rectangle (3.763,46.09);
+\fill[stmit] (8.003,45.91) rectangle (8.163,46.09);
+\fill[stmit] (9.662,45.91) rectangle (9.822,46.09);
+\fill[stmit] (10.985,45.91) rectangle (11.145,46.09);
+\fill[stmit] (11.307,45.91) rectangle (11.467,46.09);
+\fill[stmit] (13.000,45.91) rectangle (14.968,46.09);
+\fill[stmit] (16.759,45.91) rectangle (16.919,46.09);
+\fill[stmit] (17.067,45.91) rectangle (17.367,46.09);
+\fill[stmit] (18.178,45.91) rectangle (18.338,46.09);
+\node[font=\tiny\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,46.00) {M};
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,47.00) {\hyperref[iss:FES-04]{FES-04}};
+\draw[issspan,line width=1.0pt] (8.433,47.00) -- (18.387,47.00);
+\fill[issspan] (18.387,46.91) -- (18.387,47.09) -- (18.599,47.00) -- cycle;
+\fill[stopn] (8.353,46.91) rectangle (8.513,47.09);
+\fill[stopn] (10.367,46.91) rectangle (10.767,47.09);
+\fill[stopn] (11.307,46.91) rectangle (11.467,47.09);
+\fill[stopn] (12.114,46.91) rectangle (12.274,47.09);
+\fill[stopn] (14.323,46.91) rectangle (14.581,47.09);
+\fill[stopn] (15.233,46.91) rectangle (15.433,47.09);
+\node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,47.00) {O};
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,48.00) {\hyperref[iss:FES-05]{FES-05}};
+\draw[issspan,line width=1.0pt] (17.600,48.00) -- (18.387,48.00);
+\fill[issspan] (18.387,47.91) -- (18.387,48.09) -- (18.599,48.00) -- cycle;
+\fill[stopn] (17.600,47.91) rectangle (18.258,48.09);
+\node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,48.00) {O};
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,49.00) {\hyperref[iss:FES-06]{FES-06}};
+\draw[issspan,line width=1.0pt] (6.742,49.00) -- (6.935,49.00);
+\fill[stres] (6.742,48.91) rectangle (6.935,49.09);
+\node[font=\tiny\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,49.00) {R};
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,50.00) {\hyperref[iss:FES-07]{FES-07}};
+\draw[issspan,line width=1.0pt] (3.900,50.00) -- (5.333,50.00);
+\fill[stres] (3.820,49.91) rectangle (3.980,50.09);
+\fill[stres] (5.220,49.91) rectangle (5.380,50.09);
+\node[font=\tiny\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,50.00) {R};
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,51.00) {\hyperref[iss:FES-08]{FES-08}};
+\draw[issspan,line width=1.0pt] (4.452,51.00) -- (18.387,51.00);
 \fill[issspan] (18.387,50.91) -- (18.387,51.09) -- (18.599,51.00) -- cycle;
-\fill[stopn] (15.867,50.91) rectangle (16.194,51.09);
-\node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,51.00) {O};
-\draw[issgrid,line width=0.6pt] (-4.33,51.50) -- (19.90,51.50);
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,52.00) {\hyperref[iss:OPT-01]{OPT-01}};
-\draw[issspan,line width=1.0pt] (3.533,52.00) -- (9.677,52.00);
-\fill[stwrk] (3.533,51.91) rectangle (3.933,52.09);
-\fill[stwrk] (4.161,51.91) rectangle (4.355,52.09);
-\fill[stwrk] (5.187,51.91) rectangle (5.347,52.09);
-\fill[stwrk] (5.653,51.91) rectangle (5.813,52.09);
-\fill[stwrk] (8.087,51.91) rectangle (8.247,52.09);
-\fill[stwrk] (8.603,51.91) rectangle (8.763,52.09);
-\fill[stwrk] (9.597,51.91) rectangle (9.757,52.09);
-\node[font=\tiny\bfseries,text=white,fill=stwrk,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,52.00) {W};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,53.00) {\hyperref[iss:OPT-02]{OPT-02}};
-\draw[issspan,line width=1.0pt] (3.600,53.00) -- (3.633,53.00);
-\fill[sttra] (3.537,52.91) rectangle (3.697,53.09);
-\node[font=\tiny\bfseries,text=white,fill=sttra,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,53.00) {T};
+\fill[stopn] (4.452,50.91) rectangle (4.613,51.09);
+\fill[stopn] (5.387,50.91) rectangle (5.547,51.09);
+\node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,51.00) {O\,?};
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,52.00) {\hyperref[iss:FES-09]{FES-09}};
+\draw[issspan,line width=1.0pt] (16.355,52.00) -- (18.387,52.00);
+\fill[issspan] (18.387,51.91) -- (18.387,52.09) -- (18.599,52.00) -- cycle;
+\fill[stopn] (16.355,51.91) rectangle (16.774,52.09);
+\node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,52.00) {O};
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,53.00) {\hyperref[iss:FES-10]{FES-10}};
+\draw[issspan,line width=1.0pt] (15.867,53.00) -- (18.387,53.00);
+\fill[issspan] (18.387,52.91) -- (18.387,53.09) -- (18.599,53.00) -- cycle;
+\fill[stopn] (15.867,52.91) rectangle (16.194,53.09);
+\node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,53.00) {O};
 \draw[issgrid,line width=0.6pt] (-4.33,53.50) -- (19.90,53.50);
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,54.00) {\hyperref[iss:MEC-01]{MEC-01}};
-\draw[issspan,line width=1.0pt] (0.871,54.00) -- (1.107,54.00);
-\fill[stres] (0.871,53.91) rectangle (1.107,54.09);
-\node[font=\tiny\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,54.00) {R};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,55.00) {\hyperref[iss:MEC-02]{MEC-02}};
-\draw[issspan,line width=1.0pt] (1.607,55.00) -- (18.387,55.00);
-\fill[issspan] (18.387,54.91) -- (18.387,55.09) -- (18.599,55.00) -- cycle;
-\fill[stopn] (1.527,54.91) rectangle (1.687,55.09);
-\fill[stopn] (7.759,54.91) rectangle (7.919,55.09);
-\fill[stopn] (9.065,54.91) rectangle (9.258,55.09);
-\node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,55.00) {O};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,56.00) {\hyperref[iss:MEC-03]{MEC-03}};
-\draw[issspan,line width=1.0pt] (7.097,56.00) -- (18.387,56.00);
-\fill[issspan] (18.387,55.91) -- (18.387,56.09) -- (18.599,56.00) -- cycle;
-\fill[stopn] (7.097,55.91) rectangle (7.355,56.09);
-\fill[stopn] (8.120,55.91) rectangle (8.280,56.09);
-\node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,56.00) {O};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,57.00) {\hyperref[iss:MEC-04]{MEC-04}};
-\draw[issspan,line width=1.0pt] (0.645,57.00) -- (0.677,57.00);
-\fill[stwrk] (0.581,56.91) rectangle (0.741,57.09);
-\node[font=\tiny\bfseries,text=white,fill=stwrk,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,57.00) {W};
-\draw[issgrid,line width=0.6pt] (-4.33,57.50) -- (19.90,57.50);
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,58.00) {\hyperref[iss:IT-01]{IT-01}};
-\draw[issspan,line width=1.0pt] (1.179,58.00) -- (18.387,58.00);
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,54.00) {\hyperref[iss:OPT-01]{OPT-01}};
+\draw[issspan,line width=1.0pt] (3.533,54.00) -- (9.677,54.00);
+\fill[stwrk] (3.533,53.91) rectangle (3.933,54.09);
+\fill[stwrk] (4.161,53.91) rectangle (4.355,54.09);
+\fill[stwrk] (5.187,53.91) rectangle (5.347,54.09);
+\fill[stwrk] (5.653,53.91) rectangle (5.813,54.09);
+\fill[stwrk] (8.087,53.91) rectangle (8.247,54.09);
+\fill[stwrk] (8.603,53.91) rectangle (8.763,54.09);
+\fill[stwrk] (9.597,53.91) rectangle (9.757,54.09);
+\node[font=\tiny\bfseries,text=white,fill=stwrk,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,54.00) {W};
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,55.00) {\hyperref[iss:OPT-02]{OPT-02}};
+\draw[issspan,line width=1.0pt] (3.600,55.00) -- (3.633,55.00);
+\fill[sttra] (3.537,54.91) rectangle (3.697,55.09);
+\node[font=\tiny\bfseries,text=white,fill=sttra,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,55.00) {T};
+\draw[issgrid,line width=0.6pt] (-4.33,55.50) -- (19.90,55.50);
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,56.00) {\hyperref[iss:MEC-01]{MEC-01}};
+\draw[issspan,line width=1.0pt] (0.871,56.00) -- (1.107,56.00);
+\fill[stres] (0.871,55.91) rectangle (1.107,56.09);
+\node[font=\tiny\bfseries,text=white,fill=stres,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,56.00) {R};
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,57.00) {\hyperref[iss:MEC-02]{MEC-02}};
+\draw[issspan,line width=1.0pt] (1.607,57.00) -- (18.387,57.00);
+\fill[issspan] (18.387,56.91) -- (18.387,57.09) -- (18.599,57.00) -- cycle;
+\fill[stopn] (1.527,56.91) rectangle (1.687,57.09);
+\fill[stopn] (7.759,56.91) rectangle (7.919,57.09);
+\fill[stopn] (9.065,56.91) rectangle (9.258,57.09);
+\node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,57.00) {O};
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,58.00) {\hyperref[iss:MEC-03]{MEC-03}};
+\draw[issspan,line width=1.0pt] (7.097,58.00) -- (18.387,58.00);
 \fill[issspan] (18.387,57.91) -- (18.387,58.09) -- (18.599,58.00) -- cycle;
-\fill[stmit] (1.179,57.91) rectangle (1.429,58.09);
-\fill[stmit] (3.153,57.91) rectangle (3.313,58.09);
-\fill[stmit] (4.081,57.91) rectangle (4.241,58.09);
-\fill[stmit] (5.020,57.91) rectangle (5.180,58.09);
-\fill[stmit] (6.372,57.91) rectangle (6.532,58.09);
-\fill[stmit] (7.743,57.91) rectangle (7.903,58.09);
-\fill[stmit] (8.870,57.91) rectangle (9.030,58.09);
-\fill[stmit] (9.162,57.91) rectangle (9.322,58.09);
-\fill[stmit] (10.470,57.91) rectangle (10.630,58.09);
-\fill[stmit] (11.404,57.91) rectangle (11.564,58.09);
-\fill[stmit] (12.823,57.91) rectangle (12.983,58.09);
-\fill[stmit] (14.097,57.91) rectangle (14.452,58.09);
-\fill[stmit] (15.233,57.91) rectangle (15.900,58.09);
-\fill[stmit] (16.129,57.91) rectangle (16.581,58.09);
-\fill[stmit] (17.920,57.91) rectangle (18.080,58.09);
-\node[font=\tiny\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,58.00) {M};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,59.00) {\hyperref[iss:IT-02]{IT-02}};
-\draw[issspan,line width=1.0pt] (14.097,59.00) -- (14.839,59.00);
-\fill[stwrk] (14.097,58.91) rectangle (14.839,59.09);
+\fill[stopn] (7.097,57.91) rectangle (7.355,58.09);
+\fill[stopn] (8.120,57.91) rectangle (8.280,58.09);
+\node[font=\tiny\bfseries,text=white,fill=stopn,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,58.00) {O};
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,59.00) {\hyperref[iss:MEC-04]{MEC-04}};
+\draw[issspan,line width=1.0pt] (0.645,59.00) -- (0.677,59.00);
+\fill[stwrk] (0.581,58.91) rectangle (0.741,59.09);
 \node[font=\tiny\bfseries,text=white,fill=stwrk,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,59.00) {W};
 \draw[issgrid,line width=0.6pt] (-4.33,59.50) -- (19.90,59.50);
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,60.00) {\hyperref[iss:VAC-01]{VAC-01}};
-\draw[issspan,line width=1.0pt] (12.839,60.00) -- (13.536,60.00);
-\fill[sttra] (12.839,59.91) rectangle (13.536,60.09);
-\node[font=\tiny\bfseries,text=white,fill=sttra,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,60.00) {T};
-\node[font=\tiny\ttfamily,anchor=east] at (-0.121,61.00) {\hyperref[iss:VAC-02]{VAC-02}};
-\draw[issspan,line width=1.0pt] (16.129,61.00) -- (17.800,61.00);
-\fill[stwrk] (16.049,60.91) rectangle (16.209,61.09);
-\fill[stwrk] (17.253,60.91) rectangle (17.413,61.09);
-\fill[stwrk] (17.500,60.91) rectangle (17.800,61.09);
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,60.00) {\hyperref[iss:IT-01]{IT-01}};
+\draw[issspan,line width=1.0pt] (1.179,60.00) -- (18.387,60.00);
+\fill[issspan] (18.387,59.91) -- (18.387,60.09) -- (18.599,60.00) -- cycle;
+\fill[stmit] (1.179,59.91) rectangle (1.429,60.09);
+\fill[stmit] (3.153,59.91) rectangle (3.313,60.09);
+\fill[stmit] (4.081,59.91) rectangle (4.241,60.09);
+\fill[stmit] (5.020,59.91) rectangle (5.180,60.09);
+\fill[stmit] (6.372,59.91) rectangle (6.532,60.09);
+\fill[stmit] (7.743,59.91) rectangle (7.903,60.09);
+\fill[stmit] (8.870,59.91) rectangle (9.030,60.09);
+\fill[stmit] (9.162,59.91) rectangle (9.322,60.09);
+\fill[stmit] (10.470,59.91) rectangle (10.630,60.09);
+\fill[stmit] (11.404,59.91) rectangle (11.564,60.09);
+\fill[stmit] (12.823,59.91) rectangle (12.983,60.09);
+\fill[stmit] (14.097,59.91) rectangle (14.452,60.09);
+\fill[stmit] (15.233,59.91) rectangle (15.900,60.09);
+\fill[stmit] (16.129,59.91) rectangle (16.581,60.09);
+\fill[stmit] (17.920,59.91) rectangle (18.080,60.09);
+\node[font=\tiny\bfseries,text=white,fill=stmit,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,60.00) {M};
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,61.00) {\hyperref[iss:IT-02]{IT-02}};
+\draw[issspan,line width=1.0pt] (14.097,61.00) -- (14.839,61.00);
+\fill[stwrk] (14.097,60.91) rectangle (14.839,61.09);
 \node[font=\tiny\bfseries,text=white,fill=stwrk,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,61.00) {W};
+\draw[issgrid,line width=0.6pt] (-4.33,61.50) -- (19.90,61.50);
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,62.00) {\hyperref[iss:VAC-01]{VAC-01}};
+\draw[issspan,line width=1.0pt] (12.839,62.00) -- (13.536,62.00);
+\fill[sttra] (12.839,61.91) rectangle (13.536,62.09);
+\node[font=\tiny\bfseries,text=white,fill=sttra,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,62.00) {T};
+\node[font=\tiny\ttfamily,anchor=east] at (-0.121,63.00) {\hyperref[iss:VAC-02]{VAC-02}};
+\draw[issspan,line width=1.0pt] (16.129,63.00) -- (17.800,63.00);
+\fill[stwrk] (16.049,62.91) rectangle (16.209,63.09);
+\fill[stwrk] (17.253,62.91) rectangle (17.413,63.09);
+\fill[stwrk] (17.500,62.91) rectangle (17.800,63.09);
+\node[font=\tiny\bfseries,text=white,fill=stwrk,rounded corners=1pt,inner sep=1.0pt,minimum width=0.26cm,anchor=west] at (18.690,63.00) {W};
 \end{tikzpicture}%
 \endgroup
 \caption{Activity timeline of the issues in the register, January 2025 to the closure of
@@ -804,31 +824,39 @@ telescope, First Look, the two returns to sky, and the storm.}
 
 \noindent\textit{Pumped-coolant system chiller}
 \begin{description}
-\item[PCS-01]\label{iss:PCS-01} \textbf{PCS chiller reliability.}
-  \emph{First to last mention 2025-03-28 to 2026-04-30; status \textcolor{stopn}{\textbf{Open}}.}
-  A cluster of PCS chiller problems in spring, all of them traced and fixed: an under-rated 32\,A supply breaker against a 50\,A service requirement, which tripped the chiller twice in one morning (\rubintkt{OBS-826}); a stage-1 refrigerant leak that took the chiller out of service for a day and left the camera quiescent overnight; and spurious trips with no real chiller anomaly, traced to an unseated pin in a refrigeration-permit connector on the telescope-side cabling and aggravated by TMA shaking tests (\rubintkt{SUMMIT-10642}).  The breaker was replaced, the leak repaired and the connector pins and shell renewed.  Reopened.  The PCS chiller failed overnight on 2026 March~19--20 on a compressor fault, and the REBs were off until the following afternoon.  The cause was a shorted cabinet fan, its thermostat set at 20\,$^{\circ}$C so that it ran continuously; the breaker it tripped, CB11, also feeds solenoid valves on compressor~1, which is why the compressor reported a fault.  End of life was the favored explanation but was not established --- the spec sheet gives 5 years, and the unit was also found mechanically jammed.  Spares were ordered (\rubintkt{SUMMIT-12289}).  The replacement fans delivered in April were found to contain the same material that had burnt.
+\item[PCS-01]\label{iss:PCS-01} \textbf{PCS chiller reliability, spring 2025.}
+  \emph{First to last mention 2025-03-28 to 2025-08-11; status \textcolor{stres}{\textbf{Resolved}}.}
+  A cluster of PCS chiller problems in spring 2025, each traced and fixed.  An under-rated 32\,A supply breaker against a 50\,A service requirement tripped the chiller twice in one morning (\rubintkt{OBS-826}).  A stage-1 refrigerant leak took the chiller out of service for a day and left the camera quiescent overnight.  On the telescope unit the pressure-fault parameter F46 was set to 90\,psi instead of the 120\,psi of the other unit, which caused high-pressure trips when the telescope went to zenith; it was reset to 120\,psi on April~9.  Spurious trips on the external-permit bit, with no real chiller anomaly, were put down to a bad connection on the telescope-side cabling, an unseated pin in the refrigeration-permit connector being the most likely candidate, aggravated by TMA shaking tests (\rubintkt{SUMMIT-10642}); the PLC firmware was also updated on April~4.  The breaker was replaced, the leak repaired, and the connector pins and shell renewed.  F46 and several other parameters cannot be set remotely because of a firmware bug, so they have to be checked at the panel.  The 2026 failure of the cabinet heater/fan is registered separately as PCS-04.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.62\textwidth]{issues2025/figs/PCS-01-a.jpg}
-\caption{\textbf{PCS-01.} The pin face of the refrigeration-permit connector on the telescope-side cabling.  An unseated pin here is what produced the spurious chiller trips --- no chiller anomaly, a permit signal that came and went as the TMA moved.  The pins and the shell were renewed (2025-04-11, \#cam-operator).}
+\caption{\textbf{PCS-01.} The pin face of the refrigeration-permit connector on the telescope-side cabling.  An unseated pin here was the most likely cause of the spurious chiller trips --- no chiller anomaly, a permit signal that came and went as the TMA moved.  The pins and the shell were renewed (2025-04-11, \#cam-operator).}
 \label{fig:iss-PCS-01}
 \end{figure}
 
-\item[PCS-02]\label{iss:PCS-02} \textbf{PCS chiller restart difficulty, and the MRCR unit.}
-  \emph{First to last mention 2025-03-28 to 2026-03-04; status \textcolor{stopn}{\textbf{Open}}.}
-  Restarting the chiller is a separate problem from the failures above and was never solved: the unit repeatedly trips on low HFE flow because gas bubbles form in the longer line configuration, which procedure \lsstls{LCA-20281} does not cover.  In March it took roughly a dozen attempts over 2 days, and was recovered only by pressurizing the coolant tank; a loud bypass-valve noise during those attempts was later explained as the high-pressure bypass cracking at an 80\,psi pump differential.  The same behavior blocked the restart of the unit at the MRCR in July.  The MRCR system was found to have failed during the year and is tracked as \rubintkt{LSSTCAM-119}.  Two more awkward restarts, in January and March; the underlying difficulty is unchanged.
+\item[PCS-02]\label{iss:PCS-02} \textbf{PCS chiller restart difficulty.}
+  \emph{First to last mention 2025-03-28 to 2026-07-06; status \textcolor{stopn}{\textbf{Open}}.}
+  Restarting the chiller after a stop has been hard more than once, and for more than one reason.  In March 2025 it took roughly a dozen attempts over 2 days, and was recovered only by pressurizing the coolant tank; a loud bypass-valve noise during those attempts was later explained as the high-pressure bypass cracking at an 80\,psi pump differential.  Gas bubbles in the HFE were suspected of triggering the low-flow error, a case that procedure \lsstls{LCA-20281} does not cover.  Two causes were identified later.  First, when the glycol stops, the stage-1 high-pressure switch latches.  The chiller then reports only COMPRESSOR1\_FAIL, and the switch can be reset only by hand at the cabinet, with no remote reset and no remote readback of its state; this is what held up the restarts of April 2025.  Second, the parameter F36 (REFRIG\_OFF) was 0 on the telescope unit from August 2025, so the compressors kept running when the pump stopped.  That is why stage~1 tripped on high discharge pressure during the glycol swap of 2026 March~4.  F36 was set to 8 on March~5, but whether the change was saved to the chiller's non-volatile memory was not confirmed.  A meeting on 2026 May~1 decided to test, on the telescope unit, switching the refrigeration off while the fluid keeps circulating, and to ask InTEST for a firmware state that does the same; neither was in place by July.  Separately, the tank-level reading raises transient LOW\_FLUID warnings (January and July 2026) because the HFE sloshes in the horizontal tank as the telescope moves.  The fluid level itself is stable, and the condition is configured as a warning, so it does not stop the chiller.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.62\textwidth]{issues2025/figs/PCS-02-a.jpg}
-\caption{\textbf{PCS-02.} The chiller PLC panel during a restart attempt: stopped, with every error condition clear.  Nothing is reported as wrong, and the unit will still trip on low HFE flow when it is asked to start again --- which is why the restarts took about a dozen attempts over 2 days (2025-03-28, \#cam-operator).}
+\caption{\textbf{PCS-02.} The chiller PLC panel during a restart attempt: stopped, with every error condition clear.  Nothing is reported as wrong, yet the unit would still trip when it was asked to start again; the restarts took about a dozen attempts over 2 days (2025-03-28, \#cam-operator).}
 \label{fig:iss-PCS-02}
 \end{figure}
 
 \item[PCS-03]\label{iss:PCS-03} \textbf{Facility glycol capacity and the air handling units.}
-  \emph{First to last mention 2026-03-06 to 2026-06-19; status \textcolor{stopn}{\textbf{Open}}.}
-  The PCS chiller needs about 6.1\,gpm of glycol at 10\,$^{\circ}$C and degrades below 3--4.  Through 2026 it repeatedly did not get it.  Running all four site air handling units together pulls its flow down to about 2\,gpm and pushes its glycol-out temperature to 43--48\,$^{\circ}$C, so from March~6 the site ran three of four, toggled by observers at every dome opening (\rubintkt{SUMMIT-12191}).  A glycol chiller failure in April left the PCS on one chiller and ``redlining''; a bypass valve found open on April~21, feeding an unused loop on Level~1, was worth 1.3\,gpm and 5--6\,$^{\circ}$C when closed.  In May the flow fell to 1.7\,gpm while the REBs were already off for cryo work, and a clogged PCS filter was suspected when opening the bypass restored it; and the recurring instability was traced to a chiller~2 setpoint its dirty evaporator could not reach (\rubintkt{FRACAS-387}).  The chiller-3 recirculation pump meant to settle it was still uncertified in mid-June.
+  \emph{First to last mention 2025-10-02 to 2026-06-19; status \textcolor{stopn}{\textbf{Open}}.}
+  The vendor asks for 6.1\,gpm of glycol at 10\,$^{\circ}$C for full performance; the chiller will run on as little as 2\,gpm but degrades below 3--4.  Through 2026 it repeatedly did not get it.  Running all four site air handling units together pulls its flow down to about 2\,gpm and pushes its glycol-out temperature to 43--48\,$^{\circ}$C, so from March~6 the site ran three of four, toggled by observers at every dome opening (\rubintkt{SUMMIT-12191}).  A glycol chiller failure in April left the PCS on one chiller and ``redlining''; a bypass valve found open on April~21, feeding an unused loop on Level~1, was worth 1.3\,gpm and 5--6\,$^{\circ}$C when closed.  In May the flow fell to 1.7\,gpm while the REBs were already off for cryo work.  Opening the bypass restored it, and replacing the clogged PCS glycol filter on May~8 took the flow from 2.2 to 7.0\,gpm (\rubintkt{SUMMIT-12645}).  The filter had been replaced only five weeks earlier, on April~1 (\rubintkt{MAINT-3399}), and before that in October 2025; there is no pressure transducer upstream of it.  The recurring instability was traced to a chiller~2 setpoint its dirty evaporator could not reach (\rubintkt{FRACAS-387}).  The chiller-3 recirculation pump meant to settle it had been tested once in early June, but its telemetry was not yet integrated.
+
+\item[PCS-04]\label{iss:PCS-04} \textbf{Cabinet heater/fan failure stopped the PCS chiller.}
+  \emph{First to last mention 2026-03-20 to 2026-05-06; status \textcolor{stmit}{\textbf{Mitigated}}.}
+  On the night of 2026 March~19--20 the PCS chiller on the telescope (PCS2) stopped with COMPRESSOR1\_FAIL, followed by a low-flow error, and the REBs were powered down (\rubintkt{OBS-1727}).  Breaker CB11 was open and would not stay closed.  CB11 feeds the control circuit and most of the solenoid valves.  Disconnecting loads one at a time traced the short to Fan2, the combined heater/fan unit in the electronics cabinet; with Fan2 removed the breaker held.  The immediate loss of refrigeration was probably the loss of power to the CoreSense compressor module.  Fan2 was replaced with the unit from the MRCR chiller (PCS1), and the chiller was restarted at 18:49\,UTC on March~20.  Its thermostat had been set to 20\,$^{\circ}$C, above the usual cabinet temperature, so the heater and fan were believed to run all the time.  On InTEST's advice it was lowered to 10\,$^{\circ}$C on March~24 (\rubintkt{SUMMIT-12286}), and three spares were ordered (\rubintkt{SUMMIT-12289}).  A teardown in April found the fan seized and the insulation on its wires melted; overheating from the stalled fan is the working explanation.  The new units appear to use the same wire insulation.  A fuse on the fan lines and a separate, alarmed circuit were recommended, but neither is reported as done.  A report is on Confluence (``20260320 PCS Failure'').
+
+\item[PCS-05]\label{iss:PCS-05} \textbf{MRCR spare chiller (PCS1) out of service.}
+  \emph{First to last mention 2025-07-02 to 2026-05-01; status \textcolor{stopn}{\textbf{Open}}.}
+  The second PCS chiller, kept in the MRCR, could not be returned to service.  On 2025 July~2 three start attempts each ended after about 12 minutes without the second-stage compressor ever starting (\rubintkt{LSSTCAM-119}).  InTEST read the error as the stage-2 contactor K4 not energizing.  A loose wire at the DL1 delay relay, which also feeds DL2 and so K4, was suspected, and after that a low refrigerant charge; 243\,g of R507 added in October did not keep it running.  In January 2026 it tripped its circuit breaker twice.  In April a compressor-oil sample smelled of burnt windings and tested acidic on a kit, though the laboratory found the acid number normal and the iron content high.  The compressor has to be replaced, and the purchase order for it is tracked in \rubintkt{LSSTCAM-192}; no repair is recorded before the summit closed.  Its Fan2 unit was taken to repair PCS2 in March (PCS-04).
 
 \end{description}
 
